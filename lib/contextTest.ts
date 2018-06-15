@@ -1,5 +1,5 @@
 import { NetworkManagementClientContext } from './networkManagementClientContext';
-import { NetworkInterfaces } from './operations';
+import { NetworkInterfaces } from './operations/networkInterfaces';
 import { TokenCredentials } from 'ms-rest-js';
 
 const creds = new TokenCredentials("abcdefg");

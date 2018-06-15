@@ -4,15 +4,17 @@
  * regenerated.
  */
 
-import { Serializer, RequestOptionsBase, HttpOperationResponse, OperationArguments, createOperationArguments, WebResource, RestError, stripRequest, stripResponse, ServiceCallback, promiseToCallback } from "ms-rest-js";
+import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/networkInterfacesMappers";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 
+const WebResource = msRest.WebResource;
+
 /** Class representing a NetworkInterfaces. */
 export class NetworkInterfaces {
   private readonly client: NetworkManagementClientContext;
-  private readonly serializer = new Serializer(Mappers);
+  private readonly serializer = new msRest.Serializer(Mappers);
   /**
    * Create a NetworkInterfaces.
    * @param {NetworkManagementClientContext} client Reference to the service client.
@@ -37,16 +39,16 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async deleteMethodWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, options?: RequestOptionsBase): Promise<HttpOperationResponse> {
+  async deleteMethodWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
     // Send request
-    let initialResult: HttpOperationResponse;
+    let initialResult: msRest.HttpOperationResponse;
     try {
       initialResult = await this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options);
     } catch (err) {
       return Promise.reject(err);
     }
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.getLongRunningOperationResult(initialResult, options);
 
@@ -72,16 +74,16 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, options?: Models.NetworkInterfacesGetOptionalParams): Promise<HttpOperationResponse<Models.NetworkInterface>> {
+  async getWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, options?: Models.NetworkInterfacesGetOptionalParams): Promise<msRest.HttpOperationResponse<Models.NetworkInterface>> {
     let client = this.client;
     let expand = (options && options.expand !== undefined) ? options.expand : undefined;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: OperationArguments = createOperationArguments(
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           resourceGroupName,
           networkInterfaceName,
@@ -169,10 +171,10 @@ export class NetworkInterfaces {
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
-        let error = new RestError(operationRes.bodyAsText as string);
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = operationRes.status;
-        error.request = stripRequest(httpRequest);
-        error.response = stripResponse(operationRes);
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -200,9 +202,9 @@ export class NetworkInterfaces {
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
-          let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = stripRequest(httpRequest);
-          deserializationError.response = stripResponse(operationRes);
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -233,16 +235,16 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async createOrUpdateWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, options?: RequestOptionsBase): Promise<HttpOperationResponse> {
+  async createOrUpdateWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
     // Send request
-    let initialResult: HttpOperationResponse;
+    let initialResult: msRest.HttpOperationResponse;
     try {
       initialResult = await this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, networkInterfaceName, parameters, options);
     } catch (err) {
       return Promise.reject(err);
     }
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.getLongRunningOperationResult(initialResult, options);
       let httpRequest = operationRes.request;
@@ -255,9 +257,9 @@ export class NetworkInterfaces {
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
-        let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-        deserializationError.request = stripRequest(httpRequest);
-        deserializationError.response = stripResponse(operationRes);
+        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+        deserializationError.request = msRest.stripRequest(httpRequest);
+        deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
   } catch (err) {
@@ -285,16 +287,16 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async updateTagsWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, options?: RequestOptionsBase): Promise<HttpOperationResponse> {
+  async updateTagsWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
     // Send request
-    let initialResult: HttpOperationResponse;
+    let initialResult: msRest.HttpOperationResponse;
     try {
       initialResult = await this.beginUpdateTagsWithHttpOperationResponse(resourceGroupName, networkInterfaceName, parameters, options);
     } catch (err) {
       return Promise.reject(err);
     }
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.getLongRunningOperationResult(initialResult, options);
       let httpRequest = operationRes.request;
@@ -307,9 +309,9 @@ export class NetworkInterfaces {
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
-        let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-        deserializationError.request = stripRequest(httpRequest);
-        deserializationError.response = stripResponse(operationRes);
+        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+        deserializationError.request = msRest.stripRequest(httpRequest);
+        deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
   } catch (err) {
@@ -329,15 +331,15 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async listAllWithHttpOperationResponse(options?: RequestOptionsBase): Promise<HttpOperationResponse<Models.NetworkInterfaceListResult>> {
+  async listAllWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceListResult>> {
     let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: OperationArguments = createOperationArguments(
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           apiVersion,
           "this.client.subscriptionId": this.client.subscriptionId,
@@ -393,10 +395,10 @@ export class NetworkInterfaces {
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
-        let error = new RestError(operationRes.bodyAsText as string);
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = operationRes.status;
-        error.request = stripRequest(httpRequest);
-        error.response = stripResponse(operationRes);
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -424,9 +426,9 @@ export class NetworkInterfaces {
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
-          let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = stripRequest(httpRequest);
-          deserializationError.response = stripResponse(operationRes);
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -451,15 +453,15 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async listWithHttpOperationResponse(resourceGroupName: string, options?: RequestOptionsBase): Promise<HttpOperationResponse<Models.NetworkInterfaceListResult>> {
+  async listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceListResult>> {
     let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: OperationArguments = createOperationArguments(
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           resourceGroupName,
           apiVersion,
@@ -526,10 +528,10 @@ export class NetworkInterfaces {
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
-        let error = new RestError(operationRes.bodyAsText as string);
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = operationRes.status;
-        error.request = stripRequest(httpRequest);
-        error.response = stripResponse(operationRes);
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -557,9 +559,9 @@ export class NetworkInterfaces {
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
-          let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = stripRequest(httpRequest);
-          deserializationError.response = stripResponse(operationRes);
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -587,16 +589,16 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getEffectiveRouteTableWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, options?: RequestOptionsBase): Promise<HttpOperationResponse> {
+  async getEffectiveRouteTableWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
     // Send request
-    let initialResult: HttpOperationResponse;
+    let initialResult: msRest.HttpOperationResponse;
     try {
       initialResult = await this.beginGetEffectiveRouteTableWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options);
     } catch (err) {
       return Promise.reject(err);
     }
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.getLongRunningOperationResult(initialResult, options);
       let httpRequest = operationRes.request;
@@ -609,9 +611,9 @@ export class NetworkInterfaces {
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
-        let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-        deserializationError.request = stripRequest(httpRequest);
-        deserializationError.response = stripResponse(operationRes);
+        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+        deserializationError.request = msRest.stripRequest(httpRequest);
+        deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
   } catch (err) {
@@ -636,16 +638,16 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async listEffectiveNetworkSecurityGroupsWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, options?: RequestOptionsBase): Promise<HttpOperationResponse> {
+  async listEffectiveNetworkSecurityGroupsWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
     // Send request
-    let initialResult: HttpOperationResponse;
+    let initialResult: msRest.HttpOperationResponse;
     try {
       initialResult = await this.beginListEffectiveNetworkSecurityGroupsWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options);
     } catch (err) {
       return Promise.reject(err);
     }
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
       operationRes = await client.getLongRunningOperationResult(initialResult, options);
       let httpRequest = operationRes.request;
@@ -658,9 +660,9 @@ export class NetworkInterfaces {
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
       } catch (error) {
-        let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-        deserializationError.request = stripRequest(httpRequest);
-        deserializationError.response = stripResponse(operationRes);
+        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+        deserializationError.request = msRest.stripRequest(httpRequest);
+        deserializationError.response = msRest.stripResponse(operationRes);
         return Promise.reject(deserializationError);
       }
   } catch (err) {
@@ -688,15 +690,15 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async listVirtualMachineScaleSetVMNetworkInterfacesWithHttpOperationResponse(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, options?: RequestOptionsBase): Promise<HttpOperationResponse<Models.NetworkInterfaceListResult>> {
+  async listVirtualMachineScaleSetVMNetworkInterfacesWithHttpOperationResponse(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceListResult>> {
     let client = this.client;
     let apiVersion = '2017-03-30';
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: OperationArguments = createOperationArguments(
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           resourceGroupName,
           virtualMachineScaleSetName,
@@ -785,10 +787,10 @@ export class NetworkInterfaces {
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
-        let error = new RestError(operationRes.bodyAsText as string);
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = operationRes.status;
-        error.request = stripRequest(httpRequest);
-        error.response = stripResponse(operationRes);
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -816,9 +818,9 @@ export class NetworkInterfaces {
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
-          let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = stripRequest(httpRequest);
-          deserializationError.response = stripResponse(operationRes);
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -846,15 +848,15 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async listVirtualMachineScaleSetNetworkInterfacesWithHttpOperationResponse(resourceGroupName: string, virtualMachineScaleSetName: string, options?: RequestOptionsBase): Promise<HttpOperationResponse<Models.NetworkInterfaceListResult>> {
+  async listVirtualMachineScaleSetNetworkInterfacesWithHttpOperationResponse(resourceGroupName: string, virtualMachineScaleSetName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceListResult>> {
     let client = this.client;
     let apiVersion = '2017-03-30';
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: OperationArguments = createOperationArguments(
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           resourceGroupName,
           virtualMachineScaleSetName,
@@ -932,10 +934,10 @@ export class NetworkInterfaces {
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
-        let error = new RestError(operationRes.bodyAsText as string);
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = operationRes.status;
-        error.request = stripRequest(httpRequest);
-        error.response = stripResponse(operationRes);
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -963,9 +965,9 @@ export class NetworkInterfaces {
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
-          let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = stripRequest(httpRequest);
-          deserializationError.response = stripResponse(operationRes);
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -999,16 +1001,16 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getVirtualMachineScaleSetNetworkInterfaceWithHttpOperationResponse(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options?: Models.NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams): Promise<HttpOperationResponse<Models.NetworkInterface>> {
+  async getVirtualMachineScaleSetNetworkInterfaceWithHttpOperationResponse(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options?: Models.NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams): Promise<msRest.HttpOperationResponse<Models.NetworkInterface>> {
     let client = this.client;
     let expand = (options && options.expand !== undefined) ? options.expand : undefined;
     let apiVersion = '2017-03-30';
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: OperationArguments = createOperationArguments(
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           resourceGroupName,
           virtualMachineScaleSetName,
@@ -1118,10 +1120,10 @@ export class NetworkInterfaces {
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
-        let error = new RestError(operationRes.bodyAsText as string);
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = operationRes.status;
-        error.request = stripRequest(httpRequest);
-        error.response = stripResponse(operationRes);
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1149,9 +1151,9 @@ export class NetworkInterfaces {
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
-          let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = stripRequest(httpRequest);
-          deserializationError.response = stripResponse(operationRes);
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -1186,16 +1188,16 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async listVirtualMachineScaleSetIpConfigurationsWithHttpOperationResponse(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options?: Models.NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams): Promise<HttpOperationResponse<Models.NetworkInterfaceIPConfigurationListResult>> {
+  async listVirtualMachineScaleSetIpConfigurationsWithHttpOperationResponse(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options?: Models.NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceIPConfigurationListResult>> {
     let client = this.client;
     let expand = (options && options.expand !== undefined) ? options.expand : undefined;
     let apiVersion = '2017-03-30';
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: OperationArguments = createOperationArguments(
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           resourceGroupName,
           virtualMachineScaleSetName,
@@ -1305,10 +1307,10 @@ export class NetworkInterfaces {
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
-        let error = new RestError(operationRes.bodyAsText as string);
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = operationRes.status;
-        error.request = stripRequest(httpRequest);
-        error.response = stripResponse(operationRes);
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1336,9 +1338,9 @@ export class NetworkInterfaces {
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
-          let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = stripRequest(httpRequest);
-          deserializationError.response = stripResponse(operationRes);
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -1375,16 +1377,16 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async getVirtualMachineScaleSetIpConfigurationWithHttpOperationResponse(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, options?: Models.NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams): Promise<HttpOperationResponse<Models.NetworkInterfaceIPConfiguration>> {
+  async getVirtualMachineScaleSetIpConfigurationWithHttpOperationResponse(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, options?: Models.NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceIPConfiguration>> {
     let client = this.client;
     let expand = (options && options.expand !== undefined) ? options.expand : undefined;
     let apiVersion = '2017-03-30';
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: OperationArguments = createOperationArguments(
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           resourceGroupName,
           virtualMachineScaleSetName,
@@ -1505,10 +1507,10 @@ export class NetworkInterfaces {
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
-        let error = new RestError(operationRes.bodyAsText as string);
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = operationRes.status;
-        error.request = stripRequest(httpRequest);
-        error.response = stripResponse(operationRes);
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1536,9 +1538,9 @@ export class NetworkInterfaces {
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
-          let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = stripRequest(httpRequest);
-          deserializationError.response = stripResponse(operationRes);
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -1565,15 +1567,15 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, options?: RequestOptionsBase): Promise<HttpOperationResponse<void>> {
+  async beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: OperationArguments = createOperationArguments(
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           resourceGroupName,
           networkInterfaceName,
@@ -1651,10 +1653,10 @@ export class NetworkInterfaces {
         });
       let statusCode = operationRes.status;
       if (statusCode !== 204 && statusCode !== 202 && statusCode !== 200) {
-        let error = new RestError(operationRes.bodyAsText as string);
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = operationRes.status;
-        error.request = stripRequest(httpRequest);
-        error.response = stripResponse(operationRes);
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1699,15 +1701,15 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, options?: RequestOptionsBase): Promise<HttpOperationResponse<Models.NetworkInterface>> {
+  async beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterface>> {
     let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: OperationArguments = createOperationArguments(
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           resourceGroupName,
           networkInterfaceName,
@@ -1794,10 +1796,10 @@ export class NetworkInterfaces {
         });
       let statusCode = operationRes.status;
       if (statusCode !== 201 && statusCode !== 200) {
-        let error = new RestError(operationRes.bodyAsText as string);
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = operationRes.status;
-        error.request = stripRequest(httpRequest);
-        error.response = stripResponse(operationRes);
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1825,9 +1827,9 @@ export class NetworkInterfaces {
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
-          let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = stripRequest(httpRequest);
-          deserializationError.response = stripResponse(operationRes);
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -1840,9 +1842,9 @@ export class NetworkInterfaces {
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
-          let deserializationError1 = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError1.request = stripRequest(httpRequest);
-          deserializationError1.response = stripResponse(operationRes);
+          let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError1.request = msRest.stripRequest(httpRequest);
+          deserializationError1.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError1);
         }
       }
@@ -1872,15 +1874,15 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginUpdateTagsWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, options?: RequestOptionsBase): Promise<HttpOperationResponse<Models.NetworkInterface>> {
+  async beginUpdateTagsWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterface>> {
     let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: OperationArguments = createOperationArguments(
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           resourceGroupName,
           networkInterfaceName,
@@ -1967,10 +1969,10 @@ export class NetworkInterfaces {
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
-        let error = new RestError(operationRes.bodyAsText as string);
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = operationRes.status;
-        error.request = stripRequest(httpRequest);
-        error.response = stripResponse(operationRes);
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -1998,9 +2000,9 @@ export class NetworkInterfaces {
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
-          let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = stripRequest(httpRequest);
-          deserializationError.response = stripResponse(operationRes);
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -2027,15 +2029,15 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginGetEffectiveRouteTableWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, options?: RequestOptionsBase): Promise<HttpOperationResponse<Models.EffectiveRouteListResult>> {
+  async beginGetEffectiveRouteTableWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.EffectiveRouteListResult>> {
     let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: OperationArguments = createOperationArguments(
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           resourceGroupName,
           networkInterfaceName,
@@ -2113,10 +2115,10 @@ export class NetworkInterfaces {
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 202) {
-        let error = new RestError(operationRes.bodyAsText as string);
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = operationRes.status;
-        error.request = stripRequest(httpRequest);
-        error.response = stripResponse(operationRes);
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -2144,9 +2146,9 @@ export class NetworkInterfaces {
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
-          let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = stripRequest(httpRequest);
-          deserializationError.response = stripResponse(operationRes);
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -2173,15 +2175,15 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async beginListEffectiveNetworkSecurityGroupsWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, options?: RequestOptionsBase): Promise<HttpOperationResponse<Models.EffectiveNetworkSecurityGroupListResult>> {
+  async beginListEffectiveNetworkSecurityGroupsWithHttpOperationResponse(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.EffectiveNetworkSecurityGroupListResult>> {
     let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: OperationArguments = createOperationArguments(
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           resourceGroupName,
           networkInterfaceName,
@@ -2259,10 +2261,10 @@ export class NetworkInterfaces {
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200 && statusCode !== 202) {
-        let error = new RestError(operationRes.bodyAsText as string);
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = operationRes.status;
-        error.request = stripRequest(httpRequest);
-        error.response = stripResponse(operationRes);
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -2290,9 +2292,9 @@ export class NetworkInterfaces {
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
-          let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = stripRequest(httpRequest);
-          deserializationError.response = stripResponse(operationRes);
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -2318,14 +2320,14 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async listAllNextWithHttpOperationResponse(nextPageLink: string, options?: RequestOptionsBase): Promise<HttpOperationResponse<Models.NetworkInterfaceListResult>> {
+  async listAllNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceListResult>> {
     let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: OperationArguments = createOperationArguments(
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           nextPageLink,
           "this.client.acceptLanguage": this.client.acceptLanguage
@@ -2367,10 +2369,10 @@ export class NetworkInterfaces {
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
-        let error = new RestError(operationRes.bodyAsText as string);
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = operationRes.status;
-        error.request = stripRequest(httpRequest);
-        error.response = stripResponse(operationRes);
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -2398,9 +2400,9 @@ export class NetworkInterfaces {
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
-          let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = stripRequest(httpRequest);
-          deserializationError.response = stripResponse(operationRes);
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -2426,14 +2428,14 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async listNextWithHttpOperationResponse(nextPageLink: string, options?: RequestOptionsBase): Promise<HttpOperationResponse<Models.NetworkInterfaceListResult>> {
+  async listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceListResult>> {
     let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: OperationArguments = createOperationArguments(
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           nextPageLink,
           "this.client.acceptLanguage": this.client.acceptLanguage
@@ -2475,10 +2477,10 @@ export class NetworkInterfaces {
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
-        let error = new RestError(operationRes.bodyAsText as string);
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = operationRes.status;
-        error.request = stripRequest(httpRequest);
-        error.response = stripResponse(operationRes);
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -2506,9 +2508,9 @@ export class NetworkInterfaces {
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
-          let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = stripRequest(httpRequest);
-          deserializationError.response = stripResponse(operationRes);
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -2535,14 +2537,14 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async listVirtualMachineScaleSetVMNetworkInterfacesNextWithHttpOperationResponse(nextPageLink: string, options?: RequestOptionsBase): Promise<HttpOperationResponse<Models.NetworkInterfaceListResult>> {
+  async listVirtualMachineScaleSetVMNetworkInterfacesNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceListResult>> {
     let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: OperationArguments = createOperationArguments(
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           nextPageLink,
           "this.client.acceptLanguage": this.client.acceptLanguage
@@ -2584,10 +2586,10 @@ export class NetworkInterfaces {
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
-        let error = new RestError(operationRes.bodyAsText as string);
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = operationRes.status;
-        error.request = stripRequest(httpRequest);
-        error.response = stripResponse(operationRes);
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -2615,9 +2617,9 @@ export class NetworkInterfaces {
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
-          let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = stripRequest(httpRequest);
-          deserializationError.response = stripResponse(operationRes);
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -2643,14 +2645,14 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async listVirtualMachineScaleSetNetworkInterfacesNextWithHttpOperationResponse(nextPageLink: string, options?: RequestOptionsBase): Promise<HttpOperationResponse<Models.NetworkInterfaceListResult>> {
+  async listVirtualMachineScaleSetNetworkInterfacesNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceListResult>> {
     let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: OperationArguments = createOperationArguments(
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           nextPageLink,
           "this.client.acceptLanguage": this.client.acceptLanguage
@@ -2692,10 +2694,10 @@ export class NetworkInterfaces {
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
-        let error = new RestError(operationRes.bodyAsText as string);
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = operationRes.status;
-        error.request = stripRequest(httpRequest);
-        error.response = stripResponse(operationRes);
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -2723,9 +2725,9 @@ export class NetworkInterfaces {
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
-          let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = stripRequest(httpRequest);
-          deserializationError.response = stripResponse(operationRes);
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -2752,14 +2754,14 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async listVirtualMachineScaleSetIpConfigurationsNextWithHttpOperationResponse(nextPageLink: string, options?: RequestOptionsBase): Promise<HttpOperationResponse<Models.NetworkInterfaceIPConfigurationListResult>> {
+  async listVirtualMachineScaleSetIpConfigurationsNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceIPConfigurationListResult>> {
     let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: OperationArguments = createOperationArguments(
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           nextPageLink,
           "this.client.acceptLanguage": this.client.acceptLanguage
@@ -2801,10 +2803,10 @@ export class NetworkInterfaces {
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
-        let error = new RestError(operationRes.bodyAsText as string);
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = operationRes.status;
-        error.request = stripRequest(httpRequest);
-        error.response = stripResponse(operationRes);
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -2832,9 +2834,9 @@ export class NetworkInterfaces {
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
-          let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = stripRequest(httpRequest);
-          deserializationError.response = stripResponse(operationRes);
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -2868,23 +2870,23 @@ export class NetworkInterfaces {
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   deleteMethod(resourceGroupName: string, networkInterfaceName: string): Promise<void>;
-  deleteMethod(resourceGroupName: string, networkInterfaceName: string, options: RequestOptionsBase): Promise<void>;
-  deleteMethod(resourceGroupName: string, networkInterfaceName: string, callback: ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, networkInterfaceName: string, options: RequestOptionsBase, callback: ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, networkInterfaceName: string, options?: RequestOptionsBase, callback?: ServiceCallback<void>): any {
+  deleteMethod(resourceGroupName: string, networkInterfaceName: string, options: msRest.RequestOptionsBase): Promise<void>;
+  deleteMethod(resourceGroupName: string, networkInterfaceName: string, callback: msRest.ServiceCallback<void>): void;
+  deleteMethod(resourceGroupName: string, networkInterfaceName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  deleteMethod(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<void>;
+    let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
-      return this.deleteMethodWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options).then((operationRes: HttpOperationResponse) => {
+      return this.deleteMethodWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.deleteMethodWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.deleteMethodWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -2919,22 +2921,22 @@ export class NetworkInterfaces {
    */
   get(resourceGroupName: string, networkInterfaceName: string): Promise<Models.NetworkInterface>;
   get(resourceGroupName: string, networkInterfaceName: string, options: Models.NetworkInterfacesGetOptionalParams): Promise<Models.NetworkInterface>;
-  get(resourceGroupName: string, networkInterfaceName: string, callback: ServiceCallback<Models.NetworkInterface>): void;
-  get(resourceGroupName: string, networkInterfaceName: string, options: Models.NetworkInterfacesGetOptionalParams, callback: ServiceCallback<Models.NetworkInterface>): void;
-  get(resourceGroupName: string, networkInterfaceName: string, options?: Models.NetworkInterfacesGetOptionalParams, callback?: ServiceCallback<Models.NetworkInterface>): any {
+  get(resourceGroupName: string, networkInterfaceName: string, callback: msRest.ServiceCallback<Models.NetworkInterface>): void;
+  get(resourceGroupName: string, networkInterfaceName: string, options: Models.NetworkInterfacesGetOptionalParams, callback: msRest.ServiceCallback<Models.NetworkInterface>): void;
+  get(resourceGroupName: string, networkInterfaceName: string, options?: Models.NetworkInterfacesGetOptionalParams, callback?: msRest.ServiceCallback<Models.NetworkInterface>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.NetworkInterface>;
+    let cb = callback as msRest.ServiceCallback<Models.NetworkInterface>;
     if (!callback) {
-      return this.getWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options).then((operationRes: HttpOperationResponse) => {
+      return this.getWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.NetworkInterface);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.getWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.getWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -2971,23 +2973,23 @@ export class NetworkInterfaces {
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   createOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface): Promise<Models.NetworkInterface>;
-  createOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, options: RequestOptionsBase): Promise<Models.NetworkInterface>;
-  createOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, callback: ServiceCallback<Models.NetworkInterface>): void;
-  createOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, options: RequestOptionsBase, callback: ServiceCallback<Models.NetworkInterface>): void;
-  createOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, options?: RequestOptionsBase, callback?: ServiceCallback<Models.NetworkInterface>): any {
+  createOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, options: msRest.RequestOptionsBase): Promise<Models.NetworkInterface>;
+  createOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, callback: msRest.ServiceCallback<Models.NetworkInterface>): void;
+  createOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkInterface>): void;
+  createOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkInterface>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.NetworkInterface>;
+    let cb = callback as msRest.ServiceCallback<Models.NetworkInterface>;
     if (!callback) {
-      return this.createOrUpdateWithHttpOperationResponse(resourceGroupName, networkInterfaceName, parameters, options).then((operationRes: HttpOperationResponse) => {
+      return this.createOrUpdateWithHttpOperationResponse(resourceGroupName, networkInterfaceName, parameters, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.NetworkInterface);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.createOrUpdateWithHttpOperationResponse(resourceGroupName, networkInterfaceName, parameters, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.createOrUpdateWithHttpOperationResponse(resourceGroupName, networkInterfaceName, parameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -3024,23 +3026,23 @@ export class NetworkInterfaces {
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   updateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject): Promise<Models.NetworkInterface>;
-  updateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, options: RequestOptionsBase): Promise<Models.NetworkInterface>;
-  updateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, callback: ServiceCallback<Models.NetworkInterface>): void;
-  updateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, options: RequestOptionsBase, callback: ServiceCallback<Models.NetworkInterface>): void;
-  updateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, options?: RequestOptionsBase, callback?: ServiceCallback<Models.NetworkInterface>): any {
+  updateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase): Promise<Models.NetworkInterface>;
+  updateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, callback: msRest.ServiceCallback<Models.NetworkInterface>): void;
+  updateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkInterface>): void;
+  updateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkInterface>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.NetworkInterface>;
+    let cb = callback as msRest.ServiceCallback<Models.NetworkInterface>;
     if (!callback) {
-      return this.updateTagsWithHttpOperationResponse(resourceGroupName, networkInterfaceName, parameters, options).then((operationRes: HttpOperationResponse) => {
+      return this.updateTagsWithHttpOperationResponse(resourceGroupName, networkInterfaceName, parameters, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.NetworkInterface);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.updateTagsWithHttpOperationResponse(resourceGroupName, networkInterfaceName, parameters, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.updateTagsWithHttpOperationResponse(resourceGroupName, networkInterfaceName, parameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -3070,23 +3072,23 @@ export class NetworkInterfaces {
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listAll(): Promise<Models.NetworkInterfaceListResult>;
-  listAll(options: RequestOptionsBase): Promise<Models.NetworkInterfaceListResult>;
-  listAll(callback: ServiceCallback<Models.NetworkInterfaceListResult>): void;
-  listAll(options: RequestOptionsBase, callback: ServiceCallback<Models.NetworkInterfaceListResult>): void;
-  listAll(options?: RequestOptionsBase, callback?: ServiceCallback<Models.NetworkInterfaceListResult>): any {
+  listAll(options: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceListResult>;
+  listAll(callback: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): void;
+  listAll(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): void;
+  listAll(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.NetworkInterfaceListResult>;
+    let cb = callback as msRest.ServiceCallback<Models.NetworkInterfaceListResult>;
     if (!callback) {
-      return this.listAllWithHttpOperationResponse(options).then((operationRes: HttpOperationResponse) => {
+      return this.listAllWithHttpOperationResponse(options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.NetworkInterfaceListResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.listAllWithHttpOperationResponse(options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.listAllWithHttpOperationResponse(options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -3118,23 +3120,23 @@ export class NetworkInterfaces {
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   list(resourceGroupName: string): Promise<Models.NetworkInterfaceListResult>;
-  list(resourceGroupName: string, options: RequestOptionsBase): Promise<Models.NetworkInterfaceListResult>;
-  list(resourceGroupName: string, callback: ServiceCallback<Models.NetworkInterfaceListResult>): void;
-  list(resourceGroupName: string, options: RequestOptionsBase, callback: ServiceCallback<Models.NetworkInterfaceListResult>): void;
-  list(resourceGroupName: string, options?: RequestOptionsBase, callback?: ServiceCallback<Models.NetworkInterfaceListResult>): any {
+  list(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceListResult>;
+  list(resourceGroupName: string, callback: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): void;
+  list(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): void;
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.NetworkInterfaceListResult>;
+    let cb = callback as msRest.ServiceCallback<Models.NetworkInterfaceListResult>;
     if (!callback) {
-      return this.listWithHttpOperationResponse(resourceGroupName, options).then((operationRes: HttpOperationResponse) => {
+      return this.listWithHttpOperationResponse(resourceGroupName, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.NetworkInterfaceListResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.listWithHttpOperationResponse(resourceGroupName, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.listWithHttpOperationResponse(resourceGroupName, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -3168,23 +3170,23 @@ export class NetworkInterfaces {
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string): Promise<Models.EffectiveRouteListResult>;
-  getEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options: RequestOptionsBase): Promise<Models.EffectiveRouteListResult>;
-  getEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, callback: ServiceCallback<Models.EffectiveRouteListResult>): void;
-  getEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options: RequestOptionsBase, callback: ServiceCallback<Models.EffectiveRouteListResult>): void;
-  getEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options?: RequestOptionsBase, callback?: ServiceCallback<Models.EffectiveRouteListResult>): any {
+  getEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options: msRest.RequestOptionsBase): Promise<Models.EffectiveRouteListResult>;
+  getEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, callback: msRest.ServiceCallback<Models.EffectiveRouteListResult>): void;
+  getEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.EffectiveRouteListResult>): void;
+  getEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.EffectiveRouteListResult>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.EffectiveRouteListResult>;
+    let cb = callback as msRest.ServiceCallback<Models.EffectiveRouteListResult>;
     if (!callback) {
-      return this.getEffectiveRouteTableWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options).then((operationRes: HttpOperationResponse) => {
+      return this.getEffectiveRouteTableWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.EffectiveRouteListResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.getEffectiveRouteTableWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.getEffectiveRouteTableWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -3219,23 +3221,23 @@ export class NetworkInterfaces {
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string): Promise<Models.EffectiveNetworkSecurityGroupListResult>;
-  listEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options: RequestOptionsBase): Promise<Models.EffectiveNetworkSecurityGroupListResult>;
-  listEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, callback: ServiceCallback<Models.EffectiveNetworkSecurityGroupListResult>): void;
-  listEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options: RequestOptionsBase, callback: ServiceCallback<Models.EffectiveNetworkSecurityGroupListResult>): void;
-  listEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options?: RequestOptionsBase, callback?: ServiceCallback<Models.EffectiveNetworkSecurityGroupListResult>): any {
+  listEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options: msRest.RequestOptionsBase): Promise<Models.EffectiveNetworkSecurityGroupListResult>;
+  listEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, callback: msRest.ServiceCallback<Models.EffectiveNetworkSecurityGroupListResult>): void;
+  listEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.EffectiveNetworkSecurityGroupListResult>): void;
+  listEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.EffectiveNetworkSecurityGroupListResult>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.EffectiveNetworkSecurityGroupListResult>;
+    let cb = callback as msRest.ServiceCallback<Models.EffectiveNetworkSecurityGroupListResult>;
     if (!callback) {
-      return this.listEffectiveNetworkSecurityGroupsWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options).then((operationRes: HttpOperationResponse) => {
+      return this.listEffectiveNetworkSecurityGroupsWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.EffectiveNetworkSecurityGroupListResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.listEffectiveNetworkSecurityGroupsWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.listEffectiveNetworkSecurityGroupsWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -3273,23 +3275,23 @@ export class NetworkInterfaces {
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listVirtualMachineScaleSetVMNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string): Promise<Models.NetworkInterfaceListResult>;
-  listVirtualMachineScaleSetVMNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, options: RequestOptionsBase): Promise<Models.NetworkInterfaceListResult>;
-  listVirtualMachineScaleSetVMNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, callback: ServiceCallback<Models.NetworkInterfaceListResult>): void;
-  listVirtualMachineScaleSetVMNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, options: RequestOptionsBase, callback: ServiceCallback<Models.NetworkInterfaceListResult>): void;
-  listVirtualMachineScaleSetVMNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, options?: RequestOptionsBase, callback?: ServiceCallback<Models.NetworkInterfaceListResult>): any {
+  listVirtualMachineScaleSetVMNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, options: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceListResult>;
+  listVirtualMachineScaleSetVMNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, callback: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): void;
+  listVirtualMachineScaleSetVMNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): void;
+  listVirtualMachineScaleSetVMNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.NetworkInterfaceListResult>;
+    let cb = callback as msRest.ServiceCallback<Models.NetworkInterfaceListResult>;
     if (!callback) {
-      return this.listVirtualMachineScaleSetVMNetworkInterfacesWithHttpOperationResponse(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, options).then((operationRes: HttpOperationResponse) => {
+      return this.listVirtualMachineScaleSetVMNetworkInterfacesWithHttpOperationResponse(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.NetworkInterfaceListResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.listVirtualMachineScaleSetVMNetworkInterfacesWithHttpOperationResponse(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.listVirtualMachineScaleSetVMNetworkInterfacesWithHttpOperationResponse(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -3324,23 +3326,23 @@ export class NetworkInterfaces {
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listVirtualMachineScaleSetNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string): Promise<Models.NetworkInterfaceListResult>;
-  listVirtualMachineScaleSetNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, options: RequestOptionsBase): Promise<Models.NetworkInterfaceListResult>;
-  listVirtualMachineScaleSetNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, callback: ServiceCallback<Models.NetworkInterfaceListResult>): void;
-  listVirtualMachineScaleSetNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, options: RequestOptionsBase, callback: ServiceCallback<Models.NetworkInterfaceListResult>): void;
-  listVirtualMachineScaleSetNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, options?: RequestOptionsBase, callback?: ServiceCallback<Models.NetworkInterfaceListResult>): any {
+  listVirtualMachineScaleSetNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, options: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceListResult>;
+  listVirtualMachineScaleSetNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, callback: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): void;
+  listVirtualMachineScaleSetNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): void;
+  listVirtualMachineScaleSetNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.NetworkInterfaceListResult>;
+    let cb = callback as msRest.ServiceCallback<Models.NetworkInterfaceListResult>;
     if (!callback) {
-      return this.listVirtualMachineScaleSetNetworkInterfacesWithHttpOperationResponse(resourceGroupName, virtualMachineScaleSetName, options).then((operationRes: HttpOperationResponse) => {
+      return this.listVirtualMachineScaleSetNetworkInterfacesWithHttpOperationResponse(resourceGroupName, virtualMachineScaleSetName, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.NetworkInterfaceListResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.listVirtualMachineScaleSetNetworkInterfacesWithHttpOperationResponse(resourceGroupName, virtualMachineScaleSetName, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.listVirtualMachineScaleSetNetworkInterfacesWithHttpOperationResponse(resourceGroupName, virtualMachineScaleSetName, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -3382,22 +3384,22 @@ export class NetworkInterfaces {
    */
   getVirtualMachineScaleSetNetworkInterface(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string): Promise<Models.NetworkInterface>;
   getVirtualMachineScaleSetNetworkInterface(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options: Models.NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams): Promise<Models.NetworkInterface>;
-  getVirtualMachineScaleSetNetworkInterface(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, callback: ServiceCallback<Models.NetworkInterface>): void;
-  getVirtualMachineScaleSetNetworkInterface(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options: Models.NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams, callback: ServiceCallback<Models.NetworkInterface>): void;
-  getVirtualMachineScaleSetNetworkInterface(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options?: Models.NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams, callback?: ServiceCallback<Models.NetworkInterface>): any {
+  getVirtualMachineScaleSetNetworkInterface(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, callback: msRest.ServiceCallback<Models.NetworkInterface>): void;
+  getVirtualMachineScaleSetNetworkInterface(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options: Models.NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams, callback: msRest.ServiceCallback<Models.NetworkInterface>): void;
+  getVirtualMachineScaleSetNetworkInterface(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options?: Models.NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams, callback?: msRest.ServiceCallback<Models.NetworkInterface>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.NetworkInterface>;
+    let cb = callback as msRest.ServiceCallback<Models.NetworkInterface>;
     if (!callback) {
-      return this.getVirtualMachineScaleSetNetworkInterfaceWithHttpOperationResponse(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, options).then((operationRes: HttpOperationResponse) => {
+      return this.getVirtualMachineScaleSetNetworkInterfaceWithHttpOperationResponse(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.NetworkInterface);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.getVirtualMachineScaleSetNetworkInterfaceWithHttpOperationResponse(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.getVirtualMachineScaleSetNetworkInterfaceWithHttpOperationResponse(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -3441,22 +3443,22 @@ export class NetworkInterfaces {
    */
   listVirtualMachineScaleSetIpConfigurations(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string): Promise<Models.NetworkInterfaceIPConfigurationListResult>;
   listVirtualMachineScaleSetIpConfigurations(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options: Models.NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams): Promise<Models.NetworkInterfaceIPConfigurationListResult>;
-  listVirtualMachineScaleSetIpConfigurations(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, callback: ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>): void;
-  listVirtualMachineScaleSetIpConfigurations(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options: Models.NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams, callback: ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>): void;
-  listVirtualMachineScaleSetIpConfigurations(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options?: Models.NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams, callback?: ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>): any {
+  listVirtualMachineScaleSetIpConfigurations(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, callback: msRest.ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>): void;
+  listVirtualMachineScaleSetIpConfigurations(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options: Models.NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams, callback: msRest.ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>): void;
+  listVirtualMachineScaleSetIpConfigurations(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options?: Models.NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams, callback?: msRest.ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>;
+    let cb = callback as msRest.ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>;
     if (!callback) {
-      return this.listVirtualMachineScaleSetIpConfigurationsWithHttpOperationResponse(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, options).then((operationRes: HttpOperationResponse) => {
+      return this.listVirtualMachineScaleSetIpConfigurationsWithHttpOperationResponse(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.NetworkInterfaceIPConfigurationListResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.listVirtualMachineScaleSetIpConfigurationsWithHttpOperationResponse(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.listVirtualMachineScaleSetIpConfigurationsWithHttpOperationResponse(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -3501,22 +3503,22 @@ export class NetworkInterfaces {
    */
   getVirtualMachineScaleSetIpConfiguration(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string): Promise<Models.NetworkInterfaceIPConfiguration>;
   getVirtualMachineScaleSetIpConfiguration(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, options: Models.NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams): Promise<Models.NetworkInterfaceIPConfiguration>;
-  getVirtualMachineScaleSetIpConfiguration(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, callback: ServiceCallback<Models.NetworkInterfaceIPConfiguration>): void;
-  getVirtualMachineScaleSetIpConfiguration(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, options: Models.NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams, callback: ServiceCallback<Models.NetworkInterfaceIPConfiguration>): void;
-  getVirtualMachineScaleSetIpConfiguration(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, options?: Models.NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams, callback?: ServiceCallback<Models.NetworkInterfaceIPConfiguration>): any {
+  getVirtualMachineScaleSetIpConfiguration(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, callback: msRest.ServiceCallback<Models.NetworkInterfaceIPConfiguration>): void;
+  getVirtualMachineScaleSetIpConfiguration(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, options: Models.NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams, callback: msRest.ServiceCallback<Models.NetworkInterfaceIPConfiguration>): void;
+  getVirtualMachineScaleSetIpConfiguration(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, options?: Models.NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams, callback?: msRest.ServiceCallback<Models.NetworkInterfaceIPConfiguration>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.NetworkInterfaceIPConfiguration>;
+    let cb = callback as msRest.ServiceCallback<Models.NetworkInterfaceIPConfiguration>;
     if (!callback) {
-      return this.getVirtualMachineScaleSetIpConfigurationWithHttpOperationResponse(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, ipConfigurationName, options).then((operationRes: HttpOperationResponse) => {
+      return this.getVirtualMachineScaleSetIpConfigurationWithHttpOperationResponse(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, ipConfigurationName, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.NetworkInterfaceIPConfiguration);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.getVirtualMachineScaleSetIpConfigurationWithHttpOperationResponse(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, ipConfigurationName, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.getVirtualMachineScaleSetIpConfigurationWithHttpOperationResponse(resourceGroupName, virtualMachineScaleSetName, virtualmachineIndex, networkInterfaceName, ipConfigurationName, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -3548,23 +3550,23 @@ export class NetworkInterfaces {
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDeleteMethod(resourceGroupName: string, networkInterfaceName: string): Promise<void>;
-  beginDeleteMethod(resourceGroupName: string, networkInterfaceName: string, options: RequestOptionsBase): Promise<void>;
-  beginDeleteMethod(resourceGroupName: string, networkInterfaceName: string, callback: ServiceCallback<void>): void;
-  beginDeleteMethod(resourceGroupName: string, networkInterfaceName: string, options: RequestOptionsBase, callback: ServiceCallback<void>): void;
-  beginDeleteMethod(resourceGroupName: string, networkInterfaceName: string, options?: RequestOptionsBase, callback?: ServiceCallback<void>): any {
+  beginDeleteMethod(resourceGroupName: string, networkInterfaceName: string, options: msRest.RequestOptionsBase): Promise<void>;
+  beginDeleteMethod(resourceGroupName: string, networkInterfaceName: string, callback: msRest.ServiceCallback<void>): void;
+  beginDeleteMethod(resourceGroupName: string, networkInterfaceName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
+  beginDeleteMethod(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<void>;
+    let cb = callback as msRest.ServiceCallback<void>;
     if (!callback) {
-      return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options).then((operationRes: HttpOperationResponse) => {
+      return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as void);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -3601,23 +3603,23 @@ export class NetworkInterfaces {
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginCreateOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface): Promise<Models.NetworkInterface>;
-  beginCreateOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, options: RequestOptionsBase): Promise<Models.NetworkInterface>;
-  beginCreateOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, callback: ServiceCallback<Models.NetworkInterface>): void;
-  beginCreateOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, options: RequestOptionsBase, callback: ServiceCallback<Models.NetworkInterface>): void;
-  beginCreateOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, options?: RequestOptionsBase, callback?: ServiceCallback<Models.NetworkInterface>): any {
+  beginCreateOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, options: msRest.RequestOptionsBase): Promise<Models.NetworkInterface>;
+  beginCreateOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, callback: msRest.ServiceCallback<Models.NetworkInterface>): void;
+  beginCreateOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkInterface>): void;
+  beginCreateOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkInterface>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.NetworkInterface>;
+    let cb = callback as msRest.ServiceCallback<Models.NetworkInterface>;
     if (!callback) {
-      return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, networkInterfaceName, parameters, options).then((operationRes: HttpOperationResponse) => {
+      return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, networkInterfaceName, parameters, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.NetworkInterface);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, networkInterfaceName, parameters, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, networkInterfaceName, parameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -3654,23 +3656,23 @@ export class NetworkInterfaces {
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginUpdateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject): Promise<Models.NetworkInterface>;
-  beginUpdateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, options: RequestOptionsBase): Promise<Models.NetworkInterface>;
-  beginUpdateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, callback: ServiceCallback<Models.NetworkInterface>): void;
-  beginUpdateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, options: RequestOptionsBase, callback: ServiceCallback<Models.NetworkInterface>): void;
-  beginUpdateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, options?: RequestOptionsBase, callback?: ServiceCallback<Models.NetworkInterface>): any {
+  beginUpdateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase): Promise<Models.NetworkInterface>;
+  beginUpdateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, callback: msRest.ServiceCallback<Models.NetworkInterface>): void;
+  beginUpdateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkInterface>): void;
+  beginUpdateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkInterface>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.NetworkInterface>;
+    let cb = callback as msRest.ServiceCallback<Models.NetworkInterface>;
     if (!callback) {
-      return this.beginUpdateTagsWithHttpOperationResponse(resourceGroupName, networkInterfaceName, parameters, options).then((operationRes: HttpOperationResponse) => {
+      return this.beginUpdateTagsWithHttpOperationResponse(resourceGroupName, networkInterfaceName, parameters, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.NetworkInterface);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.beginUpdateTagsWithHttpOperationResponse(resourceGroupName, networkInterfaceName, parameters, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.beginUpdateTagsWithHttpOperationResponse(resourceGroupName, networkInterfaceName, parameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -3704,23 +3706,23 @@ export class NetworkInterfaces {
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginGetEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string): Promise<Models.EffectiveRouteListResult>;
-  beginGetEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options: RequestOptionsBase): Promise<Models.EffectiveRouteListResult>;
-  beginGetEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, callback: ServiceCallback<Models.EffectiveRouteListResult>): void;
-  beginGetEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options: RequestOptionsBase, callback: ServiceCallback<Models.EffectiveRouteListResult>): void;
-  beginGetEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options?: RequestOptionsBase, callback?: ServiceCallback<Models.EffectiveRouteListResult>): any {
+  beginGetEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options: msRest.RequestOptionsBase): Promise<Models.EffectiveRouteListResult>;
+  beginGetEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, callback: msRest.ServiceCallback<Models.EffectiveRouteListResult>): void;
+  beginGetEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.EffectiveRouteListResult>): void;
+  beginGetEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.EffectiveRouteListResult>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.EffectiveRouteListResult>;
+    let cb = callback as msRest.ServiceCallback<Models.EffectiveRouteListResult>;
     if (!callback) {
-      return this.beginGetEffectiveRouteTableWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options).then((operationRes: HttpOperationResponse) => {
+      return this.beginGetEffectiveRouteTableWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.EffectiveRouteListResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.beginGetEffectiveRouteTableWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.beginGetEffectiveRouteTableWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -3755,23 +3757,23 @@ export class NetworkInterfaces {
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginListEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string): Promise<Models.EffectiveNetworkSecurityGroupListResult>;
-  beginListEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options: RequestOptionsBase): Promise<Models.EffectiveNetworkSecurityGroupListResult>;
-  beginListEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, callback: ServiceCallback<Models.EffectiveNetworkSecurityGroupListResult>): void;
-  beginListEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options: RequestOptionsBase, callback: ServiceCallback<Models.EffectiveNetworkSecurityGroupListResult>): void;
-  beginListEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options?: RequestOptionsBase, callback?: ServiceCallback<Models.EffectiveNetworkSecurityGroupListResult>): any {
+  beginListEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options: msRest.RequestOptionsBase): Promise<Models.EffectiveNetworkSecurityGroupListResult>;
+  beginListEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, callback: msRest.ServiceCallback<Models.EffectiveNetworkSecurityGroupListResult>): void;
+  beginListEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.EffectiveNetworkSecurityGroupListResult>): void;
+  beginListEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.EffectiveNetworkSecurityGroupListResult>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.EffectiveNetworkSecurityGroupListResult>;
+    let cb = callback as msRest.ServiceCallback<Models.EffectiveNetworkSecurityGroupListResult>;
     if (!callback) {
-      return this.beginListEffectiveNetworkSecurityGroupsWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options).then((operationRes: HttpOperationResponse) => {
+      return this.beginListEffectiveNetworkSecurityGroupsWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.EffectiveNetworkSecurityGroupListResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.beginListEffectiveNetworkSecurityGroupsWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.beginListEffectiveNetworkSecurityGroupsWithHttpOperationResponse(resourceGroupName, networkInterfaceName, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -3804,23 +3806,23 @@ export class NetworkInterfaces {
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listAllNext(nextPageLink: string): Promise<Models.NetworkInterfaceListResult>;
-  listAllNext(nextPageLink: string, options: RequestOptionsBase): Promise<Models.NetworkInterfaceListResult>;
-  listAllNext(nextPageLink: string, callback: ServiceCallback<Models.NetworkInterfaceListResult>): void;
-  listAllNext(nextPageLink: string, options: RequestOptionsBase, callback: ServiceCallback<Models.NetworkInterfaceListResult>): void;
-  listAllNext(nextPageLink: string, options?: RequestOptionsBase, callback?: ServiceCallback<Models.NetworkInterfaceListResult>): any {
+  listAllNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceListResult>;
+  listAllNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): void;
+  listAllNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): void;
+  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.NetworkInterfaceListResult>;
+    let cb = callback as msRest.ServiceCallback<Models.NetworkInterfaceListResult>;
     if (!callback) {
-      return this.listAllNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: HttpOperationResponse) => {
+      return this.listAllNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.NetworkInterfaceListResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.listAllNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.listAllNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -3853,23 +3855,23 @@ export class NetworkInterfaces {
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listNext(nextPageLink: string): Promise<Models.NetworkInterfaceListResult>;
-  listNext(nextPageLink: string, options: RequestOptionsBase): Promise<Models.NetworkInterfaceListResult>;
-  listNext(nextPageLink: string, callback: ServiceCallback<Models.NetworkInterfaceListResult>): void;
-  listNext(nextPageLink: string, options: RequestOptionsBase, callback: ServiceCallback<Models.NetworkInterfaceListResult>): void;
-  listNext(nextPageLink: string, options?: RequestOptionsBase, callback?: ServiceCallback<Models.NetworkInterfaceListResult>): any {
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceListResult>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.NetworkInterfaceListResult>;
+    let cb = callback as msRest.ServiceCallback<Models.NetworkInterfaceListResult>;
     if (!callback) {
-      return this.listNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: HttpOperationResponse) => {
+      return this.listNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.NetworkInterfaceListResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.listNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.listNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -3903,23 +3905,23 @@ export class NetworkInterfaces {
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listVirtualMachineScaleSetVMNetworkInterfacesNext(nextPageLink: string): Promise<Models.NetworkInterfaceListResult>;
-  listVirtualMachineScaleSetVMNetworkInterfacesNext(nextPageLink: string, options: RequestOptionsBase): Promise<Models.NetworkInterfaceListResult>;
-  listVirtualMachineScaleSetVMNetworkInterfacesNext(nextPageLink: string, callback: ServiceCallback<Models.NetworkInterfaceListResult>): void;
-  listVirtualMachineScaleSetVMNetworkInterfacesNext(nextPageLink: string, options: RequestOptionsBase, callback: ServiceCallback<Models.NetworkInterfaceListResult>): void;
-  listVirtualMachineScaleSetVMNetworkInterfacesNext(nextPageLink: string, options?: RequestOptionsBase, callback?: ServiceCallback<Models.NetworkInterfaceListResult>): any {
+  listVirtualMachineScaleSetVMNetworkInterfacesNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceListResult>;
+  listVirtualMachineScaleSetVMNetworkInterfacesNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): void;
+  listVirtualMachineScaleSetVMNetworkInterfacesNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): void;
+  listVirtualMachineScaleSetVMNetworkInterfacesNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.NetworkInterfaceListResult>;
+    let cb = callback as msRest.ServiceCallback<Models.NetworkInterfaceListResult>;
     if (!callback) {
-      return this.listVirtualMachineScaleSetVMNetworkInterfacesNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: HttpOperationResponse) => {
+      return this.listVirtualMachineScaleSetVMNetworkInterfacesNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.NetworkInterfaceListResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.listVirtualMachineScaleSetVMNetworkInterfacesNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.listVirtualMachineScaleSetVMNetworkInterfacesNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -3952,23 +3954,23 @@ export class NetworkInterfaces {
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listVirtualMachineScaleSetNetworkInterfacesNext(nextPageLink: string): Promise<Models.NetworkInterfaceListResult>;
-  listVirtualMachineScaleSetNetworkInterfacesNext(nextPageLink: string, options: RequestOptionsBase): Promise<Models.NetworkInterfaceListResult>;
-  listVirtualMachineScaleSetNetworkInterfacesNext(nextPageLink: string, callback: ServiceCallback<Models.NetworkInterfaceListResult>): void;
-  listVirtualMachineScaleSetNetworkInterfacesNext(nextPageLink: string, options: RequestOptionsBase, callback: ServiceCallback<Models.NetworkInterfaceListResult>): void;
-  listVirtualMachineScaleSetNetworkInterfacesNext(nextPageLink: string, options?: RequestOptionsBase, callback?: ServiceCallback<Models.NetworkInterfaceListResult>): any {
+  listVirtualMachineScaleSetNetworkInterfacesNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceListResult>;
+  listVirtualMachineScaleSetNetworkInterfacesNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): void;
+  listVirtualMachineScaleSetNetworkInterfacesNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): void;
+  listVirtualMachineScaleSetNetworkInterfacesNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.NetworkInterfaceListResult>;
+    let cb = callback as msRest.ServiceCallback<Models.NetworkInterfaceListResult>;
     if (!callback) {
-      return this.listVirtualMachineScaleSetNetworkInterfacesNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: HttpOperationResponse) => {
+      return this.listVirtualMachineScaleSetNetworkInterfacesNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.NetworkInterfaceListResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.listVirtualMachineScaleSetNetworkInterfacesNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.listVirtualMachineScaleSetNetworkInterfacesNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }
@@ -4003,23 +4005,23 @@ export class NetworkInterfaces {
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listVirtualMachineScaleSetIpConfigurationsNext(nextPageLink: string): Promise<Models.NetworkInterfaceIPConfigurationListResult>;
-  listVirtualMachineScaleSetIpConfigurationsNext(nextPageLink: string, options: RequestOptionsBase): Promise<Models.NetworkInterfaceIPConfigurationListResult>;
-  listVirtualMachineScaleSetIpConfigurationsNext(nextPageLink: string, callback: ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>): void;
-  listVirtualMachineScaleSetIpConfigurationsNext(nextPageLink: string, options: RequestOptionsBase, callback: ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>): void;
-  listVirtualMachineScaleSetIpConfigurationsNext(nextPageLink: string, options?: RequestOptionsBase, callback?: ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>): any {
+  listVirtualMachineScaleSetIpConfigurationsNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceIPConfigurationListResult>;
+  listVirtualMachineScaleSetIpConfigurationsNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>): void;
+  listVirtualMachineScaleSetIpConfigurationsNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>): void;
+  listVirtualMachineScaleSetIpConfigurationsNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>;
+    let cb = callback as msRest.ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>;
     if (!callback) {
-      return this.listVirtualMachineScaleSetIpConfigurationsNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: HttpOperationResponse) => {
+      return this.listVirtualMachineScaleSetIpConfigurationsNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.NetworkInterfaceIPConfigurationListResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.listVirtualMachineScaleSetIpConfigurationsNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.listVirtualMachineScaleSetIpConfigurationsNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }

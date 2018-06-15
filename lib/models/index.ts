@@ -5,9 +5,10 @@
  */
 
 import { BaseResource, CloudError } from "ms-rest-azure-js";
-import { RequestOptionsBase } from "ms-rest-js";
+import * as msRest from "ms-rest-js";
 
 export { BaseResource, CloudError };
+
 
 /**
  * @interface
@@ -6743,7 +6744,7 @@ export interface VpnDeviceScriptParameters {
  *
  * @extends RequestOptionsBase
  */
-export interface ApplicationGatewaysBackendHealthOptionalParams extends RequestOptionsBase {
+export interface ApplicationGatewaysBackendHealthOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [expand] Expands BackendAddressPool and
    * BackendHttpSettings referenced in backend health.
@@ -6758,7 +6759,7 @@ export interface ApplicationGatewaysBackendHealthOptionalParams extends RequestO
  *
  * @extends RequestOptionsBase
  */
-export interface ApplicationGatewaysBeginBackendHealthOptionalParams extends RequestOptionsBase {
+export interface ApplicationGatewaysBeginBackendHealthOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [expand] Expands BackendAddressPool and
    * BackendHttpSettings referenced in backend health.
@@ -6773,7 +6774,7 @@ export interface ApplicationGatewaysBeginBackendHealthOptionalParams extends Req
  *
  * @extends RequestOptionsBase
  */
-export interface LoadBalancersGetOptionalParams extends RequestOptionsBase {
+export interface LoadBalancersGetOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [expand] Expands referenced resources.
    */
@@ -6787,7 +6788,7 @@ export interface LoadBalancersGetOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface InboundNatRulesGetOptionalParams extends RequestOptionsBase {
+export interface InboundNatRulesGetOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [expand] Expands referenced resources.
    */
@@ -6801,7 +6802,7 @@ export interface InboundNatRulesGetOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface NetworkInterfacesGetOptionalParams extends RequestOptionsBase {
+export interface NetworkInterfacesGetOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [expand] Expands referenced resources.
    */
@@ -6815,7 +6816,7 @@ export interface NetworkInterfacesGetOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams extends RequestOptionsBase {
+export interface NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [expand] Expands referenced resources.
    */
@@ -6829,7 +6830,7 @@ export interface NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptio
  *
  * @extends RequestOptionsBase
  */
-export interface NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams extends RequestOptionsBase {
+export interface NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [expand] Expands referenced resources.
    */
@@ -6843,7 +6844,7 @@ export interface NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOpti
  *
  * @extends RequestOptionsBase
  */
-export interface NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams extends RequestOptionsBase {
+export interface NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [expand] Expands referenced resources.
    */
@@ -6857,7 +6858,7 @@ export interface NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOption
  *
  * @extends RequestOptionsBase
  */
-export interface NetworkSecurityGroupsGetOptionalParams extends RequestOptionsBase {
+export interface NetworkSecurityGroupsGetOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [expand] Expands referenced resources.
    */
@@ -6871,7 +6872,7 @@ export interface NetworkSecurityGroupsGetOptionalParams extends RequestOptionsBa
  *
  * @extends RequestOptionsBase
  */
-export interface PublicIPAddressesGetOptionalParams extends RequestOptionsBase {
+export interface PublicIPAddressesGetOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [expand] Expands referenced resources.
    */
@@ -6885,7 +6886,7 @@ export interface PublicIPAddressesGetOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressOptionalParams extends RequestOptionsBase {
+export interface PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [expand] Expands referenced resources.
    */
@@ -6899,7 +6900,7 @@ export interface PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressOption
  *
  * @extends RequestOptionsBase
  */
-export interface RouteFiltersGetOptionalParams extends RequestOptionsBase {
+export interface RouteFiltersGetOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [expand] Expands referenced express route bgp peering
    * resources.
@@ -6914,7 +6915,7 @@ export interface RouteFiltersGetOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface RouteTablesGetOptionalParams extends RequestOptionsBase {
+export interface RouteTablesGetOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [expand] Expands referenced resources.
    */
@@ -6928,7 +6929,7 @@ export interface RouteTablesGetOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface VirtualNetworksGetOptionalParams extends RequestOptionsBase {
+export interface VirtualNetworksGetOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [expand] Expands referenced resources.
    */
@@ -6942,7 +6943,7 @@ export interface VirtualNetworksGetOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface VirtualNetworksCheckIPAddressAvailabilityOptionalParams extends RequestOptionsBase {
+export interface VirtualNetworksCheckIPAddressAvailabilityOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [ipAddress] The private IP address to be verified.
    */
@@ -6956,7 +6957,7 @@ export interface VirtualNetworksCheckIPAddressAvailabilityOptionalParams extends
  *
  * @extends RequestOptionsBase
  */
-export interface SubnetsGetOptionalParams extends RequestOptionsBase {
+export interface SubnetsGetOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [expand] Expands referenced resources.
    */
@@ -6970,7 +6971,7 @@ export interface SubnetsGetOptionalParams extends RequestOptionsBase {
  *
  * @extends RequestOptionsBase
  */
-export interface VirtualNetworkGatewaysResetOptionalParams extends RequestOptionsBase {
+export interface VirtualNetworkGatewaysResetOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [gatewayVip] Virtual network gateway vip address supplied
    * to the begin reset of the active-active feature enabled gateway.
@@ -6985,7 +6986,7 @@ export interface VirtualNetworkGatewaysResetOptionalParams extends RequestOption
  *
  * @extends RequestOptionsBase
  */
-export interface VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams extends RequestOptionsBase {
+export interface VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [peer] The IP address of the peer to retrieve the status
    * of.
@@ -7000,7 +7001,7 @@ export interface VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams extends Re
  *
  * @extends RequestOptionsBase
  */
-export interface VirtualNetworkGatewaysBeginResetOptionalParams extends RequestOptionsBase {
+export interface VirtualNetworkGatewaysBeginResetOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [gatewayVip] Virtual network gateway vip address supplied
    * to the begin reset of the active-active feature enabled gateway.
@@ -7015,7 +7016,7 @@ export interface VirtualNetworkGatewaysBeginResetOptionalParams extends RequestO
  *
  * @extends RequestOptionsBase
  */
-export interface VirtualNetworkGatewaysBeginGetBgpPeerStatusOptionalParams extends RequestOptionsBase {
+export interface VirtualNetworkGatewaysBeginGetBgpPeerStatusOptionalParams extends msRest.RequestOptionsBase {
   /**
    * @member {string} [peer] The IP address of the peer to retrieve the status
    * of.

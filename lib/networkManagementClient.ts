@@ -6,13 +6,15 @@
 
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
-import { Serializer, RequestOptionsBase, HttpOperationResponse, WebResource, OperationArguments, createOperationArguments, stripRequest, stripResponse, RestError, promiseToCallback, ServiceCallback, ServiceClientCredentials } from "ms-rest-js";
-import { AzureServiceClientOptions } from "ms-rest-azure-js";
+import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import { NetworkManagementClientContext } from "./networkManagementClientContext";
 import * as operations from "./operations";
+const WebResource = msRest.WebResource;
+
 
 class NetworkManagementClient extends NetworkManagementClientContext {
-  serializer = new Serializer(Mappers);
+  serializer = new msRest.Serializer(Mappers);
 
   // Operation groups
   applicationGateways: operations.ApplicationGateways;
@@ -62,7 +64,7 @@ class NetworkManagementClient extends NetworkManagementClientContext {
    * Initializes a new instance of the NetworkManagementClient class.
    * @constructor
    *
-   * @param {ServiceClientCredentials} credentials - Credentials needed for the client to connect to Azure.
+   * @param {msRest.ServiceClientCredentials} credentials - Credentials needed for the client to connect to Azure.
    *
    * @param {string} subscriptionId - The subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
    *
@@ -84,8 +86,8 @@ class NetworkManagementClient extends NetworkManagementClientContext {
    * @param {boolean} [options.generateClientRequestId] - Whether a unique x-ms-client-request-id should be generated. When set to true a unique x-ms-client-request-id value is generated and included in each request. Default is true.
    *
    */
-  constructor(credentials: ServiceClientCredentials, subscriptionId: string, baseUri?: string, options?: AzureServiceClientOptions) {
-    super(/*msRestAzure.applyDefaultOptions(credentials, options, `${packageName}/${packageVersion}`)*/undefined as any, credentials, subscriptionId, baseUri);
+  constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
+    super(credentials, subscriptionId, baseUri, options);
     this.applicationGateways = new operations.ApplicationGateways(this);
     this.applicationSecurityGroups = new operations.ApplicationSecurityGroups(this);
     this.ddosProtectionPlans = new operations.DdosProtectionPlans(this);
@@ -147,15 +149,15 @@ class NetworkManagementClient extends NetworkManagementClientContext {
    *
    * @reject {Error|ServiceError} - The error object.
    */
-  async checkDnsNameAvailabilityWithHttpOperationResponse(location: string, domainNameLabel: string, options?: RequestOptionsBase): Promise<HttpOperationResponse<Models.DnsNameAvailabilityResult>> {
+  async checkDnsNameAvailabilityWithHttpOperationResponse(location: string, domainNameLabel: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DnsNameAvailabilityResult>> {
     let client = this;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
-    let operationRes: HttpOperationResponse;
+    let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: OperationArguments = createOperationArguments(
+      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
         {
           location,
           domainNameLabel,
@@ -233,10 +235,10 @@ class NetworkManagementClient extends NetworkManagementClientContext {
         });
       let statusCode = operationRes.status;
       if (statusCode !== 200) {
-        let error = new RestError(operationRes.bodyAsText as string);
+        let error = new msRest.RestError(operationRes.bodyAsText as string);
         error.statusCode = operationRes.status;
-        error.request = stripRequest(httpRequest);
-        error.response = stripResponse(operationRes);
+        error.request = msRest.stripRequest(httpRequest);
+        error.response = msRest.stripResponse(operationRes);
         let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
         try {
           if (parsedErrorResponse) {
@@ -264,9 +266,9 @@ class NetworkManagementClient extends NetworkManagementClientContext {
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
         } catch (error) {
-          let deserializationError = new RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = stripRequest(httpRequest);
-          deserializationError.response = stripResponse(operationRes);
+          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
           return Promise.reject(deserializationError);
         }
       }
@@ -304,23 +306,23 @@ class NetworkManagementClient extends NetworkManagementClientContext {
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   checkDnsNameAvailability(location: string, domainNameLabel: string): Promise<Models.DnsNameAvailabilityResult>;
-  checkDnsNameAvailability(location: string, domainNameLabel: string, options: RequestOptionsBase): Promise<Models.DnsNameAvailabilityResult>;
-  checkDnsNameAvailability(location: string, domainNameLabel: string, callback: ServiceCallback<Models.DnsNameAvailabilityResult>): void;
-  checkDnsNameAvailability(location: string, domainNameLabel: string, options: RequestOptionsBase, callback: ServiceCallback<Models.DnsNameAvailabilityResult>): void;
-  checkDnsNameAvailability(location: string, domainNameLabel: string, options?: RequestOptionsBase, callback?: ServiceCallback<Models.DnsNameAvailabilityResult>): any {
+  checkDnsNameAvailability(location: string, domainNameLabel: string, options: msRest.RequestOptionsBase): Promise<Models.DnsNameAvailabilityResult>;
+  checkDnsNameAvailability(location: string, domainNameLabel: string, callback: msRest.ServiceCallback<Models.DnsNameAvailabilityResult>): void;
+  checkDnsNameAvailability(location: string, domainNameLabel: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DnsNameAvailabilityResult>): void;
+  checkDnsNameAvailability(location: string, domainNameLabel: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DnsNameAvailabilityResult>): any {
     if (!callback && typeof options === 'function') {
       callback = options;
       options = undefined;
     }
-    let cb = callback as ServiceCallback<Models.DnsNameAvailabilityResult>;
+    let cb = callback as msRest.ServiceCallback<Models.DnsNameAvailabilityResult>;
     if (!callback) {
-      return this.checkDnsNameAvailabilityWithHttpOperationResponse(location, domainNameLabel, options).then((operationRes: HttpOperationResponse) => {
+      return this.checkDnsNameAvailabilityWithHttpOperationResponse(location, domainNameLabel, options).then((operationRes: msRest.HttpOperationResponse) => {
         return Promise.resolve(operationRes.parsedBody as Models.DnsNameAvailabilityResult);
       }).catch((err: Error) => {
         return Promise.reject(err);
       });
     } else {
-      promiseToCallback(this.checkDnsNameAvailabilityWithHttpOperationResponse(location, domainNameLabel, options))((err: Error, data: HttpOperationResponse) => {
+      msRest.promiseToCallback(this.checkDnsNameAvailabilityWithHttpOperationResponse(location, domainNameLabel, options))((err: Error, data: msRest.HttpOperationResponse) => {
         if (err) {
           return cb(err);
         }

@@ -4,13 +4,15 @@
  * regenerated.
  */
 
-import { ServiceClientCredentials } from "ms-rest-js";
-import { AzureServiceClient, AzureServiceClientOptions } from "ms-rest-azure-js";
+import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 
+const packageName = "";
+const packageVersion = "";
 
-export class NetworkManagementClientContext extends AzureServiceClient {
+export class NetworkManagementClientContext extends msRestAzure.AzureServiceClient {
 
-  credentials: ServiceClientCredentials;
+  credentials: msRest.ServiceClientCredentials;
 
   subscriptionId: string;
 
@@ -24,7 +26,7 @@ export class NetworkManagementClientContext extends AzureServiceClient {
    * Initializes a new instance of the NetworkManagementClient class.
    * @constructor
    *
-   * @param {ServiceClientCredentials} credentials - Credentials needed for the client to connect to Azure.
+   * @param {msRest.ServiceClientCredentials} credentials - Credentials needed for the client to connect to Azure.
    *
    * @param {string} subscriptionId - The subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
    *
@@ -46,7 +48,7 @@ export class NetworkManagementClientContext extends AzureServiceClient {
    * @param {boolean} [options.generateClientRequestId] - Whether a unique x-ms-client-request-id should be generated. When set to true a unique x-ms-client-request-id value is generated and included in each request. Default is true.
    *
    */
-  constructor(options: AzureServiceClientOptions, credentials: ServiceClientCredentials, subscriptionId: string, baseUri?: string) {
+  constructor(credentials: msRest.ServiceClientCredentials, subscriptionId: string, baseUri?: string, options?: msRestAzure.AzureServiceClientOptions) {
     if (credentials == undefined) {
       throw new Error('\'credentials\' cannot be null.');
     }
@@ -54,7 +56,10 @@ export class NetworkManagementClientContext extends AzureServiceClient {
       throw new Error('\'subscriptionId\' cannot be null.');
     }
 
-    super(options);
+    if (!options) {
+      options = {};
+    }
+    super(credentials, options);
 
     this.acceptLanguage = 'en-US';
     this.longRunningOperationRetryTimeout = 30;
@@ -64,6 +69,8 @@ export class NetworkManagementClientContext extends AzureServiceClient {
     }
     this.credentials = credentials;
     this.subscriptionId = subscriptionId;
+
+    this.addUserAgentInfo(`${packageName}/${packageVersion}`);
     if(options.acceptLanguage !== null && options.acceptLanguage !== undefined) {
       this.acceptLanguage = options.acceptLanguage;
     }

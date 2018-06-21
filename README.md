@@ -1,11 +1,15 @@
 # Azure ARM Network Example Client
 This is an example client generated using https://github.com/azure/autorest.typescript.
 
-### Running the samples
+# Samples
+
+Samples can be found under (samples/)[samples/].
 
 First replace the placeholders (token, subscription, resource group) with actual values in [samples/auth.ts](samples/auth.ts).
 
-See the samples under [samples/](samples/). You can bundle all of them by running `npm run build:browser`, or bundle browser samples individually with
+## Browser
+
+You can bundle all the samples by running `npm run build:browser`, or bundle browser samples individually with
 
 ```sh
 webpack --config-name context
@@ -14,6 +18,7 @@ webpack --config-name monolithic
 
 You can then run the samples in browser by loading `index-context.html` or `index-monolithic.html` (open the inspector to see results).
 
+## Node
 Run the samples in node with the following commands:
 ```sh
 npm run build:node
@@ -30,6 +35,16 @@ The user experience of this pattern is slightly simpler because there are fewer 
 
 ## Context
 The new pattern which we are encouraging all browser users to adopt is called the "context" pattern shown in [samples/context.ts](samples/context.ts). This requires users to track down the operation groups they're actually interested in but has the benefit of reduced bundle size.
+
+## Generator settings
+
+```
+autorest --typescript \
+  --azure-arm \
+  --use=@microsoft.azure/autorest.typescript@preview \
+  --output-folder=$(pwd)/lib \
+  https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/network/resource-manager/readme.md
+```
 
 # Related projects
  - [autorest.typescript](https://github.com/Azure/autorest.typescript)

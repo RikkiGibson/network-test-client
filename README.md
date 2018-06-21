@@ -38,7 +38,8 @@ The new pattern which we are encouraging all browser users to adopt is called th
 
 ## Generator settings
 
-```
+You can regenerate the client by running the following command:
+```sh
 autorest --typescript \
   --azure-arm \
   --use=@microsoft.azure/autorest.typescript@preview \

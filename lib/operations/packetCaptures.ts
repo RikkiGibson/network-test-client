@@ -33,16 +33,15 @@ export class PacketCaptures {
    *
    * @param {string} packetCaptureName The name of the packet capture session.
    *
-   * @param {PacketCapture} parameters Parameters that define the create packet
-   * capture operation.
+   * @param {PacketCapture} parameters Parameters that define the create packet capture operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async createWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -61,7 +60,7 @@ export class PacketCaptures {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.PacketCaptureResult;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -90,12 +89,11 @@ export class PacketCaptures {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -112,7 +110,7 @@ export class PacketCaptures {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -187,37 +185,22 @@ export class PacketCaptures {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.PacketCaptureResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.PacketCaptureResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -228,11 +211,9 @@ export class PacketCaptures {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -250,9 +231,9 @@ export class PacketCaptures {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async deleteMethodWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -288,9 +269,9 @@ export class PacketCaptures {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async stopWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -320,16 +301,15 @@ export class PacketCaptures {
    *
    * @param {string} networkWatcherName The name of the Network Watcher resource.
    *
-   * @param {string} packetCaptureName The name given to the packet capture
-   * session.
+   * @param {string} packetCaptureName The name given to the packet capture session.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getStatusWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -348,7 +328,7 @@ export class PacketCaptures {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.PacketCaptureQueryStatusResult;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -375,12 +355,11 @@ export class PacketCaptures {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureListResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -396,7 +375,7 @@ export class PacketCaptures {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -461,37 +440,22 @@ export class PacketCaptures {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.PacketCaptureListResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.PacketCaptureListResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -502,11 +466,9 @@ export class PacketCaptures {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -519,19 +481,17 @@ export class PacketCaptures {
    *
    * @param {string} packetCaptureName The name of the packet capture session.
    *
-   * @param {PacketCapture} parameters Parameters that define the create packet
-   * capture operation.
+   * @param {PacketCapture} parameters Parameters that define the create packet capture operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginCreateWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -549,7 +509,7 @@ export class PacketCaptures {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -632,37 +592,22 @@ export class PacketCaptures {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            201: {
+              bodyMapper: Mappers.PacketCaptureResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 201) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 201) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.PacketCaptureResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -673,11 +618,9 @@ export class PacketCaptures {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -694,12 +637,11 @@ export class PacketCaptures {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -716,7 +658,7 @@ export class PacketCaptures {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -791,37 +733,18 @@ export class PacketCaptures {
               }
             }
           ],
+          responses: {
+            204: {},
+            202: {},
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 204 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -838,12 +761,11 @@ export class PacketCaptures {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginStopWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -860,7 +782,7 @@ export class PacketCaptures {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -935,37 +857,18 @@ export class PacketCaptures {
               }
             }
           ],
+          responses: {
+            200: {},
+            202: {},
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -976,19 +879,17 @@ export class PacketCaptures {
    *
    * @param {string} networkWatcherName The name of the Network Watcher resource.
    *
-   * @param {string} packetCaptureName The name given to the packet capture
-   * session.
+   * @param {string} packetCaptureName The name given to the packet capture session.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginGetStatusWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureQueryStatusResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -1005,7 +906,7 @@ export class PacketCaptures {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1080,37 +981,25 @@ export class PacketCaptures {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.PacketCaptureQueryStatusResult
+            },
+            202: {
+              bodyMapper: Mappers.PacketCaptureQueryStatusResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.PacketCaptureQueryStatusResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1121,11 +1010,10 @@ export class PacketCaptures {
           return Promise.reject(deserializationError);
         }
       }
-      // Deserialize Response
       if (statusCode === 202) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.PacketCaptureQueryStatusResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1136,11 +1024,9 @@ export class PacketCaptures {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1153,23 +1039,17 @@ export class PacketCaptures {
    *
    * @param {string} packetCaptureName The name of the packet capture session.
    *
-   * @param {PacketCapture} parameters Parameters that define the create packet
-   * capture operation.
+   * @param {PacketCapture} parameters Parameters that define the create packet capture operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.PacketCaptureResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.PacketCaptureResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.PacketCaptureResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   create(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture): Promise<Models.PacketCaptureResult>;
@@ -1210,18 +1090,13 @@ export class PacketCaptures {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.PacketCaptureResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.PacketCaptureResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.PacketCaptureResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   get(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string): Promise<Models.PacketCaptureResult>;
@@ -1262,16 +1137,13 @@ export class PacketCaptures {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   deleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string): Promise<void>;
@@ -1312,16 +1184,13 @@ export class PacketCaptures {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   stop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string): Promise<void>;
@@ -1358,23 +1227,17 @@ export class PacketCaptures {
    *
    * @param {string} networkWatcherName The name of the Network Watcher resource.
    *
-   * @param {string} packetCaptureName The name given to the packet capture
-   * session.
+   * @param {string} packetCaptureName The name given to the packet capture session.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.PacketCaptureQueryStatusResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.PacketCaptureQueryStatusResult} for
-   *                      more information.
-   *
+   *                      See {@link Models.PacketCaptureQueryStatusResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string): Promise<Models.PacketCaptureQueryStatusResult>;
@@ -1413,18 +1276,13 @@ export class PacketCaptures {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.PacketCaptureListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.PacketCaptureListResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.PacketCaptureListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   list(resourceGroupName: string, networkWatcherName: string): Promise<Models.PacketCaptureListResult>;
@@ -1463,23 +1321,17 @@ export class PacketCaptures {
    *
    * @param {string} packetCaptureName The name of the packet capture session.
    *
-   * @param {PacketCapture} parameters Parameters that define the create packet
-   * capture operation.
+   * @param {PacketCapture} parameters Parameters that define the create packet capture operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.PacketCaptureResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.PacketCaptureResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.PacketCaptureResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginCreate(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture): Promise<Models.PacketCaptureResult>;
@@ -1520,16 +1372,13 @@ export class PacketCaptures {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string): Promise<void>;
@@ -1570,16 +1419,13 @@ export class PacketCaptures {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginStop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string): Promise<void>;
@@ -1616,23 +1462,17 @@ export class PacketCaptures {
    *
    * @param {string} networkWatcherName The name of the Network Watcher resource.
    *
-   * @param {string} packetCaptureName The name given to the packet capture
-   * session.
+   * @param {string} packetCaptureName The name given to the packet capture session.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.PacketCaptureQueryStatusResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.PacketCaptureQueryStatusResult} for
-   *                      more information.
-   *
+   *                      See {@link Models.PacketCaptureQueryStatusResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginGetStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string): Promise<Models.PacketCaptureQueryStatusResult>;

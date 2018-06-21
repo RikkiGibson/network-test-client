@@ -25,8 +25,7 @@ export class ExpressRouteCircuitConnections {
 
 
   /**
-   * Deletes the specified Express Route Circuit Connection from the specified
-   * express route circuit.
+   * Deletes the specified Express Route Circuit Connection from the specified express route circuit.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
@@ -34,16 +33,15 @@ export class ExpressRouteCircuitConnections {
    *
    * @param {string} peeringName The name of the peering.
    *
-   * @param {string} connectionName The name of the express route circuit
-   * connection.
+   * @param {string} connectionName The name of the express route circuit connection.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async deleteMethodWithHttpOperationResponse(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -66,8 +64,7 @@ export class ExpressRouteCircuitConnections {
   }
 
   /**
-   * Gets the specified Express Route Circuit Connection from the specified
-   * express route circuit.
+   * Gets the specified Express Route Circuit Connection from the specified express route circuit.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
@@ -75,19 +72,17 @@ export class ExpressRouteCircuitConnections {
    *
    * @param {string} peeringName The name of the peering.
    *
-   * @param {string} connectionName The name of the express route circuit
-   * connection.
+   * @param {string} connectionName The name of the express route circuit connection.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getWithHttpOperationResponse(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitConnection>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -105,7 +100,7 @@ export class ExpressRouteCircuitConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -190,37 +185,22 @@ export class ExpressRouteCircuitConnections {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.ExpressRouteCircuitConnection
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ExpressRouteCircuitConnection;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -231,18 +211,15 @@ export class ExpressRouteCircuitConnections {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
 
   /**
-   * Creates or updates a Express Route Circuit Connection in the specified
-   * express route circuits.
+   * Creates or updates a Express Route Circuit Connection in the specified express route circuits.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
@@ -250,20 +227,18 @@ export class ExpressRouteCircuitConnections {
    *
    * @param {string} peeringName The name of the peering.
    *
-   * @param {string} connectionName The name of the express route circuit
-   * connection.
+   * @param {string} connectionName The name of the express route circuit connection.
    *
-   * @param {ExpressRouteCircuitConnection}
-   * expressRouteCircuitConnectionParameters Parameters supplied to the create or
-   * update express route circuit circuit connection operation.
+   * @param {ExpressRouteCircuitConnection} expressRouteCircuitConnectionParameters Parameters
+   * supplied to the create or update express route circuit circuit connection operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async createOrUpdateWithHttpOperationResponse(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, expressRouteCircuitConnectionParameters: Models.ExpressRouteCircuitConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -282,7 +257,7 @@ export class ExpressRouteCircuitConnections {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.ExpressRouteCircuitConnection;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -299,8 +274,7 @@ export class ExpressRouteCircuitConnections {
   }
 
   /**
-   * Deletes the specified Express Route Circuit Connection from the specified
-   * express route circuit.
+   * Deletes the specified Express Route Circuit Connection from the specified express route circuit.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
@@ -308,19 +282,17 @@ export class ExpressRouteCircuitConnections {
    *
    * @param {string} peeringName The name of the peering.
    *
-   * @param {string} connectionName The name of the express route circuit
-   * connection.
+   * @param {string} connectionName The name of the express route circuit connection.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -338,7 +310,7 @@ export class ExpressRouteCircuitConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -423,43 +395,24 @@ export class ExpressRouteCircuitConnections {
               }
             }
           ],
+          responses: {
+            200: {},
+            202: {},
+            204: {},
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202 && statusCode !== 204) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Creates or updates a Express Route Circuit Connection in the specified
-   * express route circuits.
+   * Creates or updates a Express Route Circuit Connection in the specified express route circuits.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
@@ -467,23 +420,20 @@ export class ExpressRouteCircuitConnections {
    *
    * @param {string} peeringName The name of the peering.
    *
-   * @param {string} connectionName The name of the express route circuit
-   * connection.
+   * @param {string} connectionName The name of the express route circuit connection.
    *
-   * @param {ExpressRouteCircuitConnection}
-   * expressRouteCircuitConnectionParameters Parameters supplied to the create or
-   * update express route circuit circuit connection operation.
+   * @param {ExpressRouteCircuitConnection} expressRouteCircuitConnectionParameters Parameters
+   * supplied to the create or update express route circuit circuit connection operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, expressRouteCircuitConnectionParameters: Models.ExpressRouteCircuitConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitConnection>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -502,7 +452,7 @@ export class ExpressRouteCircuitConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -595,37 +545,25 @@ export class ExpressRouteCircuitConnections {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.ExpressRouteCircuitConnection
+            },
+            201: {
+              bodyMapper: Mappers.ExpressRouteCircuitConnection
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 201) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ExpressRouteCircuitConnection;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -636,11 +574,10 @@ export class ExpressRouteCircuitConnections {
           return Promise.reject(deserializationError);
         }
       }
-      // Deserialize Response
       if (statusCode === 201) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ExpressRouteCircuitConnection;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -651,17 +588,14 @@ export class ExpressRouteCircuitConnections {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Deletes the specified Express Route Circuit Connection from the specified
-   * express route circuit.
+   * Deletes the specified Express Route Circuit Connection from the specified express route circuit.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
@@ -669,21 +603,17 @@ export class ExpressRouteCircuitConnections {
    *
    * @param {string} peeringName The name of the peering.
    *
-   * @param {string} connectionName The name of the express route circuit
-   * connection.
+   * @param {string} connectionName The name of the express route circuit connection.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   deleteMethod(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string): Promise<void>;
@@ -714,8 +644,7 @@ export class ExpressRouteCircuitConnections {
   }
 
   /**
-   * Gets the specified Express Route Circuit Connection from the specified
-   * express route circuit.
+   * Gets the specified Express Route Circuit Connection from the specified express route circuit.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
@@ -723,23 +652,17 @@ export class ExpressRouteCircuitConnections {
    *
    * @param {string} peeringName The name of the peering.
    *
-   * @param {string} connectionName The name of the express route circuit
-   * connection.
+   * @param {string} connectionName The name of the express route circuit connection.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ExpressRouteCircuitConnection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCircuitConnection} for
-   *                      more information.
-   *
+   *                      See {@link Models.ExpressRouteCircuitConnection} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   get(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string): Promise<Models.ExpressRouteCircuitConnection>;
@@ -770,8 +693,7 @@ export class ExpressRouteCircuitConnections {
   }
 
   /**
-   * Creates or updates a Express Route Circuit Connection in the specified
-   * express route circuits.
+   * Creates or updates a Express Route Circuit Connection in the specified express route circuits.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
@@ -779,27 +701,20 @@ export class ExpressRouteCircuitConnections {
    *
    * @param {string} peeringName The name of the peering.
    *
-   * @param {string} connectionName The name of the express route circuit
-   * connection.
+   * @param {string} connectionName The name of the express route circuit connection.
    *
-   * @param {ExpressRouteCircuitConnection}
-   * expressRouteCircuitConnectionParameters Parameters supplied to the create or
-   * update express route circuit circuit connection operation.
+   * @param {ExpressRouteCircuitConnection} expressRouteCircuitConnectionParameters Parameters
+   * supplied to the create or update express route circuit circuit connection operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ExpressRouteCircuitConnection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCircuitConnection} for
-   *                      more information.
-   *
+   *                      See {@link Models.ExpressRouteCircuitConnection} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   createOrUpdate(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, expressRouteCircuitConnectionParameters: Models.ExpressRouteCircuitConnection): Promise<Models.ExpressRouteCircuitConnection>;
@@ -830,8 +745,7 @@ export class ExpressRouteCircuitConnections {
   }
 
   /**
-   * Deletes the specified Express Route Circuit Connection from the specified
-   * express route circuit.
+   * Deletes the specified Express Route Circuit Connection from the specified express route circuit.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
@@ -839,21 +753,17 @@ export class ExpressRouteCircuitConnections {
    *
    * @param {string} peeringName The name of the peering.
    *
-   * @param {string} connectionName The name of the express route circuit
-   * connection.
+   * @param {string} connectionName The name of the express route circuit connection.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDeleteMethod(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string): Promise<void>;
@@ -884,8 +794,7 @@ export class ExpressRouteCircuitConnections {
   }
 
   /**
-   * Creates or updates a Express Route Circuit Connection in the specified
-   * express route circuits.
+   * Creates or updates a Express Route Circuit Connection in the specified express route circuits.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
@@ -893,27 +802,20 @@ export class ExpressRouteCircuitConnections {
    *
    * @param {string} peeringName The name of the peering.
    *
-   * @param {string} connectionName The name of the express route circuit
-   * connection.
+   * @param {string} connectionName The name of the express route circuit connection.
    *
-   * @param {ExpressRouteCircuitConnection}
-   * expressRouteCircuitConnectionParameters Parameters supplied to the create or
-   * update express route circuit circuit connection operation.
+   * @param {ExpressRouteCircuitConnection} expressRouteCircuitConnectionParameters Parameters
+   * supplied to the create or update express route circuit circuit connection operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ExpressRouteCircuitConnection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCircuitConnection} for
-   *                      more information.
-   *
+   *                      See {@link Models.ExpressRouteCircuitConnection} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginCreateOrUpdate(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, expressRouteCircuitConnectionParameters: Models.ExpressRouteCircuitConnection): Promise<Models.ExpressRouteCircuitConnection>;

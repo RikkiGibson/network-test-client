@@ -30,12 +30,11 @@ export class ExpressRouteCrossConnections {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionListResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -49,7 +48,7 @@ export class ExpressRouteCrossConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -94,37 +93,22 @@ export class ExpressRouteCrossConnections {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.ExpressRouteCrossConnectionListResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ExpressRouteCrossConnectionListResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -135,11 +119,9 @@ export class ExpressRouteCrossConnections {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -152,12 +134,11 @@ export class ExpressRouteCrossConnections {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listByResourceGroupWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionListResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -172,7 +153,7 @@ export class ExpressRouteCrossConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -227,37 +208,22 @@ export class ExpressRouteCrossConnections {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.ExpressRouteCrossConnectionListResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ExpressRouteCrossConnectionListResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -268,33 +234,30 @@ export class ExpressRouteCrossConnections {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * Gets details about the specified ExpressRouteCrossConnection.
    *
-   * @param {string} resourceGroupName The name of the resource group (peering
-   * location of the circuit).
+   * @param {string} resourceGroupName The name of the resource group (peering location of the
+   * circuit).
    *
-   * @param {string} crossConnectionName The name of the
-   * ExpressRouteCrossConnection (service key of the circuit).
+   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection (service key of
+   * the circuit).
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnection>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -310,7 +273,7 @@ export class ExpressRouteCrossConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -375,37 +338,22 @@ export class ExpressRouteCrossConnections {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.ExpressRouteCrossConnection
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ExpressRouteCrossConnection;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -416,11 +364,9 @@ export class ExpressRouteCrossConnections {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -430,19 +376,18 @@ export class ExpressRouteCrossConnections {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} crossConnectionName The name of the
-   * ExpressRouteCrossConnection.
+   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
    *
-   * @param {ExpressRouteCrossConnection} parameters Parameters supplied to the
-   * update express route crossConnection operation.
+   * @param {ExpressRouteCrossConnection} parameters Parameters supplied to the update express route
+   * crossConnection operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async createOrUpdateWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -461,7 +406,7 @@ export class ExpressRouteCrossConnections {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.ExpressRouteCrossConnection;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -485,16 +430,16 @@ export class ExpressRouteCrossConnections {
    *
    * @param {string} crossConnectionName The name of the cross connection.
    *
-   * @param {TagsObject} crossConnectionParameters Parameters supplied to update
-   * express route cross connection tags.
+   * @param {TagsObject} crossConnectionParameters Parameters supplied to update express route cross
+   * connection tags.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async updateTagsWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -513,7 +458,7 @@ export class ExpressRouteCrossConnections {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.ExpressRouteCrossConnection;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -531,13 +476,12 @@ export class ExpressRouteCrossConnections {
 
 
   /**
-   * Gets the currently advertised ARP table associated with the express route
-   * cross connection in a resource group.
+   * Gets the currently advertised ARP table associated with the express route cross connection in a
+   * resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} crossConnectionName The name of the
-   * ExpressRouteCrossConnection.
+   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
    *
    * @param {string} peeringName The name of the peering.
    *
@@ -547,9 +491,9 @@ export class ExpressRouteCrossConnections {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listArpTableWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -568,7 +512,7 @@ export class ExpressRouteCrossConnections {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.ExpressRouteCircuitsArpTableListResult;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -586,13 +530,12 @@ export class ExpressRouteCrossConnections {
 
 
   /**
-   * Gets the route table summary associated with the express route cross
-   * connection in a resource group.
+   * Gets the route table summary associated with the express route cross connection in a resource
+   * group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} crossConnectionName The name of the
-   * ExpressRouteCrossConnection.
+   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
    *
    * @param {string} peeringName The name of the peering.
    *
@@ -602,9 +545,9 @@ export class ExpressRouteCrossConnections {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listRoutesTableSummaryWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -623,7 +566,7 @@ export class ExpressRouteCrossConnections {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.ExpressRouteCrossConnectionsRoutesTableSummaryListResult;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -641,13 +584,12 @@ export class ExpressRouteCrossConnections {
 
 
   /**
-   * Gets the currently advertised routes table associated with the express route
-   * cross connection in a resource group.
+   * Gets the currently advertised routes table associated with the express route cross connection in
+   * a resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} crossConnectionName The name of the
-   * ExpressRouteCrossConnection.
+   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
    *
    * @param {string} peeringName The name of the peering.
    *
@@ -657,9 +599,9 @@ export class ExpressRouteCrossConnections {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listRoutesTableWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -678,7 +620,7 @@ export class ExpressRouteCrossConnections {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.ExpressRouteCircuitsRoutesTableListResult;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -699,22 +641,20 @@ export class ExpressRouteCrossConnections {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} crossConnectionName The name of the
-   * ExpressRouteCrossConnection.
+   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
    *
-   * @param {ExpressRouteCrossConnection} parameters Parameters supplied to the
-   * update express route crossConnection operation.
+   * @param {ExpressRouteCrossConnection} parameters Parameters supplied to the update express route
+   * crossConnection operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnection>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -731,7 +671,7 @@ export class ExpressRouteCrossConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -804,37 +744,22 @@ export class ExpressRouteCrossConnections {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.ExpressRouteCrossConnection
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ExpressRouteCrossConnection;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -845,11 +770,9 @@ export class ExpressRouteCrossConnections {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -860,19 +783,18 @@ export class ExpressRouteCrossConnections {
    *
    * @param {string} crossConnectionName The name of the cross connection.
    *
-   * @param {TagsObject} crossConnectionParameters Parameters supplied to update
-   * express route cross connection tags.
+   * @param {TagsObject} crossConnectionParameters Parameters supplied to update express route cross
+   * connection tags.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginUpdateTagsWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnection>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -889,7 +811,7 @@ export class ExpressRouteCrossConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -962,37 +884,22 @@ export class ExpressRouteCrossConnections {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.ExpressRouteCrossConnection
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ExpressRouteCrossConnection;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1003,22 +910,19 @@ export class ExpressRouteCrossConnections {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Gets the currently advertised ARP table associated with the express route
-   * cross connection in a resource group.
+   * Gets the currently advertised ARP table associated with the express route cross connection in a
+   * resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} crossConnectionName The name of the
-   * ExpressRouteCrossConnection.
+   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
    *
    * @param {string} peeringName The name of the peering.
    *
@@ -1028,12 +932,11 @@ export class ExpressRouteCrossConnections {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginListArpTableWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitsArpTableListResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -1051,7 +954,7 @@ export class ExpressRouteCrossConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1136,37 +1039,23 @@ export class ExpressRouteCrossConnections {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.ExpressRouteCircuitsArpTableListResult
+            },
+            202: {},
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ExpressRouteCircuitsArpTableListResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1177,22 +1066,19 @@ export class ExpressRouteCrossConnections {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Gets the route table summary associated with the express route cross
-   * connection in a resource group.
+   * Gets the route table summary associated with the express route cross connection in a resource
+   * group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} crossConnectionName The name of the
-   * ExpressRouteCrossConnection.
+   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
    *
    * @param {string} peeringName The name of the peering.
    *
@@ -1202,12 +1088,11 @@ export class ExpressRouteCrossConnections {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginListRoutesTableSummaryWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -1225,7 +1110,7 @@ export class ExpressRouteCrossConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1310,37 +1195,23 @@ export class ExpressRouteCrossConnections {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.ExpressRouteCrossConnectionsRoutesTableSummaryListResult
+            },
+            202: {},
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ExpressRouteCrossConnectionsRoutesTableSummaryListResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1351,22 +1222,19 @@ export class ExpressRouteCrossConnections {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Gets the currently advertised routes table associated with the express route
-   * cross connection in a resource group.
+   * Gets the currently advertised routes table associated with the express route cross connection in
+   * a resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} crossConnectionName The name of the
-   * ExpressRouteCrossConnection.
+   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
    *
    * @param {string} peeringName The name of the peering.
    *
@@ -1376,12 +1244,11 @@ export class ExpressRouteCrossConnections {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginListRoutesTableWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitsRoutesTableListResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -1399,7 +1266,7 @@ export class ExpressRouteCrossConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1484,37 +1351,23 @@ export class ExpressRouteCrossConnections {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.ExpressRouteCircuitsRoutesTableListResult
+            },
+            202: {},
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ExpressRouteCircuitsRoutesTableListResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1525,30 +1378,26 @@ export class ExpressRouteCrossConnections {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * Retrieves all the ExpressRouteCrossConnections in a subscription.
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionListResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1560,7 +1409,7 @@ export class ExpressRouteCrossConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1592,37 +1441,22 @@ export class ExpressRouteCrossConnections {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.ExpressRouteCrossConnectionListResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ExpressRouteCrossConnectionListResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1633,30 +1467,26 @@ export class ExpressRouteCrossConnections {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * Retrieves all the ExpressRouteCrossConnections in a resource group.
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listByResourceGroupNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionListResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1668,7 +1498,7 @@ export class ExpressRouteCrossConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1700,37 +1530,22 @@ export class ExpressRouteCrossConnections {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.ExpressRouteCrossConnectionListResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ExpressRouteCrossConnectionListResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1741,11 +1556,9 @@ export class ExpressRouteCrossConnections {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1754,19 +1567,13 @@ export class ExpressRouteCrossConnections {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ExpressRouteCrossConnectionListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link
-   *                      Models.ExpressRouteCrossConnectionListResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.ExpressRouteCrossConnectionListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   list(): Promise<Models.ExpressRouteCrossConnectionListResult>;
@@ -1803,19 +1610,13 @@ export class ExpressRouteCrossConnections {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ExpressRouteCrossConnectionListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link
-   *                      Models.ExpressRouteCrossConnectionListResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.ExpressRouteCrossConnectionListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listByResourceGroup(resourceGroupName: string): Promise<Models.ExpressRouteCrossConnectionListResult>;
@@ -1848,26 +1649,21 @@ export class ExpressRouteCrossConnections {
   /**
    * Gets details about the specified ExpressRouteCrossConnection.
    *
-   * @param {string} resourceGroupName The name of the resource group (peering
-   * location of the circuit).
+   * @param {string} resourceGroupName The name of the resource group (peering location of the
+   * circuit).
    *
-   * @param {string} crossConnectionName The name of the
-   * ExpressRouteCrossConnection (service key of the circuit).
+   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection (service key of
+   * the circuit).
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ExpressRouteCrossConnection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnection} for more
-   *                      information.
-   *
+   *                      See {@link Models.ExpressRouteCrossConnection} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   get(resourceGroupName: string, crossConnectionName: string): Promise<Models.ExpressRouteCrossConnection>;
@@ -1902,26 +1698,20 @@ export class ExpressRouteCrossConnections {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} crossConnectionName The name of the
-   * ExpressRouteCrossConnection.
+   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
    *
-   * @param {ExpressRouteCrossConnection} parameters Parameters supplied to the
-   * update express route crossConnection operation.
+   * @param {ExpressRouteCrossConnection} parameters Parameters supplied to the update express route
+   * crossConnection operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ExpressRouteCrossConnection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnection} for more
-   *                      information.
-   *
+   *                      See {@link Models.ExpressRouteCrossConnection} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   createOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection): Promise<Models.ExpressRouteCrossConnection>;
@@ -1958,23 +1748,18 @@ export class ExpressRouteCrossConnections {
    *
    * @param {string} crossConnectionName The name of the cross connection.
    *
-   * @param {TagsObject} crossConnectionParameters Parameters supplied to update
-   * express route cross connection tags.
+   * @param {TagsObject} crossConnectionParameters Parameters supplied to update express route cross
+   * connection tags.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ExpressRouteCrossConnection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnection} for more
-   *                      information.
-   *
+   *                      See {@link Models.ExpressRouteCrossConnection} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   updateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject): Promise<Models.ExpressRouteCrossConnection>;
@@ -2005,13 +1790,12 @@ export class ExpressRouteCrossConnections {
   }
 
   /**
-   * Gets the currently advertised ARP table associated with the express route
-   * cross connection in a resource group.
+   * Gets the currently advertised ARP table associated with the express route cross connection in a
+   * resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} crossConnectionName The name of the
-   * ExpressRouteCrossConnection.
+   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
    *
    * @param {string} peeringName The name of the peering.
    *
@@ -2019,19 +1803,13 @@ export class ExpressRouteCrossConnections {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ExpressRouteCircuitsArpTableListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link
-   *                      Models.ExpressRouteCircuitsArpTableListResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.ExpressRouteCircuitsArpTableListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string): Promise<Models.ExpressRouteCircuitsArpTableListResult>;
@@ -2062,13 +1840,12 @@ export class ExpressRouteCrossConnections {
   }
 
   /**
-   * Gets the route table summary associated with the express route cross
-   * connection in a resource group.
+   * Gets the route table summary associated with the express route cross connection in a resource
+   * group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} crossConnectionName The name of the
-   * ExpressRouteCrossConnection.
+   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
    *
    * @param {string} peeringName The name of the peering.
    *
@@ -2076,19 +1853,13 @@ export class ExpressRouteCrossConnections {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link
-   *                      Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult}
-   *                      for more information.
-   *
+   *                      See {@link Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string): Promise<Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult>;
@@ -2119,13 +1890,12 @@ export class ExpressRouteCrossConnections {
   }
 
   /**
-   * Gets the currently advertised routes table associated with the express route
-   * cross connection in a resource group.
+   * Gets the currently advertised routes table associated with the express route cross connection in
+   * a resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} crossConnectionName The name of the
-   * ExpressRouteCrossConnection.
+   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
    *
    * @param {string} peeringName The name of the peering.
    *
@@ -2133,19 +1903,13 @@ export class ExpressRouteCrossConnections {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ExpressRouteCircuitsRoutesTableListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link
-   *                      Models.ExpressRouteCircuitsRoutesTableListResult} for
-   *                      more information.
-   *
+   *                      See {@link Models.ExpressRouteCircuitsRoutesTableListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string): Promise<Models.ExpressRouteCircuitsRoutesTableListResult>;
@@ -2180,26 +1944,20 @@ export class ExpressRouteCrossConnections {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} crossConnectionName The name of the
-   * ExpressRouteCrossConnection.
+   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
    *
-   * @param {ExpressRouteCrossConnection} parameters Parameters supplied to the
-   * update express route crossConnection operation.
+   * @param {ExpressRouteCrossConnection} parameters Parameters supplied to the update express route
+   * crossConnection operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ExpressRouteCrossConnection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnection} for more
-   *                      information.
-   *
+   *                      See {@link Models.ExpressRouteCrossConnection} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginCreateOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection): Promise<Models.ExpressRouteCrossConnection>;
@@ -2236,23 +1994,18 @@ export class ExpressRouteCrossConnections {
    *
    * @param {string} crossConnectionName The name of the cross connection.
    *
-   * @param {TagsObject} crossConnectionParameters Parameters supplied to update
-   * express route cross connection tags.
+   * @param {TagsObject} crossConnectionParameters Parameters supplied to update express route cross
+   * connection tags.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ExpressRouteCrossConnection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnection} for more
-   *                      information.
-   *
+   *                      See {@link Models.ExpressRouteCrossConnection} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginUpdateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject): Promise<Models.ExpressRouteCrossConnection>;
@@ -2283,13 +2036,12 @@ export class ExpressRouteCrossConnections {
   }
 
   /**
-   * Gets the currently advertised ARP table associated with the express route
-   * cross connection in a resource group.
+   * Gets the currently advertised ARP table associated with the express route cross connection in a
+   * resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} crossConnectionName The name of the
-   * ExpressRouteCrossConnection.
+   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
    *
    * @param {string} peeringName The name of the peering.
    *
@@ -2297,19 +2049,13 @@ export class ExpressRouteCrossConnections {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ExpressRouteCircuitsArpTableListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link
-   *                      Models.ExpressRouteCircuitsArpTableListResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.ExpressRouteCircuitsArpTableListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginListArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string): Promise<Models.ExpressRouteCircuitsArpTableListResult>;
@@ -2340,13 +2086,12 @@ export class ExpressRouteCrossConnections {
   }
 
   /**
-   * Gets the route table summary associated with the express route cross
-   * connection in a resource group.
+   * Gets the route table summary associated with the express route cross connection in a resource
+   * group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} crossConnectionName The name of the
-   * ExpressRouteCrossConnection.
+   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
    *
    * @param {string} peeringName The name of the peering.
    *
@@ -2354,19 +2099,13 @@ export class ExpressRouteCrossConnections {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link
-   *                      Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult}
-   *                      for more information.
-   *
+   *                      See {@link Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginListRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string): Promise<Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult>;
@@ -2397,13 +2136,12 @@ export class ExpressRouteCrossConnections {
   }
 
   /**
-   * Gets the currently advertised routes table associated with the express route
-   * cross connection in a resource group.
+   * Gets the currently advertised routes table associated with the express route cross connection in
+   * a resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} crossConnectionName The name of the
-   * ExpressRouteCrossConnection.
+   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
    *
    * @param {string} peeringName The name of the peering.
    *
@@ -2411,19 +2149,13 @@ export class ExpressRouteCrossConnections {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ExpressRouteCircuitsRoutesTableListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link
-   *                      Models.ExpressRouteCircuitsRoutesTableListResult} for
-   *                      more information.
-   *
+   *                      See {@link Models.ExpressRouteCircuitsRoutesTableListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginListRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string): Promise<Models.ExpressRouteCircuitsRoutesTableListResult>;
@@ -2456,24 +2188,17 @@ export class ExpressRouteCrossConnections {
   /**
    * Retrieves all the ExpressRouteCrossConnections in a subscription.
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ExpressRouteCrossConnectionListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link
-   *                      Models.ExpressRouteCrossConnectionListResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.ExpressRouteCrossConnectionListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listNext(nextPageLink: string): Promise<Models.ExpressRouteCrossConnectionListResult>;
@@ -2506,24 +2231,17 @@ export class ExpressRouteCrossConnections {
   /**
    * Retrieves all the ExpressRouteCrossConnections in a resource group.
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ExpressRouteCrossConnectionListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link
-   *                      Models.ExpressRouteCrossConnectionListResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.ExpressRouteCrossConnectionListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listByResourceGroupNext(nextPageLink: string): Promise<Models.ExpressRouteCrossConnectionListResult>;

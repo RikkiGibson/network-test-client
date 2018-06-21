@@ -29,19 +29,18 @@ export class LocalNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} localNetworkGatewayName The name of the local network
-   * gateway.
+   * @param {string} localNetworkGatewayName The name of the local network gateway.
    *
-   * @param {LocalNetworkGateway} parameters Parameters supplied to the create or
-   * update local network gateway operation.
+   * @param {LocalNetworkGateway} parameters Parameters supplied to the create or update local
+   * network gateway operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async createOrUpdateWithHttpOperationResponse(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -60,7 +59,7 @@ export class LocalNetworkGateways {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.LocalNetworkGateway;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -81,19 +80,17 @@ export class LocalNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} localNetworkGatewayName The name of the local network
-   * gateway.
+   * @param {string} localNetworkGatewayName The name of the local network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getWithHttpOperationResponse(resourceGroupName: string, localNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LocalNetworkGateway>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -109,7 +106,7 @@ export class LocalNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -177,37 +174,22 @@ export class LocalNetworkGateways {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.LocalNetworkGateway
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.LocalNetworkGateway;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -218,11 +200,9 @@ export class LocalNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -232,16 +212,15 @@ export class LocalNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} localNetworkGatewayName The name of the local network
-   * gateway.
+   * @param {string} localNetworkGatewayName The name of the local network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async deleteMethodWithHttpOperationResponse(resourceGroupName: string, localNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -269,19 +248,17 @@ export class LocalNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} localNetworkGatewayName The name of the local network
-   * gateway.
+   * @param {string} localNetworkGatewayName The name of the local network gateway.
    *
-   * @param {TagsObject} parameters Parameters supplied to update local network
-   * gateway tags.
+   * @param {TagsObject} parameters Parameters supplied to update local network gateway tags.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async updateTagsWithHttpOperationResponse(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -300,7 +277,7 @@ export class LocalNetworkGateways {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.LocalNetworkGateway;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -325,12 +302,11 @@ export class LocalNetworkGateways {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LocalNetworkGatewayListResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -345,7 +321,7 @@ export class LocalNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -400,37 +376,22 @@ export class LocalNetworkGateways {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.LocalNetworkGatewayListResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.LocalNetworkGatewayListResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -441,11 +402,9 @@ export class LocalNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -454,22 +413,20 @@ export class LocalNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} localNetworkGatewayName The name of the local network
-   * gateway.
+   * @param {string} localNetworkGatewayName The name of the local network gateway.
    *
-   * @param {LocalNetworkGateway} parameters Parameters supplied to the create or
-   * update local network gateway operation.
+   * @param {LocalNetworkGateway} parameters Parameters supplied to the create or update local
+   * network gateway operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LocalNetworkGateway>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -486,7 +443,7 @@ export class LocalNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -562,37 +519,25 @@ export class LocalNetworkGateways {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            201: {
+              bodyMapper: Mappers.LocalNetworkGateway
+            },
+            200: {
+              bodyMapper: Mappers.LocalNetworkGateway
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 201 && statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 201) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.LocalNetworkGateway;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -603,11 +548,10 @@ export class LocalNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-      // Deserialize Response
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.LocalNetworkGateway;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -618,11 +562,9 @@ export class LocalNetworkGateways {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -631,19 +573,17 @@ export class LocalNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} localNetworkGatewayName The name of the local network
-   * gateway.
+   * @param {string} localNetworkGatewayName The name of the local network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, localNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -659,7 +599,7 @@ export class LocalNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -727,37 +667,19 @@ export class LocalNetworkGateways {
               }
             }
           ],
+          responses: {
+            204: {},
+            200: {},
+            202: {},
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 204 && statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -766,22 +688,19 @@ export class LocalNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} localNetworkGatewayName The name of the local network
-   * gateway.
+   * @param {string} localNetworkGatewayName The name of the local network gateway.
    *
-   * @param {TagsObject} parameters Parameters supplied to update local network
-   * gateway tags.
+   * @param {TagsObject} parameters Parameters supplied to update local network gateway tags.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginUpdateTagsWithHttpOperationResponse(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LocalNetworkGateway>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -798,7 +717,7 @@ export class LocalNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -874,37 +793,22 @@ export class LocalNetworkGateways {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.LocalNetworkGateway
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.LocalNetworkGateway;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -915,30 +819,26 @@ export class LocalNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * Gets all the local network gateways in a resource group.
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LocalNetworkGatewayListResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -950,7 +850,7 @@ export class LocalNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -982,37 +882,22 @@ export class LocalNetworkGateways {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.LocalNetworkGatewayListResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.LocalNetworkGatewayListResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1023,11 +908,9 @@ export class LocalNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1036,26 +919,20 @@ export class LocalNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} localNetworkGatewayName The name of the local network
-   * gateway.
+   * @param {string} localNetworkGatewayName The name of the local network gateway.
    *
-   * @param {LocalNetworkGateway} parameters Parameters supplied to the create or
-   * update local network gateway operation.
+   * @param {LocalNetworkGateway} parameters Parameters supplied to the create or update local
+   * network gateway operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.LocalNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LocalNetworkGateway} for more
-   *                      information.
-   *
+   *                      See {@link Models.LocalNetworkGateway} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   createOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway): Promise<Models.LocalNetworkGateway>;
@@ -1090,23 +967,17 @@ export class LocalNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} localNetworkGatewayName The name of the local network
-   * gateway.
+   * @param {string} localNetworkGatewayName The name of the local network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.LocalNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LocalNetworkGateway} for more
-   *                      information.
-   *
+   *                      See {@link Models.LocalNetworkGateway} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   get(resourceGroupName: string, localNetworkGatewayName: string): Promise<Models.LocalNetworkGateway>;
@@ -1141,21 +1012,17 @@ export class LocalNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} localNetworkGatewayName The name of the local network
-   * gateway.
+   * @param {string} localNetworkGatewayName The name of the local network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   deleteMethod(resourceGroupName: string, localNetworkGatewayName: string): Promise<void>;
@@ -1190,26 +1057,19 @@ export class LocalNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} localNetworkGatewayName The name of the local network
-   * gateway.
+   * @param {string} localNetworkGatewayName The name of the local network gateway.
    *
-   * @param {TagsObject} parameters Parameters supplied to update local network
-   * gateway tags.
+   * @param {TagsObject} parameters Parameters supplied to update local network gateway tags.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.LocalNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LocalNetworkGateway} for more
-   *                      information.
-   *
+   *                      See {@link Models.LocalNetworkGateway} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   updateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject): Promise<Models.LocalNetworkGateway>;
@@ -1246,18 +1106,13 @@ export class LocalNetworkGateways {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.LocalNetworkGatewayListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LocalNetworkGatewayListResult} for
-   *                      more information.
-   *
+   *                      See {@link Models.LocalNetworkGatewayListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   list(resourceGroupName: string): Promise<Models.LocalNetworkGatewayListResult>;
@@ -1292,26 +1147,20 @@ export class LocalNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} localNetworkGatewayName The name of the local network
-   * gateway.
+   * @param {string} localNetworkGatewayName The name of the local network gateway.
    *
-   * @param {LocalNetworkGateway} parameters Parameters supplied to the create or
-   * update local network gateway operation.
+   * @param {LocalNetworkGateway} parameters Parameters supplied to the create or update local
+   * network gateway operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.LocalNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LocalNetworkGateway} for more
-   *                      information.
-   *
+   *                      See {@link Models.LocalNetworkGateway} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginCreateOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway): Promise<Models.LocalNetworkGateway>;
@@ -1346,21 +1195,17 @@ export class LocalNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} localNetworkGatewayName The name of the local network
-   * gateway.
+   * @param {string} localNetworkGatewayName The name of the local network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDeleteMethod(resourceGroupName: string, localNetworkGatewayName: string): Promise<void>;
@@ -1395,26 +1240,19 @@ export class LocalNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} localNetworkGatewayName The name of the local network
-   * gateway.
+   * @param {string} localNetworkGatewayName The name of the local network gateway.
    *
-   * @param {TagsObject} parameters Parameters supplied to update local network
-   * gateway tags.
+   * @param {TagsObject} parameters Parameters supplied to update local network gateway tags.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.LocalNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LocalNetworkGateway} for more
-   *                      information.
-   *
+   *                      See {@link Models.LocalNetworkGateway} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginUpdateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject): Promise<Models.LocalNetworkGateway>;
@@ -1447,23 +1285,17 @@ export class LocalNetworkGateways {
   /**
    * Gets all the local network gateways in a resource group.
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.LocalNetworkGatewayListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LocalNetworkGatewayListResult} for
-   *                      more information.
-   *
+   *                      See {@link Models.LocalNetworkGatewayListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listNext(nextPageLink: string): Promise<Models.LocalNetworkGatewayListResult>;

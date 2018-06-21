@@ -30,19 +30,17 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher.
    *
-   * @param {NetworkWatcher} parameters Parameters that define the network
-   * watcher resource.
+   * @param {NetworkWatcher} parameters Parameters that define the network watcher resource.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async createOrUpdateWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.NetworkWatcher, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkWatcher>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -59,7 +57,7 @@ export class NetworkWatchers {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -132,37 +130,25 @@ export class NetworkWatchers {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.NetworkWatcher
+            },
+            201: {
+              bodyMapper: Mappers.NetworkWatcher
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 201) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.NetworkWatcher;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -173,11 +159,10 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError);
         }
       }
-      // Deserialize Response
       if (statusCode === 201) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.NetworkWatcher;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -188,11 +173,9 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -207,12 +190,11 @@ export class NetworkWatchers {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkWatcher>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -228,7 +210,7 @@ export class NetworkWatchers {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -293,37 +275,22 @@ export class NetworkWatchers {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.NetworkWatcher
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.NetworkWatcher;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -334,11 +301,9 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -354,9 +319,9 @@ export class NetworkWatchers {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async deleteMethodWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -385,19 +350,17 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher.
    *
-   * @param {TagsObject} parameters Parameters supplied to update network watcher
-   * tags.
+   * @param {TagsObject} parameters Parameters supplied to update network watcher tags.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async updateTagsWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkWatcher>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -414,7 +377,7 @@ export class NetworkWatchers {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -487,37 +450,22 @@ export class NetworkWatchers {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.NetworkWatcher
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.NetworkWatcher;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -528,11 +476,9 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -545,12 +491,11 @@ export class NetworkWatchers {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkWatcherListResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -565,7 +510,7 @@ export class NetworkWatchers {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -620,37 +565,22 @@ export class NetworkWatchers {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.NetworkWatcherListResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.NetworkWatcherListResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -661,11 +591,9 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -676,12 +604,11 @@ export class NetworkWatchers {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listAllWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkWatcherListResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -695,7 +622,7 @@ export class NetworkWatchers {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -740,37 +667,22 @@ export class NetworkWatchers {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.NetworkWatcherListResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.NetworkWatcherListResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -781,11 +693,9 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -796,19 +706,17 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher.
    *
-   * @param {TopologyParameters} parameters Parameters that define the
-   * representation of topology.
+   * @param {TopologyParameters} parameters Parameters that define the representation of topology.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getTopologyWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.TopologyParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Topology>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -825,7 +733,7 @@ export class NetworkWatchers {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -898,37 +806,22 @@ export class NetworkWatchers {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.Topology
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.Topology;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -939,33 +832,30 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
 
   /**
-   * Verify IP flow from the specified VM to a location given the currently
-   * configured NSG rules.
+   * Verify IP flow from the specified VM to a location given the currently configured NSG rules.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher.
    *
-   * @param {VerificationIPFlowParameters} parameters Parameters that define the
-   * IP flow to be verified.
+   * @param {VerificationIPFlowParameters} parameters Parameters that define the IP flow to be
+   * verified.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async verifyIPFlowWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.VerificationIPFlowParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -984,7 +874,7 @@ export class NetworkWatchers {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.VerificationIPFlowResult;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -1008,16 +898,16 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher.
    *
-   * @param {NextHopParameters} parameters Parameters that define the source and
-   * destination endpoint.
+   * @param {NextHopParameters} parameters Parameters that define the source and destination
+   * endpoint.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getNextHopWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.NextHopParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -1036,7 +926,7 @@ export class NetworkWatchers {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.NextHopResult;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -1060,16 +950,16 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher.
    *
-   * @param {SecurityGroupViewParameters} parameters Parameters that define the
-   * VM to check security groups for.
+   * @param {SecurityGroupViewParameters} parameters Parameters that define the VM to check security
+   * groups for.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getVMSecurityRulesWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.SecurityGroupViewParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -1088,7 +978,7 @@ export class NetworkWatchers {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.SecurityGroupViewResult;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -1112,16 +1002,16 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {TroubleshootingParameters} parameters Parameters that define the
-   * resource to troubleshoot.
+   * @param {TroubleshootingParameters} parameters Parameters that define the resource to
+   * troubleshoot.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getTroubleshootingWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.TroubleshootingParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -1140,7 +1030,7 @@ export class NetworkWatchers {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.TroubleshootingResult;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -1164,16 +1054,16 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {QueryTroubleshootingParameters} parameters Parameters that define
-   * the resource to query the troubleshooting result.
+   * @param {QueryTroubleshootingParameters} parameters Parameters that define the resource to query
+   * the troubleshooting result.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getTroubleshootingResultWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.QueryTroubleshootingParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -1192,7 +1082,7 @@ export class NetworkWatchers {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.TroubleshootingResult;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -1210,24 +1100,21 @@ export class NetworkWatchers {
 
 
   /**
-   * Configures flow log  and traffic analytics (optional) on a specified
-   * resource.
+   * Configures flow log  and traffic analytics (optional) on a specified resource.
    *
-   * @param {string} resourceGroupName The name of the network watcher resource
-   * group.
+   * @param {string} resourceGroupName The name of the network watcher resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {FlowLogInformation} parameters Parameters that define the
-   * configuration of flow log.
+   * @param {FlowLogInformation} parameters Parameters that define the configuration of flow log.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async setFlowLogConfigurationWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogInformation, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -1246,7 +1133,7 @@ export class NetworkWatchers {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.FlowLogInformation;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -1264,24 +1151,22 @@ export class NetworkWatchers {
 
 
   /**
-   * Queries status of flow log and traffic analytics (optional) on a specified
-   * resource.
+   * Queries status of flow log and traffic analytics (optional) on a specified resource.
    *
-   * @param {string} resourceGroupName The name of the network watcher resource
-   * group.
+   * @param {string} resourceGroupName The name of the network watcher resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {FlowLogStatusParameters} parameters Parameters that define a
-   * resource to query flow log and traffic analytics (optional)  status.
+   * @param {FlowLogStatusParameters} parameters Parameters that define a resource to query flow log
+   * and traffic analytics (optional)  status.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getFlowLogStatusWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogStatusParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -1300,7 +1185,7 @@ export class NetworkWatchers {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.FlowLogInformation;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -1318,25 +1203,23 @@ export class NetworkWatchers {
 
 
   /**
-   * Verifies the possibility of establishing a direct TCP connection from a
-   * virtual machine to a given endpoint including another VM or an arbitrary
-   * remote server.
+   * Verifies the possibility of establishing a direct TCP connection from a virtual machine to a
+   * given endpoint including another VM or an arbitrary remote server.
    *
-   * @param {string} resourceGroupName The name of the network watcher resource
-   * group.
+   * @param {string} resourceGroupName The name of the network watcher resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {ConnectivityParameters} parameters Parameters that determine how the
-   * connectivity check will be performed.
+   * @param {ConnectivityParameters} parameters Parameters that determine how the connectivity check
+   * will be performed.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async checkConnectivityWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.ConnectivityParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -1355,7 +1238,7 @@ export class NetworkWatchers {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.ConnectivityInformation;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -1373,24 +1256,23 @@ export class NetworkWatchers {
 
 
   /**
-   * Gets the relative latency score for internet service providers from a
-   * specified location to Azure regions.
+   * Gets the relative latency score for internet service providers from a specified location to
+   * Azure regions.
    *
-   * @param {string} resourceGroupName The name of the network watcher resource
-   * group.
+   * @param {string} resourceGroupName The name of the network watcher resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {AzureReachabilityReportParameters} parameters Parameters that
-   * determine Azure reachability report configuration.
+   * @param {AzureReachabilityReportParameters} parameters Parameters that determine Azure
+   * reachability report configuration.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getAzureReachabilityReportWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.AzureReachabilityReportParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -1409,7 +1291,7 @@ export class NetworkWatchers {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.AzureReachabilityReport;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -1429,21 +1311,20 @@ export class NetworkWatchers {
   /**
    * Lists all available internet service providers for a specified Azure region.
    *
-   * @param {string} resourceGroupName The name of the network watcher resource
-   * group.
+   * @param {string} resourceGroupName The name of the network watcher resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {AvailableProvidersListParameters} parameters Parameters that scope
-   * the list of available providers.
+   * @param {AvailableProvidersListParameters} parameters Parameters that scope the list of available
+   * providers.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listAvailableProvidersWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.AvailableProvidersListParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -1462,7 +1343,7 @@ export class NetworkWatchers {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.AvailableProvidersList;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -1489,12 +1370,11 @@ export class NetworkWatchers {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -1510,7 +1390,7 @@ export class NetworkWatchers {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1575,61 +1455,40 @@ export class NetworkWatchers {
               }
             }
           ],
+          responses: {
+            202: {},
+            204: {},
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 202 && statusCode !== 204) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Verify IP flow from the specified VM to a location given the currently
-   * configured NSG rules.
+   * Verify IP flow from the specified VM to a location given the currently configured NSG rules.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher.
    *
-   * @param {VerificationIPFlowParameters} parameters Parameters that define the
-   * IP flow to be verified.
+   * @param {VerificationIPFlowParameters} parameters Parameters that define the IP flow to be
+   * verified.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginVerifyIPFlowWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.VerificationIPFlowParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VerificationIPFlowResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -1646,7 +1505,7 @@ export class NetworkWatchers {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1719,37 +1578,25 @@ export class NetworkWatchers {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.VerificationIPFlowResult
+            },
+            202: {
+              bodyMapper: Mappers.VerificationIPFlowResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.VerificationIPFlowResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1760,11 +1607,10 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError);
         }
       }
-      // Deserialize Response
       if (statusCode === 202) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.VerificationIPFlowResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1775,11 +1621,9 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1790,19 +1634,18 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher.
    *
-   * @param {NextHopParameters} parameters Parameters that define the source and
-   * destination endpoint.
+   * @param {NextHopParameters} parameters Parameters that define the source and destination
+   * endpoint.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginGetNextHopWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.NextHopParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NextHopResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -1819,7 +1662,7 @@ export class NetworkWatchers {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1892,37 +1735,25 @@ export class NetworkWatchers {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.NextHopResult
+            },
+            202: {
+              bodyMapper: Mappers.NextHopResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.NextHopResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1933,11 +1764,10 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError);
         }
       }
-      // Deserialize Response
       if (statusCode === 202) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.NextHopResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1948,11 +1778,9 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1963,19 +1791,18 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher.
    *
-   * @param {SecurityGroupViewParameters} parameters Parameters that define the
-   * VM to check security groups for.
+   * @param {SecurityGroupViewParameters} parameters Parameters that define the VM to check security
+   * groups for.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginGetVMSecurityRulesWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.SecurityGroupViewParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SecurityGroupViewResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -1992,7 +1819,7 @@ export class NetworkWatchers {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2065,37 +1892,25 @@ export class NetworkWatchers {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.SecurityGroupViewResult
+            },
+            202: {
+              bodyMapper: Mappers.SecurityGroupViewResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.SecurityGroupViewResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -2106,11 +1921,10 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError);
         }
       }
-      // Deserialize Response
       if (statusCode === 202) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.SecurityGroupViewResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -2121,11 +1935,9 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -2136,19 +1948,18 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {TroubleshootingParameters} parameters Parameters that define the
-   * resource to troubleshoot.
+   * @param {TroubleshootingParameters} parameters Parameters that define the resource to
+   * troubleshoot.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginGetTroubleshootingWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.TroubleshootingParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.TroubleshootingResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -2165,7 +1976,7 @@ export class NetworkWatchers {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2238,37 +2049,25 @@ export class NetworkWatchers {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.TroubleshootingResult
+            },
+            202: {
+              bodyMapper: Mappers.TroubleshootingResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.TroubleshootingResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -2279,11 +2078,10 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError);
         }
       }
-      // Deserialize Response
       if (statusCode === 202) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.TroubleshootingResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -2294,11 +2092,9 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -2309,19 +2105,18 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {QueryTroubleshootingParameters} parameters Parameters that define
-   * the resource to query the troubleshooting result.
+   * @param {QueryTroubleshootingParameters} parameters Parameters that define the resource to query
+   * the troubleshooting result.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginGetTroubleshootingResultWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.QueryTroubleshootingParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.TroubleshootingResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -2338,7 +2133,7 @@ export class NetworkWatchers {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2411,37 +2206,25 @@ export class NetworkWatchers {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.TroubleshootingResult
+            },
+            202: {
+              bodyMapper: Mappers.TroubleshootingResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.TroubleshootingResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -2452,11 +2235,10 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError);
         }
       }
-      // Deserialize Response
       if (statusCode === 202) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.TroubleshootingResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -2467,36 +2249,30 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Configures flow log  and traffic analytics (optional) on a specified
-   * resource.
+   * Configures flow log  and traffic analytics (optional) on a specified resource.
    *
-   * @param {string} resourceGroupName The name of the network watcher resource
-   * group.
+   * @param {string} resourceGroupName The name of the network watcher resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {FlowLogInformation} parameters Parameters that define the
-   * configuration of flow log.
+   * @param {FlowLogInformation} parameters Parameters that define the configuration of flow log.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginSetFlowLogConfigurationWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogInformation, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FlowLogInformation>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -2513,7 +2289,7 @@ export class NetworkWatchers {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2586,37 +2362,25 @@ export class NetworkWatchers {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.FlowLogInformation
+            },
+            202: {
+              bodyMapper: Mappers.FlowLogInformation
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.FlowLogInformation;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -2627,11 +2391,10 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError);
         }
       }
-      // Deserialize Response
       if (statusCode === 202) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.FlowLogInformation;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -2642,36 +2405,31 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Queries status of flow log and traffic analytics (optional) on a specified
-   * resource.
+   * Queries status of flow log and traffic analytics (optional) on a specified resource.
    *
-   * @param {string} resourceGroupName The name of the network watcher resource
-   * group.
+   * @param {string} resourceGroupName The name of the network watcher resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {FlowLogStatusParameters} parameters Parameters that define a
-   * resource to query flow log and traffic analytics (optional)  status.
+   * @param {FlowLogStatusParameters} parameters Parameters that define a resource to query flow log
+   * and traffic analytics (optional)  status.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginGetFlowLogStatusWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogStatusParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FlowLogInformation>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -2688,7 +2446,7 @@ export class NetworkWatchers {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2761,37 +2519,25 @@ export class NetworkWatchers {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.FlowLogInformation
+            },
+            202: {
+              bodyMapper: Mappers.FlowLogInformation
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.FlowLogInformation;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -2802,11 +2548,10 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError);
         }
       }
-      // Deserialize Response
       if (statusCode === 202) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.FlowLogInformation;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -2817,37 +2562,32 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Verifies the possibility of establishing a direct TCP connection from a
-   * virtual machine to a given endpoint including another VM or an arbitrary
-   * remote server.
+   * Verifies the possibility of establishing a direct TCP connection from a virtual machine to a
+   * given endpoint including another VM or an arbitrary remote server.
    *
-   * @param {string} resourceGroupName The name of the network watcher resource
-   * group.
+   * @param {string} resourceGroupName The name of the network watcher resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {ConnectivityParameters} parameters Parameters that determine how the
-   * connectivity check will be performed.
+   * @param {ConnectivityParameters} parameters Parameters that determine how the connectivity check
+   * will be performed.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginCheckConnectivityWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.ConnectivityParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectivityInformation>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -2864,7 +2604,7 @@ export class NetworkWatchers {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2937,37 +2677,25 @@ export class NetworkWatchers {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.ConnectivityInformation
+            },
+            202: {
+              bodyMapper: Mappers.ConnectivityInformation
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ConnectivityInformation;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -2978,11 +2706,10 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError);
         }
       }
-      // Deserialize Response
       if (statusCode === 202) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ConnectivityInformation;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -2993,36 +2720,32 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Gets the relative latency score for internet service providers from a
-   * specified location to Azure regions.
+   * Gets the relative latency score for internet service providers from a specified location to
+   * Azure regions.
    *
-   * @param {string} resourceGroupName The name of the network watcher resource
-   * group.
+   * @param {string} resourceGroupName The name of the network watcher resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {AzureReachabilityReportParameters} parameters Parameters that
-   * determine Azure reachability report configuration.
+   * @param {AzureReachabilityReportParameters} parameters Parameters that determine Azure
+   * reachability report configuration.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginGetAzureReachabilityReportWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.AzureReachabilityReportParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.AzureReachabilityReport>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -3039,7 +2762,7 @@ export class NetworkWatchers {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -3112,37 +2835,25 @@ export class NetworkWatchers {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.AzureReachabilityReport
+            },
+            202: {
+              bodyMapper: Mappers.AzureReachabilityReport
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.AzureReachabilityReport;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -3153,11 +2864,10 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError);
         }
       }
-      // Deserialize Response
       if (statusCode === 202) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.AzureReachabilityReport;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -3168,35 +2878,31 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * Lists all available internet service providers for a specified Azure region.
    *
-   * @param {string} resourceGroupName The name of the network watcher resource
-   * group.
+   * @param {string} resourceGroupName The name of the network watcher resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {AvailableProvidersListParameters} parameters Parameters that scope
-   * the list of available providers.
+   * @param {AvailableProvidersListParameters} parameters Parameters that scope the list of available
+   * providers.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginListAvailableProvidersWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.AvailableProvidersListParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.AvailableProvidersList>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -3213,7 +2919,7 @@ export class NetworkWatchers {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -3286,37 +2992,25 @@ export class NetworkWatchers {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.AvailableProvidersList
+            },
+            202: {
+              bodyMapper: Mappers.AvailableProvidersList
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.AvailableProvidersList;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -3327,11 +3021,10 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError);
         }
       }
-      // Deserialize Response
       if (statusCode === 202) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.AvailableProvidersList;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -3342,11 +3035,9 @@ export class NetworkWatchers {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -3357,22 +3048,17 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher.
    *
-   * @param {NetworkWatcher} parameters Parameters that define the network
-   * watcher resource.
+   * @param {NetworkWatcher} parameters Parameters that define the network watcher resource.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.NetworkWatcher} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.NetworkWatcher} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   createOrUpdate(resourceGroupName: string, networkWatcherName: string, parameters: Models.NetworkWatcher): Promise<Models.NetworkWatcher>;
@@ -3411,17 +3097,13 @@ export class NetworkWatchers {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.NetworkWatcher} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.NetworkWatcher} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   get(resourceGroupName: string, networkWatcherName: string): Promise<Models.NetworkWatcher>;
@@ -3460,16 +3142,13 @@ export class NetworkWatchers {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   deleteMethod(resourceGroupName: string, networkWatcherName: string): Promise<void>;
@@ -3506,22 +3185,17 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher.
    *
-   * @param {TagsObject} parameters Parameters supplied to update network watcher
-   * tags.
+   * @param {TagsObject} parameters Parameters supplied to update network watcher tags.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.NetworkWatcher} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.NetworkWatcher} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   updateTags(resourceGroupName: string, networkWatcherName: string, parameters: Models.TagsObject): Promise<Models.NetworkWatcher>;
@@ -3558,18 +3232,13 @@ export class NetworkWatchers {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.NetworkWatcherListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.NetworkWatcherListResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.NetworkWatcherListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   list(resourceGroupName: string): Promise<Models.NetworkWatcherListResult>;
@@ -3604,18 +3273,13 @@ export class NetworkWatchers {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.NetworkWatcherListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.NetworkWatcherListResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.NetworkWatcherListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listAll(): Promise<Models.NetworkWatcherListResult>;
@@ -3652,22 +3316,17 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher.
    *
-   * @param {TopologyParameters} parameters Parameters that define the
-   * representation of topology.
+   * @param {TopologyParameters} parameters Parameters that define the representation of topology.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.Topology} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.Topology} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getTopology(resourceGroupName: string, networkWatcherName: string, parameters: Models.TopologyParameters): Promise<Models.Topology>;
@@ -3698,30 +3357,24 @@ export class NetworkWatchers {
   }
 
   /**
-   * Verify IP flow from the specified VM to a location given the currently
-   * configured NSG rules.
+   * Verify IP flow from the specified VM to a location given the currently configured NSG rules.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher.
    *
-   * @param {VerificationIPFlowParameters} parameters Parameters that define the
-   * IP flow to be verified.
+   * @param {VerificationIPFlowParameters} parameters Parameters that define the IP flow to be
+   * verified.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VerificationIPFlowResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VerificationIPFlowResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.VerificationIPFlowResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   verifyIPFlow(resourceGroupName: string, networkWatcherName: string, parameters: Models.VerificationIPFlowParameters): Promise<Models.VerificationIPFlowResult>;
@@ -3758,22 +3411,18 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher.
    *
-   * @param {NextHopParameters} parameters Parameters that define the source and
-   * destination endpoint.
+   * @param {NextHopParameters} parameters Parameters that define the source and destination
+   * endpoint.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.NextHopResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.NextHopResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getNextHop(resourceGroupName: string, networkWatcherName: string, parameters: Models.NextHopParameters): Promise<Models.NextHopResult>;
@@ -3810,23 +3459,18 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher.
    *
-   * @param {SecurityGroupViewParameters} parameters Parameters that define the
-   * VM to check security groups for.
+   * @param {SecurityGroupViewParameters} parameters Parameters that define the VM to check security
+   * groups for.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.SecurityGroupViewResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.SecurityGroupViewResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.SecurityGroupViewResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getVMSecurityRules(resourceGroupName: string, networkWatcherName: string, parameters: Models.SecurityGroupViewParameters): Promise<Models.SecurityGroupViewResult>;
@@ -3863,23 +3507,18 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {TroubleshootingParameters} parameters Parameters that define the
-   * resource to troubleshoot.
+   * @param {TroubleshootingParameters} parameters Parameters that define the resource to
+   * troubleshoot.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.TroubleshootingResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.TroubleshootingResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.TroubleshootingResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getTroubleshooting(resourceGroupName: string, networkWatcherName: string, parameters: Models.TroubleshootingParameters): Promise<Models.TroubleshootingResult>;
@@ -3916,23 +3555,18 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {QueryTroubleshootingParameters} parameters Parameters that define
-   * the resource to query the troubleshooting result.
+   * @param {QueryTroubleshootingParameters} parameters Parameters that define the resource to query
+   * the troubleshooting result.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.TroubleshootingResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.TroubleshootingResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.TroubleshootingResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getTroubleshootingResult(resourceGroupName: string, networkWatcherName: string, parameters: Models.QueryTroubleshootingParameters): Promise<Models.TroubleshootingResult>;
@@ -3963,31 +3597,23 @@ export class NetworkWatchers {
   }
 
   /**
-   * Configures flow log  and traffic analytics (optional) on a specified
-   * resource.
+   * Configures flow log  and traffic analytics (optional) on a specified resource.
    *
-   * @param {string} resourceGroupName The name of the network watcher resource
-   * group.
+   * @param {string} resourceGroupName The name of the network watcher resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {FlowLogInformation} parameters Parameters that define the
-   * configuration of flow log.
+   * @param {FlowLogInformation} parameters Parameters that define the configuration of flow log.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.FlowLogInformation} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.FlowLogInformation} for more
-   *                      information.
-   *
+   *                      See {@link Models.FlowLogInformation} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   setFlowLogConfiguration(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogInformation): Promise<Models.FlowLogInformation>;
@@ -4018,31 +3644,24 @@ export class NetworkWatchers {
   }
 
   /**
-   * Queries status of flow log and traffic analytics (optional) on a specified
-   * resource.
+   * Queries status of flow log and traffic analytics (optional) on a specified resource.
    *
-   * @param {string} resourceGroupName The name of the network watcher resource
-   * group.
+   * @param {string} resourceGroupName The name of the network watcher resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {FlowLogStatusParameters} parameters Parameters that define a
-   * resource to query flow log and traffic analytics (optional)  status.
+   * @param {FlowLogStatusParameters} parameters Parameters that define a resource to query flow log
+   * and traffic analytics (optional)  status.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.FlowLogInformation} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.FlowLogInformation} for more
-   *                      information.
-   *
+   *                      See {@link Models.FlowLogInformation} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getFlowLogStatus(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogStatusParameters): Promise<Models.FlowLogInformation>;
@@ -4073,32 +3692,25 @@ export class NetworkWatchers {
   }
 
   /**
-   * Verifies the possibility of establishing a direct TCP connection from a
-   * virtual machine to a given endpoint including another VM or an arbitrary
-   * remote server.
+   * Verifies the possibility of establishing a direct TCP connection from a virtual machine to a
+   * given endpoint including another VM or an arbitrary remote server.
    *
-   * @param {string} resourceGroupName The name of the network watcher resource
-   * group.
+   * @param {string} resourceGroupName The name of the network watcher resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {ConnectivityParameters} parameters Parameters that determine how the
-   * connectivity check will be performed.
+   * @param {ConnectivityParameters} parameters Parameters that determine how the connectivity check
+   * will be performed.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ConnectivityInformation} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ConnectivityInformation} for more
-   *                      information.
-   *
+   *                      See {@link Models.ConnectivityInformation} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   checkConnectivity(resourceGroupName: string, networkWatcherName: string, parameters: Models.ConnectivityParameters): Promise<Models.ConnectivityInformation>;
@@ -4129,31 +3741,25 @@ export class NetworkWatchers {
   }
 
   /**
-   * Gets the relative latency score for internet service providers from a
-   * specified location to Azure regions.
+   * Gets the relative latency score for internet service providers from a specified location to
+   * Azure regions.
    *
-   * @param {string} resourceGroupName The name of the network watcher resource
-   * group.
+   * @param {string} resourceGroupName The name of the network watcher resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {AzureReachabilityReportParameters} parameters Parameters that
-   * determine Azure reachability report configuration.
+   * @param {AzureReachabilityReportParameters} parameters Parameters that determine Azure
+   * reachability report configuration.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.AzureReachabilityReport} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.AzureReachabilityReport} for more
-   *                      information.
-   *
+   *                      See {@link Models.AzureReachabilityReport} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getAzureReachabilityReport(resourceGroupName: string, networkWatcherName: string, parameters: Models.AzureReachabilityReportParameters): Promise<Models.AzureReachabilityReport>;
@@ -4186,28 +3792,22 @@ export class NetworkWatchers {
   /**
    * Lists all available internet service providers for a specified Azure region.
    *
-   * @param {string} resourceGroupName The name of the network watcher resource
-   * group.
+   * @param {string} resourceGroupName The name of the network watcher resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {AvailableProvidersListParameters} parameters Parameters that scope
-   * the list of available providers.
+   * @param {AvailableProvidersListParameters} parameters Parameters that scope the list of available
+   * providers.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.AvailableProvidersList} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.AvailableProvidersList} for more
-   *                      information.
-   *
+   *                      See {@link Models.AvailableProvidersList} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listAvailableProviders(resourceGroupName: string, networkWatcherName: string, parameters: Models.AvailableProvidersListParameters): Promise<Models.AvailableProvidersList>;
@@ -4246,16 +3846,13 @@ export class NetworkWatchers {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDeleteMethod(resourceGroupName: string, networkWatcherName: string): Promise<void>;
@@ -4286,30 +3883,24 @@ export class NetworkWatchers {
   }
 
   /**
-   * Verify IP flow from the specified VM to a location given the currently
-   * configured NSG rules.
+   * Verify IP flow from the specified VM to a location given the currently configured NSG rules.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher.
    *
-   * @param {VerificationIPFlowParameters} parameters Parameters that define the
-   * IP flow to be verified.
+   * @param {VerificationIPFlowParameters} parameters Parameters that define the IP flow to be
+   * verified.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VerificationIPFlowResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VerificationIPFlowResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.VerificationIPFlowResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginVerifyIPFlow(resourceGroupName: string, networkWatcherName: string, parameters: Models.VerificationIPFlowParameters): Promise<Models.VerificationIPFlowResult>;
@@ -4346,22 +3937,18 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher.
    *
-   * @param {NextHopParameters} parameters Parameters that define the source and
-   * destination endpoint.
+   * @param {NextHopParameters} parameters Parameters that define the source and destination
+   * endpoint.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.NextHopResult} [result]   - The deserialized result object if an error did not occur.
    *                      See {@link Models.NextHopResult} for more information.
-   *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginGetNextHop(resourceGroupName: string, networkWatcherName: string, parameters: Models.NextHopParameters): Promise<Models.NextHopResult>;
@@ -4398,23 +3985,18 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher.
    *
-   * @param {SecurityGroupViewParameters} parameters Parameters that define the
-   * VM to check security groups for.
+   * @param {SecurityGroupViewParameters} parameters Parameters that define the VM to check security
+   * groups for.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.SecurityGroupViewResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.SecurityGroupViewResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.SecurityGroupViewResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginGetVMSecurityRules(resourceGroupName: string, networkWatcherName: string, parameters: Models.SecurityGroupViewParameters): Promise<Models.SecurityGroupViewResult>;
@@ -4451,23 +4033,18 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {TroubleshootingParameters} parameters Parameters that define the
-   * resource to troubleshoot.
+   * @param {TroubleshootingParameters} parameters Parameters that define the resource to
+   * troubleshoot.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.TroubleshootingResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.TroubleshootingResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.TroubleshootingResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginGetTroubleshooting(resourceGroupName: string, networkWatcherName: string, parameters: Models.TroubleshootingParameters): Promise<Models.TroubleshootingResult>;
@@ -4504,23 +4081,18 @@ export class NetworkWatchers {
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {QueryTroubleshootingParameters} parameters Parameters that define
-   * the resource to query the troubleshooting result.
+   * @param {QueryTroubleshootingParameters} parameters Parameters that define the resource to query
+   * the troubleshooting result.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.TroubleshootingResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.TroubleshootingResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.TroubleshootingResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginGetTroubleshootingResult(resourceGroupName: string, networkWatcherName: string, parameters: Models.QueryTroubleshootingParameters): Promise<Models.TroubleshootingResult>;
@@ -4551,31 +4123,23 @@ export class NetworkWatchers {
   }
 
   /**
-   * Configures flow log  and traffic analytics (optional) on a specified
-   * resource.
+   * Configures flow log  and traffic analytics (optional) on a specified resource.
    *
-   * @param {string} resourceGroupName The name of the network watcher resource
-   * group.
+   * @param {string} resourceGroupName The name of the network watcher resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {FlowLogInformation} parameters Parameters that define the
-   * configuration of flow log.
+   * @param {FlowLogInformation} parameters Parameters that define the configuration of flow log.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.FlowLogInformation} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.FlowLogInformation} for more
-   *                      information.
-   *
+   *                      See {@link Models.FlowLogInformation} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginSetFlowLogConfiguration(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogInformation): Promise<Models.FlowLogInformation>;
@@ -4606,31 +4170,24 @@ export class NetworkWatchers {
   }
 
   /**
-   * Queries status of flow log and traffic analytics (optional) on a specified
-   * resource.
+   * Queries status of flow log and traffic analytics (optional) on a specified resource.
    *
-   * @param {string} resourceGroupName The name of the network watcher resource
-   * group.
+   * @param {string} resourceGroupName The name of the network watcher resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {FlowLogStatusParameters} parameters Parameters that define a
-   * resource to query flow log and traffic analytics (optional)  status.
+   * @param {FlowLogStatusParameters} parameters Parameters that define a resource to query flow log
+   * and traffic analytics (optional)  status.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.FlowLogInformation} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.FlowLogInformation} for more
-   *                      information.
-   *
+   *                      See {@link Models.FlowLogInformation} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginGetFlowLogStatus(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogStatusParameters): Promise<Models.FlowLogInformation>;
@@ -4661,32 +4218,25 @@ export class NetworkWatchers {
   }
 
   /**
-   * Verifies the possibility of establishing a direct TCP connection from a
-   * virtual machine to a given endpoint including another VM or an arbitrary
-   * remote server.
+   * Verifies the possibility of establishing a direct TCP connection from a virtual machine to a
+   * given endpoint including another VM or an arbitrary remote server.
    *
-   * @param {string} resourceGroupName The name of the network watcher resource
-   * group.
+   * @param {string} resourceGroupName The name of the network watcher resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {ConnectivityParameters} parameters Parameters that determine how the
-   * connectivity check will be performed.
+   * @param {ConnectivityParameters} parameters Parameters that determine how the connectivity check
+   * will be performed.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ConnectivityInformation} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ConnectivityInformation} for more
-   *                      information.
-   *
+   *                      See {@link Models.ConnectivityInformation} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginCheckConnectivity(resourceGroupName: string, networkWatcherName: string, parameters: Models.ConnectivityParameters): Promise<Models.ConnectivityInformation>;
@@ -4717,31 +4267,25 @@ export class NetworkWatchers {
   }
 
   /**
-   * Gets the relative latency score for internet service providers from a
-   * specified location to Azure regions.
+   * Gets the relative latency score for internet service providers from a specified location to
+   * Azure regions.
    *
-   * @param {string} resourceGroupName The name of the network watcher resource
-   * group.
+   * @param {string} resourceGroupName The name of the network watcher resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {AzureReachabilityReportParameters} parameters Parameters that
-   * determine Azure reachability report configuration.
+   * @param {AzureReachabilityReportParameters} parameters Parameters that determine Azure
+   * reachability report configuration.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.AzureReachabilityReport} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.AzureReachabilityReport} for more
-   *                      information.
-   *
+   *                      See {@link Models.AzureReachabilityReport} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginGetAzureReachabilityReport(resourceGroupName: string, networkWatcherName: string, parameters: Models.AzureReachabilityReportParameters): Promise<Models.AzureReachabilityReport>;
@@ -4774,28 +4318,22 @@ export class NetworkWatchers {
   /**
    * Lists all available internet service providers for a specified Azure region.
    *
-   * @param {string} resourceGroupName The name of the network watcher resource
-   * group.
+   * @param {string} resourceGroupName The name of the network watcher resource group.
    *
    * @param {string} networkWatcherName The name of the network watcher resource.
    *
-   * @param {AvailableProvidersListParameters} parameters Parameters that scope
-   * the list of available providers.
+   * @param {AvailableProvidersListParameters} parameters Parameters that scope the list of available
+   * providers.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.AvailableProvidersList} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.AvailableProvidersList} for more
-   *                      information.
-   *
+   *                      See {@link Models.AvailableProvidersList} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginListAvailableProviders(resourceGroupName: string, networkWatcherName: string, parameters: Models.AvailableProvidersListParameters): Promise<Models.AvailableProvidersList>;

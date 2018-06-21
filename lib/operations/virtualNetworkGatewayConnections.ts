@@ -25,24 +25,23 @@ export class VirtualNetworkGatewayConnections {
 
 
   /**
-   * Creates or updates a virtual network gateway connection in the specified
-   * resource group.
+   * Creates or updates a virtual network gateway connection in the specified resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual
-   * network gateway connection.
+   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
+   * connection.
    *
-   * @param {VirtualNetworkGatewayConnection} parameters Parameters supplied to
-   * the create or update virtual network gateway connection operation.
+   * @param {VirtualNetworkGatewayConnection} parameters Parameters supplied to the create or update
+   * virtual network gateway connection operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async createOrUpdateWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -61,7 +60,7 @@ export class VirtualNetworkGatewayConnections {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.VirtualNetworkGatewayConnection;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -82,19 +81,18 @@ export class VirtualNetworkGatewayConnections {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual
-   * network gateway connection.
+   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
+   * connection.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnection>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -110,7 +108,7 @@ export class VirtualNetworkGatewayConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -175,37 +173,22 @@ export class VirtualNetworkGatewayConnections {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.VirtualNetworkGatewayConnection
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.VirtualNetworkGatewayConnection;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -216,11 +199,9 @@ export class VirtualNetworkGatewayConnections {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -230,16 +211,16 @@ export class VirtualNetworkGatewayConnections {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual
-   * network gateway connection.
+   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
+   * connection.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async deleteMethodWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -267,19 +248,19 @@ export class VirtualNetworkGatewayConnections {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual
-   * network gateway connection.
+   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
+   * connection.
    *
-   * @param {TagsObject} parameters Parameters supplied to update virtual network
-   * gateway connection tags.
+   * @param {TagsObject} parameters Parameters supplied to update virtual network gateway connection
+   * tags.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async updateTagsWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -298,7 +279,7 @@ export class VirtualNetworkGatewayConnections {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.VirtualNetworkGatewayConnectionListEntity;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -316,27 +297,24 @@ export class VirtualNetworkGatewayConnections {
 
 
   /**
-   * The Put VirtualNetworkGatewayConnectionSharedKey operation sets the virtual
-   * network gateway connection shared key for passed virtual network gateway
-   * connection in the specified resource group through Network resource
-   * provider.
+   * The Put VirtualNetworkGatewayConnectionSharedKey operation sets the virtual network gateway
+   * connection shared key for passed virtual network gateway connection in the specified resource
+   * group through Network resource provider.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The virtual network
-   * gateway connection name.
+   * @param {string} virtualNetworkGatewayConnectionName The virtual network gateway connection name.
    *
-   * @param {ConnectionSharedKey} parameters Parameters supplied to the Begin Set
-   * Virtual Network Gateway connection Shared key operation throughNetwork
-   * resource provider.
+   * @param {ConnectionSharedKey} parameters Parameters supplied to the Begin Set Virtual Network
+   * Gateway connection Shared key operation throughNetwork resource provider.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async setSharedKeyWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -355,7 +333,7 @@ export class VirtualNetworkGatewayConnections {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.ConnectionSharedKey;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -372,25 +350,23 @@ export class VirtualNetworkGatewayConnections {
   }
 
   /**
-   * The Get VirtualNetworkGatewayConnectionSharedKey operation retrieves
-   * information about the specified virtual network gateway connection shared
-   * key through Network resource provider.
+   * The Get VirtualNetworkGatewayConnectionSharedKey operation retrieves information about the
+   * specified virtual network gateway connection shared key through Network resource provider.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The virtual network
-   * gateway connection shared key name.
+   * @param {string} virtualNetworkGatewayConnectionName The virtual network gateway connection
+   * shared key name.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getSharedKeyWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionSharedKey>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -406,7 +382,7 @@ export class VirtualNetworkGatewayConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -471,37 +447,22 @@ export class VirtualNetworkGatewayConnections {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.ConnectionSharedKey
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ConnectionSharedKey;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -512,17 +473,15 @@ export class VirtualNetworkGatewayConnections {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * The List VirtualNetworkGatewayConnections operation retrieves all the
-   * virtual network gateways connections created.
+   * The List VirtualNetworkGatewayConnections operation retrieves all the virtual network gateways
+   * connections created.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
@@ -530,12 +489,11 @@ export class VirtualNetworkGatewayConnections {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnectionListResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -550,7 +508,7 @@ export class VirtualNetworkGatewayConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -605,37 +563,22 @@ export class VirtualNetworkGatewayConnections {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.VirtualNetworkGatewayConnectionListResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.VirtualNetworkGatewayConnectionListResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -646,37 +589,33 @@ export class VirtualNetworkGatewayConnections {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
 
   /**
-   * The VirtualNetworkGatewayConnectionResetSharedKey operation resets the
-   * virtual network gateway connection shared key for passed virtual network
-   * gateway connection in the specified resource group through Network resource
-   * provider.
+   * The VirtualNetworkGatewayConnectionResetSharedKey operation resets the virtual network gateway
+   * connection shared key for passed virtual network gateway connection in the specified resource
+   * group through Network resource provider.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The virtual network
-   * gateway connection reset shared key Name.
+   * @param {string} virtualNetworkGatewayConnectionName The virtual network gateway connection reset
+   * shared key Name.
    *
-   * @param {ConnectionResetSharedKey} parameters Parameters supplied to the
-   * begin reset virtual network gateway connection shared key operation through
-   * network resource provider.
+   * @param {ConnectionResetSharedKey} parameters Parameters supplied to the begin reset virtual
+   * network gateway connection shared key operation through network resource provider.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async resetSharedKeyWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -695,7 +634,7 @@ export class VirtualNetworkGatewayConnections {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.ConnectionResetSharedKey;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -712,27 +651,25 @@ export class VirtualNetworkGatewayConnections {
   }
 
   /**
-   * Creates or updates a virtual network gateway connection in the specified
-   * resource group.
+   * Creates or updates a virtual network gateway connection in the specified resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual
-   * network gateway connection.
+   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
+   * connection.
    *
-   * @param {VirtualNetworkGatewayConnection} parameters Parameters supplied to
-   * the create or update virtual network gateway connection operation.
+   * @param {VirtualNetworkGatewayConnection} parameters Parameters supplied to the create or update
+   * virtual network gateway connection operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnection>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -749,7 +686,7 @@ export class VirtualNetworkGatewayConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -822,37 +759,25 @@ export class VirtualNetworkGatewayConnections {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.VirtualNetworkGatewayConnection
+            },
+            201: {
+              bodyMapper: Mappers.VirtualNetworkGatewayConnection
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 201) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.VirtualNetworkGatewayConnection;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -863,11 +788,10 @@ export class VirtualNetworkGatewayConnections {
           return Promise.reject(deserializationError);
         }
       }
-      // Deserialize Response
       if (statusCode === 201) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.VirtualNetworkGatewayConnection;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -878,11 +802,9 @@ export class VirtualNetworkGatewayConnections {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -891,19 +813,18 @@ export class VirtualNetworkGatewayConnections {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual
-   * network gateway connection.
+   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
+   * connection.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -919,7 +840,7 @@ export class VirtualNetworkGatewayConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -984,37 +905,19 @@ export class VirtualNetworkGatewayConnections {
               }
             }
           ],
+          responses: {
+            200: {},
+            202: {},
+            204: {},
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202 && statusCode !== 204) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1023,22 +926,21 @@ export class VirtualNetworkGatewayConnections {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual
-   * network gateway connection.
+   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
+   * connection.
    *
-   * @param {TagsObject} parameters Parameters supplied to update virtual network
-   * gateway connection tags.
+   * @param {TagsObject} parameters Parameters supplied to update virtual network gateway connection
+   * tags.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginUpdateTagsWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnectionListEntity>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -1055,7 +957,7 @@ export class VirtualNetworkGatewayConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1128,37 +1030,22 @@ export class VirtualNetworkGatewayConnections {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.VirtualNetworkGatewayConnectionListEntity
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.VirtualNetworkGatewayConnectionListEntity;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1169,39 +1056,33 @@ export class VirtualNetworkGatewayConnections {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * The Put VirtualNetworkGatewayConnectionSharedKey operation sets the virtual
-   * network gateway connection shared key for passed virtual network gateway
-   * connection in the specified resource group through Network resource
-   * provider.
+   * The Put VirtualNetworkGatewayConnectionSharedKey operation sets the virtual network gateway
+   * connection shared key for passed virtual network gateway connection in the specified resource
+   * group through Network resource provider.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The virtual network
-   * gateway connection name.
+   * @param {string} virtualNetworkGatewayConnectionName The virtual network gateway connection name.
    *
-   * @param {ConnectionSharedKey} parameters Parameters supplied to the Begin Set
-   * Virtual Network Gateway connection Shared key operation throughNetwork
-   * resource provider.
+   * @param {ConnectionSharedKey} parameters Parameters supplied to the Begin Set Virtual Network
+   * Gateway connection Shared key operation throughNetwork resource provider.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginSetSharedKeyWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionSharedKey>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -1218,7 +1099,7 @@ export class VirtualNetworkGatewayConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1291,37 +1172,25 @@ export class VirtualNetworkGatewayConnections {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            201: {
+              bodyMapper: Mappers.ConnectionSharedKey
+            },
+            200: {
+              bodyMapper: Mappers.ConnectionSharedKey
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 201 && statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 201) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ConnectionSharedKey;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1332,11 +1201,10 @@ export class VirtualNetworkGatewayConnections {
           return Promise.reject(deserializationError);
         }
       }
-      // Deserialize Response
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ConnectionSharedKey;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1347,39 +1215,34 @@ export class VirtualNetworkGatewayConnections {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * The VirtualNetworkGatewayConnectionResetSharedKey operation resets the
-   * virtual network gateway connection shared key for passed virtual network
-   * gateway connection in the specified resource group through Network resource
-   * provider.
+   * The VirtualNetworkGatewayConnectionResetSharedKey operation resets the virtual network gateway
+   * connection shared key for passed virtual network gateway connection in the specified resource
+   * group through Network resource provider.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The virtual network
-   * gateway connection reset shared key Name.
+   * @param {string} virtualNetworkGatewayConnectionName The virtual network gateway connection reset
+   * shared key Name.
    *
-   * @param {ConnectionResetSharedKey} parameters Parameters supplied to the
-   * begin reset virtual network gateway connection shared key operation through
-   * network resource provider.
+   * @param {ConnectionResetSharedKey} parameters Parameters supplied to the begin reset virtual
+   * network gateway connection shared key operation through network resource provider.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginResetSharedKeyWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionResetSharedKey>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -1396,7 +1259,7 @@ export class VirtualNetworkGatewayConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1469,37 +1332,23 @@ export class VirtualNetworkGatewayConnections {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.ConnectionResetSharedKey
+            },
+            202: {},
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.ConnectionResetSharedKey;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1510,31 +1359,27 @@ export class VirtualNetworkGatewayConnections {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * The List VirtualNetworkGatewayConnections operation retrieves all the
-   * virtual network gateways connections created.
+   * The List VirtualNetworkGatewayConnections operation retrieves all the virtual network gateways
+   * connections created.
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnectionListResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -1546,7 +1391,7 @@ export class VirtualNetworkGatewayConnections {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1578,37 +1423,22 @@ export class VirtualNetworkGatewayConnections {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.VirtualNetworkGatewayConnectionListResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.VirtualNetworkGatewayConnectionListResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1619,40 +1449,32 @@ export class VirtualNetworkGatewayConnections {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Creates or updates a virtual network gateway connection in the specified
-   * resource group.
+   * Creates or updates a virtual network gateway connection in the specified resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual
-   * network gateway connection.
+   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
+   * connection.
    *
-   * @param {VirtualNetworkGatewayConnection} parameters Parameters supplied to
-   * the create or update virtual network gateway connection operation.
+   * @param {VirtualNetworkGatewayConnection} parameters Parameters supplied to the create or update
+   * virtual network gateway connection operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VirtualNetworkGatewayConnection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGatewayConnection} for
-   *                      more information.
-   *
+   *                      See {@link Models.VirtualNetworkGatewayConnection} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   createOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection): Promise<Models.VirtualNetworkGatewayConnection>;
@@ -1687,23 +1509,18 @@ export class VirtualNetworkGatewayConnections {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual
-   * network gateway connection.
+   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
+   * connection.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VirtualNetworkGatewayConnection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGatewayConnection} for
-   *                      more information.
-   *
+   *                      See {@link Models.VirtualNetworkGatewayConnection} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   get(resourceGroupName: string, virtualNetworkGatewayConnectionName: string): Promise<Models.VirtualNetworkGatewayConnection>;
@@ -1738,21 +1555,18 @@ export class VirtualNetworkGatewayConnections {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual
-   * network gateway connection.
+   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
+   * connection.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   deleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string): Promise<void>;
@@ -1787,27 +1601,21 @@ export class VirtualNetworkGatewayConnections {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual
-   * network gateway connection.
+   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
+   * connection.
    *
-   * @param {TagsObject} parameters Parameters supplied to update virtual network
-   * gateway connection tags.
+   * @param {TagsObject} parameters Parameters supplied to update virtual network gateway connection
+   * tags.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VirtualNetworkGatewayConnectionListEntity} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link
-   *                      Models.VirtualNetworkGatewayConnectionListEntity} for
-   *                      more information.
-   *
+   *                      See {@link Models.VirtualNetworkGatewayConnectionListEntity} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   updateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject): Promise<Models.VirtualNetworkGatewayConnectionListEntity>;
@@ -1838,34 +1646,26 @@ export class VirtualNetworkGatewayConnections {
   }
 
   /**
-   * The Put VirtualNetworkGatewayConnectionSharedKey operation sets the virtual
-   * network gateway connection shared key for passed virtual network gateway
-   * connection in the specified resource group through Network resource
-   * provider.
+   * The Put VirtualNetworkGatewayConnectionSharedKey operation sets the virtual network gateway
+   * connection shared key for passed virtual network gateway connection in the specified resource
+   * group through Network resource provider.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The virtual network
-   * gateway connection name.
+   * @param {string} virtualNetworkGatewayConnectionName The virtual network gateway connection name.
    *
-   * @param {ConnectionSharedKey} parameters Parameters supplied to the Begin Set
-   * Virtual Network Gateway connection Shared key operation throughNetwork
-   * resource provider.
+   * @param {ConnectionSharedKey} parameters Parameters supplied to the Begin Set Virtual Network
+   * Gateway connection Shared key operation throughNetwork resource provider.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ConnectionSharedKey} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ConnectionSharedKey} for more
-   *                      information.
-   *
+   *                      See {@link Models.ConnectionSharedKey} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   setSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey): Promise<Models.ConnectionSharedKey>;
@@ -1896,29 +1696,23 @@ export class VirtualNetworkGatewayConnections {
   }
 
   /**
-   * The Get VirtualNetworkGatewayConnectionSharedKey operation retrieves
-   * information about the specified virtual network gateway connection shared
-   * key through Network resource provider.
+   * The Get VirtualNetworkGatewayConnectionSharedKey operation retrieves information about the
+   * specified virtual network gateway connection shared key through Network resource provider.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The virtual network
-   * gateway connection shared key name.
+   * @param {string} virtualNetworkGatewayConnectionName The virtual network gateway connection
+   * shared key name.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ConnectionSharedKey} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ConnectionSharedKey} for more
-   *                      information.
-   *
+   *                      See {@link Models.ConnectionSharedKey} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string): Promise<Models.ConnectionSharedKey>;
@@ -1949,26 +1743,20 @@ export class VirtualNetworkGatewayConnections {
   }
 
   /**
-   * The List VirtualNetworkGatewayConnections operation retrieves all the
-   * virtual network gateways connections created.
+   * The List VirtualNetworkGatewayConnections operation retrieves all the virtual network gateways
+   * connections created.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VirtualNetworkGatewayConnectionListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link
-   *                      Models.VirtualNetworkGatewayConnectionListResult} for
-   *                      more information.
-   *
+   *                      See {@link Models.VirtualNetworkGatewayConnectionListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   list(resourceGroupName: string): Promise<Models.VirtualNetworkGatewayConnectionListResult>;
@@ -1999,34 +1787,27 @@ export class VirtualNetworkGatewayConnections {
   }
 
   /**
-   * The VirtualNetworkGatewayConnectionResetSharedKey operation resets the
-   * virtual network gateway connection shared key for passed virtual network
-   * gateway connection in the specified resource group through Network resource
-   * provider.
+   * The VirtualNetworkGatewayConnectionResetSharedKey operation resets the virtual network gateway
+   * connection shared key for passed virtual network gateway connection in the specified resource
+   * group through Network resource provider.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The virtual network
-   * gateway connection reset shared key Name.
+   * @param {string} virtualNetworkGatewayConnectionName The virtual network gateway connection reset
+   * shared key Name.
    *
-   * @param {ConnectionResetSharedKey} parameters Parameters supplied to the
-   * begin reset virtual network gateway connection shared key operation through
-   * network resource provider.
+   * @param {ConnectionResetSharedKey} parameters Parameters supplied to the begin reset virtual
+   * network gateway connection shared key operation through network resource provider.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ConnectionResetSharedKey} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ConnectionResetSharedKey} for more
-   *                      information.
-   *
+   *                      See {@link Models.ConnectionResetSharedKey} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   resetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey): Promise<Models.ConnectionResetSharedKey>;
@@ -2057,31 +1838,25 @@ export class VirtualNetworkGatewayConnections {
   }
 
   /**
-   * Creates or updates a virtual network gateway connection in the specified
-   * resource group.
+   * Creates or updates a virtual network gateway connection in the specified resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual
-   * network gateway connection.
+   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
+   * connection.
    *
-   * @param {VirtualNetworkGatewayConnection} parameters Parameters supplied to
-   * the create or update virtual network gateway connection operation.
+   * @param {VirtualNetworkGatewayConnection} parameters Parameters supplied to the create or update
+   * virtual network gateway connection operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VirtualNetworkGatewayConnection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGatewayConnection} for
-   *                      more information.
-   *
+   *                      See {@link Models.VirtualNetworkGatewayConnection} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection): Promise<Models.VirtualNetworkGatewayConnection>;
@@ -2116,21 +1891,18 @@ export class VirtualNetworkGatewayConnections {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual
-   * network gateway connection.
+   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
+   * connection.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string): Promise<void>;
@@ -2165,27 +1937,21 @@ export class VirtualNetworkGatewayConnections {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual
-   * network gateway connection.
+   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
+   * connection.
    *
-   * @param {TagsObject} parameters Parameters supplied to update virtual network
-   * gateway connection tags.
+   * @param {TagsObject} parameters Parameters supplied to update virtual network gateway connection
+   * tags.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VirtualNetworkGatewayConnectionListEntity} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link
-   *                      Models.VirtualNetworkGatewayConnectionListEntity} for
-   *                      more information.
-   *
+   *                      See {@link Models.VirtualNetworkGatewayConnectionListEntity} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject): Promise<Models.VirtualNetworkGatewayConnectionListEntity>;
@@ -2216,34 +1982,26 @@ export class VirtualNetworkGatewayConnections {
   }
 
   /**
-   * The Put VirtualNetworkGatewayConnectionSharedKey operation sets the virtual
-   * network gateway connection shared key for passed virtual network gateway
-   * connection in the specified resource group through Network resource
-   * provider.
+   * The Put VirtualNetworkGatewayConnectionSharedKey operation sets the virtual network gateway
+   * connection shared key for passed virtual network gateway connection in the specified resource
+   * group through Network resource provider.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The virtual network
-   * gateway connection name.
+   * @param {string} virtualNetworkGatewayConnectionName The virtual network gateway connection name.
    *
-   * @param {ConnectionSharedKey} parameters Parameters supplied to the Begin Set
-   * Virtual Network Gateway connection Shared key operation throughNetwork
-   * resource provider.
+   * @param {ConnectionSharedKey} parameters Parameters supplied to the Begin Set Virtual Network
+   * Gateway connection Shared key operation throughNetwork resource provider.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ConnectionSharedKey} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ConnectionSharedKey} for more
-   *                      information.
-   *
+   *                      See {@link Models.ConnectionSharedKey} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginSetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey): Promise<Models.ConnectionSharedKey>;
@@ -2274,34 +2032,27 @@ export class VirtualNetworkGatewayConnections {
   }
 
   /**
-   * The VirtualNetworkGatewayConnectionResetSharedKey operation resets the
-   * virtual network gateway connection shared key for passed virtual network
-   * gateway connection in the specified resource group through Network resource
-   * provider.
+   * The VirtualNetworkGatewayConnectionResetSharedKey operation resets the virtual network gateway
+   * connection shared key for passed virtual network gateway connection in the specified resource
+   * group through Network resource provider.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The virtual network
-   * gateway connection reset shared key Name.
+   * @param {string} virtualNetworkGatewayConnectionName The virtual network gateway connection reset
+   * shared key Name.
    *
-   * @param {ConnectionResetSharedKey} parameters Parameters supplied to the
-   * begin reset virtual network gateway connection shared key operation through
-   * network resource provider.
+   * @param {ConnectionResetSharedKey} parameters Parameters supplied to the begin reset virtual
+   * network gateway connection shared key operation through network resource provider.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.ConnectionResetSharedKey} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ConnectionResetSharedKey} for more
-   *                      information.
-   *
+   *                      See {@link Models.ConnectionResetSharedKey} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginResetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey): Promise<Models.ConnectionResetSharedKey>;
@@ -2332,27 +2083,20 @@ export class VirtualNetworkGatewayConnections {
   }
 
   /**
-   * The List VirtualNetworkGatewayConnections operation retrieves all the
-   * virtual network gateways connections created.
+   * The List VirtualNetworkGatewayConnections operation retrieves all the virtual network gateways
+   * connections created.
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VirtualNetworkGatewayConnectionListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link
-   *                      Models.VirtualNetworkGatewayConnectionListResult} for
-   *                      more information.
-   *
+   *                      See {@link Models.VirtualNetworkGatewayConnectionListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listNext(nextPageLink: string): Promise<Models.VirtualNetworkGatewayConnectionListResult>;

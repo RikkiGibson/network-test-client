@@ -25,24 +25,22 @@ export class VirtualNetworkGateways {
 
 
   /**
-   * Creates or updates a virtual network gateway in the specified resource
-   * group.
+   * Creates or updates a virtual network gateway in the specified resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VirtualNetworkGateway} parameters Parameters supplied to create or
-   * update virtual network gateway operation.
+   * @param {VirtualNetworkGateway} parameters Parameters supplied to create or update virtual
+   * network gateway operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async createOrUpdateWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -61,7 +59,7 @@ export class VirtualNetworkGateways {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.VirtualNetworkGateway;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -82,19 +80,17 @@ export class VirtualNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGateway>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -110,7 +106,7 @@ export class VirtualNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -175,37 +171,22 @@ export class VirtualNetworkGateways {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.VirtualNetworkGateway
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.VirtualNetworkGateway;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -216,11 +197,9 @@ export class VirtualNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -230,16 +209,15 @@ export class VirtualNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async deleteMethodWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -267,19 +245,17 @@ export class VirtualNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {TagsObject} parameters Parameters supplied to update virtual network
-   * gateway tags.
+   * @param {TagsObject} parameters Parameters supplied to update virtual network gateway tags.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async updateTagsWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -298,7 +274,7 @@ export class VirtualNetworkGateways {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.VirtualNetworkGateway;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -323,12 +299,11 @@ export class VirtualNetworkGateways {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayListResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -343,7 +318,7 @@ export class VirtualNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -398,37 +373,22 @@ export class VirtualNetworkGateways {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.VirtualNetworkGatewayListResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.VirtualNetworkGatewayListResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -439,11 +399,9 @@ export class VirtualNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -452,19 +410,17 @@ export class VirtualNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listConnectionsWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayListConnectionsResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -480,7 +436,7 @@ export class VirtualNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -545,37 +501,22 @@ export class VirtualNetworkGateways {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.VirtualNetworkGatewayListConnectionsResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.VirtualNetworkGatewayListConnectionsResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -586,32 +527,27 @@ export class VirtualNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
 
   /**
-   * Resets the primary of the virtual network gateway in the specified resource
-   * group.
+   * Resets the primary of the virtual network gateway in the specified resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VirtualNetworkGatewaysResetOptionalParams} [options] Optional
-   * Parameters.
+   * @param {VirtualNetworkGatewaysResetOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async resetWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysResetOptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -630,7 +566,7 @@ export class VirtualNetworkGateways {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.VirtualNetworkGateway;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -648,24 +584,23 @@ export class VirtualNetworkGateways {
 
 
   /**
-   * Generates VPN client package for P2S client of the virtual network gateway
-   * in the specified resource group.
+   * Generates VPN client package for P2S client of the virtual network gateway in the specified
+   * resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VpnClientParameters} parameters Parameters supplied to the generate
-   * virtual network gateway VPN client package operation.
+   * @param {VpnClientParameters} parameters Parameters supplied to the generate virtual network
+   * gateway VPN client package operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async generatevpnclientpackageWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -684,7 +619,7 @@ export class VirtualNetworkGateways {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = {
             serializedName: "parsedResponse",
             type: {
@@ -707,24 +642,23 @@ export class VirtualNetworkGateways {
 
 
   /**
-   * Generates VPN profile for P2S client of the virtual network gateway in the
-   * specified resource group. Used for IKEV2 and radius based authentication.
+   * Generates VPN profile for P2S client of the virtual network gateway in the specified resource
+   * group. Used for IKEV2 and radius based authentication.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VpnClientParameters} parameters Parameters supplied to the generate
-   * virtual network gateway VPN client package operation.
+   * @param {VpnClientParameters} parameters Parameters supplied to the generate virtual network
+   * gateway VPN client package operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async generateVpnProfileWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -743,7 +677,7 @@ export class VirtualNetworkGateways {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = {
             serializedName: "parsedResponse",
             type: {
@@ -766,22 +700,20 @@ export class VirtualNetworkGateways {
 
 
   /**
-   * Gets pre-generated VPN profile for P2S client of the virtual network gateway
-   * in the specified resource group. The profile needs to be generated first
-   * using generateVpnProfile.
+   * Gets pre-generated VPN profile for P2S client of the virtual network gateway in the specified
+   * resource group. The profile needs to be generated first using generateVpnProfile.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getVpnProfilePackageUrlWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -800,7 +732,7 @@ export class VirtualNetworkGateways {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = {
             serializedName: "parsedResponse",
             type: {
@@ -827,17 +759,15 @@ export class VirtualNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams} [options]
-   * Optional Parameters.
+   * @param {VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getBgpPeerStatusWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -856,7 +786,7 @@ export class VirtualNetworkGateways {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.BgpPeerStatusListResult;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -877,19 +807,17 @@ export class VirtualNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async supportedVpnDevicesWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -905,7 +833,7 @@ export class VirtualNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -970,37 +898,27 @@ export class VirtualNetworkGateways {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: {
+                serializedName: "parsedResponse",
+                type: {
+                  name: "String"
+                }
+              }
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = {
               serializedName: "parsedResponse",
               type: {
@@ -1016,31 +934,28 @@ export class VirtualNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
 
   /**
-   * This operation retrieves a list of routes the virtual network gateway has
-   * learned, including routes learned from BGP peers.
+   * This operation retrieves a list of routes the virtual network gateway has learned, including
+   * routes learned from BGP peers.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getLearnedRoutesWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -1059,7 +974,7 @@ export class VirtualNetworkGateways {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.GatewayRouteListResult;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -1077,13 +992,12 @@ export class VirtualNetworkGateways {
 
 
   /**
-   * This operation retrieves a list of routes the virtual network gateway is
-   * advertising to the specified peer.
+   * This operation retrieves a list of routes the virtual network gateway is advertising to the
+   * specified peer.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {string} peer The IP address of the peer
    *
@@ -1091,9 +1005,9 @@ export class VirtualNetworkGateways {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getAdvertisedRoutesWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -1112,7 +1026,7 @@ export class VirtualNetworkGateways {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.GatewayRouteListResult;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -1130,26 +1044,24 @@ export class VirtualNetworkGateways {
 
 
   /**
-   * The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy
-   * for P2S client of virtual network gateway in the specified resource group
-   * through Network resource provider.
+   * The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy for P2S client of
+   * virtual network gateway in the specified resource group through Network resource provider.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VpnClientIPsecParameters} vpnclientIpsecParams Parameters supplied
-   * to the Begin Set vpnclient ipsec parameters of Virtual Network Gateway P2S
-   * client operation through Network resource provider.
+   * @param {VpnClientIPsecParameters} vpnclientIpsecParams Parameters supplied to the Begin Set
+   * vpnclient ipsec parameters of Virtual Network Gateway P2S client operation through Network
+   * resource provider.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async setVpnclientIpsecParametersWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -1168,7 +1080,7 @@ export class VirtualNetworkGateways {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.VpnClientIPsecParameters;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -1186,9 +1098,9 @@ export class VirtualNetworkGateways {
 
 
   /**
-   * The Get VpnclientIpsecParameters operation retrieves information about the
-   * vpnclient ipsec policy for P2S client of virtual network gateway in the
-   * specified resource group through Network resource provider.
+   * The Get VpnclientIpsecParameters operation retrieves information about the vpnclient ipsec
+   * policy for P2S client of virtual network gateway in the specified resource group through Network
+   * resource provider.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
@@ -1198,9 +1110,9 @@ export class VirtualNetworkGateways {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async getVpnclientIpsecParametersWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
     let client = this.client;
@@ -1219,7 +1131,7 @@ export class VirtualNetworkGateways {
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
       try {
-        if (parsedResponse !== null && parsedResponse !== undefined) {
+        if (parsedResponse != undefined) {
           const resultMapper = Mappers.VpnClientIPsecParameters;
           operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
         }
@@ -1240,22 +1152,21 @@ export class VirtualNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual
-   * network gateway connection for which the configuration script is generated.
+   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
+   * connection for which the configuration script is generated.
    *
-   * @param {VpnDeviceScriptParameters} parameters Parameters supplied to the
-   * generate vpn device script operation.
+   * @param {VpnDeviceScriptParameters} parameters Parameters supplied to the generate vpn device
+   * script operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async vpnDeviceConfigurationScriptWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VpnDeviceScriptParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -1272,7 +1183,7 @@ export class VirtualNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1345,37 +1256,27 @@ export class VirtualNetworkGateways {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: {
+                serializedName: "parsedResponse",
+                type: {
+                  name: "String"
+                }
+              }
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = {
               serializedName: "parsedResponse",
               type: {
@@ -1391,36 +1292,31 @@ export class VirtualNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Creates or updates a virtual network gateway in the specified resource
-   * group.
+   * Creates or updates a virtual network gateway in the specified resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VirtualNetworkGateway} parameters Parameters supplied to create or
-   * update virtual network gateway operation.
+   * @param {VirtualNetworkGateway} parameters Parameters supplied to create or update virtual
+   * network gateway operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGateway>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -1437,7 +1333,7 @@ export class VirtualNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1510,37 +1406,25 @@ export class VirtualNetworkGateways {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.VirtualNetworkGateway
+            },
+            201: {
+              bodyMapper: Mappers.VirtualNetworkGateway
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 201) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.VirtualNetworkGateway;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1551,11 +1435,10 @@ export class VirtualNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-      // Deserialize Response
       if (statusCode === 201) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.VirtualNetworkGateway;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1566,11 +1449,9 @@ export class VirtualNetworkGateways {
           return Promise.reject(deserializationError1);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1579,19 +1460,17 @@ export class VirtualNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -1607,7 +1486,7 @@ export class VirtualNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1672,37 +1551,19 @@ export class VirtualNetworkGateways {
               }
             }
           ],
+          responses: {
+            204: {},
+            202: {},
+            200: {},
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 204 && statusCode !== 202 && statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -1711,22 +1572,19 @@ export class VirtualNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {TagsObject} parameters Parameters supplied to update virtual network
-   * gateway tags.
+   * @param {TagsObject} parameters Parameters supplied to update virtual network gateway tags.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginUpdateTagsWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGateway>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -1743,7 +1601,7 @@ export class VirtualNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1816,37 +1674,22 @@ export class VirtualNetworkGateways {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: Mappers.VirtualNetworkGateway
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.VirtualNetworkGateway;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -1857,34 +1700,28 @@ export class VirtualNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Resets the primary of the virtual network gateway in the specified resource
-   * group.
+   * Resets the primary of the virtual network gateway in the specified resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VirtualNetworkGatewaysBeginResetOptionalParams} [options] Optional
-   * Parameters.
+   * @param {VirtualNetworkGatewaysBeginResetOptionalParams} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginResetWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysBeginResetOptionalParams): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGateway>> {
-    let client = this.client;
     let gatewayVip = (options && options.gatewayVip !== undefined) ? options.gatewayVip : undefined;
     let apiVersion = '2018-04-01';
 
@@ -1902,7 +1739,7 @@ export class VirtualNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -1976,37 +1813,23 @@ export class VirtualNetworkGateways {
               }
             }
           ],
+          responses: {
+            202: {},
+            200: {
+              bodyMapper: Mappers.VirtualNetworkGateway
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 202 && statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.VirtualNetworkGateway;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -2017,36 +1840,32 @@ export class VirtualNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Generates VPN client package for P2S client of the virtual network gateway
-   * in the specified resource group.
+   * Generates VPN client package for P2S client of the virtual network gateway in the specified
+   * resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VpnClientParameters} parameters Parameters supplied to the generate
-   * virtual network gateway VPN client package operation.
+   * @param {VpnClientParameters} parameters Parameters supplied to the generate virtual network
+   * gateway VPN client package operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginGeneratevpnclientpackageWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -2063,7 +1882,7 @@ export class VirtualNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2136,37 +1955,27 @@ export class VirtualNetworkGateways {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: {
+                serializedName: "parsedResponse",
+                type: {
+                  name: "String"
+                }
+              }
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = {
               serializedName: "parsedResponse",
               type: {
@@ -2182,36 +1991,32 @@ export class VirtualNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Generates VPN profile for P2S client of the virtual network gateway in the
-   * specified resource group. Used for IKEV2 and radius based authentication.
+   * Generates VPN profile for P2S client of the virtual network gateway in the specified resource
+   * group. Used for IKEV2 and radius based authentication.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VpnClientParameters} parameters Parameters supplied to the generate
-   * virtual network gateway VPN client package operation.
+   * @param {VpnClientParameters} parameters Parameters supplied to the generate virtual network
+   * gateway VPN client package operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginGenerateVpnProfileWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -2228,7 +2033,7 @@ export class VirtualNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2301,37 +2106,28 @@ export class VirtualNetworkGateways {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            200: {
+              bodyMapper: {
+                serializedName: "parsedResponse",
+                type: {
+                  name: "String"
+                }
+              }
+            },
+            202: {},
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = {
               serializedName: "parsedResponse",
               type: {
@@ -2347,34 +2143,29 @@ export class VirtualNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Gets pre-generated VPN profile for P2S client of the virtual network gateway
-   * in the specified resource group. The profile needs to be generated first
-   * using generateVpnProfile.
+   * Gets pre-generated VPN profile for P2S client of the virtual network gateway in the specified
+   * resource group. The profile needs to be generated first using generateVpnProfile.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginGetVpnProfilePackageUrlWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -2390,7 +2181,7 @@ export class VirtualNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2455,37 +2246,28 @@ export class VirtualNetworkGateways {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: {
+                serializedName: "parsedResponse",
+                type: {
+                  name: "String"
+                }
+              }
+            },
+            202: {},
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = {
               serializedName: "parsedResponse",
               type: {
@@ -2501,11 +2283,9 @@ export class VirtualNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
@@ -2514,20 +2294,18 @@ export class VirtualNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VirtualNetworkGatewaysBeginGetBgpPeerStatusOptionalParams} [options]
-   * Optional Parameters.
+   * @param {VirtualNetworkGatewaysBeginGetBgpPeerStatusOptionalParams} [options] Optional
+   * Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginGetBgpPeerStatusWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysBeginGetBgpPeerStatusOptionalParams): Promise<msRest.HttpOperationResponse<Models.BgpPeerStatusListResult>> {
-    let client = this.client;
     let peer = (options && options.peer !== undefined) ? options.peer : undefined;
     let apiVersion = '2018-04-01';
 
@@ -2545,7 +2323,7 @@ export class VirtualNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2619,37 +2397,23 @@ export class VirtualNetworkGateways {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.BgpPeerStatusListResult
+            },
+            202: {},
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.BgpPeerStatusListResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -2660,33 +2424,29 @@ export class VirtualNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * This operation retrieves a list of routes the virtual network gateway has
-   * learned, including routes learned from BGP peers.
+   * This operation retrieves a list of routes the virtual network gateway has learned, including
+   * routes learned from BGP peers.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginGetLearnedRoutesWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.GatewayRouteListResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -2702,7 +2462,7 @@ export class VirtualNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2767,37 +2527,23 @@ export class VirtualNetworkGateways {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.GatewayRouteListResult
+            },
+            202: {},
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.GatewayRouteListResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -2808,22 +2554,19 @@ export class VirtualNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * This operation retrieves a list of routes the virtual network gateway is
-   * advertising to the specified peer.
+   * This operation retrieves a list of routes the virtual network gateway is advertising to the
+   * specified peer.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {string} peer The IP address of the peer
    *
@@ -2831,12 +2574,11 @@ export class VirtualNetworkGateways {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginGetAdvertisedRoutesWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.GatewayRouteListResult>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -2853,7 +2595,7 @@ export class VirtualNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -2928,37 +2670,23 @@ export class VirtualNetworkGateways {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.GatewayRouteListResult
+            },
+            202: {},
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200 && statusCode !== 202) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.GatewayRouteListResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -2969,38 +2697,33 @@ export class VirtualNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy
-   * for P2S client of virtual network gateway in the specified resource group
-   * through Network resource provider.
+   * The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy for P2S client of
+   * virtual network gateway in the specified resource group through Network resource provider.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VpnClientIPsecParameters} vpnclientIpsecParams Parameters supplied
-   * to the Begin Set vpnclient ipsec parameters of Virtual Network Gateway P2S
-   * client operation through Network resource provider.
+   * @param {VpnClientIPsecParameters} vpnclientIpsecParams Parameters supplied to the Begin Set
+   * vpnclient ipsec parameters of Virtual Network Gateway P2S client operation through Network
+   * resource provider.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginSetVpnclientIpsecParametersWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VpnClientIPsecParameters>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -3017,7 +2740,7 @@ export class VirtualNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -3090,37 +2813,23 @@ export class VirtualNetworkGateways {
             }
           },
           contentType: "application/json; charset=utf-8",
+          responses: {
+            202: {},
+            200: {
+              bodyMapper: Mappers.VpnClientIPsecParameters
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 202 && statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.VpnClientIPsecParameters;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -3131,18 +2840,16 @@ export class VirtualNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * The Get VpnclientIpsecParameters operation retrieves information about the
-   * vpnclient ipsec policy for P2S client of virtual network gateway in the
-   * specified resource group through Network resource provider.
+   * The Get VpnclientIpsecParameters operation retrieves information about the vpnclient ipsec
+   * policy for P2S client of virtual network gateway in the specified resource group through Network
+   * resource provider.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
@@ -3152,12 +2859,11 @@ export class VirtualNetworkGateways {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async beginGetVpnclientIpsecParametersWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VpnClientIPsecParameters>> {
-    let client = this.client;
     let apiVersion = '2018-04-01';
 
     // Create HTTP transport objects
@@ -3173,7 +2879,7 @@ export class VirtualNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -3238,37 +2944,22 @@ export class VirtualNetworkGateways {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.VpnClientIPsecParameters
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.VpnClientIPsecParameters;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -3279,30 +2970,26 @@ export class VirtualNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * Gets all virtual network gateways by resource group.
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayListResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3314,7 +3001,7 @@ export class VirtualNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -3346,37 +3033,22 @@ export class VirtualNetworkGateways {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.VirtualNetworkGatewayListResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.VirtualNetworkGatewayListResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -3387,30 +3059,26 @@ export class VirtualNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
    * Gets all the connections in a virtual network gateway.
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse} - The deserialized result object.
+   * @resolve {HttpOperationResponse} The deserialized result object.
    *
-   * @reject {Error|ServiceError} - The error object.
+   * @reject {Error|ServiceError} The error object.
    */
   async listConnectionsNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayListConnectionsResult>> {
-    let client = this.client;
 
     // Create HTTP transport objects
     const httpRequest = new WebResource();
@@ -3422,7 +3090,7 @@ export class VirtualNetworkGateways {
           "this.client.acceptLanguage": this.client.acceptLanguage
         },
         options);
-      operationRes = await client.sendOperationRequest(
+      operationRes = await this.client.sendOperationRequest(
         httpRequest,
         operationArguments,
         {
@@ -3454,37 +3122,22 @@ export class VirtualNetworkGateways {
               }
             }
           ],
+          responses: {
+            200: {
+              bodyMapper: Mappers.VirtualNetworkGatewayListConnectionsResult
+            },
+            default: {
+              bodyMapper: Mappers.CloudError
+            }
+          },
           serializer: this.serializer
         });
-      let statusCode = operationRes.status;
-      if (statusCode !== 200) {
-        let error = new msRest.RestError(operationRes.bodyAsText as string);
-        error.statusCode = operationRes.status;
-        error.request = msRest.stripRequest(httpRequest);
-        error.response = msRest.stripResponse(operationRes);
-        let parsedErrorResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedErrorResponse) {
-            if (parsedErrorResponse.error) parsedErrorResponse = parsedErrorResponse.error;
-            if (parsedErrorResponse.code) error.code = parsedErrorResponse.code;
-            if (parsedErrorResponse.message) error.message = parsedErrorResponse.message;
-          }
-          if (parsedErrorResponse !== null && parsedErrorResponse !== undefined) {
-            const resultMapper = Mappers.CloudError;
-            error.body = this.serializer.deserialize(resultMapper, parsedErrorResponse, 'error.body');
-          }
-        } catch (defaultError) {
-          error.message = `Error "${defaultError.message}" occurred in deserializing the responseBody ` +
-                           `- "${operationRes.bodyAsText}" for the default response.`;
-          return Promise.reject(error);
-        }
-        return Promise.reject(error);
-      }
       // Deserialize Response
+      let statusCode = operationRes.status;
       if (statusCode === 200) {
         let parsedResponse = operationRes.parsedBody as { [key: string]: any };
         try {
-          if (parsedResponse !== null && parsedResponse !== undefined) {
+          if (parsedResponse != undefined) {
             const resultMapper = Mappers.VirtualNetworkGatewayListConnectionsResult;
             operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
           }
@@ -3495,40 +3148,31 @@ export class VirtualNetworkGateways {
           return Promise.reject(deserializationError);
         }
       }
-
-    } catch(err) {
+    } catch (err) {
       return Promise.reject(err);
     }
-
     return Promise.resolve(operationRes);
   }
 
   /**
-   * Creates or updates a virtual network gateway in the specified resource
-   * group.
+   * Creates or updates a virtual network gateway in the specified resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VirtualNetworkGateway} parameters Parameters supplied to create or
-   * update virtual network gateway operation.
+   * @param {VirtualNetworkGateway} parameters Parameters supplied to create or update virtual
+   * network gateway operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VirtualNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGateway} for more
-   *                      information.
-   *
+   *                      See {@link Models.VirtualNetworkGateway} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   createOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway): Promise<Models.VirtualNetworkGateway>;
@@ -3563,23 +3207,17 @@ export class VirtualNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VirtualNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGateway} for more
-   *                      information.
-   *
+   *                      See {@link Models.VirtualNetworkGateway} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   get(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<Models.VirtualNetworkGateway>;
@@ -3614,21 +3252,17 @@ export class VirtualNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   deleteMethod(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<void>;
@@ -3663,26 +3297,19 @@ export class VirtualNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {TagsObject} parameters Parameters supplied to update virtual network
-   * gateway tags.
+   * @param {TagsObject} parameters Parameters supplied to update virtual network gateway tags.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VirtualNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGateway} for more
-   *                      information.
-   *
+   *                      See {@link Models.VirtualNetworkGateway} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   updateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject): Promise<Models.VirtualNetworkGateway>;
@@ -3719,18 +3346,13 @@ export class VirtualNetworkGateways {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VirtualNetworkGatewayListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGatewayListResult} for
-   *                      more information.
-   *
+   *                      See {@link Models.VirtualNetworkGatewayListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   list(resourceGroupName: string): Promise<Models.VirtualNetworkGatewayListResult>;
@@ -3765,24 +3387,17 @@ export class VirtualNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VirtualNetworkGatewayListConnectionsResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link
-   *                      Models.VirtualNetworkGatewayListConnectionsResult} for
-   *                      more information.
-   *
+   *                      See {@link Models.VirtualNetworkGatewayListConnectionsResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listConnections(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<Models.VirtualNetworkGatewayListConnectionsResult>;
@@ -3813,29 +3428,21 @@ export class VirtualNetworkGateways {
   }
 
   /**
-   * Resets the primary of the virtual network gateway in the specified resource
-   * group.
+   * Resets the primary of the virtual network gateway in the specified resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VirtualNetworkGatewaysResetOptionalParams} [options] Optional
-   * Parameters.
+   * @param {VirtualNetworkGatewaysResetOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VirtualNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGateway} for more
-   *                      information.
-   *
+   *                      See {@link Models.VirtualNetworkGateway} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   reset(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<Models.VirtualNetworkGateway>;
@@ -3866,29 +3473,25 @@ export class VirtualNetworkGateways {
   }
 
   /**
-   * Generates VPN client package for P2S client of the virtual network gateway
-   * in the specified resource group.
+   * Generates VPN client package for P2S client of the virtual network gateway in the specified
+   * resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VpnClientParameters} parameters Parameters supplied to the generate
-   * virtual network gateway VPN client package operation.
+   * @param {VpnClientParameters} parameters Parameters supplied to the generate virtual network
+   * gateway VPN client package operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {string} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   generatevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters): Promise<string>;
@@ -3919,29 +3522,25 @@ export class VirtualNetworkGateways {
   }
 
   /**
-   * Generates VPN profile for P2S client of the virtual network gateway in the
-   * specified resource group. Used for IKEV2 and radius based authentication.
+   * Generates VPN profile for P2S client of the virtual network gateway in the specified resource
+   * group. Used for IKEV2 and radius based authentication.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VpnClientParameters} parameters Parameters supplied to the generate
-   * virtual network gateway VPN client package operation.
+   * @param {VpnClientParameters} parameters Parameters supplied to the generate virtual network
+   * gateway VPN client package operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {string} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   generateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters): Promise<string>;
@@ -3972,27 +3571,22 @@ export class VirtualNetworkGateways {
   }
 
   /**
-   * Gets pre-generated VPN profile for P2S client of the virtual network gateway
-   * in the specified resource group. The profile needs to be generated first
-   * using generateVpnProfile.
+   * Gets pre-generated VPN profile for P2S client of the virtual network gateway in the specified
+   * resource group. The profile needs to be generated first using generateVpnProfile.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {string} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<string>;
@@ -4027,24 +3621,17 @@ export class VirtualNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams} [options]
-   * Optional Parameters.
+   * @param {VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.BgpPeerStatusListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.BgpPeerStatusListResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.BgpPeerStatusListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<Models.BgpPeerStatusListResult>;
@@ -4079,21 +3666,17 @@ export class VirtualNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {string} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   supportedVpnDevices(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<string>;
@@ -4124,28 +3707,22 @@ export class VirtualNetworkGateways {
   }
 
   /**
-   * This operation retrieves a list of routes the virtual network gateway has
-   * learned, including routes learned from BGP peers.
+   * This operation retrieves a list of routes the virtual network gateway has learned, including
+   * routes learned from BGP peers.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.GatewayRouteListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.GatewayRouteListResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.GatewayRouteListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<Models.GatewayRouteListResult>;
@@ -4176,30 +3753,24 @@ export class VirtualNetworkGateways {
   }
 
   /**
-   * This operation retrieves a list of routes the virtual network gateway is
-   * advertising to the specified peer.
+   * This operation retrieves a list of routes the virtual network gateway is advertising to the
+   * specified peer.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {string} peer The IP address of the peer
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.GatewayRouteListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.GatewayRouteListResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.GatewayRouteListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string): Promise<Models.GatewayRouteListResult>;
@@ -4230,33 +3801,26 @@ export class VirtualNetworkGateways {
   }
 
   /**
-   * The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy
-   * for P2S client of virtual network gateway in the specified resource group
-   * through Network resource provider.
+   * The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy for P2S client of
+   * virtual network gateway in the specified resource group through Network resource provider.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VpnClientIPsecParameters} vpnclientIpsecParams Parameters supplied
-   * to the Begin Set vpnclient ipsec parameters of Virtual Network Gateway P2S
-   * client operation through Network resource provider.
+   * @param {VpnClientIPsecParameters} vpnclientIpsecParams Parameters supplied to the Begin Set
+   * vpnclient ipsec parameters of Virtual Network Gateway P2S client operation through Network
+   * resource provider.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VpnClientIPsecParameters} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VpnClientIPsecParameters} for more
-   *                      information.
-   *
+   *                      See {@link Models.VpnClientIPsecParameters} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   setVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters): Promise<Models.VpnClientIPsecParameters>;
@@ -4287,9 +3851,9 @@ export class VirtualNetworkGateways {
   }
 
   /**
-   * The Get VpnclientIpsecParameters operation retrieves information about the
-   * vpnclient ipsec policy for P2S client of virtual network gateway in the
-   * specified resource group through Network resource provider.
+   * The Get VpnclientIpsecParameters operation retrieves information about the vpnclient ipsec
+   * policy for P2S client of virtual network gateway in the specified resource group through Network
+   * resource provider.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
@@ -4297,18 +3861,13 @@ export class VirtualNetworkGateways {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VpnClientIPsecParameters} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VpnClientIPsecParameters} for more
-   *                      information.
-   *
+   *                      See {@link Models.VpnClientIPsecParameters} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   getVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<Models.VpnClientIPsecParameters>;
@@ -4343,24 +3902,21 @@ export class VirtualNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual
-   * network gateway connection for which the configuration script is generated.
+   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
+   * connection for which the configuration script is generated.
    *
-   * @param {VpnDeviceScriptParameters} parameters Parameters supplied to the
-   * generate vpn device script operation.
+   * @param {VpnDeviceScriptParameters} parameters Parameters supplied to the generate vpn device
+   * script operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {string} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   vpnDeviceConfigurationScript(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VpnDeviceScriptParameters): Promise<string>;
@@ -4391,31 +3947,24 @@ export class VirtualNetworkGateways {
   }
 
   /**
-   * Creates or updates a virtual network gateway in the specified resource
-   * group.
+   * Creates or updates a virtual network gateway in the specified resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VirtualNetworkGateway} parameters Parameters supplied to create or
-   * update virtual network gateway operation.
+   * @param {VirtualNetworkGateway} parameters Parameters supplied to create or update virtual
+   * network gateway operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VirtualNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGateway} for more
-   *                      information.
-   *
+   *                      See {@link Models.VirtualNetworkGateway} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway): Promise<Models.VirtualNetworkGateway>;
@@ -4450,21 +3999,17 @@ export class VirtualNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {void} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<void>;
@@ -4499,26 +4044,19 @@ export class VirtualNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {TagsObject} parameters Parameters supplied to update virtual network
-   * gateway tags.
+   * @param {TagsObject} parameters Parameters supplied to update virtual network gateway tags.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VirtualNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGateway} for more
-   *                      information.
-   *
+   *                      See {@link Models.VirtualNetworkGateway} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject): Promise<Models.VirtualNetworkGateway>;
@@ -4549,29 +4087,21 @@ export class VirtualNetworkGateways {
   }
 
   /**
-   * Resets the primary of the virtual network gateway in the specified resource
-   * group.
+   * Resets the primary of the virtual network gateway in the specified resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VirtualNetworkGatewaysBeginResetOptionalParams} [options] Optional
-   * Parameters.
+   * @param {VirtualNetworkGatewaysBeginResetOptionalParams} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VirtualNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGateway} for more
-   *                      information.
-   *
+   *                      See {@link Models.VirtualNetworkGateway} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginReset(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<Models.VirtualNetworkGateway>;
@@ -4602,29 +4132,25 @@ export class VirtualNetworkGateways {
   }
 
   /**
-   * Generates VPN client package for P2S client of the virtual network gateway
-   * in the specified resource group.
+   * Generates VPN client package for P2S client of the virtual network gateway in the specified
+   * resource group.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VpnClientParameters} parameters Parameters supplied to the generate
-   * virtual network gateway VPN client package operation.
+   * @param {VpnClientParameters} parameters Parameters supplied to the generate virtual network
+   * gateway VPN client package operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {string} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginGeneratevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters): Promise<string>;
@@ -4655,29 +4181,25 @@ export class VirtualNetworkGateways {
   }
 
   /**
-   * Generates VPN profile for P2S client of the virtual network gateway in the
-   * specified resource group. Used for IKEV2 and radius based authentication.
+   * Generates VPN profile for P2S client of the virtual network gateway in the specified resource
+   * group. Used for IKEV2 and radius based authentication.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VpnClientParameters} parameters Parameters supplied to the generate
-   * virtual network gateway VPN client package operation.
+   * @param {VpnClientParameters} parameters Parameters supplied to the generate virtual network
+   * gateway VPN client package operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {string} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginGenerateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters): Promise<string>;
@@ -4708,27 +4230,22 @@ export class VirtualNetworkGateways {
   }
 
   /**
-   * Gets pre-generated VPN profile for P2S client of the virtual network gateway
-   * in the specified resource group. The profile needs to be generated first
-   * using generateVpnProfile.
+   * Gets pre-generated VPN profile for P2S client of the virtual network gateway in the specified
+   * resource group. The profile needs to be generated first using generateVpnProfile.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {string} [result]   - The deserialized result object if an error did not occur.
    *
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginGetVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<string>;
@@ -4763,24 +4280,18 @@ export class VirtualNetworkGateways {
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VirtualNetworkGatewaysBeginGetBgpPeerStatusOptionalParams} [options]
-   * Optional Parameters.
+   * @param {VirtualNetworkGatewaysBeginGetBgpPeerStatusOptionalParams} [options] Optional
+   * Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.BgpPeerStatusListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.BgpPeerStatusListResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.BgpPeerStatusListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginGetBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<Models.BgpPeerStatusListResult>;
@@ -4811,28 +4322,22 @@ export class VirtualNetworkGateways {
   }
 
   /**
-   * This operation retrieves a list of routes the virtual network gateway has
-   * learned, including routes learned from BGP peers.
+   * This operation retrieves a list of routes the virtual network gateway has learned, including
+   * routes learned from BGP peers.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.GatewayRouteListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.GatewayRouteListResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.GatewayRouteListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginGetLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<Models.GatewayRouteListResult>;
@@ -4863,30 +4368,24 @@ export class VirtualNetworkGateways {
   }
 
   /**
-   * This operation retrieves a list of routes the virtual network gateway is
-   * advertising to the specified peer.
+   * This operation retrieves a list of routes the virtual network gateway is advertising to the
+   * specified peer.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
    * @param {string} peer The IP address of the peer
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.GatewayRouteListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.GatewayRouteListResult} for more
-   *                      information.
-   *
+   *                      See {@link Models.GatewayRouteListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginGetAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string): Promise<Models.GatewayRouteListResult>;
@@ -4917,33 +4416,26 @@ export class VirtualNetworkGateways {
   }
 
   /**
-   * The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy
-   * for P2S client of virtual network gateway in the specified resource group
-   * through Network resource provider.
+   * The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy for P2S client of
+   * virtual network gateway in the specified resource group through Network resource provider.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network
-   * gateway.
+   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
    *
-   * @param {VpnClientIPsecParameters} vpnclientIpsecParams Parameters supplied
-   * to the Begin Set vpnclient ipsec parameters of Virtual Network Gateway P2S
-   * client operation through Network resource provider.
+   * @param {VpnClientIPsecParameters} vpnclientIpsecParams Parameters supplied to the Begin Set
+   * vpnclient ipsec parameters of Virtual Network Gateway P2S client operation through Network
+   * resource provider.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VpnClientIPsecParameters} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VpnClientIPsecParameters} for more
-   *                      information.
-   *
+   *                      See {@link Models.VpnClientIPsecParameters} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginSetVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters): Promise<Models.VpnClientIPsecParameters>;
@@ -4974,9 +4466,9 @@ export class VirtualNetworkGateways {
   }
 
   /**
-   * The Get VpnclientIpsecParameters operation retrieves information about the
-   * vpnclient ipsec policy for P2S client of virtual network gateway in the
-   * specified resource group through Network resource provider.
+   * The Get VpnclientIpsecParameters operation retrieves information about the vpnclient ipsec
+   * policy for P2S client of virtual network gateway in the specified resource group through Network
+   * resource provider.
    *
    * @param {string} resourceGroupName The name of the resource group.
    *
@@ -4984,18 +4476,13 @@ export class VirtualNetworkGateways {
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VpnClientIPsecParameters} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VpnClientIPsecParameters} for more
-   *                      information.
-   *
+   *                      See {@link Models.VpnClientIPsecParameters} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   beginGetVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<Models.VpnClientIPsecParameters>;
@@ -5028,23 +4515,17 @@ export class VirtualNetworkGateways {
   /**
    * Gets all virtual network gateways by resource group.
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VirtualNetworkGatewayListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGatewayListResult} for
-   *                      more information.
-   *
+   *                      See {@link Models.VirtualNetworkGatewayListResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listNext(nextPageLink: string): Promise<Models.VirtualNetworkGatewayListResult>;
@@ -5077,24 +4558,17 @@ export class VirtualNetworkGateways {
   /**
    * Gets all the connections in a virtual network gateway.
    *
-   * @param {string} nextPageLink The NextLink from the previous successful call
-   * to List operation.
+   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
    *
    * @param {RequestOptionsBase} [options] Optional Parameters.
    *
-   * @param {ServiceCallback} callback - The callback.
+   * @param {ServiceCallback} callback The callback.
    *
    * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *
    *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *
    *                      {Models.VirtualNetworkGatewayListConnectionsResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link
-   *                      Models.VirtualNetworkGatewayListConnectionsResult} for
-   *                      more information.
-   *
+   *                      See {@link Models.VirtualNetworkGatewayListConnectionsResult} for more information.
    *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *
    *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
    */
   listConnectionsNext(nextPageLink: string): Promise<Models.VirtualNetworkGatewayListConnectionsResult>;

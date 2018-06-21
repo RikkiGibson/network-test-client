@@ -15,9 +15,9 @@
     "strict": true,
     "strictNullChecks": true,
     "module": "commonjs",
-    "outDir": "./dist/lib",
+    "outDir": "./dist",
     "declaration": true,
-    "declarationDir": "./typings/lib",
+    "declarationDir": "./typings",
     "importHelpers": true,
     "lib": [ "dom", "dom.iterable", "es5", "es6", "es7", "esnext", "esnext.asynciterable", "es2015.iterable"]
   },
@@ -27,6 +27,6 @@
   ],
   "include": [
     "./lib/**/*.ts",
-    "./test/**/*.ts"
+    "./samples/**/*.ts"
   ]
 }

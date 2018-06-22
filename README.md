@@ -3,7 +3,7 @@ This is an example client generated using https://github.com/azure/autorest.type
 
 # Samples
 
-Samples can be found under (samples/)[samples/].
+Samples can be found under [samples/](samples/).
 
 First replace the placeholders (token, subscription, resource group) with actual values in [samples/auth.ts](samples/auth.ts).
 

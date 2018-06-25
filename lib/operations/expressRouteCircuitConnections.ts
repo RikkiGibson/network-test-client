@@ -9,8 +9,6 @@ import * as Models from "../models";
 import * as Mappers from "../models/expressRouteCircuitConnectionsMappers";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 
-const WebResource = msRest.WebResource;
-
 /** Class representing a ExpressRouteCircuitConnections. */
 export class ExpressRouteCircuitConnections {
   private readonly client: NetworkManagementClientContext;
@@ -85,24 +83,20 @@ export class ExpressRouteCircuitConnections {
   async getWithHttpOperationResponse(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitConnection>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          circuitName,
-          peeringName,
-          connectionName,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            circuitName,
+            peeringName,
+            connectionName,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -195,22 +189,6 @@ export class ExpressRouteCircuitConnections {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.ExpressRouteCircuitConnection;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -256,16 +234,15 @@ export class ExpressRouteCircuitConnections {
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      try {
-        if (parsedResponse != undefined) {
-          const resultMapper = Mappers.ExpressRouteCircuitConnection;
-          operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+      if (parsedResponse != undefined) {
+        try {
+          operationRes.parsedBody = this.serializer.deserialize(Mappers.ExpressRouteCircuitConnection, parsedResponse, "operationRes.parsedBody")
+        } catch (error) {
+          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
+          return Promise.reject(deserializationError);
         }
-      } catch (error) {
-        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-        deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(operationRes);
-        return Promise.reject(deserializationError);
       }
   } catch (err) {
       return Promise.reject(err);
@@ -295,24 +272,20 @@ export class ExpressRouteCircuitConnections {
   async beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          circuitName,
-          peeringName,
-          connectionName,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            circuitName,
+            peeringName,
+            connectionName,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -436,25 +409,21 @@ export class ExpressRouteCircuitConnections {
   async beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, circuitName: string, peeringName: string, connectionName: string, expressRouteCircuitConnectionParameters: Models.ExpressRouteCircuitConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitConnection>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          circuitName,
-          peeringName,
-          connectionName,
-          expressRouteCircuitConnectionParameters,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            circuitName,
+            peeringName,
+            connectionName,
+            expressRouteCircuitConnectionParameters,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -558,36 +527,6 @@ export class ExpressRouteCircuitConnections {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.ExpressRouteCircuitConnection;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
-      if (statusCode === 201) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.ExpressRouteCircuitConnection;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError1.request = msRest.stripRequest(httpRequest);
-          deserializationError1.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError1);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }

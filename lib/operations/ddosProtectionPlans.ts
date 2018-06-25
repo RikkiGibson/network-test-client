@@ -9,8 +9,6 @@ import * as Models from "../models";
 import * as Mappers from "../models/ddosProtectionPlansMappers";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 
-const WebResource = msRest.WebResource;
-
 /** Class representing a DdosProtectionPlans. */
 export class DdosProtectionPlans {
   private readonly client: NetworkManagementClientContext;
@@ -77,22 +75,18 @@ export class DdosProtectionPlans {
   async getWithHttpOperationResponse(resourceGroupName: string, ddosProtectionPlanName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlan>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          ddosProtectionPlanName,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            ddosProtectionPlanName,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -165,22 +159,6 @@ export class DdosProtectionPlans {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.DdosProtectionPlan;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -221,16 +199,15 @@ export class DdosProtectionPlans {
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      try {
-        if (parsedResponse != undefined) {
-          const resultMapper = Mappers.DdosProtectionPlan;
-          operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+      if (parsedResponse != undefined) {
+        try {
+          operationRes.parsedBody = this.serializer.deserialize(Mappers.DdosProtectionPlan, parsedResponse, "operationRes.parsedBody")
+        } catch (error) {
+          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
+          return Promise.reject(deserializationError);
         }
-      } catch (error) {
-        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-        deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(operationRes);
-        return Promise.reject(deserializationError);
       }
   } catch (err) {
       return Promise.reject(err);
@@ -252,20 +229,16 @@ export class DdosProtectionPlans {
   async listWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlanListResult>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -318,22 +291,6 @@ export class DdosProtectionPlans {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.DdosProtectionPlanListResult;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -356,21 +313,17 @@ export class DdosProtectionPlans {
   async listByResourceGroupWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlanListResult>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -433,22 +386,6 @@ export class DdosProtectionPlans {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.DdosProtectionPlanListResult;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -473,22 +410,18 @@ export class DdosProtectionPlans {
   async beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, ddosProtectionPlanName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          ddosProtectionPlanName,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            ddosProtectionPlanName,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -587,23 +520,19 @@ export class DdosProtectionPlans {
   async beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, ddosProtectionPlanName: string, parameters: Models.DdosProtectionPlan, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlan>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          ddosProtectionPlanName,
-          parameters,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            ddosProtectionPlanName,
+            parameters,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -687,36 +616,6 @@ export class DdosProtectionPlans {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 201) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.DdosProtectionPlan;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.DdosProtectionPlan;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError1.request = msRest.stripRequest(httpRequest);
-          deserializationError1.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError1);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -738,19 +637,15 @@ export class DdosProtectionPlans {
    */
   async listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlanListResult>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          nextPageLink,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            nextPageLink,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: "https://management.azure.com",
@@ -790,22 +685,6 @@ export class DdosProtectionPlans {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.DdosProtectionPlanListResult;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -827,19 +706,15 @@ export class DdosProtectionPlans {
    */
   async listByResourceGroupNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlanListResult>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          nextPageLink,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            nextPageLink,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: "https://management.azure.com",
@@ -879,22 +754,6 @@ export class DdosProtectionPlans {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.DdosProtectionPlanListResult;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }

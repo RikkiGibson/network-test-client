@@ -9,8 +9,6 @@ import * as Models from "../models";
 import * as Mappers from "../models/loadBalancerProbesMappers";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 
-const WebResource = msRest.WebResource;
-
 /** Class representing a LoadBalancerProbes. */
 export class LoadBalancerProbes {
   private readonly client: NetworkManagementClientContext;
@@ -41,22 +39,18 @@ export class LoadBalancerProbes {
   async listWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerProbeListResult>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          loadBalancerName,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            loadBalancerName,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -129,22 +123,6 @@ export class LoadBalancerProbes {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.LoadBalancerProbeListResult;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -171,23 +149,19 @@ export class LoadBalancerProbes {
   async getWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, probeName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Probe>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          loadBalancerName,
-          probeName,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            loadBalancerName,
+            probeName,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -270,22 +244,6 @@ export class LoadBalancerProbes {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.Probe;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -307,19 +265,15 @@ export class LoadBalancerProbes {
    */
   async listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerProbeListResult>> {
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          nextPageLink,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            nextPageLink,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: "https://management.azure.com",
@@ -359,22 +313,6 @@ export class LoadBalancerProbes {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.LoadBalancerProbeListResult;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }

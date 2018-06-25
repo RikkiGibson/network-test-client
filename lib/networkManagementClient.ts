@@ -10,7 +10,6 @@ import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
 import { NetworkManagementClientContext } from "./networkManagementClientContext";
 import * as operations from "./operations";
-const WebResource = msRest.WebResource;
 
 
 class NetworkManagementClient extends NetworkManagementClientContext {
@@ -151,22 +150,18 @@ class NetworkManagementClient extends NetworkManagementClientContext {
   async checkDnsNameAvailabilityWithHttpOperationResponse(location: string, domainNameLabel: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DnsNameAvailabilityResult>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          location,
-          domainNameLabel,
-          apiVersion,
-          "this.subscriptionId": this.subscriptionId,
-          "this.acceptLanguage": this.acceptLanguage
-        },
-        options);
       operationRes = await this.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            location,
+            domainNameLabel,
+            apiVersion,
+            "this.subscriptionId": this.subscriptionId,
+            "this.acceptLanguage": this.acceptLanguage
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.baseUri,
@@ -239,22 +234,6 @@ class NetworkManagementClient extends NetworkManagementClientContext {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.DnsNameAvailabilityResult;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }

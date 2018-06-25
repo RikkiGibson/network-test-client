@@ -9,8 +9,6 @@ import * as Models from "../models";
 import * as Mappers from "../models/networkWatchersMappers";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 
-const WebResource = msRest.WebResource;
-
 /** Class representing a NetworkWatchers. */
 export class NetworkWatchers {
   private readonly client: NetworkManagementClientContext;
@@ -43,23 +41,19 @@ export class NetworkWatchers {
   async createOrUpdateWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.NetworkWatcher, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkWatcher>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          networkWatcherName,
-          parameters,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            networkWatcherName,
+            parameters,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "PUT",
           baseUrl: this.client.baseUri,
@@ -143,36 +137,6 @@ export class NetworkWatchers {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.NetworkWatcher;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
-      if (statusCode === 201) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.NetworkWatcher;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError1.request = msRest.stripRequest(httpRequest);
-          deserializationError1.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError1);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -197,22 +161,18 @@ export class NetworkWatchers {
   async getWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkWatcher>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          networkWatcherName,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            networkWatcherName,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -285,22 +245,6 @@ export class NetworkWatchers {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.NetworkWatcher;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -363,23 +307,19 @@ export class NetworkWatchers {
   async updateTagsWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkWatcher>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          networkWatcherName,
-          parameters,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            networkWatcherName,
+            parameters,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "PATCH",
           baseUrl: this.client.baseUri,
@@ -460,22 +400,6 @@ export class NetworkWatchers {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.NetworkWatcher;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -498,21 +422,17 @@ export class NetworkWatchers {
   async listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkWatcherListResult>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -575,22 +495,6 @@ export class NetworkWatchers {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.NetworkWatcherListResult;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -611,20 +515,16 @@ export class NetworkWatchers {
   async listAllWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkWatcherListResult>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "GET",
           baseUrl: this.client.baseUri,
@@ -677,22 +577,6 @@ export class NetworkWatchers {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.NetworkWatcherListResult;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -719,23 +603,19 @@ export class NetworkWatchers {
   async getTopologyWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.TopologyParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Topology>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          networkWatcherName,
-          parameters,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            networkWatcherName,
+            parameters,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -816,22 +696,6 @@ export class NetworkWatchers {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.Topology;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -873,16 +737,15 @@ export class NetworkWatchers {
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      try {
-        if (parsedResponse != undefined) {
-          const resultMapper = Mappers.VerificationIPFlowResult;
-          operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+      if (parsedResponse != undefined) {
+        try {
+          operationRes.parsedBody = this.serializer.deserialize(Mappers.VerificationIPFlowResult, parsedResponse, "operationRes.parsedBody")
+        } catch (error) {
+          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
+          return Promise.reject(deserializationError);
         }
-      } catch (error) {
-        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-        deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(operationRes);
-        return Promise.reject(deserializationError);
       }
   } catch (err) {
       return Promise.reject(err);
@@ -925,16 +788,15 @@ export class NetworkWatchers {
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      try {
-        if (parsedResponse != undefined) {
-          const resultMapper = Mappers.NextHopResult;
-          operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+      if (parsedResponse != undefined) {
+        try {
+          operationRes.parsedBody = this.serializer.deserialize(Mappers.NextHopResult, parsedResponse, "operationRes.parsedBody")
+        } catch (error) {
+          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
+          return Promise.reject(deserializationError);
         }
-      } catch (error) {
-        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-        deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(operationRes);
-        return Promise.reject(deserializationError);
       }
   } catch (err) {
       return Promise.reject(err);
@@ -977,16 +839,15 @@ export class NetworkWatchers {
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      try {
-        if (parsedResponse != undefined) {
-          const resultMapper = Mappers.SecurityGroupViewResult;
-          operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+      if (parsedResponse != undefined) {
+        try {
+          operationRes.parsedBody = this.serializer.deserialize(Mappers.SecurityGroupViewResult, parsedResponse, "operationRes.parsedBody")
+        } catch (error) {
+          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
+          return Promise.reject(deserializationError);
         }
-      } catch (error) {
-        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-        deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(operationRes);
-        return Promise.reject(deserializationError);
       }
   } catch (err) {
       return Promise.reject(err);
@@ -1029,16 +890,15 @@ export class NetworkWatchers {
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      try {
-        if (parsedResponse != undefined) {
-          const resultMapper = Mappers.TroubleshootingResult;
-          operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+      if (parsedResponse != undefined) {
+        try {
+          operationRes.parsedBody = this.serializer.deserialize(Mappers.TroubleshootingResult, parsedResponse, "operationRes.parsedBody")
+        } catch (error) {
+          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
+          return Promise.reject(deserializationError);
         }
-      } catch (error) {
-        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-        deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(operationRes);
-        return Promise.reject(deserializationError);
       }
   } catch (err) {
       return Promise.reject(err);
@@ -1081,16 +941,15 @@ export class NetworkWatchers {
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      try {
-        if (parsedResponse != undefined) {
-          const resultMapper = Mappers.TroubleshootingResult;
-          operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+      if (parsedResponse != undefined) {
+        try {
+          operationRes.parsedBody = this.serializer.deserialize(Mappers.TroubleshootingResult, parsedResponse, "operationRes.parsedBody")
+        } catch (error) {
+          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
+          return Promise.reject(deserializationError);
         }
-      } catch (error) {
-        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-        deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(operationRes);
-        return Promise.reject(deserializationError);
       }
   } catch (err) {
       return Promise.reject(err);
@@ -1132,16 +991,15 @@ export class NetworkWatchers {
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      try {
-        if (parsedResponse != undefined) {
-          const resultMapper = Mappers.FlowLogInformation;
-          operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+      if (parsedResponse != undefined) {
+        try {
+          operationRes.parsedBody = this.serializer.deserialize(Mappers.FlowLogInformation, parsedResponse, "operationRes.parsedBody")
+        } catch (error) {
+          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
+          return Promise.reject(deserializationError);
         }
-      } catch (error) {
-        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-        deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(operationRes);
-        return Promise.reject(deserializationError);
       }
   } catch (err) {
       return Promise.reject(err);
@@ -1184,16 +1042,15 @@ export class NetworkWatchers {
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      try {
-        if (parsedResponse != undefined) {
-          const resultMapper = Mappers.FlowLogInformation;
-          operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+      if (parsedResponse != undefined) {
+        try {
+          operationRes.parsedBody = this.serializer.deserialize(Mappers.FlowLogInformation, parsedResponse, "operationRes.parsedBody")
+        } catch (error) {
+          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
+          return Promise.reject(deserializationError);
         }
-      } catch (error) {
-        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-        deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(operationRes);
-        return Promise.reject(deserializationError);
       }
   } catch (err) {
       return Promise.reject(err);
@@ -1237,16 +1094,15 @@ export class NetworkWatchers {
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      try {
-        if (parsedResponse != undefined) {
-          const resultMapper = Mappers.ConnectivityInformation;
-          operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+      if (parsedResponse != undefined) {
+        try {
+          operationRes.parsedBody = this.serializer.deserialize(Mappers.ConnectivityInformation, parsedResponse, "operationRes.parsedBody")
+        } catch (error) {
+          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
+          return Promise.reject(deserializationError);
         }
-      } catch (error) {
-        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-        deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(operationRes);
-        return Promise.reject(deserializationError);
       }
   } catch (err) {
       return Promise.reject(err);
@@ -1290,16 +1146,15 @@ export class NetworkWatchers {
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      try {
-        if (parsedResponse != undefined) {
-          const resultMapper = Mappers.AzureReachabilityReport;
-          operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+      if (parsedResponse != undefined) {
+        try {
+          operationRes.parsedBody = this.serializer.deserialize(Mappers.AzureReachabilityReport, parsedResponse, "operationRes.parsedBody")
+        } catch (error) {
+          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
+          return Promise.reject(deserializationError);
         }
-      } catch (error) {
-        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-        deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(operationRes);
-        return Promise.reject(deserializationError);
       }
   } catch (err) {
       return Promise.reject(err);
@@ -1342,16 +1197,15 @@ export class NetworkWatchers {
 
       // Deserialize Response
       let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      try {
-        if (parsedResponse != undefined) {
-          const resultMapper = Mappers.AvailableProvidersList;
-          operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
+      if (parsedResponse != undefined) {
+        try {
+          operationRes.parsedBody = this.serializer.deserialize(Mappers.AvailableProvidersList, parsedResponse, "operationRes.parsedBody")
+        } catch (error) {
+          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+          deserializationError.request = msRest.stripRequest(httpRequest);
+          deserializationError.response = msRest.stripResponse(operationRes);
+          return Promise.reject(deserializationError);
         }
-      } catch (error) {
-        let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-        deserializationError.request = msRest.stripRequest(httpRequest);
-        deserializationError.response = msRest.stripResponse(operationRes);
-        return Promise.reject(deserializationError);
       }
   } catch (err) {
       return Promise.reject(err);
@@ -1377,22 +1231,18 @@ export class NetworkWatchers {
   async beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          networkWatcherName,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            networkWatcherName,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "DELETE",
           baseUrl: this.client.baseUri,
@@ -1491,23 +1341,19 @@ export class NetworkWatchers {
   async beginVerifyIPFlowWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.VerificationIPFlowParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VerificationIPFlowResult>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          networkWatcherName,
-          parameters,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            networkWatcherName,
+            parameters,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -1591,36 +1437,6 @@ export class NetworkWatchers {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.VerificationIPFlowResult;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
-      if (statusCode === 202) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.VerificationIPFlowResult;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError1.request = msRest.stripRequest(httpRequest);
-          deserializationError1.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError1);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1648,23 +1464,19 @@ export class NetworkWatchers {
   async beginGetNextHopWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.NextHopParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NextHopResult>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          networkWatcherName,
-          parameters,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            networkWatcherName,
+            parameters,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -1748,36 +1560,6 @@ export class NetworkWatchers {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.NextHopResult;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
-      if (statusCode === 202) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.NextHopResult;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError1.request = msRest.stripRequest(httpRequest);
-          deserializationError1.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError1);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1805,23 +1587,19 @@ export class NetworkWatchers {
   async beginGetVMSecurityRulesWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.SecurityGroupViewParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SecurityGroupViewResult>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          networkWatcherName,
-          parameters,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            networkWatcherName,
+            parameters,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -1905,36 +1683,6 @@ export class NetworkWatchers {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.SecurityGroupViewResult;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
-      if (statusCode === 202) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.SecurityGroupViewResult;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError1.request = msRest.stripRequest(httpRequest);
-          deserializationError1.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError1);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -1962,23 +1710,19 @@ export class NetworkWatchers {
   async beginGetTroubleshootingWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.TroubleshootingParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.TroubleshootingResult>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          networkWatcherName,
-          parameters,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            networkWatcherName,
+            parameters,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -2062,36 +1806,6 @@ export class NetworkWatchers {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.TroubleshootingResult;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
-      if (statusCode === 202) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.TroubleshootingResult;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError1.request = msRest.stripRequest(httpRequest);
-          deserializationError1.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError1);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2119,23 +1833,19 @@ export class NetworkWatchers {
   async beginGetTroubleshootingResultWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.QueryTroubleshootingParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.TroubleshootingResult>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          networkWatcherName,
-          parameters,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            networkWatcherName,
+            parameters,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -2219,36 +1929,6 @@ export class NetworkWatchers {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.TroubleshootingResult;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
-      if (statusCode === 202) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.TroubleshootingResult;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError1.request = msRest.stripRequest(httpRequest);
-          deserializationError1.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError1);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2275,23 +1955,19 @@ export class NetworkWatchers {
   async beginSetFlowLogConfigurationWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogInformation, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FlowLogInformation>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          networkWatcherName,
-          parameters,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            networkWatcherName,
+            parameters,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -2375,36 +2051,6 @@ export class NetworkWatchers {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.FlowLogInformation;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
-      if (statusCode === 202) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.FlowLogInformation;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError1.request = msRest.stripRequest(httpRequest);
-          deserializationError1.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError1);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2432,23 +2078,19 @@ export class NetworkWatchers {
   async beginGetFlowLogStatusWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogStatusParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FlowLogInformation>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          networkWatcherName,
-          parameters,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            networkWatcherName,
+            parameters,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -2532,36 +2174,6 @@ export class NetworkWatchers {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.FlowLogInformation;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
-      if (statusCode === 202) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.FlowLogInformation;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError1.request = msRest.stripRequest(httpRequest);
-          deserializationError1.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError1);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2590,23 +2202,19 @@ export class NetworkWatchers {
   async beginCheckConnectivityWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.ConnectivityParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectivityInformation>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          networkWatcherName,
-          parameters,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            networkWatcherName,
+            parameters,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -2690,36 +2298,6 @@ export class NetworkWatchers {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.ConnectivityInformation;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
-      if (statusCode === 202) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.ConnectivityInformation;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError1.request = msRest.stripRequest(httpRequest);
-          deserializationError1.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError1);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2748,23 +2326,19 @@ export class NetworkWatchers {
   async beginGetAzureReachabilityReportWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.AzureReachabilityReportParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.AzureReachabilityReport>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          networkWatcherName,
-          parameters,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            networkWatcherName,
+            parameters,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -2848,36 +2422,6 @@ export class NetworkWatchers {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.AzureReachabilityReport;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
-      if (statusCode === 202) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.AzureReachabilityReport;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError1.request = msRest.stripRequest(httpRequest);
-          deserializationError1.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError1);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }
@@ -2905,23 +2449,19 @@ export class NetworkWatchers {
   async beginListAvailableProvidersWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, parameters: Models.AvailableProvidersListParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.AvailableProvidersList>> {
     let apiVersion = '2018-04-01';
 
-    // Create HTTP transport objects
-    const httpRequest = new WebResource();
     let operationRes: msRest.HttpOperationResponse;
     try {
-      const operationArguments: msRest.OperationArguments = msRest.createOperationArguments(
-        {
-          resourceGroupName,
-          networkWatcherName,
-          parameters,
-          apiVersion,
-          "this.client.subscriptionId": this.client.subscriptionId,
-          "this.client.acceptLanguage": this.client.acceptLanguage
-        },
-        options);
       operationRes = await this.client.sendOperationRequest(
-        httpRequest,
-        operationArguments,
+        msRest.createOperationArguments(
+          {
+            resourceGroupName,
+            networkWatcherName,
+            parameters,
+            apiVersion,
+            "this.client.subscriptionId": this.client.subscriptionId,
+            "this.client.acceptLanguage": this.client.acceptLanguage
+          },
+          options),
         {
           httpMethod: "POST",
           baseUrl: this.client.baseUri,
@@ -3005,36 +2545,6 @@ export class NetworkWatchers {
           },
           serializer: this.serializer
         });
-      // Deserialize Response
-      let statusCode = operationRes.status;
-      if (statusCode === 200) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.AvailableProvidersList;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
-        }
-      }
-      if (statusCode === 202) {
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        try {
-          if (parsedResponse != undefined) {
-            const resultMapper = Mappers.AvailableProvidersList;
-            operationRes.parsedBody = this.serializer.deserialize(resultMapper, parsedResponse, 'operationRes.parsedBody');
-          }
-        } catch (error) {
-          let deserializationError1 = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError1.request = msRest.stripRequest(httpRequest);
-          deserializationError1.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError1);
-        }
-      }
     } catch (err) {
       return Promise.reject(err);
     }

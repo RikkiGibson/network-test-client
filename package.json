@@ -5,8 +5,8 @@
   "description": "NetworkManagementClient Library with typescript type definitions and works in node.js and browser javascript.",
   "version": "0.1.0",
   "dependencies": {
-    "ms-rest-azure-js": "^0.9.92",
-    "ms-rest-js": "^0.13.317",
+    "ms-rest-azure-js": "^0.11.101",
+    "ms-rest-js": "^0.16.366",
     "ts-node": "^6.1.1"
   },
   "keywords": [

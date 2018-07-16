@@ -12,7 +12,7 @@ import { NetworkManagementClientContext } from "../networkManagementClientContex
 /** Class representing a LoadBalancerNetworkInterfaces. */
 export class LoadBalancerNetworkInterfaces {
   private readonly client: NetworkManagementClientContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a LoadBalancerNetworkInterfaces.
    * @param {NetworkManagementClientContext} client Reference to the service client.
@@ -36,97 +36,14 @@ export class LoadBalancerNetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async listWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceListResult>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            loadBalancerName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers/{loadBalancerName}/networkInterfaces",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "loadBalancerName",
-              mapper: {
-                required: true,
-                serializedName: "loadBalancerName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.NetworkInterfaceListResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  listWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceListResult>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        loadBalancerName,
+        options
+      },
+      listOperationSpec);
   }
 
   /**
@@ -142,60 +59,13 @@ export class LoadBalancerNetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceListResult>> {
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "GET",
-          baseUrl: "https://management.azure.com",
-          path: "{nextLink}",
-          urlParameters: [
-            {
-              parameterPath: "nextPageLink",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "nextLink",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.NetworkInterfaceListResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceListResult>> {
+    return this.client.sendOperationRequest(
+      {
+        nextPageLink,
+        options
+      },
+      listNextOperationSpec);
   }
 
   /**
@@ -221,26 +91,7 @@ export class LoadBalancerNetworkInterfaces {
   list(resourceGroupName: string, loadBalancerName: string, callback: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): void;
   list(resourceGroupName: string, loadBalancerName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): void;
   list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.NetworkInterfaceListResult>;
-    if (!callback) {
-      return this.listWithHttpOperationResponse(resourceGroupName, loadBalancerName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.NetworkInterfaceListResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.listWithHttpOperationResponse(resourceGroupName, loadBalancerName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.NetworkInterfaceListResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), resourceGroupName, loadBalancerName, options, callback);
   }
 
   /**
@@ -264,26 +115,120 @@ export class LoadBalancerNetworkInterfaces {
   listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): void;
   listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): void;
   listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkInterfaceListResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.NetworkInterfaceListResult>;
-    if (!callback) {
-      return this.listNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.NetworkInterfaceListResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.listNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.NetworkInterfaceListResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.listNextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
   }
 
 }
+
+// Operation Specifications
+const listOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers/{loadBalancerName}/networkInterfaces",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "loadBalancerName",
+      mapper: {
+        required: true,
+        serializedName: "loadBalancerName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.NetworkInterfaceListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const listNextOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  baseUrl: "https://management.azure.com",
+  path: "{nextLink}",
+  urlParameters: [
+    {
+      parameterPath: "nextPageLink",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.NetworkInterfaceListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

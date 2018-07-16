@@ -12,7 +12,7 @@ import { NetworkManagementClientContext } from "../networkManagementClientContex
 /** Class representing a ConnectionMonitors. */
 export class ConnectionMonitors {
   private readonly client: NetworkManagementClientContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a ConnectionMonitors.
    * @param {NetworkManagementClientContext} client Reference to the service client.
@@ -42,36 +42,27 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async createOrUpdateWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: Models.ConnectionMonitor, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, parameters, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
-      let httpRequest = operationRes.request;
+  createOrUpdateWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: Models.ConnectionMonitor, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, parameters, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
+        let httpRequest = operationRes.request;
 
-      // Deserialize Response
-      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      if (parsedResponse != undefined) {
-        try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.ConnectionMonitorResult, parsedResponse, "operationRes.parsedBody")
-        } catch (error) {
-          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
+        // Deserialize Response
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+        if (parsedResponse != undefined) {
+          try {
+            const serializer = new msRest.Serializer(Mappers);
+            operationRes.parsedBody = serializer.deserialize(Mappers.ConnectionMonitorResult, parsedResponse, "operationRes.parsedBody")
+          } catch (error) {
+            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+            deserializationError.request = msRest.stripRequest(httpRequest);
+            deserializationError.response = msRest.stripResponse(operationRes);
+            throw deserializationError;
+          }
         }
-      }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
   /**
@@ -91,108 +82,15 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionMonitorResult>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            networkWatcherName,
-            connectionMonitorName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/connectionMonitors/{connectionMonitorName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "networkWatcherName",
-              mapper: {
-                required: true,
-                serializedName: "networkWatcherName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "connectionMonitorName",
-              mapper: {
-                required: true,
-                serializedName: "connectionMonitorName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ConnectionMonitorResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionMonitorResult>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        networkWatcherName,
+        connectionMonitorName,
+        options
+      },
+      getOperationSpec);
   }
 
 
@@ -213,24 +111,14 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async deleteMethodWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  deleteMethodWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
-      // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        // Deserialize Response
+        return operationRes;
+      });
   }
 
 
@@ -251,24 +139,14 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async stopWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginStopWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  stopWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginStopWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
-      // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        // Deserialize Response
+        return operationRes;
+      });
   }
 
 
@@ -289,24 +167,14 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async startWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginStartWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  startWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginStartWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
-      // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        // Deserialize Response
+        return operationRes;
+      });
   }
 
 
@@ -327,36 +195,27 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async queryWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginQueryWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
-      let httpRequest = operationRes.request;
+  queryWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginQueryWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
+        let httpRequest = operationRes.request;
 
-      // Deserialize Response
-      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      if (parsedResponse != undefined) {
-        try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.ConnectionMonitorQueryResult, parsedResponse, "operationRes.parsedBody")
-        } catch (error) {
-          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
+        // Deserialize Response
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+        if (parsedResponse != undefined) {
+          try {
+            const serializer = new msRest.Serializer(Mappers);
+            operationRes.parsedBody = serializer.deserialize(Mappers.ConnectionMonitorQueryResult, parsedResponse, "operationRes.parsedBody")
+          } catch (error) {
+            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+            deserializationError.request = msRest.stripRequest(httpRequest);
+            deserializationError.response = msRest.stripResponse(operationRes);
+            throw deserializationError;
+          }
         }
-      }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
   /**
@@ -374,97 +233,14 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async listWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionMonitorListResult>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            networkWatcherName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/connectionMonitors",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "networkWatcherName",
-              mapper: {
-                required: true,
-                serializedName: "networkWatcherName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ConnectionMonitorListResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  listWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionMonitorListResult>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        networkWatcherName,
+        options
+      },
+      listOperationSpec);
   }
 
   /**
@@ -487,120 +263,16 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: Models.ConnectionMonitor, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionMonitorResult>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            networkWatcherName,
-            connectionMonitorName,
-            parameters,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/connectionMonitors/{connectionMonitorName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "networkWatcherName",
-              mapper: {
-                required: true,
-                serializedName: "networkWatcherName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "connectionMonitorName",
-              mapper: {
-                required: true,
-                serializedName: "connectionMonitorName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "parameters",
-            mapper: {
-              ...Mappers.ConnectionMonitor,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.ConnectionMonitorResult
-            },
-            201: {
-              bodyMapper: Mappers.ConnectionMonitorResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: Models.ConnectionMonitor, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionMonitorResult>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        networkWatcherName,
+        connectionMonitorName,
+        parameters,
+        options
+      },
+      beginCreateOrUpdateOperationSpec);
   }
 
   /**
@@ -620,107 +292,15 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            networkWatcherName,
-            connectionMonitorName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/connectionMonitors/{connectionMonitorName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "networkWatcherName",
-              mapper: {
-                required: true,
-                serializedName: "networkWatcherName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "connectionMonitorName",
-              mapper: {
-                required: true,
-                serializedName: "connectionMonitorName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            204: {},
-            202: {},
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        networkWatcherName,
+        connectionMonitorName,
+        options
+      },
+      beginDeleteMethodOperationSpec);
   }
 
   /**
@@ -740,107 +320,15 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginStopWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            networkWatcherName,
-            connectionMonitorName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/connectionMonitors/{connectionMonitorName}/stop",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "networkWatcherName",
-              mapper: {
-                required: true,
-                serializedName: "networkWatcherName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "connectionMonitorName",
-              mapper: {
-                required: true,
-                serializedName: "connectionMonitorName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            202: {},
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginStopWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        networkWatcherName,
+        connectionMonitorName,
+        options
+      },
+      beginStopOperationSpec);
   }
 
   /**
@@ -860,107 +348,15 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginStartWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            networkWatcherName,
-            connectionMonitorName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/connectionMonitors/{connectionMonitorName}/start",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "networkWatcherName",
-              mapper: {
-                required: true,
-                serializedName: "networkWatcherName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "connectionMonitorName",
-              mapper: {
-                required: true,
-                serializedName: "connectionMonitorName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            202: {},
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginStartWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        networkWatcherName,
+        connectionMonitorName,
+        options
+      },
+      beginStartOperationSpec);
   }
 
   /**
@@ -980,111 +376,15 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginQueryWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionMonitorQueryResult>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            networkWatcherName,
-            connectionMonitorName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/connectionMonitors/{connectionMonitorName}/query",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "networkWatcherName",
-              mapper: {
-                required: true,
-                serializedName: "networkWatcherName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "connectionMonitorName",
-              mapper: {
-                required: true,
-                serializedName: "connectionMonitorName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ConnectionMonitorQueryResult
-            },
-            202: {
-              bodyMapper: Mappers.ConnectionMonitorQueryResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginQueryWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionMonitorQueryResult>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        networkWatcherName,
+        connectionMonitorName,
+        options
+      },
+      beginQueryOperationSpec);
   }
 
   /**
@@ -1115,26 +415,7 @@ export class ConnectionMonitors {
   createOrUpdate(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: Models.ConnectionMonitor, callback: msRest.ServiceCallback<Models.ConnectionMonitorResult>): void;
   createOrUpdate(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: Models.ConnectionMonitor, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ConnectionMonitorResult>): void;
   createOrUpdate(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: Models.ConnectionMonitor, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ConnectionMonitorResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ConnectionMonitorResult>;
-    if (!callback) {
-      return this.createOrUpdateWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, parameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ConnectionMonitorResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.createOrUpdateWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, parameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ConnectionMonitorResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.createOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, connectionMonitorName, parameters, options, callback);
   }
 
   /**
@@ -1162,26 +443,7 @@ export class ConnectionMonitors {
   get(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, callback: msRest.ServiceCallback<Models.ConnectionMonitorResult>): void;
   get(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ConnectionMonitorResult>): void;
   get(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ConnectionMonitorResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ConnectionMonitorResult>;
-    if (!callback) {
-      return this.getWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ConnectionMonitorResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ConnectionMonitorResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, connectionMonitorName, options, callback);
   }
 
   /**
@@ -1209,26 +471,7 @@ export class ConnectionMonitors {
   deleteMethod(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, callback: msRest.ServiceCallback<void>): void;
   deleteMethod(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   deleteMethod(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.deleteMethodWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.deleteMethodWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.deleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, connectionMonitorName, options, callback);
   }
 
   /**
@@ -1256,26 +499,7 @@ export class ConnectionMonitors {
   stop(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, callback: msRest.ServiceCallback<void>): void;
   stop(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   stop(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.stopWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.stopWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.stopWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, connectionMonitorName, options, callback);
   }
 
   /**
@@ -1303,26 +527,7 @@ export class ConnectionMonitors {
   start(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, callback: msRest.ServiceCallback<void>): void;
   start(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   start(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.startWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.startWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.startWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, connectionMonitorName, options, callback);
   }
 
   /**
@@ -1350,26 +555,7 @@ export class ConnectionMonitors {
   query(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, callback: msRest.ServiceCallback<Models.ConnectionMonitorQueryResult>): void;
   query(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ConnectionMonitorQueryResult>): void;
   query(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ConnectionMonitorQueryResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ConnectionMonitorQueryResult>;
-    if (!callback) {
-      return this.queryWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ConnectionMonitorQueryResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.queryWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ConnectionMonitorQueryResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.queryWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, connectionMonitorName, options, callback);
   }
 
   /**
@@ -1395,26 +581,7 @@ export class ConnectionMonitors {
   list(resourceGroupName: string, networkWatcherName: string, callback: msRest.ServiceCallback<Models.ConnectionMonitorListResult>): void;
   list(resourceGroupName: string, networkWatcherName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ConnectionMonitorListResult>): void;
   list(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ConnectionMonitorListResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ConnectionMonitorListResult>;
-    if (!callback) {
-      return this.listWithHttpOperationResponse(resourceGroupName, networkWatcherName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ConnectionMonitorListResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.listWithHttpOperationResponse(resourceGroupName, networkWatcherName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ConnectionMonitorListResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, options, callback);
   }
 
   /**
@@ -1445,26 +612,7 @@ export class ConnectionMonitors {
   beginCreateOrUpdate(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: Models.ConnectionMonitor, callback: msRest.ServiceCallback<Models.ConnectionMonitorResult>): void;
   beginCreateOrUpdate(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: Models.ConnectionMonitor, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ConnectionMonitorResult>): void;
   beginCreateOrUpdate(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: Models.ConnectionMonitor, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ConnectionMonitorResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ConnectionMonitorResult>;
-    if (!callback) {
-      return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, parameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ConnectionMonitorResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, parameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ConnectionMonitorResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginCreateOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, connectionMonitorName, parameters, options, callback);
   }
 
   /**
@@ -1492,26 +640,7 @@ export class ConnectionMonitors {
   beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, callback: msRest.ServiceCallback<void>): void;
   beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginDeleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, connectionMonitorName, options, callback);
   }
 
   /**
@@ -1539,26 +668,7 @@ export class ConnectionMonitors {
   beginStop(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, callback: msRest.ServiceCallback<void>): void;
   beginStop(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   beginStop(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.beginStopWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginStopWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginStopWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, connectionMonitorName, options, callback);
   }
 
   /**
@@ -1586,26 +696,7 @@ export class ConnectionMonitors {
   beginStart(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, callback: msRest.ServiceCallback<void>): void;
   beginStart(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   beginStart(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.beginStartWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginStartWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginStartWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, connectionMonitorName, options, callback);
   }
 
   /**
@@ -1633,26 +724,583 @@ export class ConnectionMonitors {
   beginQuery(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, callback: msRest.ServiceCallback<Models.ConnectionMonitorQueryResult>): void;
   beginQuery(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ConnectionMonitorQueryResult>): void;
   beginQuery(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ConnectionMonitorQueryResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ConnectionMonitorQueryResult>;
-    if (!callback) {
-      return this.beginQueryWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ConnectionMonitorQueryResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginQueryWithHttpOperationResponse(resourceGroupName, networkWatcherName, connectionMonitorName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ConnectionMonitorQueryResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginQueryWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, connectionMonitorName, options, callback);
   }
 
 }
+
+// Operation Specifications
+const getOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/connectionMonitors/{connectionMonitorName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "networkWatcherName",
+      mapper: {
+        required: true,
+        serializedName: "networkWatcherName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "connectionMonitorName",
+      mapper: {
+        required: true,
+        serializedName: "connectionMonitorName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ConnectionMonitorResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const listOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/connectionMonitors",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "networkWatcherName",
+      mapper: {
+        required: true,
+        serializedName: "networkWatcherName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ConnectionMonitorListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/connectionMonitors/{connectionMonitorName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "networkWatcherName",
+      mapper: {
+        required: true,
+        serializedName: "networkWatcherName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "connectionMonitorName",
+      mapper: {
+        required: true,
+        serializedName: "connectionMonitorName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "parameters",
+    mapper: {
+      ...Mappers.ConnectionMonitor,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ConnectionMonitorResult
+    },
+    201: {
+      bodyMapper: Mappers.ConnectionMonitorResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginDeleteMethodOperationSpec: msRest.OperationSpec = {
+  httpMethod: "DELETE",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/connectionMonitors/{connectionMonitorName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "networkWatcherName",
+      mapper: {
+        required: true,
+        serializedName: "networkWatcherName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "connectionMonitorName",
+      mapper: {
+        required: true,
+        serializedName: "connectionMonitorName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    204: {},
+    202: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginStopOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/connectionMonitors/{connectionMonitorName}/stop",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "networkWatcherName",
+      mapper: {
+        required: true,
+        serializedName: "networkWatcherName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "connectionMonitorName",
+      mapper: {
+        required: true,
+        serializedName: "connectionMonitorName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    202: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginStartOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/connectionMonitors/{connectionMonitorName}/start",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "networkWatcherName",
+      mapper: {
+        required: true,
+        serializedName: "networkWatcherName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "connectionMonitorName",
+      mapper: {
+        required: true,
+        serializedName: "connectionMonitorName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    202: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginQueryOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/connectionMonitors/{connectionMonitorName}/query",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "networkWatcherName",
+      mapper: {
+        required: true,
+        serializedName: "networkWatcherName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "connectionMonitorName",
+      mapper: {
+        required: true,
+        serializedName: "connectionMonitorName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ConnectionMonitorQueryResult
+    },
+    202: {
+      bodyMapper: Mappers.ConnectionMonitorQueryResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

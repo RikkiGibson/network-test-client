@@ -12,7 +12,7 @@ import { NetworkManagementClientContext } from "../networkManagementClientContex
 /** Class representing a RouteFilterRules. */
 export class RouteFilterRules {
   private readonly client: NetworkManagementClientContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a RouteFilterRules.
    * @param {NetworkManagementClientContext} client Reference to the service client.
@@ -39,24 +39,14 @@ export class RouteFilterRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async deleteMethodWithHttpOperationResponse(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, routeFilterName, ruleName, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  deleteMethodWithHttpOperationResponse(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, routeFilterName, ruleName, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
-      // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        // Deserialize Response
+        return operationRes;
+      });
   }
 
   /**
@@ -76,108 +66,15 @@ export class RouteFilterRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getWithHttpOperationResponse(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RouteFilterRule>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            routeFilterName,
-            ruleName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/routeFilters/{routeFilterName}/routeFilterRules/{ruleName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "routeFilterName",
-              mapper: {
-                required: true,
-                serializedName: "routeFilterName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "ruleName",
-              mapper: {
-                required: true,
-                serializedName: "ruleName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.RouteFilterRule
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getWithHttpOperationResponse(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RouteFilterRule>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        routeFilterName,
+        ruleName,
+        options
+      },
+      getOperationSpec);
   }
 
 
@@ -201,36 +98,27 @@ export class RouteFilterRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async createOrUpdateWithHttpOperationResponse(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.RouteFilterRule, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, routeFilterName, ruleName, routeFilterRuleParameters, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
-      let httpRequest = operationRes.request;
+  createOrUpdateWithHttpOperationResponse(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.RouteFilterRule, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, routeFilterName, ruleName, routeFilterRuleParameters, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
+        let httpRequest = operationRes.request;
 
-      // Deserialize Response
-      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      if (parsedResponse != undefined) {
-        try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.RouteFilterRule, parsedResponse, "operationRes.parsedBody")
-        } catch (error) {
-          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
+        // Deserialize Response
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+        if (parsedResponse != undefined) {
+          try {
+            const serializer = new msRest.Serializer(Mappers);
+            operationRes.parsedBody = serializer.deserialize(Mappers.RouteFilterRule, parsedResponse, "operationRes.parsedBody")
+          } catch (error) {
+            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+            deserializationError.request = msRest.stripRequest(httpRequest);
+            deserializationError.response = msRest.stripResponse(operationRes);
+            throw deserializationError;
+          }
         }
-      }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -254,36 +142,27 @@ export class RouteFilterRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async updateWithHttpOperationResponse(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.PatchRouteFilterRule, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginUpdateWithHttpOperationResponse(resourceGroupName, routeFilterName, ruleName, routeFilterRuleParameters, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
-      let httpRequest = operationRes.request;
+  updateWithHttpOperationResponse(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.PatchRouteFilterRule, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginUpdateWithHttpOperationResponse(resourceGroupName, routeFilterName, ruleName, routeFilterRuleParameters, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
+        let httpRequest = operationRes.request;
 
-      // Deserialize Response
-      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      if (parsedResponse != undefined) {
-        try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.RouteFilterRule, parsedResponse, "operationRes.parsedBody")
-        } catch (error) {
-          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
+        // Deserialize Response
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+        if (parsedResponse != undefined) {
+          try {
+            const serializer = new msRest.Serializer(Mappers);
+            operationRes.parsedBody = serializer.deserialize(Mappers.RouteFilterRule, parsedResponse, "operationRes.parsedBody")
+          } catch (error) {
+            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+            deserializationError.request = msRest.stripRequest(httpRequest);
+            deserializationError.response = msRest.stripResponse(operationRes);
+            throw deserializationError;
+          }
         }
-      }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
   /**
@@ -301,97 +180,14 @@ export class RouteFilterRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async listByRouteFilterWithHttpOperationResponse(resourceGroupName: string, routeFilterName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RouteFilterRuleListResult>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            routeFilterName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/routeFilters/{routeFilterName}/routeFilterRules",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "routeFilterName",
-              mapper: {
-                required: true,
-                serializedName: "routeFilterName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.RouteFilterRuleListResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  listByRouteFilterWithHttpOperationResponse(resourceGroupName: string, routeFilterName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RouteFilterRuleListResult>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        routeFilterName,
+        options
+      },
+      listByRouteFilterOperationSpec);
   }
 
   /**
@@ -411,108 +207,15 @@ export class RouteFilterRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            routeFilterName,
-            ruleName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/routeFilters/{routeFilterName}/routeFilterRules/{ruleName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "routeFilterName",
-              mapper: {
-                required: true,
-                serializedName: "routeFilterName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "ruleName",
-              mapper: {
-                required: true,
-                serializedName: "ruleName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            202: {},
-            200: {},
-            204: {},
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        routeFilterName,
+        ruleName,
+        options
+      },
+      beginDeleteMethodOperationSpec);
   }
 
   /**
@@ -535,123 +238,16 @@ export class RouteFilterRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.RouteFilterRule, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RouteFilterRule>> {
-    if (routeFilterRuleParameters === null || routeFilterRuleParameters === undefined) {
-      routeFilterRuleParameters = {} as any;
-    }
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            routeFilterName,
-            ruleName,
-            routeFilterRuleParameters,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/routeFilters/{routeFilterName}/routeFilterRules/{ruleName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "routeFilterName",
-              mapper: {
-                required: true,
-                serializedName: "routeFilterName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "ruleName",
-              mapper: {
-                required: true,
-                serializedName: "ruleName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "routeFilterRuleParameters",
-            mapper: {
-              ...Mappers.RouteFilterRule,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.RouteFilterRule
-            },
-            201: {
-              bodyMapper: Mappers.RouteFilterRule
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.RouteFilterRule, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RouteFilterRule>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        routeFilterName,
+        ruleName,
+        routeFilterRuleParameters,
+        options
+      },
+      beginCreateOrUpdateOperationSpec);
   }
 
   /**
@@ -674,120 +270,16 @@ export class RouteFilterRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginUpdateWithHttpOperationResponse(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.PatchRouteFilterRule, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RouteFilterRule>> {
-    if (routeFilterRuleParameters === null || routeFilterRuleParameters === undefined) {
-      routeFilterRuleParameters = {} as any;
-    }
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            routeFilterName,
-            ruleName,
-            routeFilterRuleParameters,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "PATCH",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/routeFilters/{routeFilterName}/routeFilterRules/{ruleName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "routeFilterName",
-              mapper: {
-                required: true,
-                serializedName: "routeFilterName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "ruleName",
-              mapper: {
-                required: true,
-                serializedName: "ruleName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "routeFilterRuleParameters",
-            mapper: {
-              ...Mappers.PatchRouteFilterRule,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.RouteFilterRule
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginUpdateWithHttpOperationResponse(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.PatchRouteFilterRule, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RouteFilterRule>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        routeFilterName,
+        ruleName,
+        routeFilterRuleParameters,
+        options
+      },
+      beginUpdateOperationSpec);
   }
 
   /**
@@ -803,60 +295,13 @@ export class RouteFilterRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async listByRouteFilterNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RouteFilterRuleListResult>> {
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "GET",
-          baseUrl: "https://management.azure.com",
-          path: "{nextLink}",
-          urlParameters: [
-            {
-              parameterPath: "nextPageLink",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "nextLink",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.RouteFilterRuleListResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  listByRouteFilterNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RouteFilterRuleListResult>> {
+    return this.client.sendOperationRequest(
+      {
+        nextPageLink,
+        options
+      },
+      listByRouteFilterNextOperationSpec);
   }
 
   /**
@@ -884,26 +329,7 @@ export class RouteFilterRules {
   deleteMethod(resourceGroupName: string, routeFilterName: string, ruleName: string, callback: msRest.ServiceCallback<void>): void;
   deleteMethod(resourceGroupName: string, routeFilterName: string, ruleName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   deleteMethod(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.deleteMethodWithHttpOperationResponse(resourceGroupName, routeFilterName, ruleName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.deleteMethodWithHttpOperationResponse(resourceGroupName, routeFilterName, ruleName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.deleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, routeFilterName, ruleName, options, callback);
   }
 
   /**
@@ -931,26 +357,7 @@ export class RouteFilterRules {
   get(resourceGroupName: string, routeFilterName: string, ruleName: string, callback: msRest.ServiceCallback<Models.RouteFilterRule>): void;
   get(resourceGroupName: string, routeFilterName: string, ruleName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RouteFilterRule>): void;
   get(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RouteFilterRule>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.RouteFilterRule>;
-    if (!callback) {
-      return this.getWithHttpOperationResponse(resourceGroupName, routeFilterName, ruleName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.RouteFilterRule);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getWithHttpOperationResponse(resourceGroupName, routeFilterName, ruleName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.RouteFilterRule;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), resourceGroupName, routeFilterName, ruleName, options, callback);
   }
 
   /**
@@ -981,26 +388,7 @@ export class RouteFilterRules {
   createOrUpdate(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.RouteFilterRule, callback: msRest.ServiceCallback<Models.RouteFilterRule>): void;
   createOrUpdate(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.RouteFilterRule, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RouteFilterRule>): void;
   createOrUpdate(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.RouteFilterRule, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RouteFilterRule>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.RouteFilterRule>;
-    if (!callback) {
-      return this.createOrUpdateWithHttpOperationResponse(resourceGroupName, routeFilterName, ruleName, routeFilterRuleParameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.RouteFilterRule);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.createOrUpdateWithHttpOperationResponse(resourceGroupName, routeFilterName, ruleName, routeFilterRuleParameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.RouteFilterRule;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.createOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, routeFilterName, ruleName, routeFilterRuleParameters, options, callback);
   }
 
   /**
@@ -1031,26 +419,7 @@ export class RouteFilterRules {
   update(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.PatchRouteFilterRule, callback: msRest.ServiceCallback<Models.RouteFilterRule>): void;
   update(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.PatchRouteFilterRule, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RouteFilterRule>): void;
   update(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.PatchRouteFilterRule, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RouteFilterRule>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.RouteFilterRule>;
-    if (!callback) {
-      return this.updateWithHttpOperationResponse(resourceGroupName, routeFilterName, ruleName, routeFilterRuleParameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.RouteFilterRule);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.updateWithHttpOperationResponse(resourceGroupName, routeFilterName, ruleName, routeFilterRuleParameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.RouteFilterRule;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.updateWithHttpOperationResponse.bind(this), resourceGroupName, routeFilterName, ruleName, routeFilterRuleParameters, options, callback);
   }
 
   /**
@@ -1076,26 +445,7 @@ export class RouteFilterRules {
   listByRouteFilter(resourceGroupName: string, routeFilterName: string, callback: msRest.ServiceCallback<Models.RouteFilterRuleListResult>): void;
   listByRouteFilter(resourceGroupName: string, routeFilterName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RouteFilterRuleListResult>): void;
   listByRouteFilter(resourceGroupName: string, routeFilterName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RouteFilterRuleListResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.RouteFilterRuleListResult>;
-    if (!callback) {
-      return this.listByRouteFilterWithHttpOperationResponse(resourceGroupName, routeFilterName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.RouteFilterRuleListResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.listByRouteFilterWithHttpOperationResponse(resourceGroupName, routeFilterName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.RouteFilterRuleListResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.listByRouteFilterWithHttpOperationResponse.bind(this), resourceGroupName, routeFilterName, options, callback);
   }
 
   /**
@@ -1123,26 +473,7 @@ export class RouteFilterRules {
   beginDeleteMethod(resourceGroupName: string, routeFilterName: string, ruleName: string, callback: msRest.ServiceCallback<void>): void;
   beginDeleteMethod(resourceGroupName: string, routeFilterName: string, ruleName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   beginDeleteMethod(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, routeFilterName, ruleName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, routeFilterName, ruleName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginDeleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, routeFilterName, ruleName, options, callback);
   }
 
   /**
@@ -1173,26 +504,7 @@ export class RouteFilterRules {
   beginCreateOrUpdate(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.RouteFilterRule, callback: msRest.ServiceCallback<Models.RouteFilterRule>): void;
   beginCreateOrUpdate(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.RouteFilterRule, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RouteFilterRule>): void;
   beginCreateOrUpdate(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.RouteFilterRule, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RouteFilterRule>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.RouteFilterRule>;
-    if (!callback) {
-      return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, routeFilterName, ruleName, routeFilterRuleParameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.RouteFilterRule);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, routeFilterName, ruleName, routeFilterRuleParameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.RouteFilterRule;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginCreateOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, routeFilterName, ruleName, routeFilterRuleParameters, options, callback);
   }
 
   /**
@@ -1223,26 +535,7 @@ export class RouteFilterRules {
   beginUpdate(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.PatchRouteFilterRule, callback: msRest.ServiceCallback<Models.RouteFilterRule>): void;
   beginUpdate(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.PatchRouteFilterRule, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RouteFilterRule>): void;
   beginUpdate(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.PatchRouteFilterRule, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RouteFilterRule>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.RouteFilterRule>;
-    if (!callback) {
-      return this.beginUpdateWithHttpOperationResponse(resourceGroupName, routeFilterName, ruleName, routeFilterRuleParameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.RouteFilterRule);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginUpdateWithHttpOperationResponse(resourceGroupName, routeFilterName, ruleName, routeFilterRuleParameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.RouteFilterRule;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginUpdateWithHttpOperationResponse.bind(this), resourceGroupName, routeFilterName, ruleName, routeFilterRuleParameters, options, callback);
   }
 
   /**
@@ -1266,26 +559,467 @@ export class RouteFilterRules {
   listByRouteFilterNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.RouteFilterRuleListResult>): void;
   listByRouteFilterNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RouteFilterRuleListResult>): void;
   listByRouteFilterNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RouteFilterRuleListResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.RouteFilterRuleListResult>;
-    if (!callback) {
-      return this.listByRouteFilterNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.RouteFilterRuleListResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.listByRouteFilterNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.RouteFilterRuleListResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.listByRouteFilterNextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
   }
 
 }
+
+// Operation Specifications
+const getOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/routeFilters/{routeFilterName}/routeFilterRules/{ruleName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "routeFilterName",
+      mapper: {
+        required: true,
+        serializedName: "routeFilterName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "ruleName",
+      mapper: {
+        required: true,
+        serializedName: "ruleName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.RouteFilterRule
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const listByRouteFilterOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/routeFilters/{routeFilterName}/routeFilterRules",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "routeFilterName",
+      mapper: {
+        required: true,
+        serializedName: "routeFilterName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.RouteFilterRuleListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginDeleteMethodOperationSpec: msRest.OperationSpec = {
+  httpMethod: "DELETE",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/routeFilters/{routeFilterName}/routeFilterRules/{ruleName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "routeFilterName",
+      mapper: {
+        required: true,
+        serializedName: "routeFilterName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "ruleName",
+      mapper: {
+        required: true,
+        serializedName: "ruleName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    202: {},
+    200: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/routeFilters/{routeFilterName}/routeFilterRules/{ruleName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "routeFilterName",
+      mapper: {
+        required: true,
+        serializedName: "routeFilterName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "ruleName",
+      mapper: {
+        required: true,
+        serializedName: "ruleName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "routeFilterRuleParameters",
+    mapper: {
+      ...Mappers.RouteFilterRule,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.RouteFilterRule
+    },
+    201: {
+      bodyMapper: Mappers.RouteFilterRule
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginUpdateOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PATCH",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/routeFilters/{routeFilterName}/routeFilterRules/{ruleName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "routeFilterName",
+      mapper: {
+        required: true,
+        serializedName: "routeFilterName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "ruleName",
+      mapper: {
+        required: true,
+        serializedName: "ruleName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "routeFilterRuleParameters",
+    mapper: {
+      ...Mappers.PatchRouteFilterRule,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.RouteFilterRule
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const listByRouteFilterNextOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  baseUrl: "https://management.azure.com",
+  path: "{nextLink}",
+  urlParameters: [
+    {
+      parameterPath: "nextPageLink",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.RouteFilterRuleListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

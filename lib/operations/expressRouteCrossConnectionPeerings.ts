@@ -12,7 +12,7 @@ import { NetworkManagementClientContext } from "../networkManagementClientContex
 /** Class representing a ExpressRouteCrossConnectionPeerings. */
 export class ExpressRouteCrossConnectionPeerings {
   private readonly client: NetworkManagementClientContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a ExpressRouteCrossConnectionPeerings.
    * @param {NetworkManagementClientContext} client Reference to the service client.
@@ -36,97 +36,14 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async listWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionPeeringList>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            crossConnectionName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCrossConnections/{crossConnectionName}/peerings",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "crossConnectionName",
-              mapper: {
-                required: true,
-                serializedName: "crossConnectionName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ExpressRouteCrossConnectionPeeringList
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  listWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionPeeringList>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        crossConnectionName,
+        options
+      },
+      listOperationSpec);
   }
 
 
@@ -147,24 +64,14 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async deleteMethodWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, crossConnectionName, peeringName, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  deleteMethodWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, crossConnectionName, peeringName, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
-      // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        // Deserialize Response
+        return operationRes;
+      });
   }
 
   /**
@@ -184,108 +91,15 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionPeering>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            crossConnectionName,
-            peeringName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCrossConnections/{crossConnectionName}/peerings/{peeringName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "crossConnectionName",
-              mapper: {
-                required: true,
-                serializedName: "crossConnectionName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "peeringName",
-              mapper: {
-                required: true,
-                serializedName: "peeringName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ExpressRouteCrossConnectionPeering
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionPeering>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        crossConnectionName,
+        peeringName,
+        options
+      },
+      getOperationSpec);
   }
 
 
@@ -309,36 +123,27 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async createOrUpdateWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, crossConnectionName, peeringName, peeringParameters, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
-      let httpRequest = operationRes.request;
+  createOrUpdateWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, crossConnectionName, peeringName, peeringParameters, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
+        let httpRequest = operationRes.request;
 
-      // Deserialize Response
-      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      if (parsedResponse != undefined) {
-        try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.ExpressRouteCrossConnectionPeering, parsedResponse, "operationRes.parsedBody")
-        } catch (error) {
-          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
+        // Deserialize Response
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+        if (parsedResponse != undefined) {
+          try {
+            const serializer = new msRest.Serializer(Mappers);
+            operationRes.parsedBody = serializer.deserialize(Mappers.ExpressRouteCrossConnectionPeering, parsedResponse, "operationRes.parsedBody")
+          } catch (error) {
+            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+            deserializationError.request = msRest.stripRequest(httpRequest);
+            deserializationError.response = msRest.stripResponse(operationRes);
+            throw deserializationError;
+          }
         }
-      }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
   /**
@@ -358,108 +163,15 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            crossConnectionName,
-            peeringName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCrossConnections/{crossConnectionName}/peerings/{peeringName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "crossConnectionName",
-              mapper: {
-                required: true,
-                serializedName: "crossConnectionName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "peeringName",
-              mapper: {
-                required: true,
-                serializedName: "peeringName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            202: {},
-            204: {},
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        crossConnectionName,
+        peeringName,
+        options
+      },
+      beginDeleteMethodOperationSpec);
   }
 
   /**
@@ -482,120 +194,16 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionPeering>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            crossConnectionName,
-            peeringName,
-            peeringParameters,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCrossConnections/{crossConnectionName}/peerings/{peeringName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "crossConnectionName",
-              mapper: {
-                required: true,
-                serializedName: "crossConnectionName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "peeringName",
-              mapper: {
-                required: true,
-                serializedName: "peeringName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "peeringParameters",
-            mapper: {
-              ...Mappers.ExpressRouteCrossConnectionPeering,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.ExpressRouteCrossConnectionPeering
-            },
-            201: {
-              bodyMapper: Mappers.ExpressRouteCrossConnectionPeering
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionPeering>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        crossConnectionName,
+        peeringName,
+        peeringParameters,
+        options
+      },
+      beginCreateOrUpdateOperationSpec);
   }
 
   /**
@@ -611,60 +219,13 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionPeeringList>> {
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "GET",
-          baseUrl: "https://management.azure.com",
-          path: "{nextLink}",
-          urlParameters: [
-            {
-              parameterPath: "nextPageLink",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "nextLink",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ExpressRouteCrossConnectionPeeringList
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionPeeringList>> {
+    return this.client.sendOperationRequest(
+      {
+        nextPageLink,
+        options
+      },
+      listNextOperationSpec);
   }
 
   /**
@@ -690,26 +251,7 @@ export class ExpressRouteCrossConnectionPeerings {
   list(resourceGroupName: string, crossConnectionName: string, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeeringList>): void;
   list(resourceGroupName: string, crossConnectionName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeeringList>): void;
   list(resourceGroupName: string, crossConnectionName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeeringList>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeeringList>;
-    if (!callback) {
-      return this.listWithHttpOperationResponse(resourceGroupName, crossConnectionName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ExpressRouteCrossConnectionPeeringList);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.listWithHttpOperationResponse(resourceGroupName, crossConnectionName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ExpressRouteCrossConnectionPeeringList;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, options, callback);
   }
 
   /**
@@ -737,26 +279,7 @@ export class ExpressRouteCrossConnectionPeerings {
   deleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string, callback: msRest.ServiceCallback<void>): void;
   deleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   deleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.deleteMethodWithHttpOperationResponse(resourceGroupName, crossConnectionName, peeringName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.deleteMethodWithHttpOperationResponse(resourceGroupName, crossConnectionName, peeringName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.deleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, peeringName, options, callback);
   }
 
   /**
@@ -784,26 +307,7 @@ export class ExpressRouteCrossConnectionPeerings {
   get(resourceGroupName: string, crossConnectionName: string, peeringName: string, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>): void;
   get(resourceGroupName: string, crossConnectionName: string, peeringName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>): void;
   get(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>;
-    if (!callback) {
-      return this.getWithHttpOperationResponse(resourceGroupName, crossConnectionName, peeringName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ExpressRouteCrossConnectionPeering);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getWithHttpOperationResponse(resourceGroupName, crossConnectionName, peeringName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ExpressRouteCrossConnectionPeering;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, peeringName, options, callback);
   }
 
   /**
@@ -834,26 +338,7 @@ export class ExpressRouteCrossConnectionPeerings {
   createOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>): void;
   createOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>): void;
   createOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>;
-    if (!callback) {
-      return this.createOrUpdateWithHttpOperationResponse(resourceGroupName, crossConnectionName, peeringName, peeringParameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ExpressRouteCrossConnectionPeering);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.createOrUpdateWithHttpOperationResponse(resourceGroupName, crossConnectionName, peeringName, peeringParameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ExpressRouteCrossConnectionPeering;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.createOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, peeringName, peeringParameters, options, callback);
   }
 
   /**
@@ -881,26 +366,7 @@ export class ExpressRouteCrossConnectionPeerings {
   beginDeleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string, callback: msRest.ServiceCallback<void>): void;
   beginDeleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   beginDeleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, crossConnectionName, peeringName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, crossConnectionName, peeringName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginDeleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, peeringName, options, callback);
   }
 
   /**
@@ -931,26 +397,7 @@ export class ExpressRouteCrossConnectionPeerings {
   beginCreateOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>): void;
   beginCreateOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>): void;
   beginCreateOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>;
-    if (!callback) {
-      return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, crossConnectionName, peeringName, peeringParameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ExpressRouteCrossConnectionPeering);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, crossConnectionName, peeringName, peeringParameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ExpressRouteCrossConnectionPeering;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginCreateOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, peeringName, peeringParameters, options, callback);
   }
 
   /**
@@ -974,26 +421,377 @@ export class ExpressRouteCrossConnectionPeerings {
   listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeeringList>): void;
   listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeeringList>): void;
   listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeeringList>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeeringList>;
-    if (!callback) {
-      return this.listNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ExpressRouteCrossConnectionPeeringList);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.listNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ExpressRouteCrossConnectionPeeringList;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.listNextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
   }
 
 }
+
+// Operation Specifications
+const listOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCrossConnections/{crossConnectionName}/peerings",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "crossConnectionName",
+      mapper: {
+        required: true,
+        serializedName: "crossConnectionName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ExpressRouteCrossConnectionPeeringList
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCrossConnections/{crossConnectionName}/peerings/{peeringName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "crossConnectionName",
+      mapper: {
+        required: true,
+        serializedName: "crossConnectionName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "peeringName",
+      mapper: {
+        required: true,
+        serializedName: "peeringName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ExpressRouteCrossConnectionPeering
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginDeleteMethodOperationSpec: msRest.OperationSpec = {
+  httpMethod: "DELETE",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCrossConnections/{crossConnectionName}/peerings/{peeringName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "crossConnectionName",
+      mapper: {
+        required: true,
+        serializedName: "crossConnectionName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "peeringName",
+      mapper: {
+        required: true,
+        serializedName: "peeringName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCrossConnections/{crossConnectionName}/peerings/{peeringName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "crossConnectionName",
+      mapper: {
+        required: true,
+        serializedName: "crossConnectionName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "peeringName",
+      mapper: {
+        required: true,
+        serializedName: "peeringName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "peeringParameters",
+    mapper: {
+      ...Mappers.ExpressRouteCrossConnectionPeering,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ExpressRouteCrossConnectionPeering
+    },
+    201: {
+      bodyMapper: Mappers.ExpressRouteCrossConnectionPeering
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const listNextOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  baseUrl: "https://management.azure.com",
+  path: "{nextLink}",
+  urlParameters: [
+    {
+      parameterPath: "nextPageLink",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ExpressRouteCrossConnectionPeeringList
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

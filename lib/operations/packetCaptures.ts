@@ -12,7 +12,7 @@ import { NetworkManagementClientContext } from "../networkManagementClientContex
 /** Class representing a PacketCaptures. */
 export class PacketCaptures {
   private readonly client: NetworkManagementClientContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a PacketCaptures.
    * @param {NetworkManagementClientContext} client Reference to the service client.
@@ -41,36 +41,27 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async createWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginCreateWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, parameters, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
-      let httpRequest = operationRes.request;
+  createWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginCreateWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, parameters, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
+        let httpRequest = operationRes.request;
 
-      // Deserialize Response
-      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      if (parsedResponse != undefined) {
-        try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.PacketCaptureResult, parsedResponse, "operationRes.parsedBody")
-        } catch (error) {
-          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
+        // Deserialize Response
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+        if (parsedResponse != undefined) {
+          try {
+            const serializer = new msRest.Serializer(Mappers);
+            operationRes.parsedBody = serializer.deserialize(Mappers.PacketCaptureResult, parsedResponse, "operationRes.parsedBody")
+          } catch (error) {
+            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+            deserializationError.request = msRest.stripRequest(httpRequest);
+            deserializationError.response = msRest.stripResponse(operationRes);
+            throw deserializationError;
+          }
         }
-      }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
   /**
@@ -90,108 +81,15 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureResult>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            networkWatcherName,
-            packetCaptureName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/packetCaptures/{packetCaptureName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "networkWatcherName",
-              mapper: {
-                required: true,
-                serializedName: "networkWatcherName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "packetCaptureName",
-              mapper: {
-                required: true,
-                serializedName: "packetCaptureName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.PacketCaptureResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureResult>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        networkWatcherName,
+        packetCaptureName,
+        options
+      },
+      getOperationSpec);
   }
 
 
@@ -212,24 +110,14 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async deleteMethodWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  deleteMethodWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
-      // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        // Deserialize Response
+        return operationRes;
+      });
   }
 
 
@@ -250,24 +138,14 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async stopWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginStopWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  stopWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginStopWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
-      // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        // Deserialize Response
+        return operationRes;
+      });
   }
 
 
@@ -288,36 +166,27 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getStatusWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginGetStatusWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
-      let httpRequest = operationRes.request;
+  getStatusWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginGetStatusWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
+        let httpRequest = operationRes.request;
 
-      // Deserialize Response
-      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      if (parsedResponse != undefined) {
-        try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.PacketCaptureQueryStatusResult, parsedResponse, "operationRes.parsedBody")
-        } catch (error) {
-          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
+        // Deserialize Response
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+        if (parsedResponse != undefined) {
+          try {
+            const serializer = new msRest.Serializer(Mappers);
+            operationRes.parsedBody = serializer.deserialize(Mappers.PacketCaptureQueryStatusResult, parsedResponse, "operationRes.parsedBody")
+          } catch (error) {
+            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+            deserializationError.request = msRest.stripRequest(httpRequest);
+            deserializationError.response = msRest.stripResponse(operationRes);
+            throw deserializationError;
+          }
         }
-      }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
   /**
@@ -335,97 +204,14 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async listWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureListResult>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            networkWatcherName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/packetCaptures",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "networkWatcherName",
-              mapper: {
-                required: true,
-                serializedName: "networkWatcherName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.PacketCaptureListResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  listWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureListResult>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        networkWatcherName,
+        options
+      },
+      listOperationSpec);
   }
 
   /**
@@ -447,117 +233,16 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginCreateWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureResult>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            networkWatcherName,
-            packetCaptureName,
-            parameters,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/packetCaptures/{packetCaptureName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "networkWatcherName",
-              mapper: {
-                required: true,
-                serializedName: "networkWatcherName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "packetCaptureName",
-              mapper: {
-                required: true,
-                serializedName: "packetCaptureName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "parameters",
-            mapper: {
-              ...Mappers.PacketCapture,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            201: {
-              bodyMapper: Mappers.PacketCaptureResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginCreateWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureResult>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        networkWatcherName,
+        packetCaptureName,
+        parameters,
+        options
+      },
+      beginCreateOperationSpec);
   }
 
   /**
@@ -577,107 +262,15 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            networkWatcherName,
-            packetCaptureName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/packetCaptures/{packetCaptureName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "networkWatcherName",
-              mapper: {
-                required: true,
-                serializedName: "networkWatcherName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "packetCaptureName",
-              mapper: {
-                required: true,
-                serializedName: "packetCaptureName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            204: {},
-            202: {},
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        networkWatcherName,
+        packetCaptureName,
+        options
+      },
+      beginDeleteMethodOperationSpec);
   }
 
   /**
@@ -697,107 +290,15 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginStopWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            networkWatcherName,
-            packetCaptureName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/packetCaptures/{packetCaptureName}/stop",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "networkWatcherName",
-              mapper: {
-                required: true,
-                serializedName: "networkWatcherName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "packetCaptureName",
-              mapper: {
-                required: true,
-                serializedName: "packetCaptureName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            202: {},
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginStopWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        networkWatcherName,
+        packetCaptureName,
+        options
+      },
+      beginStopOperationSpec);
   }
 
   /**
@@ -817,111 +318,15 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginGetStatusWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureQueryStatusResult>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            networkWatcherName,
-            packetCaptureName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/packetCaptures/{packetCaptureName}/queryStatus",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "networkWatcherName",
-              mapper: {
-                required: true,
-                serializedName: "networkWatcherName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "packetCaptureName",
-              mapper: {
-                required: true,
-                serializedName: "packetCaptureName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.PacketCaptureQueryStatusResult
-            },
-            202: {
-              bodyMapper: Mappers.PacketCaptureQueryStatusResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginGetStatusWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureQueryStatusResult>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        networkWatcherName,
+        packetCaptureName,
+        options
+      },
+      beginGetStatusOperationSpec);
   }
 
   /**
@@ -951,26 +356,7 @@ export class PacketCaptures {
   create(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, callback: msRest.ServiceCallback<Models.PacketCaptureResult>): void;
   create(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PacketCaptureResult>): void;
   create(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.PacketCaptureResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.PacketCaptureResult>;
-    if (!callback) {
-      return this.createWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, parameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.PacketCaptureResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.createWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, parameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.PacketCaptureResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.createWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, packetCaptureName, parameters, options, callback);
   }
 
   /**
@@ -998,26 +384,7 @@ export class PacketCaptures {
   get(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, callback: msRest.ServiceCallback<Models.PacketCaptureResult>): void;
   get(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PacketCaptureResult>): void;
   get(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.PacketCaptureResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.PacketCaptureResult>;
-    if (!callback) {
-      return this.getWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.PacketCaptureResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.PacketCaptureResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, packetCaptureName, options, callback);
   }
 
   /**
@@ -1045,26 +412,7 @@ export class PacketCaptures {
   deleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, callback: msRest.ServiceCallback<void>): void;
   deleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   deleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.deleteMethodWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.deleteMethodWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.deleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, packetCaptureName, options, callback);
   }
 
   /**
@@ -1092,26 +440,7 @@ export class PacketCaptures {
   stop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, callback: msRest.ServiceCallback<void>): void;
   stop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   stop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.stopWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.stopWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.stopWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, packetCaptureName, options, callback);
   }
 
   /**
@@ -1139,26 +468,7 @@ export class PacketCaptures {
   getStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, callback: msRest.ServiceCallback<Models.PacketCaptureQueryStatusResult>): void;
   getStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PacketCaptureQueryStatusResult>): void;
   getStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.PacketCaptureQueryStatusResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.PacketCaptureQueryStatusResult>;
-    if (!callback) {
-      return this.getStatusWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.PacketCaptureQueryStatusResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getStatusWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.PacketCaptureQueryStatusResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getStatusWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, packetCaptureName, options, callback);
   }
 
   /**
@@ -1184,26 +494,7 @@ export class PacketCaptures {
   list(resourceGroupName: string, networkWatcherName: string, callback: msRest.ServiceCallback<Models.PacketCaptureListResult>): void;
   list(resourceGroupName: string, networkWatcherName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PacketCaptureListResult>): void;
   list(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.PacketCaptureListResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.PacketCaptureListResult>;
-    if (!callback) {
-      return this.listWithHttpOperationResponse(resourceGroupName, networkWatcherName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.PacketCaptureListResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.listWithHttpOperationResponse(resourceGroupName, networkWatcherName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.PacketCaptureListResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, options, callback);
   }
 
   /**
@@ -1233,26 +524,7 @@ export class PacketCaptures {
   beginCreate(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, callback: msRest.ServiceCallback<Models.PacketCaptureResult>): void;
   beginCreate(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PacketCaptureResult>): void;
   beginCreate(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.PacketCaptureResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.PacketCaptureResult>;
-    if (!callback) {
-      return this.beginCreateWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, parameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.PacketCaptureResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginCreateWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, parameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.PacketCaptureResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginCreateWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, packetCaptureName, parameters, options, callback);
   }
 
   /**
@@ -1280,26 +552,7 @@ export class PacketCaptures {
   beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, callback: msRest.ServiceCallback<void>): void;
   beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginDeleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, packetCaptureName, options, callback);
   }
 
   /**
@@ -1327,26 +580,7 @@ export class PacketCaptures {
   beginStop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, callback: msRest.ServiceCallback<void>): void;
   beginStop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   beginStop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.beginStopWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginStopWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginStopWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, packetCaptureName, options, callback);
   }
 
   /**
@@ -1374,26 +608,499 @@ export class PacketCaptures {
   beginGetStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, callback: msRest.ServiceCallback<Models.PacketCaptureQueryStatusResult>): void;
   beginGetStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PacketCaptureQueryStatusResult>): void;
   beginGetStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.PacketCaptureQueryStatusResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.PacketCaptureQueryStatusResult>;
-    if (!callback) {
-      return this.beginGetStatusWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.PacketCaptureQueryStatusResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginGetStatusWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.PacketCaptureQueryStatusResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginGetStatusWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, packetCaptureName, options, callback);
   }
 
 }
+
+// Operation Specifications
+const getOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/packetCaptures/{packetCaptureName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "networkWatcherName",
+      mapper: {
+        required: true,
+        serializedName: "networkWatcherName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "packetCaptureName",
+      mapper: {
+        required: true,
+        serializedName: "packetCaptureName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.PacketCaptureResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const listOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/packetCaptures",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "networkWatcherName",
+      mapper: {
+        required: true,
+        serializedName: "networkWatcherName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.PacketCaptureListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginCreateOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/packetCaptures/{packetCaptureName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "networkWatcherName",
+      mapper: {
+        required: true,
+        serializedName: "networkWatcherName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "packetCaptureName",
+      mapper: {
+        required: true,
+        serializedName: "packetCaptureName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "parameters",
+    mapper: {
+      ...Mappers.PacketCapture,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    201: {
+      bodyMapper: Mappers.PacketCaptureResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginDeleteMethodOperationSpec: msRest.OperationSpec = {
+  httpMethod: "DELETE",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/packetCaptures/{packetCaptureName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "networkWatcherName",
+      mapper: {
+        required: true,
+        serializedName: "networkWatcherName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "packetCaptureName",
+      mapper: {
+        required: true,
+        serializedName: "packetCaptureName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    204: {},
+    202: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginStopOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/packetCaptures/{packetCaptureName}/stop",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "networkWatcherName",
+      mapper: {
+        required: true,
+        serializedName: "networkWatcherName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "packetCaptureName",
+      mapper: {
+        required: true,
+        serializedName: "packetCaptureName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    202: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginGetStatusOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}/packetCaptures/{packetCaptureName}/queryStatus",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "networkWatcherName",
+      mapper: {
+        required: true,
+        serializedName: "networkWatcherName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "packetCaptureName",
+      mapper: {
+        required: true,
+        serializedName: "packetCaptureName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.PacketCaptureQueryStatusResult
+    },
+    202: {
+      bodyMapper: Mappers.PacketCaptureQueryStatusResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

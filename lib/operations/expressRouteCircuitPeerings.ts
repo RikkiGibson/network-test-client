@@ -12,7 +12,7 @@ import { NetworkManagementClientContext } from "../networkManagementClientContex
 /** Class representing a ExpressRouteCircuitPeerings. */
 export class ExpressRouteCircuitPeerings {
   private readonly client: NetworkManagementClientContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a ExpressRouteCircuitPeerings.
    * @param {NetworkManagementClientContext} client Reference to the service client.
@@ -39,24 +39,14 @@ export class ExpressRouteCircuitPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async deleteMethodWithHttpOperationResponse(resourceGroupName: string, circuitName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, circuitName, peeringName, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  deleteMethodWithHttpOperationResponse(resourceGroupName: string, circuitName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, circuitName, peeringName, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
-      // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        // Deserialize Response
+        return operationRes;
+      });
   }
 
   /**
@@ -76,108 +66,15 @@ export class ExpressRouteCircuitPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getWithHttpOperationResponse(resourceGroupName: string, circuitName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitPeering>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            circuitName,
-            peeringName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName}/peerings/{peeringName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "circuitName",
-              mapper: {
-                required: true,
-                serializedName: "circuitName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "peeringName",
-              mapper: {
-                required: true,
-                serializedName: "peeringName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ExpressRouteCircuitPeering
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getWithHttpOperationResponse(resourceGroupName: string, circuitName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitPeering>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        circuitName,
+        peeringName,
+        options
+      },
+      getOperationSpec);
   }
 
 
@@ -201,36 +98,27 @@ export class ExpressRouteCircuitPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async createOrUpdateWithHttpOperationResponse(resourceGroupName: string, circuitName: string, peeringName: string, peeringParameters: Models.ExpressRouteCircuitPeering, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, circuitName, peeringName, peeringParameters, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
-      let httpRequest = operationRes.request;
+  createOrUpdateWithHttpOperationResponse(resourceGroupName: string, circuitName: string, peeringName: string, peeringParameters: Models.ExpressRouteCircuitPeering, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, circuitName, peeringName, peeringParameters, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
+        let httpRequest = operationRes.request;
 
-      // Deserialize Response
-      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      if (parsedResponse != undefined) {
-        try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.ExpressRouteCircuitPeering, parsedResponse, "operationRes.parsedBody")
-        } catch (error) {
-          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
+        // Deserialize Response
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+        if (parsedResponse != undefined) {
+          try {
+            const serializer = new msRest.Serializer(Mappers);
+            operationRes.parsedBody = serializer.deserialize(Mappers.ExpressRouteCircuitPeering, parsedResponse, "operationRes.parsedBody")
+          } catch (error) {
+            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+            deserializationError.request = msRest.stripRequest(httpRequest);
+            deserializationError.response = msRest.stripResponse(operationRes);
+            throw deserializationError;
+          }
         }
-      }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
   /**
@@ -248,97 +136,14 @@ export class ExpressRouteCircuitPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async listWithHttpOperationResponse(resourceGroupName: string, circuitName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitPeeringListResult>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            circuitName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName}/peerings",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "circuitName",
-              mapper: {
-                required: true,
-                serializedName: "circuitName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ExpressRouteCircuitPeeringListResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  listWithHttpOperationResponse(resourceGroupName: string, circuitName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitPeeringListResult>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        circuitName,
+        options
+      },
+      listOperationSpec);
   }
 
   /**
@@ -358,108 +163,15 @@ export class ExpressRouteCircuitPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, circuitName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            circuitName,
-            peeringName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName}/peerings/{peeringName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "circuitName",
-              mapper: {
-                required: true,
-                serializedName: "circuitName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "peeringName",
-              mapper: {
-                required: true,
-                serializedName: "peeringName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            202: {},
-            204: {},
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, circuitName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        circuitName,
+        peeringName,
+        options
+      },
+      beginDeleteMethodOperationSpec);
   }
 
   /**
@@ -482,120 +194,16 @@ export class ExpressRouteCircuitPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, circuitName: string, peeringName: string, peeringParameters: Models.ExpressRouteCircuitPeering, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitPeering>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            circuitName,
-            peeringName,
-            peeringParameters,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName}/peerings/{peeringName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "circuitName",
-              mapper: {
-                required: true,
-                serializedName: "circuitName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "peeringName",
-              mapper: {
-                required: true,
-                serializedName: "peeringName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "peeringParameters",
-            mapper: {
-              ...Mappers.ExpressRouteCircuitPeering,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.ExpressRouteCircuitPeering
-            },
-            201: {
-              bodyMapper: Mappers.ExpressRouteCircuitPeering
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, circuitName: string, peeringName: string, peeringParameters: Models.ExpressRouteCircuitPeering, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitPeering>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        circuitName,
+        peeringName,
+        peeringParameters,
+        options
+      },
+      beginCreateOrUpdateOperationSpec);
   }
 
   /**
@@ -611,60 +219,13 @@ export class ExpressRouteCircuitPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitPeeringListResult>> {
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "GET",
-          baseUrl: "https://management.azure.com",
-          path: "{nextLink}",
-          urlParameters: [
-            {
-              parameterPath: "nextPageLink",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "nextLink",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ExpressRouteCircuitPeeringListResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitPeeringListResult>> {
+    return this.client.sendOperationRequest(
+      {
+        nextPageLink,
+        options
+      },
+      listNextOperationSpec);
   }
 
   /**
@@ -692,26 +253,7 @@ export class ExpressRouteCircuitPeerings {
   deleteMethod(resourceGroupName: string, circuitName: string, peeringName: string, callback: msRest.ServiceCallback<void>): void;
   deleteMethod(resourceGroupName: string, circuitName: string, peeringName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   deleteMethod(resourceGroupName: string, circuitName: string, peeringName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.deleteMethodWithHttpOperationResponse(resourceGroupName, circuitName, peeringName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.deleteMethodWithHttpOperationResponse(resourceGroupName, circuitName, peeringName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.deleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, circuitName, peeringName, options, callback);
   }
 
   /**
@@ -739,26 +281,7 @@ export class ExpressRouteCircuitPeerings {
   get(resourceGroupName: string, circuitName: string, peeringName: string, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitPeering>): void;
   get(resourceGroupName: string, circuitName: string, peeringName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitPeering>): void;
   get(resourceGroupName: string, circuitName: string, peeringName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCircuitPeering>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ExpressRouteCircuitPeering>;
-    if (!callback) {
-      return this.getWithHttpOperationResponse(resourceGroupName, circuitName, peeringName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ExpressRouteCircuitPeering);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getWithHttpOperationResponse(resourceGroupName, circuitName, peeringName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ExpressRouteCircuitPeering;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), resourceGroupName, circuitName, peeringName, options, callback);
   }
 
   /**
@@ -789,26 +312,7 @@ export class ExpressRouteCircuitPeerings {
   createOrUpdate(resourceGroupName: string, circuitName: string, peeringName: string, peeringParameters: Models.ExpressRouteCircuitPeering, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitPeering>): void;
   createOrUpdate(resourceGroupName: string, circuitName: string, peeringName: string, peeringParameters: Models.ExpressRouteCircuitPeering, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitPeering>): void;
   createOrUpdate(resourceGroupName: string, circuitName: string, peeringName: string, peeringParameters: Models.ExpressRouteCircuitPeering, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCircuitPeering>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ExpressRouteCircuitPeering>;
-    if (!callback) {
-      return this.createOrUpdateWithHttpOperationResponse(resourceGroupName, circuitName, peeringName, peeringParameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ExpressRouteCircuitPeering);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.createOrUpdateWithHttpOperationResponse(resourceGroupName, circuitName, peeringName, peeringParameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ExpressRouteCircuitPeering;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.createOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, circuitName, peeringName, peeringParameters, options, callback);
   }
 
   /**
@@ -834,26 +338,7 @@ export class ExpressRouteCircuitPeerings {
   list(resourceGroupName: string, circuitName: string, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitPeeringListResult>): void;
   list(resourceGroupName: string, circuitName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitPeeringListResult>): void;
   list(resourceGroupName: string, circuitName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCircuitPeeringListResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ExpressRouteCircuitPeeringListResult>;
-    if (!callback) {
-      return this.listWithHttpOperationResponse(resourceGroupName, circuitName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ExpressRouteCircuitPeeringListResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.listWithHttpOperationResponse(resourceGroupName, circuitName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ExpressRouteCircuitPeeringListResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), resourceGroupName, circuitName, options, callback);
   }
 
   /**
@@ -881,26 +366,7 @@ export class ExpressRouteCircuitPeerings {
   beginDeleteMethod(resourceGroupName: string, circuitName: string, peeringName: string, callback: msRest.ServiceCallback<void>): void;
   beginDeleteMethod(resourceGroupName: string, circuitName: string, peeringName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   beginDeleteMethod(resourceGroupName: string, circuitName: string, peeringName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, circuitName, peeringName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, circuitName, peeringName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginDeleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, circuitName, peeringName, options, callback);
   }
 
   /**
@@ -931,26 +397,7 @@ export class ExpressRouteCircuitPeerings {
   beginCreateOrUpdate(resourceGroupName: string, circuitName: string, peeringName: string, peeringParameters: Models.ExpressRouteCircuitPeering, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitPeering>): void;
   beginCreateOrUpdate(resourceGroupName: string, circuitName: string, peeringName: string, peeringParameters: Models.ExpressRouteCircuitPeering, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitPeering>): void;
   beginCreateOrUpdate(resourceGroupName: string, circuitName: string, peeringName: string, peeringParameters: Models.ExpressRouteCircuitPeering, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCircuitPeering>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ExpressRouteCircuitPeering>;
-    if (!callback) {
-      return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, circuitName, peeringName, peeringParameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ExpressRouteCircuitPeering);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, circuitName, peeringName, peeringParameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ExpressRouteCircuitPeering;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginCreateOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, circuitName, peeringName, peeringParameters, options, callback);
   }
 
   /**
@@ -974,26 +421,377 @@ export class ExpressRouteCircuitPeerings {
   listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitPeeringListResult>): void;
   listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitPeeringListResult>): void;
   listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCircuitPeeringListResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ExpressRouteCircuitPeeringListResult>;
-    if (!callback) {
-      return this.listNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ExpressRouteCircuitPeeringListResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.listNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ExpressRouteCircuitPeeringListResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.listNextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
   }
 
 }
+
+// Operation Specifications
+const getOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName}/peerings/{peeringName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "circuitName",
+      mapper: {
+        required: true,
+        serializedName: "circuitName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "peeringName",
+      mapper: {
+        required: true,
+        serializedName: "peeringName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ExpressRouteCircuitPeering
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const listOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName}/peerings",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "circuitName",
+      mapper: {
+        required: true,
+        serializedName: "circuitName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ExpressRouteCircuitPeeringListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginDeleteMethodOperationSpec: msRest.OperationSpec = {
+  httpMethod: "DELETE",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName}/peerings/{peeringName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "circuitName",
+      mapper: {
+        required: true,
+        serializedName: "circuitName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "peeringName",
+      mapper: {
+        required: true,
+        serializedName: "peeringName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName}/peerings/{peeringName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "circuitName",
+      mapper: {
+        required: true,
+        serializedName: "circuitName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "peeringName",
+      mapper: {
+        required: true,
+        serializedName: "peeringName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "peeringParameters",
+    mapper: {
+      ...Mappers.ExpressRouteCircuitPeering,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ExpressRouteCircuitPeering
+    },
+    201: {
+      bodyMapper: Mappers.ExpressRouteCircuitPeering
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const listNextOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  baseUrl: "https://management.azure.com",
+  path: "{nextLink}",
+  urlParameters: [
+    {
+      parameterPath: "nextPageLink",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ExpressRouteCircuitPeeringListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

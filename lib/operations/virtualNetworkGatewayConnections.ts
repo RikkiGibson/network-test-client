@@ -12,7 +12,7 @@ import { NetworkManagementClientContext } from "../networkManagementClientContex
 /** Class representing a VirtualNetworkGatewayConnections. */
 export class VirtualNetworkGatewayConnections {
   private readonly client: NetworkManagementClientContext;
-  private readonly serializer = new msRest.Serializer(Mappers);
+
   /**
    * Create a VirtualNetworkGatewayConnections.
    * @param {NetworkManagementClientContext} client Reference to the service client.
@@ -41,36 +41,27 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async createOrUpdateWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
-      let httpRequest = operationRes.request;
+  createOrUpdateWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
+        let httpRequest = operationRes.request;
 
-      // Deserialize Response
-      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      if (parsedResponse != undefined) {
-        try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.VirtualNetworkGatewayConnection, parsedResponse, "operationRes.parsedBody")
-        } catch (error) {
-          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
+        // Deserialize Response
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+        if (parsedResponse != undefined) {
+          try {
+            const serializer = new msRest.Serializer(Mappers);
+            operationRes.parsedBody = serializer.deserialize(Mappers.VirtualNetworkGatewayConnection, parsedResponse, "operationRes.parsedBody")
+          } catch (error) {
+            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+            deserializationError.request = msRest.stripRequest(httpRequest);
+            deserializationError.response = msRest.stripResponse(operationRes);
+            throw deserializationError;
+          }
         }
-      }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
   /**
@@ -89,97 +80,14 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnection>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            virtualNetworkGatewayConnectionName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "virtualNetworkGatewayConnectionName",
-              mapper: {
-                required: true,
-                serializedName: "virtualNetworkGatewayConnectionName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.VirtualNetworkGatewayConnection
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnection>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        virtualNetworkGatewayConnectionName,
+        options
+      },
+      getOperationSpec);
   }
 
 
@@ -199,24 +107,14 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async deleteMethodWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
+  deleteMethodWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
 
-      // Deserialize Response
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        // Deserialize Response
+        return operationRes;
+      });
   }
 
 
@@ -239,36 +137,27 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async updateTagsWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginUpdateTagsWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
-      let httpRequest = operationRes.request;
+  updateTagsWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginUpdateTagsWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
+        let httpRequest = operationRes.request;
 
-      // Deserialize Response
-      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      if (parsedResponse != undefined) {
-        try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.VirtualNetworkGatewayConnectionListEntity, parsedResponse, "operationRes.parsedBody")
-        } catch (error) {
-          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
+        // Deserialize Response
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+        if (parsedResponse != undefined) {
+          try {
+            const serializer = new msRest.Serializer(Mappers);
+            operationRes.parsedBody = serializer.deserialize(Mappers.VirtualNetworkGatewayConnectionListEntity, parsedResponse, "operationRes.parsedBody")
+          } catch (error) {
+            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+            deserializationError.request = msRest.stripRequest(httpRequest);
+            deserializationError.response = msRest.stripResponse(operationRes);
+            throw deserializationError;
+          }
         }
-      }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
 
@@ -292,36 +181,27 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async setSharedKeyWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginSetSharedKeyWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
-      let httpRequest = operationRes.request;
+  setSharedKeyWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginSetSharedKeyWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
+        let httpRequest = operationRes.request;
 
-      // Deserialize Response
-      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      if (parsedResponse != undefined) {
-        try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.ConnectionSharedKey, parsedResponse, "operationRes.parsedBody")
-        } catch (error) {
-          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
+        // Deserialize Response
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+        if (parsedResponse != undefined) {
+          try {
+            const serializer = new msRest.Serializer(Mappers);
+            operationRes.parsedBody = serializer.deserialize(Mappers.ConnectionSharedKey, parsedResponse, "operationRes.parsedBody")
+          } catch (error) {
+            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+            deserializationError.request = msRest.stripRequest(httpRequest);
+            deserializationError.response = msRest.stripResponse(operationRes);
+            throw deserializationError;
+          }
         }
-      }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
   /**
@@ -341,97 +221,14 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async getSharedKeyWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionSharedKey>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            virtualNetworkGatewayConnectionName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}/sharedkey",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "virtualNetworkGatewayConnectionName",
-              mapper: {
-                required: true,
-                serializedName: "virtualNetworkGatewayConnectionName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.ConnectionSharedKey
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  getSharedKeyWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionSharedKey>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        virtualNetworkGatewayConnectionName,
+        options
+      },
+      getSharedKeyOperationSpec);
   }
 
   /**
@@ -448,86 +245,13 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnectionListResult>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.VirtualNetworkGatewayConnectionListResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnectionListResult>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        options
+      },
+      listOperationSpec);
   }
 
 
@@ -552,36 +276,27 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async resetSharedKeyWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    let client = this.client;
-    // Send request
-    let initialResult: msRest.HttpOperationResponse;
-    try {
-      initialResult = await this.beginResetSharedKeyWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await client.getLongRunningOperationResult(initialResult, options);
-      let httpRequest = operationRes.request;
+  resetSharedKeyWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginResetSharedKeyWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options)
+      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
+      .then(operationRes => {
+        let httpRequest = operationRes.request;
 
-      // Deserialize Response
-      let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-      if (parsedResponse != undefined) {
-        try {
-          operationRes.parsedBody = this.serializer.deserialize(Mappers.ConnectionResetSharedKey, parsedResponse, "operationRes.parsedBody")
-        } catch (error) {
-          const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-          deserializationError.request = msRest.stripRequest(httpRequest);
-          deserializationError.response = msRest.stripResponse(operationRes);
-          return Promise.reject(deserializationError);
+        // Deserialize Response
+        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
+        if (parsedResponse != undefined) {
+          try {
+            const serializer = new msRest.Serializer(Mappers);
+            operationRes.parsedBody = serializer.deserialize(Mappers.ConnectionResetSharedKey, parsedResponse, "operationRes.parsedBody")
+          } catch (error) {
+            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
+            deserializationError.request = msRest.stripRequest(httpRequest);
+            deserializationError.response = msRest.stripResponse(operationRes);
+            throw deserializationError;
+          }
         }
-      }
-  } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+        return operationRes;
+      });
   }
 
   /**
@@ -603,109 +318,15 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnection>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            virtualNetworkGatewayConnectionName,
-            parameters,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "virtualNetworkGatewayConnectionName",
-              mapper: {
-                required: true,
-                serializedName: "virtualNetworkGatewayConnectionName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "parameters",
-            mapper: {
-              ...Mappers.VirtualNetworkGatewayConnection,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.VirtualNetworkGatewayConnection
-            },
-            201: {
-              bodyMapper: Mappers.VirtualNetworkGatewayConnection
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnection>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        virtualNetworkGatewayConnectionName,
+        parameters,
+        options
+      },
+      beginCreateOrUpdateOperationSpec);
   }
 
   /**
@@ -724,97 +345,14 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            virtualNetworkGatewayConnectionName,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "DELETE",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "virtualNetworkGatewayConnectionName",
-              mapper: {
-                required: true,
-                serializedName: "virtualNetworkGatewayConnectionName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {},
-            202: {},
-            204: {},
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        virtualNetworkGatewayConnectionName,
+        options
+      },
+      beginDeleteMethodOperationSpec);
   }
 
   /**
@@ -836,106 +374,15 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginUpdateTagsWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnectionListEntity>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            virtualNetworkGatewayConnectionName,
-            parameters,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "PATCH",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "virtualNetworkGatewayConnectionName",
-              mapper: {
-                required: true,
-                serializedName: "virtualNetworkGatewayConnectionName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "parameters",
-            mapper: {
-              ...Mappers.TagsObject,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.VirtualNetworkGatewayConnectionListEntity
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginUpdateTagsWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnectionListEntity>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        virtualNetworkGatewayConnectionName,
+        parameters,
+        options
+      },
+      beginUpdateTagsOperationSpec);
   }
 
   /**
@@ -958,109 +405,15 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginSetSharedKeyWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionSharedKey>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            virtualNetworkGatewayConnectionName,
-            parameters,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "PUT",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}/sharedkey",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "virtualNetworkGatewayConnectionName",
-              mapper: {
-                required: true,
-                serializedName: "virtualNetworkGatewayConnectionName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "parameters",
-            mapper: {
-              ...Mappers.ConnectionSharedKey,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            201: {
-              bodyMapper: Mappers.ConnectionSharedKey
-            },
-            200: {
-              bodyMapper: Mappers.ConnectionSharedKey
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginSetSharedKeyWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionSharedKey>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        virtualNetworkGatewayConnectionName,
+        parameters,
+        options
+      },
+      beginSetSharedKeyOperationSpec);
   }
 
   /**
@@ -1084,107 +437,15 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async beginResetSharedKeyWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionResetSharedKey>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            resourceGroupName,
-            virtualNetworkGatewayConnectionName,
-            parameters,
-            apiVersion,
-            "this.client.subscriptionId": this.client.subscriptionId,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "POST",
-          baseUrl: this.client.baseUri,
-          path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}/sharedkey/reset",
-          urlParameters: [
-            {
-              parameterPath: "resourceGroupName",
-              mapper: {
-                required: true,
-                serializedName: "resourceGroupName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "virtualNetworkGatewayConnectionName",
-              mapper: {
-                required: true,
-                serializedName: "virtualNetworkGatewayConnectionName",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.client.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          requestBody: {
-            parameterPath: "parameters",
-            mapper: {
-              ...Mappers.ConnectionResetSharedKey,
-              required: true
-            }
-          },
-          contentType: "application/json; charset=utf-8",
-          responses: {
-            200: {
-              bodyMapper: Mappers.ConnectionResetSharedKey
-            },
-            202: {},
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  beginResetSharedKeyWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionResetSharedKey>> {
+    return this.client.sendOperationRequest(
+      {
+        resourceGroupName,
+        virtualNetworkGatewayConnectionName,
+        parameters,
+        options
+      },
+      beginResetSharedKeyOperationSpec);
   }
 
   /**
@@ -1201,60 +462,13 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnectionListResult>> {
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.client.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            nextPageLink,
-            "this.client.acceptLanguage": this.client.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "GET",
-          baseUrl: "https://management.azure.com",
-          path: "{nextLink}",
-          urlParameters: [
-            {
-              parameterPath: "nextPageLink",
-              skipEncoding: true,
-              mapper: {
-                required: true,
-                serializedName: "nextLink",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.client.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.VirtualNetworkGatewayConnectionListResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnectionListResult>> {
+    return this.client.sendOperationRequest(
+      {
+        nextPageLink,
+        options
+      },
+      listNextOperationSpec);
   }
 
   /**
@@ -1284,26 +498,7 @@ export class VirtualNetworkGatewayConnections {
   createOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>): void;
   createOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>): void;
   createOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>;
-    if (!callback) {
-      return this.createOrUpdateWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.VirtualNetworkGatewayConnection);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.createOrUpdateWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.VirtualNetworkGatewayConnection;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.createOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options, callback);
   }
 
   /**
@@ -1330,26 +525,7 @@ export class VirtualNetworkGatewayConnections {
   get(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>): void;
   get(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>): void;
   get(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>;
-    if (!callback) {
-      return this.getWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.VirtualNetworkGatewayConnection);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.VirtualNetworkGatewayConnection;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, options, callback);
   }
 
   /**
@@ -1376,26 +552,7 @@ export class VirtualNetworkGatewayConnections {
   deleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, callback: msRest.ServiceCallback<void>): void;
   deleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   deleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.deleteMethodWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.deleteMethodWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.deleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, options, callback);
   }
 
   /**
@@ -1425,26 +582,7 @@ export class VirtualNetworkGatewayConnections {
   updateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListEntity>): void;
   updateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListEntity>): void;
   updateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListEntity>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListEntity>;
-    if (!callback) {
-      return this.updateTagsWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.VirtualNetworkGatewayConnectionListEntity);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.updateTagsWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.VirtualNetworkGatewayConnectionListEntity;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.updateTagsWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options, callback);
   }
 
   /**
@@ -1475,26 +613,7 @@ export class VirtualNetworkGatewayConnections {
   setSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, callback: msRest.ServiceCallback<Models.ConnectionSharedKey>): void;
   setSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ConnectionSharedKey>): void;
   setSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ConnectionSharedKey>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ConnectionSharedKey>;
-    if (!callback) {
-      return this.setSharedKeyWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ConnectionSharedKey);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.setSharedKeyWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ConnectionSharedKey;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.setSharedKeyWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options, callback);
   }
 
   /**
@@ -1522,26 +641,7 @@ export class VirtualNetworkGatewayConnections {
   getSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, callback: msRest.ServiceCallback<Models.ConnectionSharedKey>): void;
   getSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ConnectionSharedKey>): void;
   getSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ConnectionSharedKey>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ConnectionSharedKey>;
-    if (!callback) {
-      return this.getSharedKeyWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ConnectionSharedKey);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.getSharedKeyWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ConnectionSharedKey;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.getSharedKeyWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, options, callback);
   }
 
   /**
@@ -1566,26 +666,7 @@ export class VirtualNetworkGatewayConnections {
   list(resourceGroupName: string, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListResult>): void;
   list(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListResult>): void;
   list(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListResult>;
-    if (!callback) {
-      return this.listWithHttpOperationResponse(resourceGroupName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.VirtualNetworkGatewayConnectionListResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.listWithHttpOperationResponse(resourceGroupName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.VirtualNetworkGatewayConnectionListResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), resourceGroupName, options, callback);
   }
 
   /**
@@ -1617,26 +698,7 @@ export class VirtualNetworkGatewayConnections {
   resetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, callback: msRest.ServiceCallback<Models.ConnectionResetSharedKey>): void;
   resetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ConnectionResetSharedKey>): void;
   resetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ConnectionResetSharedKey>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ConnectionResetSharedKey>;
-    if (!callback) {
-      return this.resetSharedKeyWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ConnectionResetSharedKey);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.resetSharedKeyWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ConnectionResetSharedKey;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.resetSharedKeyWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options, callback);
   }
 
   /**
@@ -1666,26 +728,7 @@ export class VirtualNetworkGatewayConnections {
   beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>): void;
   beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>): void;
   beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>;
-    if (!callback) {
-      return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.VirtualNetworkGatewayConnection);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.VirtualNetworkGatewayConnection;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginCreateOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options, callback);
   }
 
   /**
@@ -1712,26 +755,7 @@ export class VirtualNetworkGatewayConnections {
   beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, callback: msRest.ServiceCallback<void>): void;
   beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
   beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<void>;
-    if (!callback) {
-      return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as void);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as void;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginDeleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, options, callback);
   }
 
   /**
@@ -1761,26 +785,7 @@ export class VirtualNetworkGatewayConnections {
   beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListEntity>): void;
   beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListEntity>): void;
   beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListEntity>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListEntity>;
-    if (!callback) {
-      return this.beginUpdateTagsWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.VirtualNetworkGatewayConnectionListEntity);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginUpdateTagsWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.VirtualNetworkGatewayConnectionListEntity;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginUpdateTagsWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options, callback);
   }
 
   /**
@@ -1811,26 +816,7 @@ export class VirtualNetworkGatewayConnections {
   beginSetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, callback: msRest.ServiceCallback<Models.ConnectionSharedKey>): void;
   beginSetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ConnectionSharedKey>): void;
   beginSetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ConnectionSharedKey>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ConnectionSharedKey>;
-    if (!callback) {
-      return this.beginSetSharedKeyWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ConnectionSharedKey);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginSetSharedKeyWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ConnectionSharedKey;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginSetSharedKeyWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options, callback);
   }
 
   /**
@@ -1862,26 +848,7 @@ export class VirtualNetworkGatewayConnections {
   beginResetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, callback: msRest.ServiceCallback<Models.ConnectionResetSharedKey>): void;
   beginResetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ConnectionResetSharedKey>): void;
   beginResetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ConnectionResetSharedKey>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.ConnectionResetSharedKey>;
-    if (!callback) {
-      return this.beginResetSharedKeyWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.ConnectionResetSharedKey);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.beginResetSharedKeyWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.ConnectionResetSharedKey;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.beginResetSharedKeyWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options, callback);
   }
 
   /**
@@ -1906,26 +873,653 @@ export class VirtualNetworkGatewayConnections {
   listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListResult>): void;
   listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListResult>): void;
   listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListResult>;
-    if (!callback) {
-      return this.listNextWithHttpOperationResponse(nextPageLink, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.VirtualNetworkGatewayConnectionListResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.listNextWithHttpOperationResponse(nextPageLink, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.VirtualNetworkGatewayConnectionListResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.listNextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
   }
 
 }
+
+// Operation Specifications
+const getOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "virtualNetworkGatewayConnectionName",
+      mapper: {
+        required: true,
+        serializedName: "virtualNetworkGatewayConnectionName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.VirtualNetworkGatewayConnection
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const getSharedKeyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}/sharedkey",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "virtualNetworkGatewayConnectionName",
+      mapper: {
+        required: true,
+        serializedName: "virtualNetworkGatewayConnectionName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.ConnectionSharedKey
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const listOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.VirtualNetworkGatewayConnectionListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "virtualNetworkGatewayConnectionName",
+      mapper: {
+        required: true,
+        serializedName: "virtualNetworkGatewayConnectionName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "parameters",
+    mapper: {
+      ...Mappers.VirtualNetworkGatewayConnection,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.VirtualNetworkGatewayConnection
+    },
+    201: {
+      bodyMapper: Mappers.VirtualNetworkGatewayConnection
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginDeleteMethodOperationSpec: msRest.OperationSpec = {
+  httpMethod: "DELETE",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "virtualNetworkGatewayConnectionName",
+      mapper: {
+        required: true,
+        serializedName: "virtualNetworkGatewayConnectionName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {},
+    202: {},
+    204: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginUpdateTagsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PATCH",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "virtualNetworkGatewayConnectionName",
+      mapper: {
+        required: true,
+        serializedName: "virtualNetworkGatewayConnectionName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "parameters",
+    mapper: {
+      ...Mappers.TagsObject,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.VirtualNetworkGatewayConnectionListEntity
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginSetSharedKeyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PUT",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}/sharedkey",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "virtualNetworkGatewayConnectionName",
+      mapper: {
+        required: true,
+        serializedName: "virtualNetworkGatewayConnectionName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "parameters",
+    mapper: {
+      ...Mappers.ConnectionSharedKey,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    201: {
+      bodyMapper: Mappers.ConnectionSharedKey
+    },
+    200: {
+      bodyMapper: Mappers.ConnectionSharedKey
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const beginResetSharedKeyOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}/sharedkey/reset",
+  urlParameters: [
+    {
+      parameterPath: "resourceGroupName",
+      mapper: {
+        required: true,
+        serializedName: "resourceGroupName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "virtualNetworkGatewayConnectionName",
+      mapper: {
+        required: true,
+        serializedName: "virtualNetworkGatewayConnectionName",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  requestBody: {
+    parameterPath: "parameters",
+    mapper: {
+      ...Mappers.ConnectionResetSharedKey,
+      required: true
+    }
+  },
+  contentType: "application/json; charset=utf-8",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ConnectionResetSharedKey
+    },
+    202: {},
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
+
+const listNextOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  baseUrl: "https://management.azure.com",
+  path: "{nextLink}",
+  urlParameters: [
+    {
+      parameterPath: "nextPageLink",
+      skipEncoding: true,
+      mapper: {
+        required: true,
+        serializedName: "nextLink",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.VirtualNetworkGatewayConnectionListResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};

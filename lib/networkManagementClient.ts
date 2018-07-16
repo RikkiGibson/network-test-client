@@ -13,8 +13,6 @@ import * as operations from "./operations";
 
 
 class NetworkManagementClient extends NetworkManagementClientContext {
-  serializer = new msRest.Serializer(Mappers);
-
   // Operation groups
   applicationGateways: operations.ApplicationGateways;
   applicationSecurityGroups: operations.ApplicationSecurityGroups;
@@ -147,97 +145,14 @@ class NetworkManagementClient extends NetworkManagementClientContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  async checkDnsNameAvailabilityWithHttpOperationResponse(location: string, domainNameLabel: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DnsNameAvailabilityResult>> {
-    let apiVersion = '2018-04-01';
-
-    let operationRes: msRest.HttpOperationResponse;
-    try {
-      operationRes = await this.sendOperationRequest(
-        msRest.createOperationArguments(
-          {
-            location,
-            domainNameLabel,
-            apiVersion,
-            "this.subscriptionId": this.subscriptionId,
-            "this.acceptLanguage": this.acceptLanguage
-          },
-          options),
-        {
-          httpMethod: "GET",
-          baseUrl: this.baseUri,
-          path: "subscriptions/{subscriptionId}/providers/Microsoft.Network/locations/{location}/CheckDnsNameAvailability",
-          urlParameters: [
-            {
-              parameterPath: "location",
-              mapper: {
-                required: true,
-                serializedName: "location",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "this.subscriptionId",
-              mapper: {
-                required: true,
-                serializedName: "subscriptionId",
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          queryParameters: [
-            {
-              parameterPath: "domainNameLabel",
-              mapper: {
-                required: true,
-                serializedName: "domainNameLabel",
-                type: {
-                  name: "String"
-                }
-              }
-            },
-            {
-              parameterPath: "apiVersion",
-              mapper: {
-                required: true,
-                isConstant: true,
-                serializedName: "api-version",
-                defaultValue: '2018-04-01',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          headerParameters: [
-            {
-              parameterPath: "this.acceptLanguage",
-              mapper: {
-                serializedName: "accept-language",
-                defaultValue: 'en-US',
-                type: {
-                  name: "String"
-                }
-              }
-            }
-          ],
-          responses: {
-            200: {
-              bodyMapper: Mappers.DnsNameAvailabilityResult
-            },
-            default: {
-              bodyMapper: Mappers.CloudError
-            }
-          },
-          serializer: this.serializer
-        });
-    } catch (err) {
-      return Promise.reject(err);
-    }
-    return Promise.resolve(operationRes);
+  checkDnsNameAvailabilityWithHttpOperationResponse(location: string, domainNameLabel: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DnsNameAvailabilityResult>> {
+    return this.sendOperationRequest(
+      {
+        location,
+        domainNameLabel,
+        options
+      },
+      checkDnsNameAvailabilityOperationSpec);
   }
 
   /**
@@ -264,27 +179,81 @@ class NetworkManagementClient extends NetworkManagementClientContext {
   checkDnsNameAvailability(location: string, domainNameLabel: string, callback: msRest.ServiceCallback<Models.DnsNameAvailabilityResult>): void;
   checkDnsNameAvailability(location: string, domainNameLabel: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DnsNameAvailabilityResult>): void;
   checkDnsNameAvailability(location: string, domainNameLabel: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DnsNameAvailabilityResult>): any {
-    if (!callback && typeof options === 'function') {
-      callback = options;
-      options = undefined;
-    }
-    let cb = callback as msRest.ServiceCallback<Models.DnsNameAvailabilityResult>;
-    if (!callback) {
-      return this.checkDnsNameAvailabilityWithHttpOperationResponse(location, domainNameLabel, options).then((operationRes: msRest.HttpOperationResponse) => {
-        return Promise.resolve(operationRes.parsedBody as Models.DnsNameAvailabilityResult);
-      }).catch((err: Error) => {
-        return Promise.reject(err);
-      });
-    } else {
-      msRest.promiseToCallback(this.checkDnsNameAvailabilityWithHttpOperationResponse(location, domainNameLabel, options))((err: Error, data: msRest.HttpOperationResponse) => {
-        if (err) {
-          return cb(err);
-        }
-        let result = data.parsedBody as Models.DnsNameAvailabilityResult;
-        return cb(err, result, data.request, data);
-      });
-    }
+    return msRest.responseToBody(this.checkDnsNameAvailabilityWithHttpOperationResponse.bind(this), location, domainNameLabel, options, callback);
   }
 }
+
+// Operation Specifications
+const checkDnsNameAvailabilityOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "subscriptions/{subscriptionId}/providers/Microsoft.Network/locations/{location}/CheckDnsNameAvailability",
+  urlParameters: [
+    {
+      parameterPath: "location",
+      mapper: {
+        required: true,
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "subscriptionId",
+      mapper: {
+        required: true,
+        serializedName: "subscriptionId",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  queryParameters: [
+    {
+      parameterPath: "domainNameLabel",
+      mapper: {
+        required: true,
+        serializedName: "domainNameLabel",
+        type: {
+          name: "String"
+        }
+      }
+    },
+    {
+      parameterPath: "apiVersion",
+      mapper: {
+        required: true,
+        isConstant: true,
+        serializedName: "api-version",
+        defaultValue: '2018-04-01',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  headerParameters: [
+    {
+      parameterPath: "acceptLanguage",
+      mapper: {
+        serializedName: "accept-language",
+        defaultValue: 'en-US',
+        type: {
+          name: "String"
+        }
+      }
+    }
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.DnsNameAvailabilityResult
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  serializer: new msRest.Serializer(Mappers)
+};
 
 export { NetworkManagementClient, Models as NetworkManagementModels, Mappers as NetworkManagementMappers };

@@ -19,7 +19,6 @@ export class NetworkManagementClientContext extends msRestAzure.AzureServiceClie
   acceptLanguage: string;
 
   longRunningOperationRetryTimeout: number;
-  baseUri: string;
 
   /**
    * @class

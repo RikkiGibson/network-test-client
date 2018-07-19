@@ -43,7 +43,7 @@ You can regenerate the client by running the following command:
 autorest --typescript \
   --azure-arm \
   --use=@microsoft.azure/autorest.typescript@preview \
-  --output-folder=$(pwd)/lib \
+  --output-folder=./lib \
   https://raw.githubusercontent.com/Azure/azure-rest-api-specs/3a5b54168f823c5d14eafd5e18e89c2e54c92469/specification/network/resource-manager/readme.md
 ```
 

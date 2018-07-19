@@ -1,4 +1,5 @@
 # Azure ARM Network Example Client
+> see https://aka.ms/autorest
 This is an example client generated using https://github.com/azure/autorest.typescript.
 
 # Samples
@@ -38,13 +39,14 @@ The new pattern which we are encouraging all browser users to adopt is called th
 
 ## Generator settings
 
-You can regenerate the client by running the following command:
-```sh
-autorest --typescript \
-  --azure-arm \
-  --use=@microsoft.azure/autorest.typescript@preview \
-  --output-folder=$(pwd)/lib \
-  https://raw.githubusercontent.com/Azure/azure-rest-api-specs/3a5b54168f823c5d14eafd5e18e89c2e54c92469/specification/network/resource-manager/readme.md
+Run `autorest` in this folder to regenerate the client.
+
+```yaml
+typescript: true
+azure-arm: true
+use: '@microsoft.azure/autorest.typescript@preview'
+output-folder: lib
+require: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/3a5b54168f823c5d14eafd5e18e89c2e54c92469/specification/network/resource-manager/readme.md
 ```
 
 # Related projects

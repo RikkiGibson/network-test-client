@@ -898,6 +898,7 @@ export class PublicIPAddresses {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/publicIPAddresses/{publicIpAddressName}",
@@ -921,7 +922,7 @@ const getOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listAllOperationSpec: msRest.OperationSpec = {
@@ -944,7 +945,7 @@ const listAllOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listOperationSpec: msRest.OperationSpec = {
@@ -968,7 +969,7 @@ const listOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listVirtualMachineScaleSetPublicIPAddressesOperationSpec: msRest.OperationSpec = {
@@ -993,7 +994,7 @@ const listVirtualMachineScaleSetPublicIPAddressesOperationSpec: msRest.Operation
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listVirtualMachineScaleSetVMPublicIPAddressesOperationSpec: msRest.OperationSpec = {
@@ -1021,7 +1022,7 @@ const listVirtualMachineScaleSetVMPublicIPAddressesOperationSpec: msRest.Operati
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getVirtualMachineScaleSetPublicIPAddressOperationSpec: msRest.OperationSpec = {
@@ -1051,7 +1052,7 @@ const getVirtualMachineScaleSetPublicIPAddressOperationSpec: msRest.OperationSpe
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginDeleteMethodOperationSpec: msRest.OperationSpec = {
@@ -1076,7 +1077,7 @@ const beginDeleteMethodOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
@@ -1112,7 +1113,7 @@ const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginUpdateTagsOperationSpec: msRest.OperationSpec = {
@@ -1145,7 +1146,7 @@ const beginUpdateTagsOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listAllNextOperationSpec: msRest.OperationSpec = {
@@ -1166,7 +1167,7 @@ const listAllNextOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listNextOperationSpec: msRest.OperationSpec = {
@@ -1187,7 +1188,7 @@ const listNextOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listVirtualMachineScaleSetPublicIPAddressesNextOperationSpec: msRest.OperationSpec = {
@@ -1208,7 +1209,7 @@ const listVirtualMachineScaleSetPublicIPAddressesNextOperationSpec: msRest.Opera
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listVirtualMachineScaleSetVMPublicIPAddressesNextOperationSpec: msRest.OperationSpec = {
@@ -1229,5 +1230,5 @@ const listVirtualMachineScaleSetVMPublicIPAddressesNextOperationSpec: msRest.Ope
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

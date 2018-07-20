@@ -1728,6 +1728,7 @@ export class NetworkWatchers {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const createOrUpdateOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkWatchers/{networkWatcherName}",
@@ -1761,7 +1762,7 @@ const createOrUpdateOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getOperationSpec: msRest.OperationSpec = {
@@ -1786,7 +1787,7 @@ const getOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const updateTagsOperationSpec: msRest.OperationSpec = {
@@ -1819,7 +1820,7 @@ const updateTagsOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listOperationSpec: msRest.OperationSpec = {
@@ -1843,7 +1844,7 @@ const listOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listAllOperationSpec: msRest.OperationSpec = {
@@ -1866,7 +1867,7 @@ const listAllOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getTopologyOperationSpec: msRest.OperationSpec = {
@@ -1899,7 +1900,7 @@ const getTopologyOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginDeleteMethodOperationSpec: msRest.OperationSpec = {
@@ -1923,7 +1924,7 @@ const beginDeleteMethodOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginVerifyIPFlowOperationSpec: msRest.OperationSpec = {
@@ -1959,7 +1960,7 @@ const beginVerifyIPFlowOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginGetNextHopOperationSpec: msRest.OperationSpec = {
@@ -1995,7 +1996,7 @@ const beginGetNextHopOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginGetVMSecurityRulesOperationSpec: msRest.OperationSpec = {
@@ -2031,7 +2032,7 @@ const beginGetVMSecurityRulesOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginGetTroubleshootingOperationSpec: msRest.OperationSpec = {
@@ -2067,7 +2068,7 @@ const beginGetTroubleshootingOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginGetTroubleshootingResultOperationSpec: msRest.OperationSpec = {
@@ -2103,7 +2104,7 @@ const beginGetTroubleshootingResultOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginSetFlowLogConfigurationOperationSpec: msRest.OperationSpec = {
@@ -2139,7 +2140,7 @@ const beginSetFlowLogConfigurationOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginGetFlowLogStatusOperationSpec: msRest.OperationSpec = {
@@ -2175,7 +2176,7 @@ const beginGetFlowLogStatusOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginCheckConnectivityOperationSpec: msRest.OperationSpec = {
@@ -2211,7 +2212,7 @@ const beginCheckConnectivityOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginGetAzureReachabilityReportOperationSpec: msRest.OperationSpec = {
@@ -2247,7 +2248,7 @@ const beginGetAzureReachabilityReportOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginListAvailableProvidersOperationSpec: msRest.OperationSpec = {
@@ -2283,5 +2284,5 @@ const beginListAvailableProvidersOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

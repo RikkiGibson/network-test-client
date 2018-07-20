@@ -4,13 +4,13 @@
  * regenerated.
  */
 
+import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "./models";
 import * as Mappers from "./models/mappers";
 import * as Parameters from "./models/parameters";
-import * as msRest from "ms-rest-js";
-import * as msRestAzure from "ms-rest-azure-js";
-import { NetworkManagementClientContext } from "./networkManagementClientContext";
 import * as operations from "./operations";
+import { NetworkManagementClientContext } from "./networkManagementClientContext";
 
 
 class NetworkManagementClient extends NetworkManagementClientContext {
@@ -185,6 +185,7 @@ class NetworkManagementClient extends NetworkManagementClientContext {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const checkDnsNameAvailabilityOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/providers/Microsoft.Network/locations/{location}/CheckDnsNameAvailability",
@@ -207,7 +208,7 @@ const checkDnsNameAvailabilityOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 export { NetworkManagementClient, Models as NetworkManagementModels, Mappers as NetworkManagementMappers };

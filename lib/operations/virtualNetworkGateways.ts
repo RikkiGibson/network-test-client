@@ -1887,6 +1887,7 @@ export class VirtualNetworkGateways {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}",
@@ -1909,7 +1910,7 @@ const getOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listOperationSpec: msRest.OperationSpec = {
@@ -1933,7 +1934,7 @@ const listOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listConnectionsOperationSpec: msRest.OperationSpec = {
@@ -1958,7 +1959,7 @@ const listConnectionsOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const supportedVpnDevicesOperationSpec: msRest.OperationSpec = {
@@ -1988,7 +1989,7 @@ const supportedVpnDevicesOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const vpnDeviceConfigurationScriptOperationSpec: msRest.OperationSpec = {
@@ -2026,7 +2027,7 @@ const vpnDeviceConfigurationScriptOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
@@ -2062,7 +2063,7 @@ const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginDeleteMethodOperationSpec: msRest.OperationSpec = {
@@ -2087,7 +2088,7 @@ const beginDeleteMethodOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginUpdateTagsOperationSpec: msRest.OperationSpec = {
@@ -2120,7 +2121,7 @@ const beginUpdateTagsOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginResetOperationSpec: msRest.OperationSpec = {
@@ -2147,7 +2148,7 @@ const beginResetOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginGeneratevpnclientpackageOperationSpec: msRest.OperationSpec = {
@@ -2185,7 +2186,7 @@ const beginGeneratevpnclientpackageOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginGenerateVpnProfileOperationSpec: msRest.OperationSpec = {
@@ -2224,7 +2225,7 @@ const beginGenerateVpnProfileOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginGetVpnProfilePackageUrlOperationSpec: msRest.OperationSpec = {
@@ -2255,7 +2256,7 @@ const beginGetVpnProfilePackageUrlOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginGetBgpPeerStatusOperationSpec: msRest.OperationSpec = {
@@ -2282,7 +2283,7 @@ const beginGetBgpPeerStatusOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginGetLearnedRoutesOperationSpec: msRest.OperationSpec = {
@@ -2308,7 +2309,7 @@ const beginGetLearnedRoutesOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginGetAdvertisedRoutesOperationSpec: msRest.OperationSpec = {
@@ -2335,7 +2336,7 @@ const beginGetAdvertisedRoutesOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginSetVpnclientIpsecParametersOperationSpec: msRest.OperationSpec = {
@@ -2369,7 +2370,7 @@ const beginSetVpnclientIpsecParametersOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginGetVpnclientIpsecParametersOperationSpec: msRest.OperationSpec = {
@@ -2394,7 +2395,7 @@ const beginGetVpnclientIpsecParametersOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listNextOperationSpec: msRest.OperationSpec = {
@@ -2415,7 +2416,7 @@ const listNextOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listConnectionsNextOperationSpec: msRest.OperationSpec = {
@@ -2436,5 +2437,5 @@ const listConnectionsNextOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

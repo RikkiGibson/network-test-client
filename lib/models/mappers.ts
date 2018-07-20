@@ -38,7 +38,6 @@ export const BackendAddressPool = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "NetworkInterfaceIPConfigurationElementType",
             type: {
               name: "Composite",
               className: "NetworkInterfaceIPConfiguration"
@@ -52,7 +51,6 @@ export const BackendAddressPool = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -201,7 +199,6 @@ export const Resource = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -287,7 +284,6 @@ export const SecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -299,7 +295,6 @@ export const SecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationSecurityGroupElementType",
             type: {
               name: "Composite",
               className: "ApplicationSecurityGroup"
@@ -318,7 +313,6 @@ export const SecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -330,7 +324,6 @@ export const SecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationSecurityGroupElementType",
             type: {
               name: "Composite",
               className: "ApplicationSecurityGroup"
@@ -343,7 +336,6 @@ export const SecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -355,7 +347,6 @@ export const SecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -415,7 +406,6 @@ export const NetworkInterfaceDnsSettings = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -427,7 +417,6 @@ export const NetworkInterfaceDnsSettings = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -482,7 +471,6 @@ export const NetworkInterface = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "NetworkInterfaceIPConfigurationElementType",
             type: {
               name: "Composite",
               className: "NetworkInterfaceIPConfiguration"
@@ -555,7 +543,6 @@ export const NetworkSecurityGroup = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SecurityRuleElementType",
             type: {
               name: "Composite",
               className: "SecurityRule"
@@ -568,7 +555,6 @@ export const NetworkSecurityGroup = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SecurityRuleElementType",
             type: {
               name: "Composite",
               className: "SecurityRule"
@@ -582,7 +568,6 @@ export const NetworkSecurityGroup = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "NetworkInterfaceElementType",
             type: {
               name: "Composite",
               className: "NetworkInterface"
@@ -596,7 +581,6 @@ export const NetworkSecurityGroup = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubnetElementType",
             type: {
               name: "Composite",
               className: "Subnet"
@@ -686,7 +670,6 @@ export const RouteTable = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "RouteElementType",
             type: {
               name: "Composite",
               className: "Route"
@@ -700,7 +683,6 @@ export const RouteTable = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubnetElementType",
             type: {
               name: "Composite",
               className: "Subnet"
@@ -747,7 +729,6 @@ export const ServiceEndpointPropertiesFormat = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -876,7 +857,6 @@ export const PublicIPAddress = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "IpTagElementType",
             type: {
               name: "Composite",
               className: "IpTag"
@@ -919,7 +899,6 @@ export const PublicIPAddress = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -1060,7 +1039,6 @@ export const Subnet = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ServiceEndpointPropertiesFormatElementType",
             type: {
               name: "Composite",
               className: "ServiceEndpointPropertiesFormat"
@@ -1074,7 +1052,6 @@ export const Subnet = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "IPConfigurationElementType",
             type: {
               name: "Composite",
               className: "IPConfiguration"
@@ -1087,7 +1064,6 @@ export const Subnet = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ResourceNavigationLinkElementType",
             type: {
               name: "Composite",
               className: "ResourceNavigationLink"
@@ -1129,7 +1105,6 @@ export const NetworkInterfaceIPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayBackendAddressPoolElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayBackendAddressPool"
@@ -1142,7 +1117,6 @@ export const NetworkInterfaceIPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "BackendAddressPoolElementType",
             type: {
               name: "Composite",
               className: "BackendAddressPool"
@@ -1155,7 +1129,6 @@ export const NetworkInterfaceIPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "InboundNatRuleElementType",
             type: {
               name: "Composite",
               className: "InboundNatRule"
@@ -1206,7 +1179,6 @@ export const NetworkInterfaceIPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationSecurityGroupElementType",
             type: {
               name: "Composite",
               className: "ApplicationSecurityGroup"
@@ -1270,7 +1242,6 @@ export const ApplicationGatewayBackendAddressPool = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "NetworkInterfaceIPConfigurationElementType",
             type: {
               name: "Composite",
               className: "NetworkInterfaceIPConfiguration"
@@ -1283,7 +1254,6 @@ export const ApplicationGatewayBackendAddressPool = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayBackendAddressElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayBackendAddress"
@@ -1390,7 +1360,6 @@ export const ApplicationGatewayBackendHttpSettings = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -1510,7 +1479,6 @@ export const ApplicationGatewayBackendHealthHttpSettings = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayBackendHealthServerElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayBackendHealthServer"
@@ -1540,7 +1508,6 @@ export const ApplicationGatewayBackendHealthPool = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayBackendHealthHttpSettingsElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayBackendHealthHttpSettings"
@@ -1563,7 +1530,6 @@ export const ApplicationGatewayBackendHealth = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayBackendHealthPoolElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayBackendHealthPool"
@@ -1614,7 +1580,6 @@ export const ApplicationGatewaySslPolicy = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewaySslProtocolElementType",
             type: {
               name: "String"
             }
@@ -1638,7 +1603,6 @@ export const ApplicationGatewaySslPolicy = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewaySslCipherSuiteElementType",
             type: {
               name: "String"
             }
@@ -1979,7 +1943,6 @@ export const ApplicationGatewayPathRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -2052,7 +2015,6 @@ export const ApplicationGatewayProbeHealthResponseMatch = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -2272,7 +2234,6 @@ export const ApplicationGatewayRedirectConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -2285,7 +2246,6 @@ export const ApplicationGatewayRedirectConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -2298,7 +2258,6 @@ export const ApplicationGatewayRedirectConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -2361,7 +2320,6 @@ export const ApplicationGatewayUrlPathMap = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayPathRuleElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayPathRule"
@@ -2415,7 +2373,6 @@ export const ApplicationGatewayFirewallDisabledRuleGroup = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "numberElementType",
             type: {
               name: "Number"
             }
@@ -2465,7 +2422,6 @@ export const ApplicationGatewayWebApplicationFirewallConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayFirewallDisabledRuleGroupElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayFirewallDisabledRuleGroup"
@@ -2526,7 +2482,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayIPConfigurationElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayIPConfiguration"
@@ -2539,7 +2494,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayAuthenticationCertificateElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayAuthenticationCertificate"
@@ -2552,7 +2506,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewaySslCertificateElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewaySslCertificate"
@@ -2565,7 +2518,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayFrontendIPConfigurationElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayFrontendIPConfiguration"
@@ -2578,7 +2530,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayFrontendPortElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayFrontendPort"
@@ -2591,7 +2542,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayProbeElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayProbe"
@@ -2604,7 +2554,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayBackendAddressPoolElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayBackendAddressPool"
@@ -2617,7 +2566,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayBackendHttpSettingsElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayBackendHttpSettings"
@@ -2630,7 +2578,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayHttpListenerElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayHttpListener"
@@ -2643,7 +2590,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayUrlPathMapElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayUrlPathMap"
@@ -2656,7 +2602,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayRequestRoutingRuleElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayRequestRoutingRule"
@@ -2669,7 +2614,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayRedirectConfigurationElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayRedirectConfiguration"
@@ -2760,7 +2704,6 @@ export const ApplicationGatewayFirewallRuleGroup = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayFirewallRuleElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayFirewallRule"
@@ -2805,7 +2748,6 @@ export const ApplicationGatewayFirewallRuleSet = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayFirewallRuleGroupElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayFirewallRuleGroup"
@@ -2828,7 +2770,6 @@ export const ApplicationGatewayAvailableWafRuleSetsResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayFirewallRuleSetElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayFirewallRuleSet"
@@ -2852,7 +2793,6 @@ export const ApplicationGatewayAvailableSslOptions = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -2871,7 +2811,6 @@ export const ApplicationGatewayAvailableSslOptions = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewaySslCipherSuiteElementType",
             type: {
               name: "String"
             }
@@ -2883,7 +2822,6 @@ export const ApplicationGatewayAvailableSslOptions = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewaySslProtocolElementType",
             type: {
               name: "String"
             }
@@ -2912,7 +2850,6 @@ export const ApplicationGatewaySslPredefinedPolicy = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewaySslCipherSuiteElementType",
             type: {
               name: "String"
             }
@@ -2940,7 +2877,6 @@ export const TagsObject = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -3005,7 +2941,6 @@ export const DdosProtectionPlan = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -3032,7 +2967,6 @@ export const DdosProtectionPlan = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -3129,7 +3063,6 @@ export const ExpressRouteCircuitPeeringConfig = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -3141,7 +3074,6 @@ export const ExpressRouteCircuitPeeringConfig = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -3205,7 +3137,6 @@ export const RouteFilterRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -3462,7 +3393,6 @@ export const ExpressRouteCircuitPeering = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitConnectionElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuitConnection"
@@ -3499,7 +3429,6 @@ export const RouteFilter = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "RouteFilterRuleElementType",
             type: {
               name: "Composite",
               className: "RouteFilterRule"
@@ -3512,7 +3441,6 @@ export const RouteFilter = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitPeeringElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuitPeering"
@@ -3673,7 +3601,6 @@ export const ExpressRouteCircuit = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitAuthorizationElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuitAuthorization"
@@ -3686,7 +3613,6 @@ export const ExpressRouteCircuit = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitPeeringElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuitPeering"
@@ -3781,7 +3707,6 @@ export const ExpressRouteCircuitsArpTableListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitArpTableElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuitArpTable"
@@ -3850,7 +3775,6 @@ export const ExpressRouteCircuitsRoutesTableListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitRoutesTableElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuitRoutesTable"
@@ -3919,7 +3843,6 @@ export const ExpressRouteCircuitsRoutesTableSummaryListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitRoutesTableSummaryElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuitRoutesTableSummary"
@@ -3971,7 +3894,6 @@ export const ExpressRouteServiceProvider = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -3983,7 +3905,6 @@ export const ExpressRouteServiceProvider = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteServiceProviderBandwidthsOfferedElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteServiceProviderBandwidthsOffered"
@@ -4046,7 +3967,6 @@ export const ExpressRouteCrossConnectionsRoutesTableSummaryListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCrossConnectionRoutesTableSummaryElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCrossConnectionRoutesTableSummary"
@@ -4276,7 +4196,6 @@ export const ExpressRouteCrossConnection = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCrossConnectionPeeringElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCrossConnectionPeering"
@@ -4324,7 +4243,6 @@ export const FrontendIPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -4338,7 +4256,6 @@ export const FrontendIPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -4352,7 +4269,6 @@ export const FrontendIPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -4366,7 +4282,6 @@ export const FrontendIPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -4423,7 +4338,6 @@ export const FrontendIPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -4541,7 +4455,6 @@ export const Probe = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -4697,7 +4610,6 @@ export const OutboundNatRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -4754,7 +4666,6 @@ export const LoadBalancer = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "FrontendIPConfigurationElementType",
             type: {
               name: "Composite",
               className: "FrontendIPConfiguration"
@@ -4767,7 +4678,6 @@ export const LoadBalancer = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "BackendAddressPoolElementType",
             type: {
               name: "Composite",
               className: "BackendAddressPool"
@@ -4780,7 +4690,6 @@ export const LoadBalancer = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "LoadBalancingRuleElementType",
             type: {
               name: "Composite",
               className: "LoadBalancingRule"
@@ -4793,7 +4702,6 @@ export const LoadBalancer = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ProbeElementType",
             type: {
               name: "Composite",
               className: "Probe"
@@ -4806,7 +4714,6 @@ export const LoadBalancer = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "InboundNatRuleElementType",
             type: {
               name: "Composite",
               className: "InboundNatRule"
@@ -4819,7 +4726,6 @@ export const LoadBalancer = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "InboundNatPoolElementType",
             type: {
               name: "Composite",
               className: "InboundNatPool"
@@ -4832,7 +4738,6 @@ export const LoadBalancer = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "OutboundNatRuleElementType",
             type: {
               name: "Composite",
               className: "OutboundNatRule"
@@ -4919,7 +4824,6 @@ export const ErrorModel = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ErrorDetailsElementType",
             type: {
               name: "Composite",
               className: "ErrorDetails"
@@ -5019,7 +4923,6 @@ export const EffectiveNetworkSecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -5031,7 +4934,6 @@ export const EffectiveNetworkSecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -5055,7 +4957,6 @@ export const EffectiveNetworkSecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -5067,7 +4968,6 @@ export const EffectiveNetworkSecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -5079,7 +4979,6 @@ export const EffectiveNetworkSecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -5091,7 +4990,6 @@ export const EffectiveNetworkSecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -5145,7 +5043,6 @@ export const EffectiveNetworkSecurityGroup = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "EffectiveNetworkSecurityRuleElementType",
             type: {
               name: "Composite",
               className: "EffectiveNetworkSecurityRule"
@@ -5158,11 +5055,9 @@ export const EffectiveNetworkSecurityGroup = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ArrayElementType",
             type: {
               name: "Sequence",
               element: {
-                serializedName: "stringElementType",
                 type: {
                   name: "String"
                 }
@@ -5186,7 +5081,6 @@ export const EffectiveNetworkSecurityGroupListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "EffectiveNetworkSecurityGroupElementType",
             type: {
               name: "Composite",
               className: "EffectiveNetworkSecurityGroup"
@@ -5234,7 +5128,6 @@ export const EffectiveRoute = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -5246,7 +5139,6 @@ export const EffectiveRoute = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -5274,7 +5166,6 @@ export const EffectiveRouteListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "EffectiveRouteElementType",
             type: {
               name: "Composite",
               className: "EffectiveRoute"
@@ -5404,7 +5295,6 @@ export const TopologyResource = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "TopologyAssociationElementType",
             type: {
               name: "Composite",
               className: "TopologyAssociation"
@@ -5448,7 +5338,6 @@ export const Topology = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "TopologyResourceElementType",
             type: {
               name: "Composite",
               className: "TopologyResource"
@@ -5647,7 +5536,6 @@ export const NetworkInterfaceAssociation = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SecurityRuleElementType",
             type: {
               name: "Composite",
               className: "SecurityRule"
@@ -5677,7 +5565,6 @@ export const SubnetAssociation = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SecurityRuleElementType",
             type: {
               name: "Composite",
               className: "SecurityRule"
@@ -5714,7 +5601,6 @@ export const SecurityRuleAssociations = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SecurityRuleElementType",
             type: {
               name: "Composite",
               className: "SecurityRule"
@@ -5727,7 +5613,6 @@ export const SecurityRuleAssociations = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "EffectiveNetworkSecurityRuleElementType",
             type: {
               name: "Composite",
               className: "EffectiveNetworkSecurityRule"
@@ -5773,7 +5658,6 @@ export const SecurityGroupViewResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SecurityGroupNetworkInterfaceElementType",
             type: {
               name: "Composite",
               className: "SecurityGroupNetworkInterface"
@@ -5901,7 +5785,6 @@ export const PacketCaptureParameters = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "PacketCaptureFilterElementType",
             type: {
               name: "Composite",
               className: "PacketCaptureFilter"
@@ -5960,7 +5843,6 @@ export const PacketCapture = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "PacketCaptureFilterElementType",
             type: {
               name: "Composite",
               className: "PacketCaptureFilter"
@@ -6040,7 +5922,6 @@ export const PacketCaptureResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "PacketCaptureFilterElementType",
             type: {
               name: "Composite",
               className: "PacketCaptureFilter"
@@ -6099,7 +5980,6 @@ export const PacketCaptureQueryStatusResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "PcErrorElementType",
             type: {
               name: "String"
             }
@@ -6227,7 +6107,6 @@ export const TroubleshootingDetails = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "TroubleshootingRecommendedActionsElementType",
             type: {
               name: "Composite",
               className: "TroubleshootingRecommendedActions"
@@ -6268,7 +6147,6 @@ export const TroubleshootingResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "TroubleshootingDetailsElementType",
             type: {
               name: "Composite",
               className: "TroubleshootingDetails"
@@ -6512,7 +6390,6 @@ export const HTTPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "HTTPHeaderElementType",
             type: {
               name: "Composite",
               className: "HTTPHeader"
@@ -6525,7 +6402,6 @@ export const HTTPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "numberElementType",
             type: {
               name: "Number"
             }
@@ -6625,11 +6501,9 @@ export const ConnectivityIssue = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ObjectElementType",
             type: {
               name: "Dictionary",
               value: {
-                serializedName: "stringElementType",
                 type: {
                   name: "String"
                 }
@@ -6682,7 +6556,6 @@ export const ConnectivityHop = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -6695,7 +6568,6 @@ export const ConnectivityHop = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ConnectivityIssueElementType",
             type: {
               name: "Composite",
               className: "ConnectivityIssue"
@@ -6719,7 +6591,6 @@ export const ConnectivityInformation = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ConnectivityHopElementType",
             type: {
               name: "Composite",
               className: "ConnectivityHop"
@@ -6821,7 +6692,6 @@ export const AzureReachabilityReportParameters = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -6833,7 +6703,6 @@ export const AzureReachabilityReportParameters = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -6907,7 +6776,6 @@ export const AzureReachabilityReportItem = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "AzureReachabilityReportLatencyInfoElementType",
             type: {
               name: "Composite",
               className: "AzureReachabilityReportLatencyInfo"
@@ -6946,7 +6814,6 @@ export const AzureReachabilityReport = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "AzureReachabilityReportItemElementType",
             type: {
               name: "Composite",
               className: "AzureReachabilityReportItem"
@@ -6969,7 +6836,6 @@ export const AvailableProvidersListParameters = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -7015,7 +6881,6 @@ export const AvailableProvidersListCity = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -7043,7 +6908,6 @@ export const AvailableProvidersListState = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -7055,7 +6919,6 @@ export const AvailableProvidersListState = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "AvailableProvidersListCityElementType",
             type: {
               name: "Composite",
               className: "AvailableProvidersListCity"
@@ -7084,7 +6947,6 @@ export const AvailableProvidersListCountry = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -7096,7 +6958,6 @@ export const AvailableProvidersListCountry = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "AvailableProvidersListStateElementType",
             type: {
               name: "Composite",
               className: "AvailableProvidersListState"
@@ -7120,7 +6981,6 @@ export const AvailableProvidersList = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "AvailableProvidersListCountryElementType",
             type: {
               name: "Composite",
               className: "AvailableProvidersListCountry"
@@ -7240,7 +7100,6 @@ export const ConnectionMonitor = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -7326,7 +7185,6 @@ export const ConnectionMonitorResult = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -7421,7 +7279,6 @@ export const ConnectionStateSnapshot = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ConnectivityHopElementType",
             type: {
               name: "Composite",
               className: "ConnectivityHop"
@@ -7450,7 +7307,6 @@ export const ConnectionMonitorQueryResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ConnectionStateSnapshotElementType",
             type: {
               name: "Composite",
               className: "ConnectionStateSnapshot"
@@ -7593,7 +7449,6 @@ export const MetricSpecification = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "AvailabilityElementType",
             type: {
               name: "Composite",
               className: "Availability"
@@ -7624,7 +7479,6 @@ export const MetricSpecification = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "DimensionElementType",
             type: {
               name: "Composite",
               className: "Dimension"
@@ -7699,7 +7553,6 @@ export const OperationPropertiesFormatServiceSpecification = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "MetricSpecificationElementType",
             type: {
               name: "Composite",
               className: "MetricSpecification"
@@ -7712,7 +7565,6 @@ export const OperationPropertiesFormatServiceSpecification = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "LogSpecificationElementType",
             type: {
               name: "Composite",
               className: "LogSpecification"
@@ -7789,7 +7641,6 @@ export const PatchRouteFilterRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -7833,7 +7684,6 @@ export const PatchRouteFilter = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "RouteFilterRuleElementType",
             type: {
               name: "Composite",
               className: "RouteFilterRule"
@@ -7846,7 +7696,6 @@ export const PatchRouteFilter = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitPeeringElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuitPeering"
@@ -7887,7 +7736,6 @@ export const PatchRouteFilter = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -7927,7 +7775,6 @@ export const BGPCommunity = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -7968,7 +7815,6 @@ export const BgpServiceCommunity = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "BGPCommunityElementType",
             type: {
               name: "Composite",
               className: "BGPCommunity"
@@ -8061,7 +7907,6 @@ export const AddressSpace = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -8156,7 +8001,6 @@ export const DhcpOptions = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -8193,7 +8037,6 @@ export const VirtualNetwork = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubnetElementType",
             type: {
               name: "Composite",
               className: "Subnet"
@@ -8206,7 +8049,6 @@ export const VirtualNetwork = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VirtualNetworkPeeringElementType",
             type: {
               name: "Composite",
               className: "VirtualNetworkPeering"
@@ -8274,7 +8116,6 @@ export const IPAddressAvailabilityResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -8590,7 +8431,6 @@ export const VpnClientConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VpnClientRootCertificateElementType",
             type: {
               name: "Composite",
               className: "VpnClientRootCertificate"
@@ -8603,7 +8443,6 @@ export const VpnClientConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VpnClientRevokedCertificateElementType",
             type: {
               name: "Composite",
               className: "VpnClientRevokedCertificate"
@@ -8616,7 +8455,6 @@ export const VpnClientConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VpnClientProtocolElementType",
             type: {
               name: "String"
             }
@@ -8628,7 +8466,6 @@ export const VpnClientConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "IpsecPolicyElementType",
             type: {
               name: "Composite",
               className: "IpsecPolicy"
@@ -8817,7 +8654,6 @@ export const VirtualNetworkGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VirtualNetworkGatewayIPConfigurationElementType",
             type: {
               name: "Composite",
               className: "VirtualNetworkGatewayIPConfiguration"
@@ -8929,7 +8765,6 @@ export const VpnClientParameters = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -8951,7 +8786,6 @@ export const BgpPeerStatusListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "BgpPeerStatusElementType",
             type: {
               name: "Composite",
               className: "BgpPeerStatus"
@@ -8974,7 +8808,6 @@ export const GatewayRouteListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "GatewayRouteElementType",
             type: {
               name: "Composite",
               className: "GatewayRoute"
@@ -9148,7 +8981,6 @@ export const VirtualNetworkGatewayConnection = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "TunnelConnectionHealthElementType",
             type: {
               name: "Composite",
               className: "TunnelConnectionHealth"
@@ -9194,7 +9026,6 @@ export const VirtualNetworkGatewayConnection = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "IpsecPolicyElementType",
             type: {
               name: "Composite",
               className: "IpsecPolicy"
@@ -9413,7 +9244,6 @@ export const VirtualNetworkGatewayConnectionListEntity = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "TunnelConnectionHealthElementType",
             type: {
               name: "Composite",
               className: "TunnelConnectionHealth"
@@ -9459,7 +9289,6 @@ export const VirtualNetworkGatewayConnectionListEntity = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "IpsecPolicyElementType",
             type: {
               name: "Composite",
               className: "IpsecPolicy"
@@ -9849,7 +9678,6 @@ export const ApplicationGatewayListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayElementType",
             type: {
               name: "Composite",
               className: "ApplicationGateway"
@@ -9878,7 +9706,6 @@ export const ApplicationGatewayAvailableSslPredefinedPolicies = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewaySslPredefinedPolicyElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewaySslPredefinedPolicy"
@@ -9907,7 +9734,6 @@ export const ApplicationSecurityGroupListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationSecurityGroupElementType",
             type: {
               name: "Composite",
               className: "ApplicationSecurityGroup"
@@ -9937,7 +9763,6 @@ export const DdosProtectionPlanListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "DdosProtectionPlanElementType",
             type: {
               name: "Composite",
               className: "DdosProtectionPlan"
@@ -9967,7 +9792,6 @@ export const EndpointServicesListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "EndpointServiceResultElementType",
             type: {
               name: "Composite",
               className: "EndpointServiceResult"
@@ -9996,7 +9820,6 @@ export const AuthorizationListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitAuthorizationElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuitAuthorization"
@@ -10025,7 +9848,6 @@ export const ExpressRouteCircuitPeeringListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitPeeringElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuitPeering"
@@ -10054,7 +9876,6 @@ export const ExpressRouteCircuitListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuit"
@@ -10083,7 +9904,6 @@ export const ExpressRouteServiceProviderListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteServiceProviderElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteServiceProvider"
@@ -10112,7 +9932,6 @@ export const ExpressRouteCrossConnectionListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCrossConnectionElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCrossConnection"
@@ -10142,7 +9961,6 @@ export const ExpressRouteCrossConnectionPeeringList = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCrossConnectionPeeringElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCrossConnectionPeering"
@@ -10172,7 +9990,6 @@ export const LoadBalancerListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "LoadBalancerElementType",
             type: {
               name: "Composite",
               className: "LoadBalancer"
@@ -10202,7 +10019,6 @@ export const LoadBalancerBackendAddressPoolListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "BackendAddressPoolElementType",
             type: {
               name: "Composite",
               className: "BackendAddressPool"
@@ -10232,7 +10048,6 @@ export const LoadBalancerFrontendIPConfigurationListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "FrontendIPConfigurationElementType",
             type: {
               name: "Composite",
               className: "FrontendIPConfiguration"
@@ -10262,7 +10077,6 @@ export const InboundNatRuleListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "InboundNatRuleElementType",
             type: {
               name: "Composite",
               className: "InboundNatRule"
@@ -10292,7 +10106,6 @@ export const LoadBalancerLoadBalancingRuleListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "LoadBalancingRuleElementType",
             type: {
               name: "Composite",
               className: "LoadBalancingRule"
@@ -10322,7 +10135,6 @@ export const NetworkInterfaceListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "NetworkInterfaceElementType",
             type: {
               name: "Composite",
               className: "NetworkInterface"
@@ -10352,7 +10164,6 @@ export const LoadBalancerProbeListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ProbeElementType",
             type: {
               name: "Composite",
               className: "Probe"
@@ -10382,7 +10193,6 @@ export const NetworkInterfaceIPConfigurationListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "NetworkInterfaceIPConfigurationElementType",
             type: {
               name: "Composite",
               className: "NetworkInterfaceIPConfiguration"
@@ -10412,7 +10222,6 @@ export const NetworkInterfaceLoadBalancerListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "LoadBalancerElementType",
             type: {
               name: "Composite",
               className: "LoadBalancer"
@@ -10442,7 +10251,6 @@ export const NetworkSecurityGroupListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "NetworkSecurityGroupElementType",
             type: {
               name: "Composite",
               className: "NetworkSecurityGroup"
@@ -10471,7 +10279,6 @@ export const SecurityRuleListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SecurityRuleElementType",
             type: {
               name: "Composite",
               className: "SecurityRule"
@@ -10500,7 +10307,6 @@ export const NetworkWatcherListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "NetworkWatcherElementType",
             type: {
               name: "Composite",
               className: "NetworkWatcher"
@@ -10523,7 +10329,6 @@ export const PacketCaptureListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "PacketCaptureResultElementType",
             type: {
               name: "Composite",
               className: "PacketCaptureResult"
@@ -10546,7 +10351,6 @@ export const ConnectionMonitorListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ConnectionMonitorResultElementType",
             type: {
               name: "Composite",
               className: "ConnectionMonitorResult"
@@ -10569,7 +10373,6 @@ export const OperationListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "OperationElementType",
             type: {
               name: "Composite",
               className: "Operation"
@@ -10598,7 +10401,6 @@ export const PublicIPAddressListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "PublicIPAddressElementType",
             type: {
               name: "Composite",
               className: "PublicIPAddress"
@@ -10627,7 +10429,6 @@ export const RouteFilterListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "RouteFilterElementType",
             type: {
               name: "Composite",
               className: "RouteFilter"
@@ -10656,7 +10457,6 @@ export const RouteFilterRuleListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "RouteFilterRuleElementType",
             type: {
               name: "Composite",
               className: "RouteFilterRule"
@@ -10685,7 +10485,6 @@ export const RouteTableListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "RouteTableElementType",
             type: {
               name: "Composite",
               className: "RouteTable"
@@ -10714,7 +10513,6 @@ export const RouteListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "RouteElementType",
             type: {
               name: "Composite",
               className: "Route"
@@ -10743,7 +10541,6 @@ export const BgpServiceCommunityListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "BgpServiceCommunityElementType",
             type: {
               name: "Composite",
               className: "BgpServiceCommunity"
@@ -10772,7 +10569,6 @@ export const UsagesListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "UsageElementType",
             type: {
               name: "Composite",
               className: "Usage"
@@ -10801,7 +10597,6 @@ export const VirtualNetworkListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VirtualNetworkElementType",
             type: {
               name: "Composite",
               className: "VirtualNetwork"
@@ -10831,7 +10626,6 @@ export const VirtualNetworkListUsageResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VirtualNetworkUsageElementType",
             type: {
               name: "Composite",
               className: "VirtualNetworkUsage"
@@ -10860,7 +10654,6 @@ export const SubnetListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubnetElementType",
             type: {
               name: "Composite",
               className: "Subnet"
@@ -10889,7 +10682,6 @@ export const VirtualNetworkPeeringListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VirtualNetworkPeeringElementType",
             type: {
               name: "Composite",
               className: "VirtualNetworkPeering"
@@ -10918,7 +10710,6 @@ export const VirtualNetworkGatewayListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VirtualNetworkGatewayElementType",
             type: {
               name: "Composite",
               className: "VirtualNetworkGateway"
@@ -10948,7 +10739,6 @@ export const VirtualNetworkGatewayListConnectionsResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VirtualNetworkGatewayConnectionListEntityElementType",
             type: {
               name: "Composite",
               className: "VirtualNetworkGatewayConnectionListEntity"
@@ -10978,7 +10768,6 @@ export const VirtualNetworkGatewayConnectionListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VirtualNetworkGatewayConnectionElementType",
             type: {
               name: "Composite",
               className: "VirtualNetworkGatewayConnection"
@@ -11008,7 +10797,6 @@ export const LocalNetworkGatewayListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "LocalNetworkGatewayElementType",
             type: {
               name: "Composite",
               className: "LocalNetworkGateway"

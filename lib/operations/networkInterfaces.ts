@@ -1287,6 +1287,7 @@ export class NetworkInterfaces {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkInterfaces/{networkInterfaceName}",
@@ -1310,7 +1311,7 @@ const getOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listAllOperationSpec: msRest.OperationSpec = {
@@ -1333,7 +1334,7 @@ const listAllOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listOperationSpec: msRest.OperationSpec = {
@@ -1357,7 +1358,7 @@ const listOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listVirtualMachineScaleSetVMNetworkInterfacesOperationSpec: msRest.OperationSpec = {
@@ -1383,7 +1384,7 @@ const listVirtualMachineScaleSetVMNetworkInterfacesOperationSpec: msRest.Operati
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listVirtualMachineScaleSetNetworkInterfacesOperationSpec: msRest.OperationSpec = {
@@ -1408,7 +1409,7 @@ const listVirtualMachineScaleSetNetworkInterfacesOperationSpec: msRest.Operation
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getVirtualMachineScaleSetNetworkInterfaceOperationSpec: msRest.OperationSpec = {
@@ -1436,7 +1437,7 @@ const getVirtualMachineScaleSetNetworkInterfaceOperationSpec: msRest.OperationSp
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listVirtualMachineScaleSetIpConfigurationsOperationSpec: msRest.OperationSpec = {
@@ -1464,7 +1465,7 @@ const listVirtualMachineScaleSetIpConfigurationsOperationSpec: msRest.OperationS
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getVirtualMachineScaleSetIpConfigurationOperationSpec: msRest.OperationSpec = {
@@ -1493,7 +1494,7 @@ const getVirtualMachineScaleSetIpConfigurationOperationSpec: msRest.OperationSpe
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginDeleteMethodOperationSpec: msRest.OperationSpec = {
@@ -1518,7 +1519,7 @@ const beginDeleteMethodOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
@@ -1554,7 +1555,7 @@ const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginUpdateTagsOperationSpec: msRest.OperationSpec = {
@@ -1587,7 +1588,7 @@ const beginUpdateTagsOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginGetEffectiveRouteTableOperationSpec: msRest.OperationSpec = {
@@ -1613,7 +1614,7 @@ const beginGetEffectiveRouteTableOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginListEffectiveNetworkSecurityGroupsOperationSpec: msRest.OperationSpec = {
@@ -1639,7 +1640,7 @@ const beginListEffectiveNetworkSecurityGroupsOperationSpec: msRest.OperationSpec
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listAllNextOperationSpec: msRest.OperationSpec = {
@@ -1660,7 +1661,7 @@ const listAllNextOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listNextOperationSpec: msRest.OperationSpec = {
@@ -1681,7 +1682,7 @@ const listNextOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listVirtualMachineScaleSetVMNetworkInterfacesNextOperationSpec: msRest.OperationSpec = {
@@ -1702,7 +1703,7 @@ const listVirtualMachineScaleSetVMNetworkInterfacesNextOperationSpec: msRest.Ope
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listVirtualMachineScaleSetNetworkInterfacesNextOperationSpec: msRest.OperationSpec = {
@@ -1723,7 +1724,7 @@ const listVirtualMachineScaleSetNetworkInterfacesNextOperationSpec: msRest.Opera
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listVirtualMachineScaleSetIpConfigurationsNextOperationSpec: msRest.OperationSpec = {
@@ -1744,5 +1745,5 @@ const listVirtualMachineScaleSetIpConfigurationsNextOperationSpec: msRest.Operat
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

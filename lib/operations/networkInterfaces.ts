@@ -7,6 +7,7 @@
 import * as msRest from "ms-rest-js";
 import * as Models from "../models";
 import * as Mappers from "../models/networkInterfacesMappers";
+import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 
 /** Class representing a NetworkInterfaces. */
@@ -1286,78 +1287,21 @@ export class NetworkInterfaces {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const getOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkInterfaces/{networkInterfaceName}",
   urlParameters: [
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "networkInterfaceName",
-      mapper: {
-        required: true,
-        serializedName: "networkInterfaceName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.resourceGroupName,
+    Parameters.networkInterfaceName,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2018-04-01',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "expand"
-      ],
-      mapper: {
-        serializedName: "$expand",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion0,
+    Parameters.expand
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1367,49 +1311,20 @@ const getOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listAllOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/providers/Microsoft.Network/networkInterfaces",
   urlParameters: [
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2018-04-01',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion0
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1419,59 +1334,21 @@ const listAllOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkInterfaces",
   urlParameters: [
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.resourceGroupName,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2018-04-01',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion0
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1481,79 +1358,23 @@ const listOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listVirtualMachineScaleSetVMNetworkInterfacesOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.Compute/virtualMachineScaleSets/{virtualMachineScaleSetName}/virtualMachines/{virtualmachineIndex}/networkInterfaces",
   urlParameters: [
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "virtualMachineScaleSetName",
-      mapper: {
-        required: true,
-        serializedName: "virtualMachineScaleSetName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "virtualmachineIndex",
-      mapper: {
-        required: true,
-        serializedName: "virtualmachineIndex",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.resourceGroupName,
+    Parameters.virtualMachineScaleSetName,
+    Parameters.virtualmachineIndex,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2017-03-30',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion1
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1563,69 +1384,22 @@ const listVirtualMachineScaleSetVMNetworkInterfacesOperationSpec: msRest.Operati
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listVirtualMachineScaleSetNetworkInterfacesOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.Compute/virtualMachineScaleSets/{virtualMachineScaleSetName}/networkInterfaces",
   urlParameters: [
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "virtualMachineScaleSetName",
-      mapper: {
-        required: true,
-        serializedName: "virtualMachineScaleSetName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.resourceGroupName,
+    Parameters.virtualMachineScaleSetName,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2017-03-30',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion1
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1635,101 +1409,25 @@ const listVirtualMachineScaleSetNetworkInterfacesOperationSpec: msRest.Operation
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getVirtualMachineScaleSetNetworkInterfaceOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.Compute/virtualMachineScaleSets/{virtualMachineScaleSetName}/virtualMachines/{virtualmachineIndex}/networkInterfaces/{networkInterfaceName}",
   urlParameters: [
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "virtualMachineScaleSetName",
-      mapper: {
-        required: true,
-        serializedName: "virtualMachineScaleSetName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "virtualmachineIndex",
-      mapper: {
-        required: true,
-        serializedName: "virtualmachineIndex",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "networkInterfaceName",
-      mapper: {
-        required: true,
-        serializedName: "networkInterfaceName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.resourceGroupName,
+    Parameters.virtualMachineScaleSetName,
+    Parameters.virtualmachineIndex,
+    Parameters.networkInterfaceName,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2017-03-30',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "expand"
-      ],
-      mapper: {
-        serializedName: "$expand",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion1,
+    Parameters.expand
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1739,101 +1437,25 @@ const getVirtualMachineScaleSetNetworkInterfaceOperationSpec: msRest.OperationSp
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listVirtualMachineScaleSetIpConfigurationsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.Compute/virtualMachineScaleSets/{virtualMachineScaleSetName}/virtualMachines/{virtualmachineIndex}/networkInterfaces/{networkInterfaceName}/ipConfigurations",
   urlParameters: [
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "virtualMachineScaleSetName",
-      mapper: {
-        required: true,
-        serializedName: "virtualMachineScaleSetName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "virtualmachineIndex",
-      mapper: {
-        required: true,
-        serializedName: "virtualmachineIndex",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "networkInterfaceName",
-      mapper: {
-        required: true,
-        serializedName: "networkInterfaceName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.resourceGroupName,
+    Parameters.virtualMachineScaleSetName,
+    Parameters.virtualmachineIndex,
+    Parameters.networkInterfaceName,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2017-03-30',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "expand"
-      ],
-      mapper: {
-        serializedName: "$expand",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion1,
+    Parameters.expand
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1843,111 +1465,26 @@ const listVirtualMachineScaleSetIpConfigurationsOperationSpec: msRest.OperationS
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const getVirtualMachineScaleSetIpConfigurationOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.Compute/virtualMachineScaleSets/{virtualMachineScaleSetName}/virtualMachines/{virtualmachineIndex}/networkInterfaces/{networkInterfaceName}/ipConfigurations/{ipConfigurationName}",
   urlParameters: [
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "virtualMachineScaleSetName",
-      mapper: {
-        required: true,
-        serializedName: "virtualMachineScaleSetName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "virtualmachineIndex",
-      mapper: {
-        required: true,
-        serializedName: "virtualmachineIndex",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "networkInterfaceName",
-      mapper: {
-        required: true,
-        serializedName: "networkInterfaceName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "ipConfigurationName",
-      mapper: {
-        required: true,
-        serializedName: "ipConfigurationName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.resourceGroupName,
+    Parameters.virtualMachineScaleSetName,
+    Parameters.virtualmachineIndex,
+    Parameters.networkInterfaceName,
+    Parameters.ipConfigurationName,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2017-03-30',
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: [
-        "options",
-        "expand"
-      ],
-      mapper: {
-        serializedName: "$expand",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion1,
+    Parameters.expand
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -1957,141 +1494,47 @@ const getVirtualMachineScaleSetIpConfigurationOperationSpec: msRest.OperationSpe
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginDeleteMethodOperationSpec: msRest.OperationSpec = {
   httpMethod: "DELETE",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkInterfaces/{networkInterfaceName}",
   urlParameters: [
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "networkInterfaceName",
-      mapper: {
-        required: true,
-        serializedName: "networkInterfaceName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.resourceGroupName,
+    Parameters.networkInterfaceName,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2018-04-01',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion0
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
-    204: {},
-    202: {},
     200: {},
+    202: {},
+    204: {},
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
   httpMethod: "PUT",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkInterfaces/{networkInterfaceName}",
   urlParameters: [
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "networkInterfaceName",
-      mapper: {
-        required: true,
-        serializedName: "networkInterfaceName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.resourceGroupName,
+    Parameters.networkInterfaceName,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2018-04-01',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion0
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: "parameters",
@@ -2102,79 +1545,32 @@ const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
   },
   contentType: "application/json; charset=utf-8",
   responses: {
-    201: {
+    200: {
       bodyMapper: Mappers.NetworkInterface
     },
-    200: {
+    201: {
       bodyMapper: Mappers.NetworkInterface
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginUpdateTagsOperationSpec: msRest.OperationSpec = {
   httpMethod: "PATCH",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkInterfaces/{networkInterfaceName}",
   urlParameters: [
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "networkInterfaceName",
-      mapper: {
-        required: true,
-        serializedName: "networkInterfaceName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.resourceGroupName,
+    Parameters.networkInterfaceName,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2018-04-01',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion0
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   requestBody: {
     parameterPath: "parameters",
@@ -2192,69 +1588,22 @@ const beginUpdateTagsOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginGetEffectiveRouteTableOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkInterfaces/{networkInterfaceName}/effectiveRouteTable",
   urlParameters: [
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "networkInterfaceName",
-      mapper: {
-        required: true,
-        serializedName: "networkInterfaceName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.resourceGroupName,
+    Parameters.networkInterfaceName,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2018-04-01',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion0
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -2265,69 +1614,22 @@ const beginGetEffectiveRouteTableOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const beginListEffectiveNetworkSecurityGroupsOperationSpec: msRest.OperationSpec = {
   httpMethod: "POST",
   path: "subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkInterfaces/{networkInterfaceName}/effectiveNetworkSecurityGroups",
   urlParameters: [
-    {
-      parameterPath: "resourceGroupName",
-      mapper: {
-        required: true,
-        serializedName: "resourceGroupName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "networkInterfaceName",
-      mapper: {
-        required: true,
-        serializedName: "networkInterfaceName",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.resourceGroupName,
+    Parameters.networkInterfaceName,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2018-04-01',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.apiVersion0
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -2338,7 +1640,7 @@ const beginListEffectiveNetworkSecurityGroupsOperationSpec: msRest.OperationSpec
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listAllNextOperationSpec: msRest.OperationSpec = {
@@ -2346,29 +1648,10 @@ const listAllNextOperationSpec: msRest.OperationSpec = {
   baseUrl: "https://management.azure.com",
   path: "{nextLink}",
   urlParameters: [
-    {
-      parameterPath: "nextPageLink",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.nextPageLink
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -2378,7 +1661,7 @@ const listAllNextOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listNextOperationSpec: msRest.OperationSpec = {
@@ -2386,29 +1669,10 @@ const listNextOperationSpec: msRest.OperationSpec = {
   baseUrl: "https://management.azure.com",
   path: "{nextLink}",
   urlParameters: [
-    {
-      parameterPath: "nextPageLink",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.nextPageLink
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -2418,7 +1682,7 @@ const listNextOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listVirtualMachineScaleSetVMNetworkInterfacesNextOperationSpec: msRest.OperationSpec = {
@@ -2426,29 +1690,10 @@ const listVirtualMachineScaleSetVMNetworkInterfacesNextOperationSpec: msRest.Ope
   baseUrl: "https://management.azure.com",
   path: "{nextLink}",
   urlParameters: [
-    {
-      parameterPath: "nextPageLink",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.nextPageLink
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -2458,7 +1703,7 @@ const listVirtualMachineScaleSetVMNetworkInterfacesNextOperationSpec: msRest.Ope
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listVirtualMachineScaleSetNetworkInterfacesNextOperationSpec: msRest.OperationSpec = {
@@ -2466,29 +1711,10 @@ const listVirtualMachineScaleSetNetworkInterfacesNextOperationSpec: msRest.Opera
   baseUrl: "https://management.azure.com",
   path: "{nextLink}",
   urlParameters: [
-    {
-      parameterPath: "nextPageLink",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.nextPageLink
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -2498,7 +1724,7 @@ const listVirtualMachineScaleSetNetworkInterfacesNextOperationSpec: msRest.Opera
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 const listVirtualMachineScaleSetIpConfigurationsNextOperationSpec: msRest.OperationSpec = {
@@ -2506,29 +1732,10 @@ const listVirtualMachineScaleSetIpConfigurationsNextOperationSpec: msRest.Operat
   baseUrl: "https://management.azure.com",
   path: "{nextLink}",
   urlParameters: [
-    {
-      parameterPath: "nextPageLink",
-      skipEncoding: true,
-      mapper: {
-        required: true,
-        serializedName: "nextLink",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.nextPageLink
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -2538,5 +1745,5 @@ const listVirtualMachineScaleSetIpConfigurationsNextOperationSpec: msRest.Operat
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };

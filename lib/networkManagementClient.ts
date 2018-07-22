@@ -4,12 +4,13 @@
  * regenerated.
  */
 
-import * as Models from "./models";
-import * as Mappers from "./models/mappers";
 import * as msRest from "ms-rest-js";
 import * as msRestAzure from "ms-rest-azure-js";
-import { NetworkManagementClientContext } from "./networkManagementClientContext";
+import * as Models from "./models";
+import * as Mappers from "./models/mappers";
+import * as Parameters from "./models/parameters";
 import * as operations from "./operations";
+import { NetworkManagementClientContext } from "./networkManagementClientContext";
 
 
 class NetworkManagementClient extends NetworkManagementClientContext {
@@ -184,66 +185,20 @@ class NetworkManagementClient extends NetworkManagementClientContext {
 }
 
 // Operation Specifications
+const serializer = new msRest.Serializer(Mappers);
 const checkDnsNameAvailabilityOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "subscriptions/{subscriptionId}/providers/Microsoft.Network/locations/{location}/CheckDnsNameAvailability",
   urlParameters: [
-    {
-      parameterPath: "location",
-      mapper: {
-        required: true,
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "subscriptionId",
-      mapper: {
-        required: true,
-        serializedName: "subscriptionId",
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.location0,
+    Parameters.subscriptionId
   ],
   queryParameters: [
-    {
-      parameterPath: "domainNameLabel",
-      mapper: {
-        required: true,
-        serializedName: "domainNameLabel",
-        type: {
-          name: "String"
-        }
-      }
-    },
-    {
-      parameterPath: "apiVersion",
-      mapper: {
-        required: true,
-        isConstant: true,
-        serializedName: "api-version",
-        defaultValue: '2018-04-01',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.domainNameLabel,
+    Parameters.apiVersion0
   ],
   headerParameters: [
-    {
-      parameterPath: "acceptLanguage",
-      mapper: {
-        serializedName: "accept-language",
-        defaultValue: 'en-US',
-        type: {
-          name: "String"
-        }
-      }
-    }
+    Parameters.acceptLanguage
   ],
   responses: {
     200: {
@@ -253,7 +208,7 @@ const checkDnsNameAvailabilityOperationSpec: msRest.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  serializer: new msRest.Serializer(Mappers)
+  serializer
 };
 
 export { NetworkManagementClient, Models as NetworkManagementModels, Mappers as NetworkManagementMappers };

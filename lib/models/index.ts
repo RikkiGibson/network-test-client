@@ -7606,11 +7606,7 @@ export interface LocalNetworkGatewayListResult extends Array<LocalNetworkGateway
  * @readonly
  * @enum {string}
  */
-export enum TransportProtocol {
-  Udp = 'Udp',
-  Tcp = 'Tcp',
-  All = 'All',
-}
+export type TransportProtocol = 'Udp' | 'Tcp' | 'All';
 
 /**
  * Defines values for IPAllocationMethod.
@@ -7623,10 +7619,7 @@ export enum TransportProtocol {
  * @readonly
  * @enum {string}
  */
-export enum IPAllocationMethod {
-  Static = 'Static',
-  Dynamic = 'Dynamic',
-}
+export type IPAllocationMethod = 'Static' | 'Dynamic';
 
 /**
  * Defines values for IPVersion.
@@ -7638,10 +7631,7 @@ export enum IPAllocationMethod {
  * @readonly
  * @enum {string}
  */
-export enum IPVersion {
-  IPv4 = 'IPv4',
-  IPv6 = 'IPv6',
-}
+export type IPVersion = 'IPv4' | 'IPv6';
 
 /**
  * Defines values for SecurityRuleProtocol.
@@ -7654,11 +7644,7 @@ export enum IPVersion {
  * @readonly
  * @enum {string}
  */
-export enum SecurityRuleProtocol {
-  Tcp = 'Tcp',
-  Udp = 'Udp',
-  Asterisk = '*',
-}
+export type SecurityRuleProtocol = 'Tcp' | 'Udp' | '*';
 
 /**
  * Defines values for SecurityRuleAccess.
@@ -7671,10 +7657,7 @@ export enum SecurityRuleProtocol {
  * @readonly
  * @enum {string}
  */
-export enum SecurityRuleAccess {
-  Allow = 'Allow',
-  Deny = 'Deny',
-}
+export type SecurityRuleAccess = 'Allow' | 'Deny';
 
 /**
  * Defines values for SecurityRuleDirection.
@@ -7687,10 +7670,7 @@ export enum SecurityRuleAccess {
  * @readonly
  * @enum {string}
  */
-export enum SecurityRuleDirection {
-  Inbound = 'Inbound',
-  Outbound = 'Outbound',
-}
+export type SecurityRuleDirection = 'Inbound' | 'Outbound';
 
 /**
  * Defines values for RouteNextHopType.
@@ -7704,13 +7684,7 @@ export enum SecurityRuleDirection {
  * @readonly
  * @enum {string}
  */
-export enum RouteNextHopType {
-  VirtualNetworkGateway = 'VirtualNetworkGateway',
-  VnetLocal = 'VnetLocal',
-  Internet = 'Internet',
-  VirtualAppliance = 'VirtualAppliance',
-  None = 'None',
-}
+export type RouteNextHopType = 'VirtualNetworkGateway' | 'VnetLocal' | 'Internet' | 'VirtualAppliance' | 'None';
 
 /**
  * Defines values for PublicIPAddressSkuName.
@@ -7723,10 +7697,7 @@ export enum RouteNextHopType {
  * @readonly
  * @enum {string}
  */
-export enum PublicIPAddressSkuName {
-  Basic = 'Basic',
-  Standard = 'Standard',
-}
+export type PublicIPAddressSkuName = 'Basic' | 'Standard';
 
 /**
  * Defines values for ApplicationGatewayProtocol.
@@ -7739,10 +7710,7 @@ export enum PublicIPAddressSkuName {
  * @readonly
  * @enum {string}
  */
-export enum ApplicationGatewayProtocol {
-  Http = 'Http',
-  Https = 'Https',
-}
+export type ApplicationGatewayProtocol = 'Http' | 'Https';
 
 /**
  * Defines values for ApplicationGatewayCookieBasedAffinity.
@@ -7755,10 +7723,7 @@ export enum ApplicationGatewayProtocol {
  * @readonly
  * @enum {string}
  */
-export enum ApplicationGatewayCookieBasedAffinity {
-  Enabled = 'Enabled',
-  Disabled = 'Disabled',
-}
+export type ApplicationGatewayCookieBasedAffinity = 'Enabled' | 'Disabled';
 
 /**
  * Defines values for ApplicationGatewayBackendHealthServerHealth.
@@ -7771,13 +7736,7 @@ export enum ApplicationGatewayCookieBasedAffinity {
  * @readonly
  * @enum {string}
  */
-export enum ApplicationGatewayBackendHealthServerHealth {
-  Unknown = 'Unknown',
-  Up = 'Up',
-  Down = 'Down',
-  Partial = 'Partial',
-  Draining = 'Draining',
-}
+export type ApplicationGatewayBackendHealthServerHealth = 'Unknown' | 'Up' | 'Down' | 'Partial' | 'Draining';
 
 /**
  * Defines values for ApplicationGatewaySkuName.
@@ -7791,13 +7750,7 @@ export enum ApplicationGatewayBackendHealthServerHealth {
  * @readonly
  * @enum {string}
  */
-export enum ApplicationGatewaySkuName {
-  StandardSmall = 'Standard_Small',
-  StandardMedium = 'Standard_Medium',
-  StandardLarge = 'Standard_Large',
-  WAFMedium = 'WAF_Medium',
-  WAFLarge = 'WAF_Large',
-}
+export type ApplicationGatewaySkuName = 'Standard_Small' | 'Standard_Medium' | 'Standard_Large' | 'WAF_Medium' | 'WAF_Large';
 
 /**
  * Defines values for ApplicationGatewayTier.
@@ -7810,10 +7763,7 @@ export enum ApplicationGatewaySkuName {
  * @readonly
  * @enum {string}
  */
-export enum ApplicationGatewayTier {
-  Standard = 'Standard',
-  WAF = 'WAF',
-}
+export type ApplicationGatewayTier = 'Standard' | 'WAF';
 
 /**
  * Defines values for ApplicationGatewaySslProtocol.
@@ -7826,11 +7776,7 @@ export enum ApplicationGatewayTier {
  * @readonly
  * @enum {string}
  */
-export enum ApplicationGatewaySslProtocol {
-  TLSv10 = 'TLSv1_0',
-  TLSv11 = 'TLSv1_1',
-  TLSv12 = 'TLSv1_2',
-}
+export type ApplicationGatewaySslProtocol = 'TLSv1_0' | 'TLSv1_1' | 'TLSv1_2';
 
 /**
  * Defines values for ApplicationGatewaySslPolicyType.
@@ -7843,10 +7789,7 @@ export enum ApplicationGatewaySslProtocol {
  * @readonly
  * @enum {string}
  */
-export enum ApplicationGatewaySslPolicyType {
-  Predefined = 'Predefined',
-  Custom = 'Custom',
-}
+export type ApplicationGatewaySslPolicyType = 'Predefined' | 'Custom';
 
 /**
  * Defines values for ApplicationGatewaySslPolicyName.
@@ -7860,11 +7803,7 @@ export enum ApplicationGatewaySslPolicyType {
  * @readonly
  * @enum {string}
  */
-export enum ApplicationGatewaySslPolicyName {
-  AppGwSslPolicy20150501 = 'AppGwSslPolicy20150501',
-  AppGwSslPolicy20170401 = 'AppGwSslPolicy20170401',
-  AppGwSslPolicy20170401S = 'AppGwSslPolicy20170401S',
-}
+export type ApplicationGatewaySslPolicyName = 'AppGwSslPolicy20150501' | 'AppGwSslPolicy20170401' | 'AppGwSslPolicy20170401S';
 
 /**
  * Defines values for ApplicationGatewaySslCipherSuite.
@@ -7893,33 +7832,7 @@ export enum ApplicationGatewaySslPolicyName {
  * @readonly
  * @enum {string}
  */
-export enum ApplicationGatewaySslCipherSuite {
-  TLSECDHERSAWITHAES256CBCSHA384 = 'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384',
-  TLSECDHERSAWITHAES128CBCSHA256 = 'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256',
-  TLSECDHERSAWITHAES256CBCSHA = 'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA',
-  TLSECDHERSAWITHAES128CBCSHA = 'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA',
-  TLSDHERSAWITHAES256GCMSHA384 = 'TLS_DHE_RSA_WITH_AES_256_GCM_SHA384',
-  TLSDHERSAWITHAES128GCMSHA256 = 'TLS_DHE_RSA_WITH_AES_128_GCM_SHA256',
-  TLSDHERSAWITHAES256CBCSHA = 'TLS_DHE_RSA_WITH_AES_256_CBC_SHA',
-  TLSDHERSAWITHAES128CBCSHA = 'TLS_DHE_RSA_WITH_AES_128_CBC_SHA',
-  TLSRSAWITHAES256GCMSHA384 = 'TLS_RSA_WITH_AES_256_GCM_SHA384',
-  TLSRSAWITHAES128GCMSHA256 = 'TLS_RSA_WITH_AES_128_GCM_SHA256',
-  TLSRSAWITHAES256CBCSHA256 = 'TLS_RSA_WITH_AES_256_CBC_SHA256',
-  TLSRSAWITHAES128CBCSHA256 = 'TLS_RSA_WITH_AES_128_CBC_SHA256',
-  TLSRSAWITHAES256CBCSHA = 'TLS_RSA_WITH_AES_256_CBC_SHA',
-  TLSRSAWITHAES128CBCSHA = 'TLS_RSA_WITH_AES_128_CBC_SHA',
-  TLSECDHEECDSAWITHAES256GCMSHA384 = 'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384',
-  TLSECDHEECDSAWITHAES128GCMSHA256 = 'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256',
-  TLSECDHEECDSAWITHAES256CBCSHA384 = 'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384',
-  TLSECDHEECDSAWITHAES128CBCSHA256 = 'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256',
-  TLSECDHEECDSAWITHAES256CBCSHA = 'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA',
-  TLSECDHEECDSAWITHAES128CBCSHA = 'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA',
-  TLSDHEDSSWITHAES256CBCSHA256 = 'TLS_DHE_DSS_WITH_AES_256_CBC_SHA256',
-  TLSDHEDSSWITHAES128CBCSHA256 = 'TLS_DHE_DSS_WITH_AES_128_CBC_SHA256',
-  TLSDHEDSSWITHAES256CBCSHA = 'TLS_DHE_DSS_WITH_AES_256_CBC_SHA',
-  TLSDHEDSSWITHAES128CBCSHA = 'TLS_DHE_DSS_WITH_AES_128_CBC_SHA',
-  TLSRSAWITH3DESEDECBCSHA = 'TLS_RSA_WITH_3DES_EDE_CBC_SHA',
-}
+export type ApplicationGatewaySslCipherSuite = 'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384' | 'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256' | 'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA' | 'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA' | 'TLS_DHE_RSA_WITH_AES_256_GCM_SHA384' | 'TLS_DHE_RSA_WITH_AES_128_GCM_SHA256' | 'TLS_DHE_RSA_WITH_AES_256_CBC_SHA' | 'TLS_DHE_RSA_WITH_AES_128_CBC_SHA' | 'TLS_RSA_WITH_AES_256_GCM_SHA384' | 'TLS_RSA_WITH_AES_128_GCM_SHA256' | 'TLS_RSA_WITH_AES_256_CBC_SHA256' | 'TLS_RSA_WITH_AES_128_CBC_SHA256' | 'TLS_RSA_WITH_AES_256_CBC_SHA' | 'TLS_RSA_WITH_AES_128_CBC_SHA' | 'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384' | 'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256' | 'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384' | 'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256' | 'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA' | 'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA' | 'TLS_DHE_DSS_WITH_AES_256_CBC_SHA256' | 'TLS_DHE_DSS_WITH_AES_128_CBC_SHA256' | 'TLS_DHE_DSS_WITH_AES_256_CBC_SHA' | 'TLS_DHE_DSS_WITH_AES_128_CBC_SHA' | 'TLS_RSA_WITH_3DES_EDE_CBC_SHA';
 
 /**
  * Defines values for ApplicationGatewayRequestRoutingRuleType.
@@ -7932,10 +7845,7 @@ export enum ApplicationGatewaySslCipherSuite {
  * @readonly
  * @enum {string}
  */
-export enum ApplicationGatewayRequestRoutingRuleType {
-  Basic = 'Basic',
-  PathBasedRouting = 'PathBasedRouting',
-}
+export type ApplicationGatewayRequestRoutingRuleType = 'Basic' | 'PathBasedRouting';
 
 /**
  * Defines values for ApplicationGatewayRedirectType.
@@ -7948,12 +7858,7 @@ export enum ApplicationGatewayRequestRoutingRuleType {
  * @readonly
  * @enum {string}
  */
-export enum ApplicationGatewayRedirectType {
-  Permanent = 'Permanent',
-  Found = 'Found',
-  SeeOther = 'SeeOther',
-  Temporary = 'Temporary',
-}
+export type ApplicationGatewayRedirectType = 'Permanent' | 'Found' | 'SeeOther' | 'Temporary';
 
 /**
  * Defines values for ApplicationGatewayOperationalState.
@@ -7966,12 +7871,7 @@ export enum ApplicationGatewayRedirectType {
  * @readonly
  * @enum {string}
  */
-export enum ApplicationGatewayOperationalState {
-  Stopped = 'Stopped',
-  Starting = 'Starting',
-  Running = 'Running',
-  Stopping = 'Stopping',
-}
+export type ApplicationGatewayOperationalState = 'Stopped' | 'Starting' | 'Running' | 'Stopping';
 
 /**
  * Defines values for ApplicationGatewayFirewallMode.
@@ -7984,10 +7884,7 @@ export enum ApplicationGatewayOperationalState {
  * @readonly
  * @enum {string}
  */
-export enum ApplicationGatewayFirewallMode {
-  Detection = 'Detection',
-  Prevention = 'Prevention',
-}
+export type ApplicationGatewayFirewallMode = 'Detection' | 'Prevention';
 
 /**
  * Defines values for AuthorizationUseStatus.
@@ -8000,10 +7897,7 @@ export enum ApplicationGatewayFirewallMode {
  * @readonly
  * @enum {string}
  */
-export enum AuthorizationUseStatus {
-  Available = 'Available',
-  InUse = 'InUse',
-}
+export type AuthorizationUseStatus = 'Available' | 'InUse';
 
 /**
  * Defines values for ExpressRouteCircuitPeeringAdvertisedPublicPrefixState.
@@ -8017,12 +7911,7 @@ export enum AuthorizationUseStatus {
  * @readonly
  * @enum {string}
  */
-export enum ExpressRouteCircuitPeeringAdvertisedPublicPrefixState {
-  NotConfigured = 'NotConfigured',
-  Configuring = 'Configuring',
-  Configured = 'Configured',
-  ValidationNeeded = 'ValidationNeeded',
-}
+export type ExpressRouteCircuitPeeringAdvertisedPublicPrefixState = 'NotConfigured' | 'Configuring' | 'Configured' | 'ValidationNeeded';
 
 /**
  * Defines values for Access.
@@ -8034,10 +7923,7 @@ export enum ExpressRouteCircuitPeeringAdvertisedPublicPrefixState {
  * @readonly
  * @enum {string}
  */
-export enum Access {
-  Allow = 'Allow',
-  Deny = 'Deny',
-}
+export type Access = 'Allow' | 'Deny';
 
 /**
  * Defines values for ExpressRoutePeeringType.
@@ -8051,11 +7937,7 @@ export enum Access {
  * @readonly
  * @enum {string}
  */
-export enum ExpressRoutePeeringType {
-  AzurePublicPeering = 'AzurePublicPeering',
-  AzurePrivatePeering = 'AzurePrivatePeering',
-  MicrosoftPeering = 'MicrosoftPeering',
-}
+export type ExpressRoutePeeringType = 'AzurePublicPeering' | 'AzurePrivatePeering' | 'MicrosoftPeering';
 
 /**
  * Defines values for ExpressRoutePeeringState.
@@ -8068,10 +7950,7 @@ export enum ExpressRoutePeeringType {
  * @readonly
  * @enum {string}
  */
-export enum ExpressRoutePeeringState {
-  Disabled = 'Disabled',
-  Enabled = 'Enabled',
-}
+export type ExpressRoutePeeringState = 'Disabled' | 'Enabled';
 
 /**
  * Defines values for CircuitConnectionStatus.
@@ -8084,11 +7963,7 @@ export enum ExpressRoutePeeringState {
  * @readonly
  * @enum {string}
  */
-export enum CircuitConnectionStatus {
-  Connected = 'Connected',
-  Connecting = 'Connecting',
-  Disconnected = 'Disconnected',
-}
+export type CircuitConnectionStatus = 'Connected' | 'Connecting' | 'Disconnected';
 
 /**
  * Defines values for ExpressRouteCircuitPeeringState.
@@ -8101,10 +7976,7 @@ export enum CircuitConnectionStatus {
  * @readonly
  * @enum {string}
  */
-export enum ExpressRouteCircuitPeeringState {
-  Disabled = 'Disabled',
-  Enabled = 'Enabled',
-}
+export type ExpressRouteCircuitPeeringState = 'Disabled' | 'Enabled';
 
 /**
  * Defines values for ExpressRouteCircuitSkuTier.
@@ -8117,10 +7989,7 @@ export enum ExpressRouteCircuitPeeringState {
  * @readonly
  * @enum {string}
  */
-export enum ExpressRouteCircuitSkuTier {
-  Standard = 'Standard',
-  Premium = 'Premium',
-}
+export type ExpressRouteCircuitSkuTier = 'Standard' | 'Premium';
 
 /**
  * Defines values for ExpressRouteCircuitSkuFamily.
@@ -8133,10 +8002,7 @@ export enum ExpressRouteCircuitSkuTier {
  * @readonly
  * @enum {string}
  */
-export enum ExpressRouteCircuitSkuFamily {
-  UnlimitedData = 'UnlimitedData',
-  MeteredData = 'MeteredData',
-}
+export type ExpressRouteCircuitSkuFamily = 'UnlimitedData' | 'MeteredData';
 
 /**
  * Defines values for ServiceProviderProvisioningState.
@@ -8150,12 +8016,7 @@ export enum ExpressRouteCircuitSkuFamily {
  * @readonly
  * @enum {string}
  */
-export enum ServiceProviderProvisioningState {
-  NotProvisioned = 'NotProvisioned',
-  Provisioning = 'Provisioning',
-  Provisioned = 'Provisioned',
-  Deprovisioning = 'Deprovisioning',
-}
+export type ServiceProviderProvisioningState = 'NotProvisioned' | 'Provisioning' | 'Provisioned' | 'Deprovisioning';
 
 /**
  * Defines values for LoadBalancerSkuName.
@@ -8168,10 +8029,7 @@ export enum ServiceProviderProvisioningState {
  * @readonly
  * @enum {string}
  */
-export enum LoadBalancerSkuName {
-  Basic = 'Basic',
-  Standard = 'Standard',
-}
+export type LoadBalancerSkuName = 'Basic' | 'Standard';
 
 /**
  * Defines values for LoadDistribution.
@@ -8184,11 +8042,7 @@ export enum LoadBalancerSkuName {
  * @readonly
  * @enum {string}
  */
-export enum LoadDistribution {
-  Default = 'Default',
-  SourceIP = 'SourceIP',
-  SourceIPProtocol = 'SourceIPProtocol',
-}
+export type LoadDistribution = 'Default' | 'SourceIP' | 'SourceIPProtocol';
 
 /**
  * Defines values for ProbeProtocol.
@@ -8201,10 +8055,7 @@ export enum LoadDistribution {
  * @readonly
  * @enum {string}
  */
-export enum ProbeProtocol {
-  Http = 'Http',
-  Tcp = 'Tcp',
-}
+export type ProbeProtocol = 'Http' | 'Tcp';
 
 /**
  * Defines values for NetworkOperationStatus.
@@ -8217,11 +8068,7 @@ export enum ProbeProtocol {
  * @readonly
  * @enum {string}
  */
-export enum NetworkOperationStatus {
-  InProgress = 'InProgress',
-  Succeeded = 'Succeeded',
-  Failed = 'Failed',
-}
+export type NetworkOperationStatus = 'InProgress' | 'Succeeded' | 'Failed';
 
 /**
  * Defines values for EffectiveSecurityRuleProtocol.
@@ -8234,11 +8081,7 @@ export enum NetworkOperationStatus {
  * @readonly
  * @enum {string}
  */
-export enum EffectiveSecurityRuleProtocol {
-  Tcp = 'Tcp',
-  Udp = 'Udp',
-  All = 'All',
-}
+export type EffectiveSecurityRuleProtocol = 'Tcp' | 'Udp' | 'All';
 
 /**
  * Defines values for EffectiveRouteSource.
@@ -8252,12 +8095,7 @@ export enum EffectiveSecurityRuleProtocol {
  * @readonly
  * @enum {string}
  */
-export enum EffectiveRouteSource {
-  Unknown = 'Unknown',
-  User = 'User',
-  VirtualNetworkGateway = 'VirtualNetworkGateway',
-  Default = 'Default',
-}
+export type EffectiveRouteSource = 'Unknown' | 'User' | 'VirtualNetworkGateway' | 'Default';
 
 /**
  * Defines values for EffectiveRouteState.
@@ -8270,10 +8108,7 @@ export enum EffectiveRouteSource {
  * @readonly
  * @enum {string}
  */
-export enum EffectiveRouteState {
-  Active = 'Active',
-  Invalid = 'Invalid',
-}
+export type EffectiveRouteState = 'Active' | 'Invalid';
 
 /**
  * Defines values for ProvisioningState.
@@ -8286,12 +8121,7 @@ export enum EffectiveRouteState {
  * @readonly
  * @enum {string}
  */
-export enum ProvisioningState {
-  Succeeded = 'Succeeded',
-  Updating = 'Updating',
-  Deleting = 'Deleting',
-  Failed = 'Failed',
-}
+export type ProvisioningState = 'Succeeded' | 'Updating' | 'Deleting' | 'Failed';
 
 /**
  * Defines values for AssociationType.
@@ -8304,10 +8134,7 @@ export enum ProvisioningState {
  * @readonly
  * @enum {string}
  */
-export enum AssociationType {
-  Associated = 'Associated',
-  Contains = 'Contains',
-}
+export type AssociationType = 'Associated' | 'Contains';
 
 /**
  * Defines values for Direction.
@@ -8319,10 +8146,7 @@ export enum AssociationType {
  * @readonly
  * @enum {string}
  */
-export enum Direction {
-  Inbound = 'Inbound',
-  Outbound = 'Outbound',
-}
+export type Direction = 'Inbound' | 'Outbound';
 
 /**
  * Defines values for IpFlowProtocol.
@@ -8335,10 +8159,7 @@ export enum Direction {
  * @readonly
  * @enum {string}
  */
-export enum IpFlowProtocol {
-  TCP = 'TCP',
-  UDP = 'UDP',
-}
+export type IpFlowProtocol = 'TCP' | 'UDP';
 
 /**
  * Defines values for NextHopType.
@@ -8352,14 +8173,7 @@ export enum IpFlowProtocol {
  * @readonly
  * @enum {string}
  */
-export enum NextHopType {
-  Internet = 'Internet',
-  VirtualAppliance = 'VirtualAppliance',
-  VirtualNetworkGateway = 'VirtualNetworkGateway',
-  VnetLocal = 'VnetLocal',
-  HyperNetGateway = 'HyperNetGateway',
-  None = 'None',
-}
+export type NextHopType = 'Internet' | 'VirtualAppliance' | 'VirtualNetworkGateway' | 'VnetLocal' | 'HyperNetGateway' | 'None';
 
 /**
  * Defines values for PcProtocol.
@@ -8371,11 +8185,7 @@ export enum NextHopType {
  * @readonly
  * @enum {string}
  */
-export enum PcProtocol {
-  TCP = 'TCP',
-  UDP = 'UDP',
-  Any = 'Any',
-}
+export type PcProtocol = 'TCP' | 'UDP' | 'Any';
 
 /**
  * Defines values for PcStatus.
@@ -8388,13 +8198,7 @@ export enum PcProtocol {
  * @readonly
  * @enum {string}
  */
-export enum PcStatus {
-  NotStarted = 'NotStarted',
-  Running = 'Running',
-  Stopped = 'Stopped',
-  Error = 'Error',
-  Unknown = 'Unknown',
-}
+export type PcStatus = 'NotStarted' | 'Running' | 'Stopped' | 'Error' | 'Unknown';
 
 /**
  * Defines values for PcError.
@@ -8407,13 +8211,7 @@ export enum PcStatus {
  * @readonly
  * @enum {string}
  */
-export enum PcError {
-  InternalError = 'InternalError',
-  AgentStopped = 'AgentStopped',
-  CaptureFailed = 'CaptureFailed',
-  LocalFileFailed = 'LocalFileFailed',
-  StorageFailed = 'StorageFailed',
-}
+export type PcError = 'InternalError' | 'AgentStopped' | 'CaptureFailed' | 'LocalFileFailed' | 'StorageFailed';
 
 /**
  * Defines values for Protocol.
@@ -8425,12 +8223,7 @@ export enum PcError {
  * @readonly
  * @enum {string}
  */
-export enum Protocol {
-  Tcp = 'Tcp',
-  Http = 'Http',
-  Https = 'Https',
-  Icmp = 'Icmp',
-}
+export type Protocol = 'Tcp' | 'Http' | 'Https' | 'Icmp';
 
 /**
  * Defines values for HTTPMethod.
@@ -8442,9 +8235,7 @@ export enum Protocol {
  * @readonly
  * @enum {string}
  */
-export enum HTTPMethod {
-  Get = 'Get',
-}
+export type HTTPMethod = 'Get';
 
 /**
  * Defines values for Origin.
@@ -8456,11 +8247,7 @@ export enum HTTPMethod {
  * @readonly
  * @enum {string}
  */
-export enum Origin {
-  Local = 'Local',
-  Inbound = 'Inbound',
-  Outbound = 'Outbound',
-}
+export type Origin = 'Local' | 'Inbound' | 'Outbound';
 
 /**
  * Defines values for Severity.
@@ -8472,10 +8259,7 @@ export enum Origin {
  * @readonly
  * @enum {string}
  */
-export enum Severity {
-  Error = 'Error',
-  Warning = 'Warning',
-}
+export type Severity = 'Error' | 'Warning';
 
 /**
  * Defines values for IssueType.
@@ -8489,17 +8273,7 @@ export enum Severity {
  * @readonly
  * @enum {string}
  */
-export enum IssueType {
-  Unknown = 'Unknown',
-  AgentStopped = 'AgentStopped',
-  GuestFirewall = 'GuestFirewall',
-  DnsResolution = 'DnsResolution',
-  SocketBind = 'SocketBind',
-  NetworkSecurityRule = 'NetworkSecurityRule',
-  UserDefinedRoute = 'UserDefinedRoute',
-  PortThrottled = 'PortThrottled',
-  Platform = 'Platform',
-}
+export type IssueType = 'Unknown' | 'AgentStopped' | 'GuestFirewall' | 'DnsResolution' | 'SocketBind' | 'NetworkSecurityRule' | 'UserDefinedRoute' | 'PortThrottled' | 'Platform';
 
 /**
  * Defines values for ConnectionStatus.
@@ -8512,12 +8286,7 @@ export enum IssueType {
  * @readonly
  * @enum {string}
  */
-export enum ConnectionStatus {
-  Unknown = 'Unknown',
-  Connected = 'Connected',
-  Disconnected = 'Disconnected',
-  Degraded = 'Degraded',
-}
+export type ConnectionStatus = 'Unknown' | 'Connected' | 'Disconnected' | 'Degraded';
 
 /**
  * Defines values for ConnectionMonitorSourceStatus.
@@ -8530,11 +8299,7 @@ export enum ConnectionStatus {
  * @readonly
  * @enum {string}
  */
-export enum ConnectionMonitorSourceStatus {
-  Uknown = 'Uknown',
-  Active = 'Active',
-  Inactive = 'Inactive',
-}
+export type ConnectionMonitorSourceStatus = 'Uknown' | 'Active' | 'Inactive';
 
 /**
  * Defines values for ConnectionState.
@@ -8547,11 +8312,7 @@ export enum ConnectionMonitorSourceStatus {
  * @readonly
  * @enum {string}
  */
-export enum ConnectionState {
-  Reachable = 'Reachable',
-  Unreachable = 'Unreachable',
-  Unknown = 'Unknown',
-}
+export type ConnectionState = 'Reachable' | 'Unreachable' | 'Unknown';
 
 /**
  * Defines values for EvaluationState.
@@ -8564,11 +8325,7 @@ export enum ConnectionState {
  * @readonly
  * @enum {string}
  */
-export enum EvaluationState {
-  NotStarted = 'NotStarted',
-  InProgress = 'InProgress',
-  Completed = 'Completed',
-}
+export type EvaluationState = 'NotStarted' | 'InProgress' | 'Completed';
 
 /**
  * Defines values for VirtualNetworkPeeringState.
@@ -8581,11 +8338,7 @@ export enum EvaluationState {
  * @readonly
  * @enum {string}
  */
-export enum VirtualNetworkPeeringState {
-  Initiated = 'Initiated',
-  Connected = 'Connected',
-  Disconnected = 'Disconnected',
-}
+export type VirtualNetworkPeeringState = 'Initiated' | 'Connected' | 'Disconnected';
 
 /**
  * Defines values for VirtualNetworkGatewayType.
@@ -8598,10 +8351,7 @@ export enum VirtualNetworkPeeringState {
  * @readonly
  * @enum {string}
  */
-export enum VirtualNetworkGatewayType {
-  Vpn = 'Vpn',
-  ExpressRoute = 'ExpressRoute',
-}
+export type VirtualNetworkGatewayType = 'Vpn' | 'ExpressRoute';
 
 /**
  * Defines values for VpnType.
@@ -8613,10 +8363,7 @@ export enum VirtualNetworkGatewayType {
  * @readonly
  * @enum {string}
  */
-export enum VpnType {
-  PolicyBased = 'PolicyBased',
-  RouteBased = 'RouteBased',
-}
+export type VpnType = 'PolicyBased' | 'RouteBased';
 
 /**
  * Defines values for VirtualNetworkGatewaySkuName.
@@ -8631,21 +8378,7 @@ export enum VpnType {
  * @readonly
  * @enum {string}
  */
-export enum VirtualNetworkGatewaySkuName {
-  Basic = 'Basic',
-  HighPerformance = 'HighPerformance',
-  Standard = 'Standard',
-  UltraPerformance = 'UltraPerformance',
-  VpnGw1 = 'VpnGw1',
-  VpnGw2 = 'VpnGw2',
-  VpnGw3 = 'VpnGw3',
-  VpnGw1AZ = 'VpnGw1AZ',
-  VpnGw2AZ = 'VpnGw2AZ',
-  VpnGw3AZ = 'VpnGw3AZ',
-  ErGw1AZ = 'ErGw1AZ',
-  ErGw2AZ = 'ErGw2AZ',
-  ErGw3AZ = 'ErGw3AZ',
-}
+export type VirtualNetworkGatewaySkuName = 'Basic' | 'HighPerformance' | 'Standard' | 'UltraPerformance' | 'VpnGw1' | 'VpnGw2' | 'VpnGw3' | 'VpnGw1AZ' | 'VpnGw2AZ' | 'VpnGw3AZ' | 'ErGw1AZ' | 'ErGw2AZ' | 'ErGw3AZ';
 
 /**
  * Defines values for VirtualNetworkGatewaySkuTier.
@@ -8660,21 +8393,7 @@ export enum VirtualNetworkGatewaySkuName {
  * @readonly
  * @enum {string}
  */
-export enum VirtualNetworkGatewaySkuTier {
-  Basic = 'Basic',
-  HighPerformance = 'HighPerformance',
-  Standard = 'Standard',
-  UltraPerformance = 'UltraPerformance',
-  VpnGw1 = 'VpnGw1',
-  VpnGw2 = 'VpnGw2',
-  VpnGw3 = 'VpnGw3',
-  VpnGw1AZ = 'VpnGw1AZ',
-  VpnGw2AZ = 'VpnGw2AZ',
-  VpnGw3AZ = 'VpnGw3AZ',
-  ErGw1AZ = 'ErGw1AZ',
-  ErGw2AZ = 'ErGw2AZ',
-  ErGw3AZ = 'ErGw3AZ',
-}
+export type VirtualNetworkGatewaySkuTier = 'Basic' | 'HighPerformance' | 'Standard' | 'UltraPerformance' | 'VpnGw1' | 'VpnGw2' | 'VpnGw3' | 'VpnGw1AZ' | 'VpnGw2AZ' | 'VpnGw3AZ' | 'ErGw1AZ' | 'ErGw2AZ' | 'ErGw3AZ';
 
 /**
  * Defines values for VpnClientProtocol.
@@ -8687,10 +8406,7 @@ export enum VirtualNetworkGatewaySkuTier {
  * @readonly
  * @enum {string}
  */
-export enum VpnClientProtocol {
-  IkeV2 = 'IkeV2',
-  SSTP = 'SSTP',
-}
+export type VpnClientProtocol = 'IkeV2' | 'SSTP';
 
 /**
  * Defines values for IpsecEncryption.
@@ -8704,17 +8420,7 @@ export enum VpnClientProtocol {
  * @readonly
  * @enum {string}
  */
-export enum IpsecEncryption {
-  None = 'None',
-  DES = 'DES',
-  DES3 = 'DES3',
-  AES128 = 'AES128',
-  AES192 = 'AES192',
-  AES256 = 'AES256',
-  GCMAES128 = 'GCMAES128',
-  GCMAES192 = 'GCMAES192',
-  GCMAES256 = 'GCMAES256',
-}
+export type IpsecEncryption = 'None' | 'DES' | 'DES3' | 'AES128' | 'AES192' | 'AES256' | 'GCMAES128' | 'GCMAES192' | 'GCMAES256';
 
 /**
  * Defines values for IpsecIntegrity.
@@ -8728,14 +8434,7 @@ export enum IpsecEncryption {
  * @readonly
  * @enum {string}
  */
-export enum IpsecIntegrity {
-  MD5 = 'MD5',
-  SHA1 = 'SHA1',
-  SHA256 = 'SHA256',
-  GCMAES128 = 'GCMAES128',
-  GCMAES192 = 'GCMAES192',
-  GCMAES256 = 'GCMAES256',
-}
+export type IpsecIntegrity = 'MD5' | 'SHA1' | 'SHA256' | 'GCMAES128' | 'GCMAES192' | 'GCMAES256';
 
 /**
  * Defines values for IkeEncryption.
@@ -8749,15 +8448,7 @@ export enum IpsecIntegrity {
  * @readonly
  * @enum {string}
  */
-export enum IkeEncryption {
-  DES = 'DES',
-  DES3 = 'DES3',
-  AES128 = 'AES128',
-  AES192 = 'AES192',
-  AES256 = 'AES256',
-  GCMAES256 = 'GCMAES256',
-  GCMAES128 = 'GCMAES128',
-}
+export type IkeEncryption = 'DES' | 'DES3' | 'AES128' | 'AES192' | 'AES256' | 'GCMAES256' | 'GCMAES128';
 
 /**
  * Defines values for IkeIntegrity.
@@ -8771,14 +8462,7 @@ export enum IkeEncryption {
  * @readonly
  * @enum {string}
  */
-export enum IkeIntegrity {
-  MD5 = 'MD5',
-  SHA1 = 'SHA1',
-  SHA256 = 'SHA256',
-  SHA384 = 'SHA384',
-  GCMAES256 = 'GCMAES256',
-  GCMAES128 = 'GCMAES128',
-}
+export type IkeIntegrity = 'MD5' | 'SHA1' | 'SHA256' | 'SHA384' | 'GCMAES256' | 'GCMAES128';
 
 /**
  * Defines values for DhGroup.
@@ -8791,16 +8475,7 @@ export enum IkeIntegrity {
  * @readonly
  * @enum {string}
  */
-export enum DhGroup {
-  None = 'None',
-  DHGroup1 = 'DHGroup1',
-  DHGroup2 = 'DHGroup2',
-  DHGroup14 = 'DHGroup14',
-  DHGroup2048 = 'DHGroup2048',
-  ECP256 = 'ECP256',
-  ECP384 = 'ECP384',
-  DHGroup24 = 'DHGroup24',
-}
+export type DhGroup = 'None' | 'DHGroup1' | 'DHGroup2' | 'DHGroup14' | 'DHGroup2048' | 'ECP256' | 'ECP384' | 'DHGroup24';
 
 /**
  * Defines values for PfsGroup.
@@ -8813,17 +8488,7 @@ export enum DhGroup {
  * @readonly
  * @enum {string}
  */
-export enum PfsGroup {
-  None = 'None',
-  PFS1 = 'PFS1',
-  PFS2 = 'PFS2',
-  PFS2048 = 'PFS2048',
-  ECP256 = 'ECP256',
-  ECP384 = 'ECP384',
-  PFS24 = 'PFS24',
-  PFS14 = 'PFS14',
-  PFSMM = 'PFSMM',
-}
+export type PfsGroup = 'None' | 'PFS1' | 'PFS2' | 'PFS2048' | 'ECP256' | 'ECP384' | 'PFS24' | 'PFS14' | 'PFSMM';
 
 /**
  * Defines values for BgpPeerState.
@@ -8837,13 +8502,7 @@ export enum PfsGroup {
  * @readonly
  * @enum {string}
  */
-export enum BgpPeerState {
-  Unknown = 'Unknown',
-  Stopped = 'Stopped',
-  Idle = 'Idle',
-  Connecting = 'Connecting',
-  Connected = 'Connected',
-}
+export type BgpPeerState = 'Unknown' | 'Stopped' | 'Idle' | 'Connecting' | 'Connected';
 
 /**
  * Defines values for ProcessorArchitecture.
@@ -8856,10 +8515,7 @@ export enum BgpPeerState {
  * @readonly
  * @enum {string}
  */
-export enum ProcessorArchitecture {
-  Amd64 = 'Amd64',
-  X86 = 'X86',
-}
+export type ProcessorArchitecture = 'Amd64' | 'X86';
 
 /**
  * Defines values for AuthenticationMethod.
@@ -8872,10 +8528,7 @@ export enum ProcessorArchitecture {
  * @readonly
  * @enum {string}
  */
-export enum AuthenticationMethod {
-  EAPTLS = 'EAPTLS',
-  EAPMSCHAPv2 = 'EAPMSCHAPv2',
-}
+export type AuthenticationMethod = 'EAPTLS' | 'EAPMSCHAPv2';
 
 /**
  * Defines values for VirtualNetworkGatewayConnectionStatus.
@@ -8889,12 +8542,7 @@ export enum AuthenticationMethod {
  * @readonly
  * @enum {string}
  */
-export enum VirtualNetworkGatewayConnectionStatus {
-  Unknown = 'Unknown',
-  Connecting = 'Connecting',
-  Connected = 'Connected',
-  NotConnected = 'NotConnected',
-}
+export type VirtualNetworkGatewayConnectionStatus = 'Unknown' | 'Connecting' | 'Connected' | 'NotConnected';
 
 /**
  * Defines values for VirtualNetworkGatewayConnectionType.
@@ -8907,9 +8555,4 @@ export enum VirtualNetworkGatewayConnectionStatus {
  * @readonly
  * @enum {string}
  */
-export enum VirtualNetworkGatewayConnectionType {
-  IPsec = 'IPsec',
-  Vnet2Vnet = 'Vnet2Vnet',
-  ExpressRoute = 'ExpressRoute',
-  VPNClient = 'VPNClient',
-}
+export type VirtualNetworkGatewayConnectionType = 'IPsec' | 'Vnet2Vnet' | 'ExpressRoute' | 'VPNClient';

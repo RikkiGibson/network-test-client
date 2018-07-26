@@ -37,7 +37,7 @@ export class LoadBalancerFrontendIPConfigurations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerFrontendIPConfigurationListResult>> {
+  list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerFrontendIPConfigurationListResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -64,7 +64,7 @@ export class LoadBalancerFrontendIPConfigurations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, frontendIPConfigurationName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FrontendIPConfiguration>> {
+  get(resourceGroupName: string, loadBalancerName: string, frontendIPConfigurationName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FrontendIPConfiguration>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -88,91 +88,13 @@ export class LoadBalancerFrontendIPConfigurations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerFrontendIPConfigurationListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerFrontendIPConfigurationListResult>> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
       listNextOperationSpec);
-  }
-
-  /**
-   * Gets all the load balancer frontend IP configurations.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} loadBalancerName The name of the load balancer.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LoadBalancerFrontendIPConfigurationListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LoadBalancerFrontendIPConfigurationListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  list(resourceGroupName: string, loadBalancerName: string): Promise<Models.LoadBalancerFrontendIPConfigurationListResult>;
-  list(resourceGroupName: string, loadBalancerName: string, options: msRest.RequestOptionsBase): Promise<Models.LoadBalancerFrontendIPConfigurationListResult>;
-  list(resourceGroupName: string, loadBalancerName: string, callback: msRest.ServiceCallback<Models.LoadBalancerFrontendIPConfigurationListResult>): void;
-  list(resourceGroupName: string, loadBalancerName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LoadBalancerFrontendIPConfigurationListResult>): void;
-  list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LoadBalancerFrontendIPConfigurationListResult>): any {
-    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), resourceGroupName, loadBalancerName, options, callback);
-  }
-
-  /**
-   * Gets load balancer frontend IP configuration.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} loadBalancerName The name of the load balancer.
-   *
-   * @param {string} frontendIPConfigurationName The name of the frontend IP configuration.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.FrontendIPConfiguration} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.FrontendIPConfiguration} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  get(resourceGroupName: string, loadBalancerName: string, frontendIPConfigurationName: string): Promise<Models.FrontendIPConfiguration>;
-  get(resourceGroupName: string, loadBalancerName: string, frontendIPConfigurationName: string, options: msRest.RequestOptionsBase): Promise<Models.FrontendIPConfiguration>;
-  get(resourceGroupName: string, loadBalancerName: string, frontendIPConfigurationName: string, callback: msRest.ServiceCallback<Models.FrontendIPConfiguration>): void;
-  get(resourceGroupName: string, loadBalancerName: string, frontendIPConfigurationName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.FrontendIPConfiguration>): void;
-  get(resourceGroupName: string, loadBalancerName: string, frontendIPConfigurationName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.FrontendIPConfiguration>): any {
-    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), resourceGroupName, loadBalancerName, frontendIPConfigurationName, options, callback);
-  }
-
-  /**
-   * Gets all the load balancer frontend IP configurations.
-   *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LoadBalancerFrontendIPConfigurationListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LoadBalancerFrontendIPConfigurationListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listNext(nextPageLink: string): Promise<Models.LoadBalancerFrontendIPConfigurationListResult>;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.LoadBalancerFrontendIPConfigurationListResult>;
-  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.LoadBalancerFrontendIPConfigurationListResult>): void;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LoadBalancerFrontendIPConfigurationListResult>): void;
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LoadBalancerFrontendIPConfigurationListResult>): any {
-    return msRest.responseToBody(this.listNextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
   }
 
 }

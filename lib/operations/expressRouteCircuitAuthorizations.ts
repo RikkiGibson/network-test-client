@@ -40,8 +40,8 @@ export class ExpressRouteCircuitAuthorizations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethodWithHttpOperationResponse(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, circuitName, authorizationName, options)
+  deleteMethod(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteMethod(resourceGroupName, circuitName, authorizationName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
 
@@ -67,7 +67,7 @@ export class ExpressRouteCircuitAuthorizations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWithHttpOperationResponse(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitAuthorization>> {
+  get(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitAuthorization>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -99,8 +99,8 @@ export class ExpressRouteCircuitAuthorizations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdateWithHttpOperationResponse(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, circuitName, authorizationName, authorizationParameters, options)
+  createOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginCreateOrUpdate(resourceGroupName, circuitName, authorizationName, authorizationParameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -137,7 +137,7 @@ export class ExpressRouteCircuitAuthorizations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listWithHttpOperationResponse(resourceGroupName: string, circuitName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.AuthorizationListResult>> {
+  list(resourceGroupName: string, circuitName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.AuthorizationListResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -164,7 +164,7 @@ export class ExpressRouteCircuitAuthorizations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -195,7 +195,7 @@ export class ExpressRouteCircuitAuthorizations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitAuthorization>> {
+  beginCreateOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitAuthorization>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -220,209 +220,13 @@ export class ExpressRouteCircuitAuthorizations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.AuthorizationListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.AuthorizationListResult>> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
       listNextOperationSpec);
-  }
-
-  /**
-   * Deletes the specified authorization from the specified express route circuit.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} circuitName The name of the express route circuit.
-   *
-   * @param {string} authorizationName The name of the authorization.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  deleteMethod(resourceGroupName: string, circuitName: string, authorizationName: string): Promise<void>;
-  deleteMethod(resourceGroupName: string, circuitName: string, authorizationName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  deleteMethod(resourceGroupName: string, circuitName: string, authorizationName: string, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, circuitName: string, authorizationName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.deleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, circuitName, authorizationName, options, callback);
-  }
-
-  /**
-   * Gets the specified authorization from the specified express route circuit.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} circuitName The name of the express route circuit.
-   *
-   * @param {string} authorizationName The name of the authorization.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCircuitAuthorization} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCircuitAuthorization} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  get(resourceGroupName: string, circuitName: string, authorizationName: string): Promise<Models.ExpressRouteCircuitAuthorization>;
-  get(resourceGroupName: string, circuitName: string, authorizationName: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitAuthorization>;
-  get(resourceGroupName: string, circuitName: string, authorizationName: string, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitAuthorization>): void;
-  get(resourceGroupName: string, circuitName: string, authorizationName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitAuthorization>): void;
-  get(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCircuitAuthorization>): any {
-    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), resourceGroupName, circuitName, authorizationName, options, callback);
-  }
-
-  /**
-   * Creates or updates an authorization in the specified express route circuit.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} circuitName The name of the express route circuit.
-   *
-   * @param {string} authorizationName The name of the authorization.
-   *
-   * @param {ExpressRouteCircuitAuthorization} authorizationParameters Parameters supplied to the
-   * create or update express route circuit authorization operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCircuitAuthorization} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCircuitAuthorization} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  createOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization): Promise<Models.ExpressRouteCircuitAuthorization>;
-  createOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitAuthorization>;
-  createOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitAuthorization>): void;
-  createOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitAuthorization>): void;
-  createOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCircuitAuthorization>): any {
-    return msRest.responseToBody(this.createOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, circuitName, authorizationName, authorizationParameters, options, callback);
-  }
-
-  /**
-   * Gets all authorizations in an express route circuit.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} circuitName The name of the circuit.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.AuthorizationListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.AuthorizationListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  list(resourceGroupName: string, circuitName: string): Promise<Models.AuthorizationListResult>;
-  list(resourceGroupName: string, circuitName: string, options: msRest.RequestOptionsBase): Promise<Models.AuthorizationListResult>;
-  list(resourceGroupName: string, circuitName: string, callback: msRest.ServiceCallback<Models.AuthorizationListResult>): void;
-  list(resourceGroupName: string, circuitName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.AuthorizationListResult>): void;
-  list(resourceGroupName: string, circuitName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.AuthorizationListResult>): any {
-    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), resourceGroupName, circuitName, options, callback);
-  }
-
-  /**
-   * Deletes the specified authorization from the specified express route circuit.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} circuitName The name of the express route circuit.
-   *
-   * @param {string} authorizationName The name of the authorization.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDeleteMethod(resourceGroupName: string, circuitName: string, authorizationName: string): Promise<void>;
-  beginDeleteMethod(resourceGroupName: string, circuitName: string, authorizationName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  beginDeleteMethod(resourceGroupName: string, circuitName: string, authorizationName: string, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteMethod(resourceGroupName: string, circuitName: string, authorizationName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteMethod(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.beginDeleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, circuitName, authorizationName, options, callback);
-  }
-
-  /**
-   * Creates or updates an authorization in the specified express route circuit.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} circuitName The name of the express route circuit.
-   *
-   * @param {string} authorizationName The name of the authorization.
-   *
-   * @param {ExpressRouteCircuitAuthorization} authorizationParameters Parameters supplied to the
-   * create or update express route circuit authorization operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCircuitAuthorization} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCircuitAuthorization} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginCreateOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization): Promise<Models.ExpressRouteCircuitAuthorization>;
-  beginCreateOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitAuthorization>;
-  beginCreateOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitAuthorization>): void;
-  beginCreateOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitAuthorization>): void;
-  beginCreateOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCircuitAuthorization>): any {
-    return msRest.responseToBody(this.beginCreateOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, circuitName, authorizationName, authorizationParameters, options, callback);
-  }
-
-  /**
-   * Gets all authorizations in an express route circuit.
-   *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.AuthorizationListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.AuthorizationListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listNext(nextPageLink: string): Promise<Models.AuthorizationListResult>;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.AuthorizationListResult>;
-  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.AuthorizationListResult>): void;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.AuthorizationListResult>): void;
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.AuthorizationListResult>): any {
-    return msRest.responseToBody(this.listNextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
   }
 
 }
@@ -528,7 +332,6 @@ const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ExpressRouteCircuitAuthorization

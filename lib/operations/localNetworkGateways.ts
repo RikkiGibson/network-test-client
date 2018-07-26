@@ -41,8 +41,8 @@ export class LocalNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdateWithHttpOperationResponse(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, localNetworkGatewayName, parameters, options)
+  createOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginCreateOrUpdate(resourceGroupName, localNetworkGatewayName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -79,7 +79,7 @@ export class LocalNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWithHttpOperationResponse(resourceGroupName: string, localNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LocalNetworkGateway>> {
+  get(resourceGroupName: string, localNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LocalNetworkGateway>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -105,8 +105,8 @@ export class LocalNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethodWithHttpOperationResponse(resourceGroupName: string, localNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, localNetworkGatewayName, options)
+  deleteMethod(resourceGroupName: string, localNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteMethod(resourceGroupName, localNetworkGatewayName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
 
@@ -133,8 +133,8 @@ export class LocalNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  updateTagsWithHttpOperationResponse(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginUpdateTagsWithHttpOperationResponse(resourceGroupName, localNetworkGatewayName, parameters, options)
+  updateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginUpdateTags(resourceGroupName, localNetworkGatewayName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -169,7 +169,7 @@ export class LocalNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LocalNetworkGatewayListResult>> {
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LocalNetworkGatewayListResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -196,7 +196,7 @@ export class LocalNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LocalNetworkGateway>> {
+  beginCreateOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LocalNetworkGateway>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -222,7 +222,7 @@ export class LocalNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, localNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, localNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -249,7 +249,7 @@ export class LocalNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginUpdateTagsWithHttpOperationResponse(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LocalNetworkGateway>> {
+  beginUpdateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LocalNetworkGateway>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -273,253 +273,13 @@ export class LocalNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LocalNetworkGatewayListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LocalNetworkGatewayListResult>> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
       listNextOperationSpec);
-  }
-
-  /**
-   * Creates or updates a local network gateway in the specified resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} localNetworkGatewayName The name of the local network gateway.
-   *
-   * @param {LocalNetworkGateway} parameters Parameters supplied to the create or update local
-   * network gateway operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LocalNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LocalNetworkGateway} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  createOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway): Promise<Models.LocalNetworkGateway>;
-  createOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway, options: msRest.RequestOptionsBase): Promise<Models.LocalNetworkGateway>;
-  createOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway, callback: msRest.ServiceCallback<Models.LocalNetworkGateway>): void;
-  createOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LocalNetworkGateway>): void;
-  createOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LocalNetworkGateway>): any {
-    return msRest.responseToBody(this.createOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, localNetworkGatewayName, parameters, options, callback);
-  }
-
-  /**
-   * Gets the specified local network gateway in a resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} localNetworkGatewayName The name of the local network gateway.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LocalNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LocalNetworkGateway} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  get(resourceGroupName: string, localNetworkGatewayName: string): Promise<Models.LocalNetworkGateway>;
-  get(resourceGroupName: string, localNetworkGatewayName: string, options: msRest.RequestOptionsBase): Promise<Models.LocalNetworkGateway>;
-  get(resourceGroupName: string, localNetworkGatewayName: string, callback: msRest.ServiceCallback<Models.LocalNetworkGateway>): void;
-  get(resourceGroupName: string, localNetworkGatewayName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LocalNetworkGateway>): void;
-  get(resourceGroupName: string, localNetworkGatewayName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LocalNetworkGateway>): any {
-    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), resourceGroupName, localNetworkGatewayName, options, callback);
-  }
-
-  /**
-   * Deletes the specified local network gateway.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} localNetworkGatewayName The name of the local network gateway.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  deleteMethod(resourceGroupName: string, localNetworkGatewayName: string): Promise<void>;
-  deleteMethod(resourceGroupName: string, localNetworkGatewayName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  deleteMethod(resourceGroupName: string, localNetworkGatewayName: string, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, localNetworkGatewayName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, localNetworkGatewayName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.deleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, localNetworkGatewayName, options, callback);
-  }
-
-  /**
-   * Updates a local network gateway tags.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} localNetworkGatewayName The name of the local network gateway.
-   *
-   * @param {TagsObject} parameters Parameters supplied to update local network gateway tags.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LocalNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LocalNetworkGateway} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  updateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject): Promise<Models.LocalNetworkGateway>;
-  updateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase): Promise<Models.LocalNetworkGateway>;
-  updateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject, callback: msRest.ServiceCallback<Models.LocalNetworkGateway>): void;
-  updateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LocalNetworkGateway>): void;
-  updateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LocalNetworkGateway>): any {
-    return msRest.responseToBody(this.updateTagsWithHttpOperationResponse.bind(this), resourceGroupName, localNetworkGatewayName, parameters, options, callback);
-  }
-
-  /**
-   * Gets all the local network gateways in a resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LocalNetworkGatewayListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LocalNetworkGatewayListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  list(resourceGroupName: string): Promise<Models.LocalNetworkGatewayListResult>;
-  list(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.LocalNetworkGatewayListResult>;
-  list(resourceGroupName: string, callback: msRest.ServiceCallback<Models.LocalNetworkGatewayListResult>): void;
-  list(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LocalNetworkGatewayListResult>): void;
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LocalNetworkGatewayListResult>): any {
-    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), resourceGroupName, options, callback);
-  }
-
-  /**
-   * Creates or updates a local network gateway in the specified resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} localNetworkGatewayName The name of the local network gateway.
-   *
-   * @param {LocalNetworkGateway} parameters Parameters supplied to the create or update local
-   * network gateway operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LocalNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LocalNetworkGateway} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginCreateOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway): Promise<Models.LocalNetworkGateway>;
-  beginCreateOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway, options: msRest.RequestOptionsBase): Promise<Models.LocalNetworkGateway>;
-  beginCreateOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway, callback: msRest.ServiceCallback<Models.LocalNetworkGateway>): void;
-  beginCreateOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LocalNetworkGateway>): void;
-  beginCreateOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LocalNetworkGateway>): any {
-    return msRest.responseToBody(this.beginCreateOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, localNetworkGatewayName, parameters, options, callback);
-  }
-
-  /**
-   * Deletes the specified local network gateway.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} localNetworkGatewayName The name of the local network gateway.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDeleteMethod(resourceGroupName: string, localNetworkGatewayName: string): Promise<void>;
-  beginDeleteMethod(resourceGroupName: string, localNetworkGatewayName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  beginDeleteMethod(resourceGroupName: string, localNetworkGatewayName: string, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteMethod(resourceGroupName: string, localNetworkGatewayName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteMethod(resourceGroupName: string, localNetworkGatewayName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.beginDeleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, localNetworkGatewayName, options, callback);
-  }
-
-  /**
-   * Updates a local network gateway tags.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} localNetworkGatewayName The name of the local network gateway.
-   *
-   * @param {TagsObject} parameters Parameters supplied to update local network gateway tags.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LocalNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LocalNetworkGateway} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginUpdateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject): Promise<Models.LocalNetworkGateway>;
-  beginUpdateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase): Promise<Models.LocalNetworkGateway>;
-  beginUpdateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject, callback: msRest.ServiceCallback<Models.LocalNetworkGateway>): void;
-  beginUpdateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LocalNetworkGateway>): void;
-  beginUpdateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LocalNetworkGateway>): any {
-    return msRest.responseToBody(this.beginUpdateTagsWithHttpOperationResponse.bind(this), resourceGroupName, localNetworkGatewayName, parameters, options, callback);
-  }
-
-  /**
-   * Gets all the local network gateways in a resource group.
-   *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LocalNetworkGatewayListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LocalNetworkGatewayListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listNext(nextPageLink: string): Promise<Models.LocalNetworkGatewayListResult>;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.LocalNetworkGatewayListResult>;
-  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.LocalNetworkGatewayListResult>): void;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LocalNetworkGatewayListResult>): void;
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LocalNetworkGatewayListResult>): any {
-    return msRest.responseToBody(this.listNextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
   }
 
 }
@@ -596,7 +356,6 @@ const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.LocalNetworkGateway
@@ -657,7 +416,6 @@ const beginUpdateTagsOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.LocalNetworkGateway

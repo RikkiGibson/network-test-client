@@ -37,7 +37,7 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionPeeringList>> {
+  list(resourceGroupName: string, crossConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionPeeringList>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -65,8 +65,8 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethodWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, crossConnectionName, peeringName, options)
+  deleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteMethod(resourceGroupName, crossConnectionName, peeringName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
 
@@ -92,7 +92,7 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionPeering>> {
+  get(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionPeering>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -124,8 +124,8 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdateWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, crossConnectionName, peeringName, peeringParameters, options)
+  createOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginCreateOrUpdate(resourceGroupName, crossConnectionName, peeringName, peeringParameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -164,7 +164,7 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -195,7 +195,7 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionPeering>> {
+  beginCreateOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionPeering>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -220,209 +220,13 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionPeeringList>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionPeeringList>> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
       listNextOperationSpec);
-  }
-
-  /**
-   * Gets all peerings in a specified ExpressRouteCrossConnection.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCrossConnectionPeeringList} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnectionPeeringList} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  list(resourceGroupName: string, crossConnectionName: string): Promise<Models.ExpressRouteCrossConnectionPeeringList>;
-  list(resourceGroupName: string, crossConnectionName: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionPeeringList>;
-  list(resourceGroupName: string, crossConnectionName: string, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeeringList>): void;
-  list(resourceGroupName: string, crossConnectionName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeeringList>): void;
-  list(resourceGroupName: string, crossConnectionName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeeringList>): any {
-    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, options, callback);
-  }
-
-  /**
-   * Deletes the specified peering from the ExpressRouteCrossConnection.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
-   *
-   * @param {string} peeringName The name of the peering.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  deleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string): Promise<void>;
-  deleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  deleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.deleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, peeringName, options, callback);
-  }
-
-  /**
-   * Gets the specified peering for the ExpressRouteCrossConnection.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
-   *
-   * @param {string} peeringName The name of the peering.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCrossConnectionPeering} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnectionPeering} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  get(resourceGroupName: string, crossConnectionName: string, peeringName: string): Promise<Models.ExpressRouteCrossConnectionPeering>;
-  get(resourceGroupName: string, crossConnectionName: string, peeringName: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionPeering>;
-  get(resourceGroupName: string, crossConnectionName: string, peeringName: string, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>): void;
-  get(resourceGroupName: string, crossConnectionName: string, peeringName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>): void;
-  get(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>): any {
-    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, peeringName, options, callback);
-  }
-
-  /**
-   * Creates or updates a peering in the specified ExpressRouteCrossConnection.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
-   *
-   * @param {string} peeringName The name of the peering.
-   *
-   * @param {ExpressRouteCrossConnectionPeering} peeringParameters Parameters supplied to the create
-   * or update ExpressRouteCrossConnection peering operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCrossConnectionPeering} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnectionPeering} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  createOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering): Promise<Models.ExpressRouteCrossConnectionPeering>;
-  createOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionPeering>;
-  createOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>): void;
-  createOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>): void;
-  createOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>): any {
-    return msRest.responseToBody(this.createOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, peeringName, peeringParameters, options, callback);
-  }
-
-  /**
-   * Deletes the specified peering from the ExpressRouteCrossConnection.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
-   *
-   * @param {string} peeringName The name of the peering.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDeleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string): Promise<void>;
-  beginDeleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  beginDeleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.beginDeleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, peeringName, options, callback);
-  }
-
-  /**
-   * Creates or updates a peering in the specified ExpressRouteCrossConnection.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
-   *
-   * @param {string} peeringName The name of the peering.
-   *
-   * @param {ExpressRouteCrossConnectionPeering} peeringParameters Parameters supplied to the create
-   * or update ExpressRouteCrossConnection peering operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCrossConnectionPeering} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnectionPeering} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginCreateOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering): Promise<Models.ExpressRouteCrossConnectionPeering>;
-  beginCreateOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionPeering>;
-  beginCreateOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>): void;
-  beginCreateOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>): void;
-  beginCreateOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeering>): any {
-    return msRest.responseToBody(this.beginCreateOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, peeringName, peeringParameters, options, callback);
-  }
-
-  /**
-   * Gets all peerings in a specified ExpressRouteCrossConnection.
-   *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCrossConnectionPeeringList} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnectionPeeringList} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listNext(nextPageLink: string): Promise<Models.ExpressRouteCrossConnectionPeeringList>;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionPeeringList>;
-  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeeringList>): void;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeeringList>): void;
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionPeeringList>): any {
-    return msRest.responseToBody(this.listNextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
   }
 
 }
@@ -528,7 +332,6 @@ const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ExpressRouteCrossConnectionPeering

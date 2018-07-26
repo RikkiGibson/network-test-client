@@ -42,8 +42,8 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginCreateWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, parameters, options)
+  create(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginCreate(resourceGroupName, networkWatcherName, packetCaptureName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -82,7 +82,7 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureResult>> {
+  get(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -111,8 +111,8 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethodWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options)
+  deleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteMethod(resourceGroupName, networkWatcherName, packetCaptureName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
 
@@ -139,8 +139,8 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  stopWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginStopWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options)
+  stop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginStop(resourceGroupName, networkWatcherName, packetCaptureName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
 
@@ -167,8 +167,8 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getStatusWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginGetStatusWithHttpOperationResponse(resourceGroupName, networkWatcherName, packetCaptureName, options)
+  getStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginGetStatus(resourceGroupName, networkWatcherName, packetCaptureName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -205,7 +205,7 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureListResult>> {
+  list(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureListResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -234,7 +234,7 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureResult>> {
+  beginCreate(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -263,7 +263,7 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -291,7 +291,7 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginStopWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginStop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -319,7 +319,7 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetStatusWithHttpOperationResponse(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureQueryStatusResult>> {
+  beginGetStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureQueryStatusResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -328,288 +328,6 @@ export class PacketCaptures {
         options
       },
       beginGetStatusOperationSpec);
-  }
-
-  /**
-   * Create and start a packet capture on the specified VM.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} networkWatcherName The name of the network watcher.
-   *
-   * @param {string} packetCaptureName The name of the packet capture session.
-   *
-   * @param {PacketCapture} parameters Parameters that define the create packet capture operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.PacketCaptureResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.PacketCaptureResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  create(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture): Promise<Models.PacketCaptureResult>;
-  create(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options: msRest.RequestOptionsBase): Promise<Models.PacketCaptureResult>;
-  create(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, callback: msRest.ServiceCallback<Models.PacketCaptureResult>): void;
-  create(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PacketCaptureResult>): void;
-  create(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.PacketCaptureResult>): any {
-    return msRest.responseToBody(this.createWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, packetCaptureName, parameters, options, callback);
-  }
-
-  /**
-   * Gets a packet capture session by name.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} networkWatcherName The name of the network watcher.
-   *
-   * @param {string} packetCaptureName The name of the packet capture session.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.PacketCaptureResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.PacketCaptureResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  get(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string): Promise<Models.PacketCaptureResult>;
-  get(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase): Promise<Models.PacketCaptureResult>;
-  get(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, callback: msRest.ServiceCallback<Models.PacketCaptureResult>): void;
-  get(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PacketCaptureResult>): void;
-  get(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.PacketCaptureResult>): any {
-    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, packetCaptureName, options, callback);
-  }
-
-  /**
-   * Deletes the specified packet capture session.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} networkWatcherName The name of the network watcher.
-   *
-   * @param {string} packetCaptureName The name of the packet capture session.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  deleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string): Promise<void>;
-  deleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  deleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.deleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, packetCaptureName, options, callback);
-  }
-
-  /**
-   * Stops a specified packet capture session.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} networkWatcherName The name of the network watcher.
-   *
-   * @param {string} packetCaptureName The name of the packet capture session.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  stop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string): Promise<void>;
-  stop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  stop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, callback: msRest.ServiceCallback<void>): void;
-  stop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  stop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.stopWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, packetCaptureName, options, callback);
-  }
-
-  /**
-   * Query the status of a running packet capture session.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} networkWatcherName The name of the Network Watcher resource.
-   *
-   * @param {string} packetCaptureName The name given to the packet capture session.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.PacketCaptureQueryStatusResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.PacketCaptureQueryStatusResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string): Promise<Models.PacketCaptureQueryStatusResult>;
-  getStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase): Promise<Models.PacketCaptureQueryStatusResult>;
-  getStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, callback: msRest.ServiceCallback<Models.PacketCaptureQueryStatusResult>): void;
-  getStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PacketCaptureQueryStatusResult>): void;
-  getStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.PacketCaptureQueryStatusResult>): any {
-    return msRest.responseToBody(this.getStatusWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, packetCaptureName, options, callback);
-  }
-
-  /**
-   * Lists all packet capture sessions within the specified resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} networkWatcherName The name of the Network Watcher resource.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.PacketCaptureListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.PacketCaptureListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  list(resourceGroupName: string, networkWatcherName: string): Promise<Models.PacketCaptureListResult>;
-  list(resourceGroupName: string, networkWatcherName: string, options: msRest.RequestOptionsBase): Promise<Models.PacketCaptureListResult>;
-  list(resourceGroupName: string, networkWatcherName: string, callback: msRest.ServiceCallback<Models.PacketCaptureListResult>): void;
-  list(resourceGroupName: string, networkWatcherName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PacketCaptureListResult>): void;
-  list(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.PacketCaptureListResult>): any {
-    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, options, callback);
-  }
-
-  /**
-   * Create and start a packet capture on the specified VM.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} networkWatcherName The name of the network watcher.
-   *
-   * @param {string} packetCaptureName The name of the packet capture session.
-   *
-   * @param {PacketCapture} parameters Parameters that define the create packet capture operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.PacketCaptureResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.PacketCaptureResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginCreate(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture): Promise<Models.PacketCaptureResult>;
-  beginCreate(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options: msRest.RequestOptionsBase): Promise<Models.PacketCaptureResult>;
-  beginCreate(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, callback: msRest.ServiceCallback<Models.PacketCaptureResult>): void;
-  beginCreate(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PacketCaptureResult>): void;
-  beginCreate(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.PacketCaptureResult>): any {
-    return msRest.responseToBody(this.beginCreateWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, packetCaptureName, parameters, options, callback);
-  }
-
-  /**
-   * Deletes the specified packet capture session.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} networkWatcherName The name of the network watcher.
-   *
-   * @param {string} packetCaptureName The name of the packet capture session.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string): Promise<void>;
-  beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.beginDeleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, packetCaptureName, options, callback);
-  }
-
-  /**
-   * Stops a specified packet capture session.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} networkWatcherName The name of the network watcher.
-   *
-   * @param {string} packetCaptureName The name of the packet capture session.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginStop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string): Promise<void>;
-  beginStop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  beginStop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, callback: msRest.ServiceCallback<void>): void;
-  beginStop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginStop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.beginStopWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, packetCaptureName, options, callback);
-  }
-
-  /**
-   * Query the status of a running packet capture session.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} networkWatcherName The name of the Network Watcher resource.
-   *
-   * @param {string} packetCaptureName The name given to the packet capture session.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.PacketCaptureQueryStatusResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.PacketCaptureQueryStatusResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginGetStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string): Promise<Models.PacketCaptureQueryStatusResult>;
-  beginGetStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase): Promise<Models.PacketCaptureQueryStatusResult>;
-  beginGetStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, callback: msRest.ServiceCallback<Models.PacketCaptureQueryStatusResult>): void;
-  beginGetStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PacketCaptureQueryStatusResult>): void;
-  beginGetStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.PacketCaptureQueryStatusResult>): any {
-    return msRest.responseToBody(this.beginGetStatusWithHttpOperationResponse.bind(this), resourceGroupName, networkWatcherName, packetCaptureName, options, callback);
   }
 
 }
@@ -689,7 +407,6 @@ const beginCreateOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     201: {
       bodyMapper: Mappers.PacketCaptureResult

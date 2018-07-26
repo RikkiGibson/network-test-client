@@ -38,8 +38,8 @@ export class DdosProtectionPlans {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethodWithHttpOperationResponse(resourceGroupName: string, ddosProtectionPlanName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, ddosProtectionPlanName, options)
+  deleteMethod(resourceGroupName: string, ddosProtectionPlanName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteMethod(resourceGroupName, ddosProtectionPlanName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
 
@@ -63,7 +63,7 @@ export class DdosProtectionPlans {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWithHttpOperationResponse(resourceGroupName: string, ddosProtectionPlanName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlan>> {
+  get(resourceGroupName: string, ddosProtectionPlanName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlan>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -91,8 +91,8 @@ export class DdosProtectionPlans {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdateWithHttpOperationResponse(resourceGroupName: string, ddosProtectionPlanName: string, parameters: Models.DdosProtectionPlan, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, ddosProtectionPlanName, parameters, options)
+  createOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: Models.DdosProtectionPlan, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginCreateOrUpdate(resourceGroupName, ddosProtectionPlanName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -125,7 +125,7 @@ export class DdosProtectionPlans {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlanListResult>> {
+  list(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlanListResult>> {
     return this.client.sendOperationRequest(
       {
         options
@@ -146,7 +146,7 @@ export class DdosProtectionPlans {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listByResourceGroupWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlanListResult>> {
+  listByResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlanListResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -170,7 +170,7 @@ export class DdosProtectionPlans {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, ddosProtectionPlanName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, ddosProtectionPlanName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -197,7 +197,7 @@ export class DdosProtectionPlans {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, ddosProtectionPlanName: string, parameters: Models.DdosProtectionPlan, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlan>> {
+  beginCreateOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: Models.DdosProtectionPlan, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlan>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -221,7 +221,7 @@ export class DdosProtectionPlans {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlanListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlanListResult>> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
@@ -243,241 +243,13 @@ export class DdosProtectionPlans {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listByResourceGroupNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlanListResult>> {
+  listByResourceGroupNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlanListResult>> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
       listByResourceGroupNextOperationSpec);
-  }
-
-  /**
-   * Deletes the specified DDoS protection plan.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} ddosProtectionPlanName The name of the DDoS protection plan.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  deleteMethod(resourceGroupName: string, ddosProtectionPlanName: string): Promise<void>;
-  deleteMethod(resourceGroupName: string, ddosProtectionPlanName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  deleteMethod(resourceGroupName: string, ddosProtectionPlanName: string, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, ddosProtectionPlanName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, ddosProtectionPlanName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.deleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, ddosProtectionPlanName, options, callback);
-  }
-
-  /**
-   * Gets information about the specified DDoS protection plan.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} ddosProtectionPlanName The name of the DDoS protection plan.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.DdosProtectionPlan} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.DdosProtectionPlan} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  get(resourceGroupName: string, ddosProtectionPlanName: string): Promise<Models.DdosProtectionPlan>;
-  get(resourceGroupName: string, ddosProtectionPlanName: string, options: msRest.RequestOptionsBase): Promise<Models.DdosProtectionPlan>;
-  get(resourceGroupName: string, ddosProtectionPlanName: string, callback: msRest.ServiceCallback<Models.DdosProtectionPlan>): void;
-  get(resourceGroupName: string, ddosProtectionPlanName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DdosProtectionPlan>): void;
-  get(resourceGroupName: string, ddosProtectionPlanName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DdosProtectionPlan>): any {
-    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), resourceGroupName, ddosProtectionPlanName, options, callback);
-  }
-
-  /**
-   * Creates or updates a DDoS protection plan.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} ddosProtectionPlanName The name of the DDoS protection plan.
-   *
-   * @param {DdosProtectionPlan} parameters Parameters supplied to the create or update operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.DdosProtectionPlan} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.DdosProtectionPlan} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  createOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: Models.DdosProtectionPlan): Promise<Models.DdosProtectionPlan>;
-  createOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: Models.DdosProtectionPlan, options: msRest.RequestOptionsBase): Promise<Models.DdosProtectionPlan>;
-  createOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: Models.DdosProtectionPlan, callback: msRest.ServiceCallback<Models.DdosProtectionPlan>): void;
-  createOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: Models.DdosProtectionPlan, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DdosProtectionPlan>): void;
-  createOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: Models.DdosProtectionPlan, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DdosProtectionPlan>): any {
-    return msRest.responseToBody(this.createOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, ddosProtectionPlanName, parameters, options, callback);
-  }
-
-  /**
-   * Gets all DDoS protection plans in a subscription.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.DdosProtectionPlanListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.DdosProtectionPlanListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  list(): Promise<Models.DdosProtectionPlanListResult>;
-  list(options: msRest.RequestOptionsBase): Promise<Models.DdosProtectionPlanListResult>;
-  list(callback: msRest.ServiceCallback<Models.DdosProtectionPlanListResult>): void;
-  list(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DdosProtectionPlanListResult>): void;
-  list(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DdosProtectionPlanListResult>): any {
-    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Gets all the DDoS protection plans in a resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.DdosProtectionPlanListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.DdosProtectionPlanListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listByResourceGroup(resourceGroupName: string): Promise<Models.DdosProtectionPlanListResult>;
-  listByResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.DdosProtectionPlanListResult>;
-  listByResourceGroup(resourceGroupName: string, callback: msRest.ServiceCallback<Models.DdosProtectionPlanListResult>): void;
-  listByResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DdosProtectionPlanListResult>): void;
-  listByResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DdosProtectionPlanListResult>): any {
-    return msRest.responseToBody(this.listByResourceGroupWithHttpOperationResponse.bind(this), resourceGroupName, options, callback);
-  }
-
-  /**
-   * Deletes the specified DDoS protection plan.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} ddosProtectionPlanName The name of the DDoS protection plan.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDeleteMethod(resourceGroupName: string, ddosProtectionPlanName: string): Promise<void>;
-  beginDeleteMethod(resourceGroupName: string, ddosProtectionPlanName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  beginDeleteMethod(resourceGroupName: string, ddosProtectionPlanName: string, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteMethod(resourceGroupName: string, ddosProtectionPlanName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteMethod(resourceGroupName: string, ddosProtectionPlanName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.beginDeleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, ddosProtectionPlanName, options, callback);
-  }
-
-  /**
-   * Creates or updates a DDoS protection plan.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} ddosProtectionPlanName The name of the DDoS protection plan.
-   *
-   * @param {DdosProtectionPlan} parameters Parameters supplied to the create or update operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.DdosProtectionPlan} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.DdosProtectionPlan} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginCreateOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: Models.DdosProtectionPlan): Promise<Models.DdosProtectionPlan>;
-  beginCreateOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: Models.DdosProtectionPlan, options: msRest.RequestOptionsBase): Promise<Models.DdosProtectionPlan>;
-  beginCreateOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: Models.DdosProtectionPlan, callback: msRest.ServiceCallback<Models.DdosProtectionPlan>): void;
-  beginCreateOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: Models.DdosProtectionPlan, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DdosProtectionPlan>): void;
-  beginCreateOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: Models.DdosProtectionPlan, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DdosProtectionPlan>): any {
-    return msRest.responseToBody(this.beginCreateOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, ddosProtectionPlanName, parameters, options, callback);
-  }
-
-  /**
-   * Gets all DDoS protection plans in a subscription.
-   *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.DdosProtectionPlanListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.DdosProtectionPlanListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listNext(nextPageLink: string): Promise<Models.DdosProtectionPlanListResult>;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.DdosProtectionPlanListResult>;
-  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.DdosProtectionPlanListResult>): void;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DdosProtectionPlanListResult>): void;
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DdosProtectionPlanListResult>): any {
-    return msRest.responseToBody(this.listNextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
-  }
-
-  /**
-   * Gets all the DDoS protection plans in a resource group.
-   *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.DdosProtectionPlanListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.DdosProtectionPlanListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listByResourceGroupNext(nextPageLink: string): Promise<Models.DdosProtectionPlanListResult>;
-  listByResourceGroupNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.DdosProtectionPlanListResult>;
-  listByResourceGroupNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.DdosProtectionPlanListResult>): void;
-  listByResourceGroupNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DdosProtectionPlanListResult>): void;
-  listByResourceGroupNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DdosProtectionPlanListResult>): any {
-    return msRest.responseToBody(this.listByResourceGroupNextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
   }
 
 }
@@ -602,7 +374,6 @@ const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.DdosProtectionPlan

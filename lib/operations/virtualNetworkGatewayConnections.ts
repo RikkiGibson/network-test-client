@@ -42,8 +42,8 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdateWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options)
+  createOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginCreateOrUpdate(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -81,7 +81,7 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnection>> {
+  get(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnection>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -108,8 +108,8 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethodWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, options)
+  deleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteMethod(resourceGroupName, virtualNetworkGatewayConnectionName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
 
@@ -138,8 +138,8 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  updateTagsWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginUpdateTagsWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options)
+  updateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginUpdateTags(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -182,8 +182,8 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  setSharedKeyWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginSetSharedKeyWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options)
+  setSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginSetSharedKey(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -222,7 +222,7 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getSharedKeyWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionSharedKey>> {
+  getSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionSharedKey>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -246,7 +246,7 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnectionListResult>> {
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnectionListResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -277,8 +277,8 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  resetSharedKeyWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginResetSharedKeyWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options)
+  resetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginResetSharedKey(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -319,7 +319,7 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnection>> {
+  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnection>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -346,7 +346,7 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -375,7 +375,7 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginUpdateTagsWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnectionListEntity>> {
+  beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnectionListEntity>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -406,7 +406,7 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginSetSharedKeyWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionSharedKey>> {
+  beginSetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionSharedKey>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -438,7 +438,7 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginResetSharedKeyWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionResetSharedKey>> {
+  beginResetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionResetSharedKey>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -463,418 +463,13 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnectionListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnectionListResult>> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
       listNextOperationSpec);
-  }
-
-  /**
-   * Creates or updates a virtual network gateway connection in the specified resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
-   * connection.
-   *
-   * @param {VirtualNetworkGatewayConnection} parameters Parameters supplied to the create or update
-   * virtual network gateway connection operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VirtualNetworkGatewayConnection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGatewayConnection} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  createOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection): Promise<Models.VirtualNetworkGatewayConnection>;
-  createOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayConnection>;
-  createOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>): void;
-  createOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>): void;
-  createOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>): any {
-    return msRest.responseToBody(this.createOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options, callback);
-  }
-
-  /**
-   * Gets the specified virtual network gateway connection by resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
-   * connection.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VirtualNetworkGatewayConnection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGatewayConnection} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  get(resourceGroupName: string, virtualNetworkGatewayConnectionName: string): Promise<Models.VirtualNetworkGatewayConnection>;
-  get(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayConnection>;
-  get(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>): void;
-  get(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>): void;
-  get(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>): any {
-    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, options, callback);
-  }
-
-  /**
-   * Deletes the specified virtual network Gateway connection.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
-   * connection.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  deleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string): Promise<void>;
-  deleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  deleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.deleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, options, callback);
-  }
-
-  /**
-   * Updates a virtual network gateway connection tags.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
-   * connection.
-   *
-   * @param {TagsObject} parameters Parameters supplied to update virtual network gateway connection
-   * tags.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VirtualNetworkGatewayConnectionListEntity} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGatewayConnectionListEntity} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  updateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject): Promise<Models.VirtualNetworkGatewayConnectionListEntity>;
-  updateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayConnectionListEntity>;
-  updateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListEntity>): void;
-  updateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListEntity>): void;
-  updateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListEntity>): any {
-    return msRest.responseToBody(this.updateTagsWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options, callback);
-  }
-
-  /**
-   * The Put VirtualNetworkGatewayConnectionSharedKey operation sets the virtual network gateway
-   * connection shared key for passed virtual network gateway connection in the specified resource
-   * group through Network resource provider.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayConnectionName The virtual network gateway connection name.
-   *
-   * @param {ConnectionSharedKey} parameters Parameters supplied to the Begin Set Virtual Network
-   * Gateway connection Shared key operation throughNetwork resource provider.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ConnectionSharedKey} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ConnectionSharedKey} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  setSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey): Promise<Models.ConnectionSharedKey>;
-  setSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options: msRest.RequestOptionsBase): Promise<Models.ConnectionSharedKey>;
-  setSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, callback: msRest.ServiceCallback<Models.ConnectionSharedKey>): void;
-  setSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ConnectionSharedKey>): void;
-  setSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ConnectionSharedKey>): any {
-    return msRest.responseToBody(this.setSharedKeyWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options, callback);
-  }
-
-  /**
-   * The Get VirtualNetworkGatewayConnectionSharedKey operation retrieves information about the
-   * specified virtual network gateway connection shared key through Network resource provider.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayConnectionName The virtual network gateway connection
-   * shared key name.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ConnectionSharedKey} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ConnectionSharedKey} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string): Promise<Models.ConnectionSharedKey>;
-  getSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options: msRest.RequestOptionsBase): Promise<Models.ConnectionSharedKey>;
-  getSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, callback: msRest.ServiceCallback<Models.ConnectionSharedKey>): void;
-  getSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ConnectionSharedKey>): void;
-  getSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ConnectionSharedKey>): any {
-    return msRest.responseToBody(this.getSharedKeyWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, options, callback);
-  }
-
-  /**
-   * The List VirtualNetworkGatewayConnections operation retrieves all the virtual network gateways
-   * connections created.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VirtualNetworkGatewayConnectionListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGatewayConnectionListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  list(resourceGroupName: string): Promise<Models.VirtualNetworkGatewayConnectionListResult>;
-  list(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayConnectionListResult>;
-  list(resourceGroupName: string, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListResult>): void;
-  list(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListResult>): void;
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListResult>): any {
-    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), resourceGroupName, options, callback);
-  }
-
-  /**
-   * The VirtualNetworkGatewayConnectionResetSharedKey operation resets the virtual network gateway
-   * connection shared key for passed virtual network gateway connection in the specified resource
-   * group through Network resource provider.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayConnectionName The virtual network gateway connection reset
-   * shared key Name.
-   *
-   * @param {ConnectionResetSharedKey} parameters Parameters supplied to the begin reset virtual
-   * network gateway connection shared key operation through network resource provider.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ConnectionResetSharedKey} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ConnectionResetSharedKey} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  resetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey): Promise<Models.ConnectionResetSharedKey>;
-  resetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options: msRest.RequestOptionsBase): Promise<Models.ConnectionResetSharedKey>;
-  resetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, callback: msRest.ServiceCallback<Models.ConnectionResetSharedKey>): void;
-  resetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ConnectionResetSharedKey>): void;
-  resetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ConnectionResetSharedKey>): any {
-    return msRest.responseToBody(this.resetSharedKeyWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options, callback);
-  }
-
-  /**
-   * Creates or updates a virtual network gateway connection in the specified resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
-   * connection.
-   *
-   * @param {VirtualNetworkGatewayConnection} parameters Parameters supplied to the create or update
-   * virtual network gateway connection operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VirtualNetworkGatewayConnection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGatewayConnection} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection): Promise<Models.VirtualNetworkGatewayConnection>;
-  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayConnection>;
-  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>): void;
-  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>): void;
-  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnection>): any {
-    return msRest.responseToBody(this.beginCreateOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options, callback);
-  }
-
-  /**
-   * Deletes the specified virtual network Gateway connection.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
-   * connection.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string): Promise<void>;
-  beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.beginDeleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, options, callback);
-  }
-
-  /**
-   * Updates a virtual network gateway connection tags.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
-   * connection.
-   *
-   * @param {TagsObject} parameters Parameters supplied to update virtual network gateway connection
-   * tags.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VirtualNetworkGatewayConnectionListEntity} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGatewayConnectionListEntity} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject): Promise<Models.VirtualNetworkGatewayConnectionListEntity>;
-  beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayConnectionListEntity>;
-  beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListEntity>): void;
-  beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListEntity>): void;
-  beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListEntity>): any {
-    return msRest.responseToBody(this.beginUpdateTagsWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options, callback);
-  }
-
-  /**
-   * The Put VirtualNetworkGatewayConnectionSharedKey operation sets the virtual network gateway
-   * connection shared key for passed virtual network gateway connection in the specified resource
-   * group through Network resource provider.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayConnectionName The virtual network gateway connection name.
-   *
-   * @param {ConnectionSharedKey} parameters Parameters supplied to the Begin Set Virtual Network
-   * Gateway connection Shared key operation throughNetwork resource provider.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ConnectionSharedKey} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ConnectionSharedKey} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginSetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey): Promise<Models.ConnectionSharedKey>;
-  beginSetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options: msRest.RequestOptionsBase): Promise<Models.ConnectionSharedKey>;
-  beginSetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, callback: msRest.ServiceCallback<Models.ConnectionSharedKey>): void;
-  beginSetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ConnectionSharedKey>): void;
-  beginSetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ConnectionSharedKey>): any {
-    return msRest.responseToBody(this.beginSetSharedKeyWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options, callback);
-  }
-
-  /**
-   * The VirtualNetworkGatewayConnectionResetSharedKey operation resets the virtual network gateway
-   * connection shared key for passed virtual network gateway connection in the specified resource
-   * group through Network resource provider.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayConnectionName The virtual network gateway connection reset
-   * shared key Name.
-   *
-   * @param {ConnectionResetSharedKey} parameters Parameters supplied to the begin reset virtual
-   * network gateway connection shared key operation through network resource provider.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ConnectionResetSharedKey} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ConnectionResetSharedKey} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginResetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey): Promise<Models.ConnectionResetSharedKey>;
-  beginResetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options: msRest.RequestOptionsBase): Promise<Models.ConnectionResetSharedKey>;
-  beginResetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, callback: msRest.ServiceCallback<Models.ConnectionResetSharedKey>): void;
-  beginResetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ConnectionResetSharedKey>): void;
-  beginResetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ConnectionResetSharedKey>): any {
-    return msRest.responseToBody(this.beginResetSharedKeyWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options, callback);
-  }
-
-  /**
-   * The List VirtualNetworkGatewayConnections operation retrieves all the virtual network gateways
-   * connections created.
-   *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VirtualNetworkGatewayConnectionListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGatewayConnectionListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listNext(nextPageLink: string): Promise<Models.VirtualNetworkGatewayConnectionListResult>;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayConnectionListResult>;
-  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListResult>): void;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListResult>): void;
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGatewayConnectionListResult>): any {
-    return msRest.responseToBody(this.listNextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
   }
 
 }
@@ -976,7 +571,6 @@ const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.VirtualNetworkGatewayConnection
@@ -1037,7 +631,6 @@ const beginUpdateTagsOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.VirtualNetworkGatewayConnectionListEntity
@@ -1070,7 +663,6 @@ const beginSetSharedKeyOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ConnectionSharedKey
@@ -1106,7 +698,6 @@ const beginResetSharedKeyOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ConnectionResetSharedKey

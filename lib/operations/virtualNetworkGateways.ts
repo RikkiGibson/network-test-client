@@ -41,8 +41,8 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdateWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayName, parameters, options)
+  createOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginCreateOrUpdate(resourceGroupName, virtualNetworkGatewayName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -79,7 +79,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGateway>> {
+  get(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGateway>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -105,8 +105,8 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethodWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayName, options)
+  deleteMethod(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteMethod(resourceGroupName, virtualNetworkGatewayName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
 
@@ -133,8 +133,8 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  updateTagsWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginUpdateTagsWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayName, parameters, options)
+  updateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginUpdateTags(resourceGroupName, virtualNetworkGatewayName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -169,7 +169,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayListResult>> {
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayListResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -193,7 +193,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listConnectionsWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayListConnectionsResult>> {
+  listConnections(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayListConnectionsResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -219,8 +219,8 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  resetWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysResetOptionalParams): Promise<msRest.HttpOperationResponse> {
-    return this.beginResetWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayName, options)
+  reset(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysResetOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginReset(resourceGroupName, virtualNetworkGatewayName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -262,8 +262,8 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  generatevpnclientpackageWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginGeneratevpnclientpackageWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayName, parameters, options)
+  generatevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginGeneratevpnclientpackage(resourceGroupName, virtualNetworkGatewayName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -313,8 +313,8 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  generateVpnProfileWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginGenerateVpnProfileWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayName, parameters, options)
+  generateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginGenerateVpnProfile(resourceGroupName, virtualNetworkGatewayName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -361,8 +361,8 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getVpnProfilePackageUrlWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginGetVpnProfilePackageUrlWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayName, options)
+  getVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginGetVpnProfilePackageUrl(resourceGroupName, virtualNetworkGatewayName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -408,8 +408,8 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBgpPeerStatusWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams): Promise<msRest.HttpOperationResponse> {
-    return this.beginGetBgpPeerStatusWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayName, options)
+  getBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams): Promise<msRest.HttpOperationResponse> {
+    return this.beginGetBgpPeerStatus(resourceGroupName, virtualNetworkGatewayName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -446,7 +446,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  supportedVpnDevicesWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
+  supportedVpnDevices(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -473,8 +473,8 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getLearnedRoutesWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginGetLearnedRoutesWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayName, options)
+  getLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginGetLearnedRoutes(resourceGroupName, virtualNetworkGatewayName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -515,8 +515,8 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getAdvertisedRoutesWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginGetAdvertisedRoutesWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayName, peer, options)
+  getAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginGetAdvertisedRoutes(resourceGroupName, virtualNetworkGatewayName, peer, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -559,8 +559,8 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  setVpnclientIpsecParametersWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginSetVpnclientIpsecParametersWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayName, vpnclientIpsecParams, options)
+  setVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginSetVpnclientIpsecParameters(resourceGroupName, virtualNetworkGatewayName, vpnclientIpsecParams, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -600,8 +600,8 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getVpnclientIpsecParametersWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginGetVpnclientIpsecParametersWithHttpOperationResponse(resourceGroupName, virtualNetworkGatewayName, options)
+  getVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginGetVpnclientIpsecParameters(resourceGroupName, virtualNetworkGatewayName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -642,7 +642,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  vpnDeviceConfigurationScriptWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VpnDeviceScriptParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
+  vpnDeviceConfigurationScript(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VpnDeviceScriptParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -671,7 +671,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGateway>> {
+  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGateway>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -697,7 +697,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -724,7 +724,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginUpdateTagsWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGateway>> {
+  beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGateway>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -750,7 +750,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginResetWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysBeginResetOptionalParams): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGateway>> {
+  beginReset(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysBeginResetOptionalParams): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGateway>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -779,7 +779,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGeneratevpnclientpackageWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
+  beginGeneratevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -809,7 +809,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGenerateVpnProfileWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
+  beginGenerateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -836,7 +836,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetVpnProfilePackageUrlWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
+  beginGetVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -862,7 +862,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetBgpPeerStatusWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysBeginGetBgpPeerStatusOptionalParams): Promise<msRest.HttpOperationResponse<Models.BgpPeerStatusListResult>> {
+  beginGetBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysBeginGetBgpPeerStatusOptionalParams): Promise<msRest.HttpOperationResponse<Models.BgpPeerStatusListResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -888,7 +888,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetLearnedRoutesWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.GatewayRouteListResult>> {
+  beginGetLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.GatewayRouteListResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -916,7 +916,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetAdvertisedRoutesWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.GatewayRouteListResult>> {
+  beginGetAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.GatewayRouteListResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -947,7 +947,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginSetVpnclientIpsecParametersWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VpnClientIPsecParameters>> {
+  beginSetVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VpnClientIPsecParameters>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -975,7 +975,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetVpnclientIpsecParametersWithHttpOperationResponse(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VpnClientIPsecParameters>> {
+  beginGetVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VpnClientIPsecParameters>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -998,7 +998,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayListResult>> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
@@ -1020,868 +1020,13 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listConnectionsNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayListConnectionsResult>> {
+  listConnectionsNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayListConnectionsResult>> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
       listConnectionsNextOperationSpec);
-  }
-
-  /**
-   * Creates or updates a virtual network gateway in the specified resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {VirtualNetworkGateway} parameters Parameters supplied to create or update virtual
-   * network gateway operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VirtualNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGateway} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  createOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway): Promise<Models.VirtualNetworkGateway>;
-  createOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGateway>;
-  createOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway, callback: msRest.ServiceCallback<Models.VirtualNetworkGateway>): void;
-  createOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGateway>): void;
-  createOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGateway>): any {
-    return msRest.responseToBody(this.createOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, parameters, options, callback);
-  }
-
-  /**
-   * Gets the specified virtual network gateway by resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VirtualNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGateway} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  get(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<Models.VirtualNetworkGateway>;
-  get(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGateway>;
-  get(resourceGroupName: string, virtualNetworkGatewayName: string, callback: msRest.ServiceCallback<Models.VirtualNetworkGateway>): void;
-  get(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGateway>): void;
-  get(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGateway>): any {
-    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, options, callback);
-  }
-
-  /**
-   * Deletes the specified virtual network gateway.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  deleteMethod(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<void>;
-  deleteMethod(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  deleteMethod(resourceGroupName: string, virtualNetworkGatewayName: string, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.deleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, options, callback);
-  }
-
-  /**
-   * Updates a virtual network gateway tags.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {TagsObject} parameters Parameters supplied to update virtual network gateway tags.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VirtualNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGateway} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  updateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject): Promise<Models.VirtualNetworkGateway>;
-  updateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGateway>;
-  updateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject, callback: msRest.ServiceCallback<Models.VirtualNetworkGateway>): void;
-  updateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGateway>): void;
-  updateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGateway>): any {
-    return msRest.responseToBody(this.updateTagsWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, parameters, options, callback);
-  }
-
-  /**
-   * Gets all virtual network gateways by resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VirtualNetworkGatewayListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGatewayListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  list(resourceGroupName: string): Promise<Models.VirtualNetworkGatewayListResult>;
-  list(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayListResult>;
-  list(resourceGroupName: string, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayListResult>): void;
-  list(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayListResult>): void;
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGatewayListResult>): any {
-    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), resourceGroupName, options, callback);
-  }
-
-  /**
-   * Gets all the connections in a virtual network gateway.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VirtualNetworkGatewayListConnectionsResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGatewayListConnectionsResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listConnections(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<Models.VirtualNetworkGatewayListConnectionsResult>;
-  listConnections(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayListConnectionsResult>;
-  listConnections(resourceGroupName: string, virtualNetworkGatewayName: string, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayListConnectionsResult>): void;
-  listConnections(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayListConnectionsResult>): void;
-  listConnections(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGatewayListConnectionsResult>): any {
-    return msRest.responseToBody(this.listConnectionsWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, options, callback);
-  }
-
-  /**
-   * Resets the primary of the virtual network gateway in the specified resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {VirtualNetworkGatewaysResetOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VirtualNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGateway} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  reset(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<Models.VirtualNetworkGateway>;
-  reset(resourceGroupName: string, virtualNetworkGatewayName: string, options: Models.VirtualNetworkGatewaysResetOptionalParams): Promise<Models.VirtualNetworkGateway>;
-  reset(resourceGroupName: string, virtualNetworkGatewayName: string, callback: msRest.ServiceCallback<Models.VirtualNetworkGateway>): void;
-  reset(resourceGroupName: string, virtualNetworkGatewayName: string, options: Models.VirtualNetworkGatewaysResetOptionalParams, callback: msRest.ServiceCallback<Models.VirtualNetworkGateway>): void;
-  reset(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysResetOptionalParams, callback?: msRest.ServiceCallback<Models.VirtualNetworkGateway>): any {
-    return msRest.responseToBody(this.resetWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, options, callback);
-  }
-
-  /**
-   * Generates VPN client package for P2S client of the virtual network gateway in the specified
-   * resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {VpnClientParameters} parameters Parameters supplied to the generate virtual network
-   * gateway VPN client package operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  generatevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters): Promise<string>;
-  generatevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options: msRest.RequestOptionsBase): Promise<string>;
-  generatevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, callback: msRest.ServiceCallback<string>): void;
-  generatevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  generatevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.generatevpnclientpackageWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, parameters, options, callback);
-  }
-
-  /**
-   * Generates VPN profile for P2S client of the virtual network gateway in the specified resource
-   * group. Used for IKEV2 and radius based authentication.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {VpnClientParameters} parameters Parameters supplied to the generate virtual network
-   * gateway VPN client package operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  generateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters): Promise<string>;
-  generateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options: msRest.RequestOptionsBase): Promise<string>;
-  generateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, callback: msRest.ServiceCallback<string>): void;
-  generateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  generateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.generateVpnProfileWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, parameters, options, callback);
-  }
-
-  /**
-   * Gets pre-generated VPN profile for P2S client of the virtual network gateway in the specified
-   * resource group. The profile needs to be generated first using generateVpnProfile.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<string>;
-  getVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase): Promise<string>;
-  getVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string, callback: msRest.ServiceCallback<string>): void;
-  getVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  getVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.getVpnProfilePackageUrlWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, options, callback);
-  }
-
-  /**
-   * The GetBgpPeerStatus operation retrieves the status of all BGP peers.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.BgpPeerStatusListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.BgpPeerStatusListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<Models.BgpPeerStatusListResult>;
-  getBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string, options: Models.VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams): Promise<Models.BgpPeerStatusListResult>;
-  getBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string, callback: msRest.ServiceCallback<Models.BgpPeerStatusListResult>): void;
-  getBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string, options: Models.VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams, callback: msRest.ServiceCallback<Models.BgpPeerStatusListResult>): void;
-  getBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams, callback?: msRest.ServiceCallback<Models.BgpPeerStatusListResult>): any {
-    return msRest.responseToBody(this.getBgpPeerStatusWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, options, callback);
-  }
-
-  /**
-   * Gets a xml format representation for supported vpn devices.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  supportedVpnDevices(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<string>;
-  supportedVpnDevices(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase): Promise<string>;
-  supportedVpnDevices(resourceGroupName: string, virtualNetworkGatewayName: string, callback: msRest.ServiceCallback<string>): void;
-  supportedVpnDevices(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  supportedVpnDevices(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.supportedVpnDevicesWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, options, callback);
-  }
-
-  /**
-   * This operation retrieves a list of routes the virtual network gateway has learned, including
-   * routes learned from BGP peers.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.GatewayRouteListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.GatewayRouteListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<Models.GatewayRouteListResult>;
-  getLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase): Promise<Models.GatewayRouteListResult>;
-  getLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, callback: msRest.ServiceCallback<Models.GatewayRouteListResult>): void;
-  getLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GatewayRouteListResult>): void;
-  getLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GatewayRouteListResult>): any {
-    return msRest.responseToBody(this.getLearnedRoutesWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, options, callback);
-  }
-
-  /**
-   * This operation retrieves a list of routes the virtual network gateway is advertising to the
-   * specified peer.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {string} peer The IP address of the peer
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.GatewayRouteListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.GatewayRouteListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string): Promise<Models.GatewayRouteListResult>;
-  getAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options: msRest.RequestOptionsBase): Promise<Models.GatewayRouteListResult>;
-  getAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, callback: msRest.ServiceCallback<Models.GatewayRouteListResult>): void;
-  getAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GatewayRouteListResult>): void;
-  getAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GatewayRouteListResult>): any {
-    return msRest.responseToBody(this.getAdvertisedRoutesWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, peer, options, callback);
-  }
-
-  /**
-   * The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy for P2S client of
-   * virtual network gateway in the specified resource group through Network resource provider.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {VpnClientIPsecParameters} vpnclientIpsecParams Parameters supplied to the Begin Set
-   * vpnclient ipsec parameters of Virtual Network Gateway P2S client operation through Network
-   * resource provider.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VpnClientIPsecParameters} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VpnClientIPsecParameters} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  setVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters): Promise<Models.VpnClientIPsecParameters>;
-  setVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters, options: msRest.RequestOptionsBase): Promise<Models.VpnClientIPsecParameters>;
-  setVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters, callback: msRest.ServiceCallback<Models.VpnClientIPsecParameters>): void;
-  setVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VpnClientIPsecParameters>): void;
-  setVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VpnClientIPsecParameters>): any {
-    return msRest.responseToBody(this.setVpnclientIpsecParametersWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, vpnclientIpsecParams, options, callback);
-  }
-
-  /**
-   * The Get VpnclientIpsecParameters operation retrieves information about the vpnclient ipsec
-   * policy for P2S client of virtual network gateway in the specified resource group through Network
-   * resource provider.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The virtual network gateway name.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VpnClientIPsecParameters} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VpnClientIPsecParameters} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  getVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<Models.VpnClientIPsecParameters>;
-  getVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase): Promise<Models.VpnClientIPsecParameters>;
-  getVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, callback: msRest.ServiceCallback<Models.VpnClientIPsecParameters>): void;
-  getVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VpnClientIPsecParameters>): void;
-  getVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VpnClientIPsecParameters>): any {
-    return msRest.responseToBody(this.getVpnclientIpsecParametersWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, options, callback);
-  }
-
-  /**
-   * Gets a xml format representation for vpn device configuration script.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayConnectionName The name of the virtual network gateway
-   * connection for which the configuration script is generated.
-   *
-   * @param {VpnDeviceScriptParameters} parameters Parameters supplied to the generate vpn device
-   * script operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  vpnDeviceConfigurationScript(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VpnDeviceScriptParameters): Promise<string>;
-  vpnDeviceConfigurationScript(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VpnDeviceScriptParameters, options: msRest.RequestOptionsBase): Promise<string>;
-  vpnDeviceConfigurationScript(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VpnDeviceScriptParameters, callback: msRest.ServiceCallback<string>): void;
-  vpnDeviceConfigurationScript(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VpnDeviceScriptParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  vpnDeviceConfigurationScript(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VpnDeviceScriptParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.vpnDeviceConfigurationScriptWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options, callback);
-  }
-
-  /**
-   * Creates or updates a virtual network gateway in the specified resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {VirtualNetworkGateway} parameters Parameters supplied to create or update virtual
-   * network gateway operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VirtualNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGateway} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway): Promise<Models.VirtualNetworkGateway>;
-  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGateway>;
-  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway, callback: msRest.ServiceCallback<Models.VirtualNetworkGateway>): void;
-  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGateway>): void;
-  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGateway>): any {
-    return msRest.responseToBody(this.beginCreateOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, parameters, options, callback);
-  }
-
-  /**
-   * Deletes the specified virtual network gateway.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<void>;
-  beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayName: string, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.beginDeleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, options, callback);
-  }
-
-  /**
-   * Updates a virtual network gateway tags.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {TagsObject} parameters Parameters supplied to update virtual network gateway tags.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VirtualNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGateway} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject): Promise<Models.VirtualNetworkGateway>;
-  beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGateway>;
-  beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject, callback: msRest.ServiceCallback<Models.VirtualNetworkGateway>): void;
-  beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGateway>): void;
-  beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGateway>): any {
-    return msRest.responseToBody(this.beginUpdateTagsWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, parameters, options, callback);
-  }
-
-  /**
-   * Resets the primary of the virtual network gateway in the specified resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {VirtualNetworkGatewaysBeginResetOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VirtualNetworkGateway} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGateway} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginReset(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<Models.VirtualNetworkGateway>;
-  beginReset(resourceGroupName: string, virtualNetworkGatewayName: string, options: Models.VirtualNetworkGatewaysBeginResetOptionalParams): Promise<Models.VirtualNetworkGateway>;
-  beginReset(resourceGroupName: string, virtualNetworkGatewayName: string, callback: msRest.ServiceCallback<Models.VirtualNetworkGateway>): void;
-  beginReset(resourceGroupName: string, virtualNetworkGatewayName: string, options: Models.VirtualNetworkGatewaysBeginResetOptionalParams, callback: msRest.ServiceCallback<Models.VirtualNetworkGateway>): void;
-  beginReset(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysBeginResetOptionalParams, callback?: msRest.ServiceCallback<Models.VirtualNetworkGateway>): any {
-    return msRest.responseToBody(this.beginResetWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, options, callback);
-  }
-
-  /**
-   * Generates VPN client package for P2S client of the virtual network gateway in the specified
-   * resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {VpnClientParameters} parameters Parameters supplied to the generate virtual network
-   * gateway VPN client package operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginGeneratevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters): Promise<string>;
-  beginGeneratevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options: msRest.RequestOptionsBase): Promise<string>;
-  beginGeneratevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, callback: msRest.ServiceCallback<string>): void;
-  beginGeneratevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  beginGeneratevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.beginGeneratevpnclientpackageWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, parameters, options, callback);
-  }
-
-  /**
-   * Generates VPN profile for P2S client of the virtual network gateway in the specified resource
-   * group. Used for IKEV2 and radius based authentication.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {VpnClientParameters} parameters Parameters supplied to the generate virtual network
-   * gateway VPN client package operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginGenerateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters): Promise<string>;
-  beginGenerateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options: msRest.RequestOptionsBase): Promise<string>;
-  beginGenerateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, callback: msRest.ServiceCallback<string>): void;
-  beginGenerateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  beginGenerateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.beginGenerateVpnProfileWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, parameters, options, callback);
-  }
-
-  /**
-   * Gets pre-generated VPN profile for P2S client of the virtual network gateway in the specified
-   * resource group. The profile needs to be generated first using generateVpnProfile.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {string} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginGetVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<string>;
-  beginGetVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase): Promise<string>;
-  beginGetVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string, callback: msRest.ServiceCallback<string>): void;
-  beginGetVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<string>): void;
-  beginGetVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<string>): any {
-    return msRest.responseToBody(this.beginGetVpnProfilePackageUrlWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, options, callback);
-  }
-
-  /**
-   * The GetBgpPeerStatus operation retrieves the status of all BGP peers.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {VirtualNetworkGatewaysBeginGetBgpPeerStatusOptionalParams} [options] Optional
-   * Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.BgpPeerStatusListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.BgpPeerStatusListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginGetBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<Models.BgpPeerStatusListResult>;
-  beginGetBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string, options: Models.VirtualNetworkGatewaysBeginGetBgpPeerStatusOptionalParams): Promise<Models.BgpPeerStatusListResult>;
-  beginGetBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string, callback: msRest.ServiceCallback<Models.BgpPeerStatusListResult>): void;
-  beginGetBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string, options: Models.VirtualNetworkGatewaysBeginGetBgpPeerStatusOptionalParams, callback: msRest.ServiceCallback<Models.BgpPeerStatusListResult>): void;
-  beginGetBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysBeginGetBgpPeerStatusOptionalParams, callback?: msRest.ServiceCallback<Models.BgpPeerStatusListResult>): any {
-    return msRest.responseToBody(this.beginGetBgpPeerStatusWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, options, callback);
-  }
-
-  /**
-   * This operation retrieves a list of routes the virtual network gateway has learned, including
-   * routes learned from BGP peers.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.GatewayRouteListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.GatewayRouteListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginGetLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<Models.GatewayRouteListResult>;
-  beginGetLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase): Promise<Models.GatewayRouteListResult>;
-  beginGetLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, callback: msRest.ServiceCallback<Models.GatewayRouteListResult>): void;
-  beginGetLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GatewayRouteListResult>): void;
-  beginGetLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GatewayRouteListResult>): any {
-    return msRest.responseToBody(this.beginGetLearnedRoutesWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, options, callback);
-  }
-
-  /**
-   * This operation retrieves a list of routes the virtual network gateway is advertising to the
-   * specified peer.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {string} peer The IP address of the peer
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.GatewayRouteListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.GatewayRouteListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginGetAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string): Promise<Models.GatewayRouteListResult>;
-  beginGetAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options: msRest.RequestOptionsBase): Promise<Models.GatewayRouteListResult>;
-  beginGetAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, callback: msRest.ServiceCallback<Models.GatewayRouteListResult>): void;
-  beginGetAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GatewayRouteListResult>): void;
-  beginGetAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.GatewayRouteListResult>): any {
-    return msRest.responseToBody(this.beginGetAdvertisedRoutesWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, peer, options, callback);
-  }
-
-  /**
-   * The Set VpnclientIpsecParameters operation sets the vpnclient ipsec policy for P2S client of
-   * virtual network gateway in the specified resource group through Network resource provider.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The name of the virtual network gateway.
-   *
-   * @param {VpnClientIPsecParameters} vpnclientIpsecParams Parameters supplied to the Begin Set
-   * vpnclient ipsec parameters of Virtual Network Gateway P2S client operation through Network
-   * resource provider.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VpnClientIPsecParameters} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VpnClientIPsecParameters} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginSetVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters): Promise<Models.VpnClientIPsecParameters>;
-  beginSetVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters, options: msRest.RequestOptionsBase): Promise<Models.VpnClientIPsecParameters>;
-  beginSetVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters, callback: msRest.ServiceCallback<Models.VpnClientIPsecParameters>): void;
-  beginSetVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VpnClientIPsecParameters>): void;
-  beginSetVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VpnClientIPsecParameters>): any {
-    return msRest.responseToBody(this.beginSetVpnclientIpsecParametersWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, vpnclientIpsecParams, options, callback);
-  }
-
-  /**
-   * The Get VpnclientIpsecParameters operation retrieves information about the vpnclient ipsec
-   * policy for P2S client of virtual network gateway in the specified resource group through Network
-   * resource provider.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} virtualNetworkGatewayName The virtual network gateway name.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VpnClientIPsecParameters} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VpnClientIPsecParameters} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginGetVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string): Promise<Models.VpnClientIPsecParameters>;
-  beginGetVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase): Promise<Models.VpnClientIPsecParameters>;
-  beginGetVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, callback: msRest.ServiceCallback<Models.VpnClientIPsecParameters>): void;
-  beginGetVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VpnClientIPsecParameters>): void;
-  beginGetVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VpnClientIPsecParameters>): any {
-    return msRest.responseToBody(this.beginGetVpnclientIpsecParametersWithHttpOperationResponse.bind(this), resourceGroupName, virtualNetworkGatewayName, options, callback);
-  }
-
-  /**
-   * Gets all virtual network gateways by resource group.
-   *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VirtualNetworkGatewayListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGatewayListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listNext(nextPageLink: string): Promise<Models.VirtualNetworkGatewayListResult>;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayListResult>;
-  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayListResult>): void;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayListResult>): void;
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGatewayListResult>): any {
-    return msRest.responseToBody(this.listNextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
-  }
-
-  /**
-   * Gets all the connections in a virtual network gateway.
-   *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.VirtualNetworkGatewayListConnectionsResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.VirtualNetworkGatewayListConnectionsResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listConnectionsNext(nextPageLink: string): Promise<Models.VirtualNetworkGatewayListConnectionsResult>;
-  listConnectionsNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayListConnectionsResult>;
-  listConnectionsNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayListConnectionsResult>): void;
-  listConnectionsNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkGatewayListConnectionsResult>): void;
-  listConnectionsNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkGatewayListConnectionsResult>): any {
-    return msRest.responseToBody(this.listConnectionsNextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
   }
 
 }
@@ -2013,7 +1158,6 @@ const vpnDeviceConfigurationScriptOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -2051,7 +1195,6 @@ const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.VirtualNetworkGateway
@@ -2112,7 +1255,6 @@ const beginUpdateTagsOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.VirtualNetworkGateway
@@ -2172,7 +1314,6 @@ const beginGeneratevpnclientpackageOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -2210,7 +1351,6 @@ const beginGenerateVpnProfileOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: {
@@ -2360,7 +1500,6 @@ const beginSetVpnclientIpsecParametersOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.VpnClientIPsecParameters

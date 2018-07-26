@@ -33,7 +33,7 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionListResult>> {
+  list(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionListResult>> {
     return this.client.sendOperationRequest(
       {
         options
@@ -54,7 +54,7 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listByResourceGroupWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionListResult>> {
+  listByResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionListResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -80,7 +80,7 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnection>> {
+  get(resourceGroupName: string, crossConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnection>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -109,8 +109,8 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdateWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, crossConnectionName, parameters, options)
+  createOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginCreateOrUpdate(resourceGroupName, crossConnectionName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -151,8 +151,8 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  updateTagsWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginUpdateTagsWithHttpOperationResponse(resourceGroupName, crossConnectionName, crossConnectionParameters, options)
+  updateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginUpdateTags(resourceGroupName, crossConnectionName, crossConnectionParameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -195,8 +195,8 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listArpTableWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginListArpTableWithHttpOperationResponse(resourceGroupName, crossConnectionName, peeringName, devicePath, options)
+  listArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginListArpTable(resourceGroupName, crossConnectionName, peeringName, devicePath, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -239,8 +239,8 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listRoutesTableSummaryWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginListRoutesTableSummaryWithHttpOperationResponse(resourceGroupName, crossConnectionName, peeringName, devicePath, options)
+  listRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginListRoutesTableSummary(resourceGroupName, crossConnectionName, peeringName, devicePath, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -283,8 +283,8 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listRoutesTableWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginListRoutesTableWithHttpOperationResponse(resourceGroupName, crossConnectionName, peeringName, devicePath, options)
+  listRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginListRoutesTable(resourceGroupName, crossConnectionName, peeringName, devicePath, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -324,7 +324,7 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnection>> {
+  beginCreateOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnection>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -353,7 +353,7 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginUpdateTagsWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnection>> {
+  beginUpdateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnection>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -384,7 +384,7 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginListArpTableWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitsArpTableListResult>> {
+  beginListArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitsArpTableListResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -416,7 +416,7 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginListRoutesTableSummaryWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult>> {
+  beginListRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -448,7 +448,7 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginListRoutesTableWithHttpOperationResponse(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitsRoutesTableListResult>> {
+  beginListRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitsRoutesTableListResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -473,7 +473,7 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionListResult>> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
@@ -495,437 +495,13 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listByResourceGroupNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionListResult>> {
+  listByResourceGroupNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionListResult>> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
       listByResourceGroupNextOperationSpec);
-  }
-
-  /**
-   * Retrieves all the ExpressRouteCrossConnections in a subscription.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCrossConnectionListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnectionListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  list(): Promise<Models.ExpressRouteCrossConnectionListResult>;
-  list(options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionListResult>;
-  list(callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): void;
-  list(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): void;
-  list(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): any {
-    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Retrieves all the ExpressRouteCrossConnections in a resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCrossConnectionListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnectionListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listByResourceGroup(resourceGroupName: string): Promise<Models.ExpressRouteCrossConnectionListResult>;
-  listByResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionListResult>;
-  listByResourceGroup(resourceGroupName: string, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): void;
-  listByResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): void;
-  listByResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): any {
-    return msRest.responseToBody(this.listByResourceGroupWithHttpOperationResponse.bind(this), resourceGroupName, options, callback);
-  }
-
-  /**
-   * Gets details about the specified ExpressRouteCrossConnection.
-   *
-   * @param {string} resourceGroupName The name of the resource group (peering location of the
-   * circuit).
-   *
-   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection (service key of
-   * the circuit).
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCrossConnection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnection} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  get(resourceGroupName: string, crossConnectionName: string): Promise<Models.ExpressRouteCrossConnection>;
-  get(resourceGroupName: string, crossConnectionName: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnection>;
-  get(resourceGroupName: string, crossConnectionName: string, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnection>): void;
-  get(resourceGroupName: string, crossConnectionName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnection>): void;
-  get(resourceGroupName: string, crossConnectionName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnection>): any {
-    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, options, callback);
-  }
-
-  /**
-   * Update the specified ExpressRouteCrossConnection.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
-   *
-   * @param {ExpressRouteCrossConnection} parameters Parameters supplied to the update express route
-   * crossConnection operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCrossConnection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnection} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  createOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection): Promise<Models.ExpressRouteCrossConnection>;
-  createOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnection>;
-  createOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnection>): void;
-  createOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnection>): void;
-  createOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnection>): any {
-    return msRest.responseToBody(this.createOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, parameters, options, callback);
-  }
-
-  /**
-   * Updates an express route cross connection tags.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} crossConnectionName The name of the cross connection.
-   *
-   * @param {TagsObject} crossConnectionParameters Parameters supplied to update express route cross
-   * connection tags.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCrossConnection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnection} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  updateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject): Promise<Models.ExpressRouteCrossConnection>;
-  updateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnection>;
-  updateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnection>): void;
-  updateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnection>): void;
-  updateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnection>): any {
-    return msRest.responseToBody(this.updateTagsWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, crossConnectionParameters, options, callback);
-  }
-
-  /**
-   * Gets the currently advertised ARP table associated with the express route cross connection in a
-   * resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
-   *
-   * @param {string} peeringName The name of the peering.
-   *
-   * @param {string} devicePath The path of the device
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCircuitsArpTableListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCircuitsArpTableListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string): Promise<Models.ExpressRouteCircuitsArpTableListResult>;
-  listArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsArpTableListResult>;
-  listArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitsArpTableListResult>): void;
-  listArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitsArpTableListResult>): void;
-  listArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCircuitsArpTableListResult>): any {
-    return msRest.responseToBody(this.listArpTableWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, peeringName, devicePath, options, callback);
-  }
-
-  /**
-   * Gets the route table summary associated with the express route cross connection in a resource
-   * group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
-   *
-   * @param {string} peeringName The name of the peering.
-   *
-   * @param {string} devicePath The path of the device.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string): Promise<Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult>;
-  listRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult>;
-  listRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult>): void;
-  listRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult>): void;
-  listRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult>): any {
-    return msRest.responseToBody(this.listRoutesTableSummaryWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, peeringName, devicePath, options, callback);
-  }
-
-  /**
-   * Gets the currently advertised routes table associated with the express route cross connection in
-   * a resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
-   *
-   * @param {string} peeringName The name of the peering.
-   *
-   * @param {string} devicePath The path of the device.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCircuitsRoutesTableListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCircuitsRoutesTableListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string): Promise<Models.ExpressRouteCircuitsRoutesTableListResult>;
-  listRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsRoutesTableListResult>;
-  listRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitsRoutesTableListResult>): void;
-  listRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitsRoutesTableListResult>): void;
-  listRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCircuitsRoutesTableListResult>): any {
-    return msRest.responseToBody(this.listRoutesTableWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, peeringName, devicePath, options, callback);
-  }
-
-  /**
-   * Update the specified ExpressRouteCrossConnection.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
-   *
-   * @param {ExpressRouteCrossConnection} parameters Parameters supplied to the update express route
-   * crossConnection operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCrossConnection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnection} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginCreateOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection): Promise<Models.ExpressRouteCrossConnection>;
-  beginCreateOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnection>;
-  beginCreateOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnection>): void;
-  beginCreateOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnection>): void;
-  beginCreateOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnection>): any {
-    return msRest.responseToBody(this.beginCreateOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, parameters, options, callback);
-  }
-
-  /**
-   * Updates an express route cross connection tags.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} crossConnectionName The name of the cross connection.
-   *
-   * @param {TagsObject} crossConnectionParameters Parameters supplied to update express route cross
-   * connection tags.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCrossConnection} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnection} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginUpdateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject): Promise<Models.ExpressRouteCrossConnection>;
-  beginUpdateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnection>;
-  beginUpdateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnection>): void;
-  beginUpdateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnection>): void;
-  beginUpdateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnection>): any {
-    return msRest.responseToBody(this.beginUpdateTagsWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, crossConnectionParameters, options, callback);
-  }
-
-  /**
-   * Gets the currently advertised ARP table associated with the express route cross connection in a
-   * resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
-   *
-   * @param {string} peeringName The name of the peering.
-   *
-   * @param {string} devicePath The path of the device
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCircuitsArpTableListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCircuitsArpTableListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginListArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string): Promise<Models.ExpressRouteCircuitsArpTableListResult>;
-  beginListArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsArpTableListResult>;
-  beginListArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitsArpTableListResult>): void;
-  beginListArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitsArpTableListResult>): void;
-  beginListArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCircuitsArpTableListResult>): any {
-    return msRest.responseToBody(this.beginListArpTableWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, peeringName, devicePath, options, callback);
-  }
-
-  /**
-   * Gets the route table summary associated with the express route cross connection in a resource
-   * group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
-   *
-   * @param {string} peeringName The name of the peering.
-   *
-   * @param {string} devicePath The path of the device.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginListRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string): Promise<Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult>;
-  beginListRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult>;
-  beginListRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult>): void;
-  beginListRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult>): void;
-  beginListRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionsRoutesTableSummaryListResult>): any {
-    return msRest.responseToBody(this.beginListRoutesTableSummaryWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, peeringName, devicePath, options, callback);
-  }
-
-  /**
-   * Gets the currently advertised routes table associated with the express route cross connection in
-   * a resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} crossConnectionName The name of the ExpressRouteCrossConnection.
-   *
-   * @param {string} peeringName The name of the peering.
-   *
-   * @param {string} devicePath The path of the device.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCircuitsRoutesTableListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCircuitsRoutesTableListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginListRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string): Promise<Models.ExpressRouteCircuitsRoutesTableListResult>;
-  beginListRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsRoutesTableListResult>;
-  beginListRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitsRoutesTableListResult>): void;
-  beginListRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitsRoutesTableListResult>): void;
-  beginListRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCircuitsRoutesTableListResult>): any {
-    return msRest.responseToBody(this.beginListRoutesTableWithHttpOperationResponse.bind(this), resourceGroupName, crossConnectionName, peeringName, devicePath, options, callback);
-  }
-
-  /**
-   * Retrieves all the ExpressRouteCrossConnections in a subscription.
-   *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCrossConnectionListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnectionListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listNext(nextPageLink: string): Promise<Models.ExpressRouteCrossConnectionListResult>;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionListResult>;
-  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): void;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): void;
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): any {
-    return msRest.responseToBody(this.listNextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
-  }
-
-  /**
-   * Retrieves all the ExpressRouteCrossConnections in a resource group.
-   *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.ExpressRouteCrossConnectionListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.ExpressRouteCrossConnectionListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listByResourceGroupNext(nextPageLink: string): Promise<Models.ExpressRouteCrossConnectionListResult>;
-  listByResourceGroupNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionListResult>;
-  listByResourceGroupNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): void;
-  listByResourceGroupNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): void;
-  listByResourceGroupNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): any {
-    return msRest.responseToBody(this.listByResourceGroupNextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
   }
 
 }
@@ -1025,7 +601,6 @@ const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ExpressRouteCrossConnection
@@ -1058,7 +633,6 @@ const beginUpdateTagsOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.ExpressRouteCrossConnection

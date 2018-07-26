@@ -37,7 +37,7 @@ export class InboundNatRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.InboundNatRuleListResult>> {
+  list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.InboundNatRuleListResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -65,8 +65,8 @@ export class InboundNatRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethodWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, loadBalancerName, inboundNatRuleName, options)
+  deleteMethod(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteMethod(resourceGroupName, loadBalancerName, inboundNatRuleName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
 
@@ -92,7 +92,7 @@ export class InboundNatRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: Models.InboundNatRulesGetOptionalParams): Promise<msRest.HttpOperationResponse<Models.InboundNatRule>> {
+  get(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: Models.InboundNatRulesGetOptionalParams): Promise<msRest.HttpOperationResponse<Models.InboundNatRule>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -124,8 +124,8 @@ export class InboundNatRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdateWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, loadBalancerName, inboundNatRuleName, inboundNatRuleParameters, options)
+  createOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginCreateOrUpdate(resourceGroupName, loadBalancerName, inboundNatRuleName, inboundNatRuleParameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -164,7 +164,7 @@ export class InboundNatRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -195,7 +195,7 @@ export class InboundNatRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.InboundNatRule>> {
+  beginCreateOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.InboundNatRule>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -220,209 +220,13 @@ export class InboundNatRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.InboundNatRuleListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.InboundNatRuleListResult>> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
       listNextOperationSpec);
-  }
-
-  /**
-   * Gets all the inbound nat rules in a load balancer.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} loadBalancerName The name of the load balancer.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.InboundNatRuleListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.InboundNatRuleListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  list(resourceGroupName: string, loadBalancerName: string): Promise<Models.InboundNatRuleListResult>;
-  list(resourceGroupName: string, loadBalancerName: string, options: msRest.RequestOptionsBase): Promise<Models.InboundNatRuleListResult>;
-  list(resourceGroupName: string, loadBalancerName: string, callback: msRest.ServiceCallback<Models.InboundNatRuleListResult>): void;
-  list(resourceGroupName: string, loadBalancerName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.InboundNatRuleListResult>): void;
-  list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.InboundNatRuleListResult>): any {
-    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), resourceGroupName, loadBalancerName, options, callback);
-  }
-
-  /**
-   * Deletes the specified load balancer inbound nat rule.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} loadBalancerName The name of the load balancer.
-   *
-   * @param {string} inboundNatRuleName The name of the inbound nat rule.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  deleteMethod(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string): Promise<void>;
-  deleteMethod(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  deleteMethod(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.deleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, loadBalancerName, inboundNatRuleName, options, callback);
-  }
-
-  /**
-   * Gets the specified load balancer inbound nat rule.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} loadBalancerName The name of the load balancer.
-   *
-   * @param {string} inboundNatRuleName The name of the inbound nat rule.
-   *
-   * @param {InboundNatRulesGetOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.InboundNatRule} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.InboundNatRule} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  get(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string): Promise<Models.InboundNatRule>;
-  get(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options: Models.InboundNatRulesGetOptionalParams): Promise<Models.InboundNatRule>;
-  get(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, callback: msRest.ServiceCallback<Models.InboundNatRule>): void;
-  get(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options: Models.InboundNatRulesGetOptionalParams, callback: msRest.ServiceCallback<Models.InboundNatRule>): void;
-  get(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: Models.InboundNatRulesGetOptionalParams, callback?: msRest.ServiceCallback<Models.InboundNatRule>): any {
-    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), resourceGroupName, loadBalancerName, inboundNatRuleName, options, callback);
-  }
-
-  /**
-   * Creates or updates a load balancer inbound nat rule.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} loadBalancerName The name of the load balancer.
-   *
-   * @param {string} inboundNatRuleName The name of the inbound nat rule.
-   *
-   * @param {InboundNatRule} inboundNatRuleParameters Parameters supplied to the create or update
-   * inbound nat rule operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.InboundNatRule} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.InboundNatRule} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  createOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule): Promise<Models.InboundNatRule>;
-  createOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule, options: msRest.RequestOptionsBase): Promise<Models.InboundNatRule>;
-  createOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule, callback: msRest.ServiceCallback<Models.InboundNatRule>): void;
-  createOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.InboundNatRule>): void;
-  createOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.InboundNatRule>): any {
-    return msRest.responseToBody(this.createOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, loadBalancerName, inboundNatRuleName, inboundNatRuleParameters, options, callback);
-  }
-
-  /**
-   * Deletes the specified load balancer inbound nat rule.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} loadBalancerName The name of the load balancer.
-   *
-   * @param {string} inboundNatRuleName The name of the inbound nat rule.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDeleteMethod(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string): Promise<void>;
-  beginDeleteMethod(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  beginDeleteMethod(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteMethod(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteMethod(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.beginDeleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, loadBalancerName, inboundNatRuleName, options, callback);
-  }
-
-  /**
-   * Creates or updates a load balancer inbound nat rule.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} loadBalancerName The name of the load balancer.
-   *
-   * @param {string} inboundNatRuleName The name of the inbound nat rule.
-   *
-   * @param {InboundNatRule} inboundNatRuleParameters Parameters supplied to the create or update
-   * inbound nat rule operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.InboundNatRule} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.InboundNatRule} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginCreateOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule): Promise<Models.InboundNatRule>;
-  beginCreateOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule, options: msRest.RequestOptionsBase): Promise<Models.InboundNatRule>;
-  beginCreateOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule, callback: msRest.ServiceCallback<Models.InboundNatRule>): void;
-  beginCreateOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.InboundNatRule>): void;
-  beginCreateOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.InboundNatRule>): any {
-    return msRest.responseToBody(this.beginCreateOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, loadBalancerName, inboundNatRuleName, inboundNatRuleParameters, options, callback);
-  }
-
-  /**
-   * Gets all the inbound nat rules in a load balancer.
-   *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.InboundNatRuleListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.InboundNatRuleListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listNext(nextPageLink: string): Promise<Models.InboundNatRuleListResult>;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.InboundNatRuleListResult>;
-  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.InboundNatRuleListResult>): void;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.InboundNatRuleListResult>): void;
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.InboundNatRuleListResult>): any {
-    return msRest.responseToBody(this.listNextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
   }
 
 }
@@ -529,7 +333,6 @@ const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.InboundNatRule

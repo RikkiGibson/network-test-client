@@ -146,7 +146,7 @@ class NetworkManagementClient extends NetworkManagementClientContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  checkDnsNameAvailabilityWithHttpOperationResponse(location: string, domainNameLabel: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DnsNameAvailabilityResult>> {
+  checkDnsNameAvailability(location: string, domainNameLabel: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DnsNameAvailabilityResult>> {
     return this.sendOperationRequest(
       {
         location,
@@ -154,33 +154,6 @@ class NetworkManagementClient extends NetworkManagementClientContext {
         options
       },
       checkDnsNameAvailabilityOperationSpec);
-  }
-
-  /**
-   * Checks whether a domain name in the cloudapp.azure.com zone is available for use.
-   *
-   * @param {string} location The location of the domain name.
-   *
-   * @param {string} domainNameLabel The domain name to be verified. It must conform to the following
-   * regular expression: ^[a-z][a-z0-9-]{1,61}[a-z0-9]$.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.DnsNameAvailabilityResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.DnsNameAvailabilityResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  checkDnsNameAvailability(location: string, domainNameLabel: string): Promise<Models.DnsNameAvailabilityResult>;
-  checkDnsNameAvailability(location: string, domainNameLabel: string, options: msRest.RequestOptionsBase): Promise<Models.DnsNameAvailabilityResult>;
-  checkDnsNameAvailability(location: string, domainNameLabel: string, callback: msRest.ServiceCallback<Models.DnsNameAvailabilityResult>): void;
-  checkDnsNameAvailability(location: string, domainNameLabel: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DnsNameAvailabilityResult>): void;
-  checkDnsNameAvailability(location: string, domainNameLabel: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DnsNameAvailabilityResult>): any {
-    return msRest.responseToBody(this.checkDnsNameAvailabilityWithHttpOperationResponse.bind(this), location, domainNameLabel, options, callback);
   }
 }
 

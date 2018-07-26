@@ -37,7 +37,7 @@ export class LoadBalancerBackendAddressPools {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerBackendAddressPoolListResult>> {
+  list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerBackendAddressPoolListResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -64,7 +64,7 @@ export class LoadBalancerBackendAddressPools {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.BackendAddressPool>> {
+  get(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.BackendAddressPool>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -88,91 +88,13 @@ export class LoadBalancerBackendAddressPools {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerBackendAddressPoolListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerBackendAddressPoolListResult>> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
       listNextOperationSpec);
-  }
-
-  /**
-   * Gets all the load balancer backed address pools.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} loadBalancerName The name of the load balancer.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LoadBalancerBackendAddressPoolListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LoadBalancerBackendAddressPoolListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  list(resourceGroupName: string, loadBalancerName: string): Promise<Models.LoadBalancerBackendAddressPoolListResult>;
-  list(resourceGroupName: string, loadBalancerName: string, options: msRest.RequestOptionsBase): Promise<Models.LoadBalancerBackendAddressPoolListResult>;
-  list(resourceGroupName: string, loadBalancerName: string, callback: msRest.ServiceCallback<Models.LoadBalancerBackendAddressPoolListResult>): void;
-  list(resourceGroupName: string, loadBalancerName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LoadBalancerBackendAddressPoolListResult>): void;
-  list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LoadBalancerBackendAddressPoolListResult>): any {
-    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), resourceGroupName, loadBalancerName, options, callback);
-  }
-
-  /**
-   * Gets load balancer backend address pool.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} loadBalancerName The name of the load balancer.
-   *
-   * @param {string} backendAddressPoolName The name of the backend address pool.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.BackendAddressPool} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.BackendAddressPool} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  get(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string): Promise<Models.BackendAddressPool>;
-  get(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, options: msRest.RequestOptionsBase): Promise<Models.BackendAddressPool>;
-  get(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, callback: msRest.ServiceCallback<Models.BackendAddressPool>): void;
-  get(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.BackendAddressPool>): void;
-  get(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.BackendAddressPool>): any {
-    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), resourceGroupName, loadBalancerName, backendAddressPoolName, options, callback);
-  }
-
-  /**
-   * Gets all the load balancer backed address pools.
-   *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LoadBalancerBackendAddressPoolListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LoadBalancerBackendAddressPoolListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listNext(nextPageLink: string): Promise<Models.LoadBalancerBackendAddressPoolListResult>;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.LoadBalancerBackendAddressPoolListResult>;
-  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.LoadBalancerBackendAddressPoolListResult>): void;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LoadBalancerBackendAddressPoolListResult>): void;
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LoadBalancerBackendAddressPoolListResult>): any {
-    return msRest.responseToBody(this.listNextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
   }
 
 }

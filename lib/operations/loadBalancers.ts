@@ -38,8 +38,8 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethodWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginDeleteMethodWithHttpOperationResponse(resourceGroupName, loadBalancerName, options)
+  deleteMethod(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginDeleteMethod(resourceGroupName, loadBalancerName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
 
@@ -63,7 +63,7 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, options?: Models.LoadBalancersGetOptionalParams): Promise<msRest.HttpOperationResponse<Models.LoadBalancer>> {
+  get(resourceGroupName: string, loadBalancerName: string, options?: Models.LoadBalancersGetOptionalParams): Promise<msRest.HttpOperationResponse<Models.LoadBalancer>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -92,8 +92,8 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdateWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, parameters: Models.LoadBalancer, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName, loadBalancerName, parameters, options)
+  createOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: Models.LoadBalancer, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginCreateOrUpdate(resourceGroupName, loadBalancerName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -133,8 +133,8 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  updateTagsWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
-    return this.beginUpdateTagsWithHttpOperationResponse(resourceGroupName, loadBalancerName, parameters, options)
+  updateTags(resourceGroupName: string, loadBalancerName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+    return this.beginUpdateTags(resourceGroupName, loadBalancerName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
         let httpRequest = operationRes.request;
@@ -167,7 +167,7 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAllWithHttpOperationResponse(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerListResult>> {
+  listAll(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerListResult>> {
     return this.client.sendOperationRequest(
       {
         options
@@ -188,7 +188,7 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listWithHttpOperationResponse(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerListResult>> {
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerListResult>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -212,7 +212,7 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethodWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -240,7 +240,7 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdateWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, parameters: Models.LoadBalancer, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancer>> {
+  beginCreateOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: Models.LoadBalancer, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancer>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -268,7 +268,7 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginUpdateTagsWithHttpOperationResponse(resourceGroupName: string, loadBalancerName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancer>> {
+  beginUpdateTags(resourceGroupName: string, loadBalancerName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancer>> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -292,7 +292,7 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAllNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerListResult>> {
+  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerListResult>> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
@@ -314,299 +314,13 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNextWithHttpOperationResponse(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerListResult>> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
       listNextOperationSpec);
-  }
-
-  /**
-   * Deletes the specified load balancer.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} loadBalancerName The name of the load balancer.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  deleteMethod(resourceGroupName: string, loadBalancerName: string): Promise<void>;
-  deleteMethod(resourceGroupName: string, loadBalancerName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  deleteMethod(resourceGroupName: string, loadBalancerName: string, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, loadBalancerName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  deleteMethod(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.deleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, loadBalancerName, options, callback);
-  }
-
-  /**
-   * Gets the specified load balancer.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} loadBalancerName The name of the load balancer.
-   *
-   * @param {LoadBalancersGetOptionalParams} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LoadBalancer} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LoadBalancer} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  get(resourceGroupName: string, loadBalancerName: string): Promise<Models.LoadBalancer>;
-  get(resourceGroupName: string, loadBalancerName: string, options: Models.LoadBalancersGetOptionalParams): Promise<Models.LoadBalancer>;
-  get(resourceGroupName: string, loadBalancerName: string, callback: msRest.ServiceCallback<Models.LoadBalancer>): void;
-  get(resourceGroupName: string, loadBalancerName: string, options: Models.LoadBalancersGetOptionalParams, callback: msRest.ServiceCallback<Models.LoadBalancer>): void;
-  get(resourceGroupName: string, loadBalancerName: string, options?: Models.LoadBalancersGetOptionalParams, callback?: msRest.ServiceCallback<Models.LoadBalancer>): any {
-    return msRest.responseToBody(this.getWithHttpOperationResponse.bind(this), resourceGroupName, loadBalancerName, options, callback);
-  }
-
-  /**
-   * Creates or updates a load balancer.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} loadBalancerName The name of the load balancer.
-   *
-   * @param {LoadBalancer} parameters Parameters supplied to the create or update load balancer
-   * operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LoadBalancer} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LoadBalancer} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  createOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: Models.LoadBalancer): Promise<Models.LoadBalancer>;
-  createOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: Models.LoadBalancer, options: msRest.RequestOptionsBase): Promise<Models.LoadBalancer>;
-  createOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: Models.LoadBalancer, callback: msRest.ServiceCallback<Models.LoadBalancer>): void;
-  createOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: Models.LoadBalancer, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LoadBalancer>): void;
-  createOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: Models.LoadBalancer, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LoadBalancer>): any {
-    return msRest.responseToBody(this.createOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, loadBalancerName, parameters, options, callback);
-  }
-
-  /**
-   * Updates a load balancer tags.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} loadBalancerName The name of the load balancer.
-   *
-   * @param {TagsObject} parameters Parameters supplied to update load balancer tags.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LoadBalancer} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LoadBalancer} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  updateTags(resourceGroupName: string, loadBalancerName: string, parameters: Models.TagsObject): Promise<Models.LoadBalancer>;
-  updateTags(resourceGroupName: string, loadBalancerName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase): Promise<Models.LoadBalancer>;
-  updateTags(resourceGroupName: string, loadBalancerName: string, parameters: Models.TagsObject, callback: msRest.ServiceCallback<Models.LoadBalancer>): void;
-  updateTags(resourceGroupName: string, loadBalancerName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LoadBalancer>): void;
-  updateTags(resourceGroupName: string, loadBalancerName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LoadBalancer>): any {
-    return msRest.responseToBody(this.updateTagsWithHttpOperationResponse.bind(this), resourceGroupName, loadBalancerName, parameters, options, callback);
-  }
-
-  /**
-   * Gets all the load balancers in a subscription.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LoadBalancerListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LoadBalancerListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listAll(): Promise<Models.LoadBalancerListResult>;
-  listAll(options: msRest.RequestOptionsBase): Promise<Models.LoadBalancerListResult>;
-  listAll(callback: msRest.ServiceCallback<Models.LoadBalancerListResult>): void;
-  listAll(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LoadBalancerListResult>): void;
-  listAll(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LoadBalancerListResult>): any {
-    return msRest.responseToBody(this.listAllWithHttpOperationResponse.bind(this), options, callback);
-  }
-
-  /**
-   * Gets all the load balancers in a resource group.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LoadBalancerListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LoadBalancerListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  list(resourceGroupName: string): Promise<Models.LoadBalancerListResult>;
-  list(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.LoadBalancerListResult>;
-  list(resourceGroupName: string, callback: msRest.ServiceCallback<Models.LoadBalancerListResult>): void;
-  list(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LoadBalancerListResult>): void;
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LoadBalancerListResult>): any {
-    return msRest.responseToBody(this.listWithHttpOperationResponse.bind(this), resourceGroupName, options, callback);
-  }
-
-  /**
-   * Deletes the specified load balancer.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} loadBalancerName The name of the load balancer.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {void} [result]   - The deserialized result object if an error did not occur.
-   *
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginDeleteMethod(resourceGroupName: string, loadBalancerName: string): Promise<void>;
-  beginDeleteMethod(resourceGroupName: string, loadBalancerName: string, options: msRest.RequestOptionsBase): Promise<void>;
-  beginDeleteMethod(resourceGroupName: string, loadBalancerName: string, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteMethod(resourceGroupName: string, loadBalancerName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<void>): void;
-  beginDeleteMethod(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<void>): any {
-    return msRest.responseToBody(this.beginDeleteMethodWithHttpOperationResponse.bind(this), resourceGroupName, loadBalancerName, options, callback);
-  }
-
-  /**
-   * Creates or updates a load balancer.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} loadBalancerName The name of the load balancer.
-   *
-   * @param {LoadBalancer} parameters Parameters supplied to the create or update load balancer
-   * operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LoadBalancer} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LoadBalancer} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginCreateOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: Models.LoadBalancer): Promise<Models.LoadBalancer>;
-  beginCreateOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: Models.LoadBalancer, options: msRest.RequestOptionsBase): Promise<Models.LoadBalancer>;
-  beginCreateOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: Models.LoadBalancer, callback: msRest.ServiceCallback<Models.LoadBalancer>): void;
-  beginCreateOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: Models.LoadBalancer, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LoadBalancer>): void;
-  beginCreateOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: Models.LoadBalancer, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LoadBalancer>): any {
-    return msRest.responseToBody(this.beginCreateOrUpdateWithHttpOperationResponse.bind(this), resourceGroupName, loadBalancerName, parameters, options, callback);
-  }
-
-  /**
-   * Updates a load balancer tags.
-   *
-   * @param {string} resourceGroupName The name of the resource group.
-   *
-   * @param {string} loadBalancerName The name of the load balancer.
-   *
-   * @param {TagsObject} parameters Parameters supplied to update load balancer tags.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LoadBalancer} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LoadBalancer} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  beginUpdateTags(resourceGroupName: string, loadBalancerName: string, parameters: Models.TagsObject): Promise<Models.LoadBalancer>;
-  beginUpdateTags(resourceGroupName: string, loadBalancerName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase): Promise<Models.LoadBalancer>;
-  beginUpdateTags(resourceGroupName: string, loadBalancerName: string, parameters: Models.TagsObject, callback: msRest.ServiceCallback<Models.LoadBalancer>): void;
-  beginUpdateTags(resourceGroupName: string, loadBalancerName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LoadBalancer>): void;
-  beginUpdateTags(resourceGroupName: string, loadBalancerName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LoadBalancer>): any {
-    return msRest.responseToBody(this.beginUpdateTagsWithHttpOperationResponse.bind(this), resourceGroupName, loadBalancerName, parameters, options, callback);
-  }
-
-  /**
-   * Gets all the load balancers in a subscription.
-   *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LoadBalancerListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LoadBalancerListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listAllNext(nextPageLink: string): Promise<Models.LoadBalancerListResult>;
-  listAllNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.LoadBalancerListResult>;
-  listAllNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.LoadBalancerListResult>): void;
-  listAllNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LoadBalancerListResult>): void;
-  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LoadBalancerListResult>): any {
-    return msRest.responseToBody(this.listAllNextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
-  }
-
-  /**
-   * Gets all the load balancers in a resource group.
-   *
-   * @param {string} nextPageLink The NextLink from the previous successful call to List operation.
-   *
-   * @param {RequestOptionsBase} [options] Optional Parameters.
-   *
-   * @param {ServiceCallback} callback The callback.
-   *
-   * @returns {ServiceCallback} callback(err, result, request, operationRes)
-   *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
-   *                      {Models.LoadBalancerListResult} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Models.LoadBalancerListResult} for more information.
-   *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
-   *                      {HttpOperationResponse} [response] - The HTTP Response stream if an error did not occur.
-   */
-  listNext(nextPageLink: string): Promise<Models.LoadBalancerListResult>;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.LoadBalancerListResult>;
-  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.LoadBalancerListResult>): void;
-  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LoadBalancerListResult>): void;
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LoadBalancerListResult>): any {
-    return msRest.responseToBody(this.listNextWithHttpOperationResponse.bind(this), nextPageLink, options, callback);
   }
 
 }
@@ -732,7 +446,6 @@ const beginCreateOrUpdateOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.LoadBalancer
@@ -768,7 +481,6 @@ const beginUpdateTagsOperationSpec: msRest.OperationSpec = {
       required: true
     }
   },
-  contentType: "application/json; charset=utf-8",
   responses: {
     200: {
       bodyMapper: Mappers.LoadBalancer

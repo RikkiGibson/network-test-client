@@ -8,9 +8,6 @@ const baseConfig: webpack.Configuration = {
   plugins: [
     new ForkTsCheckerWebpackPlugin({ silent: true })
   ],
-  devServer: {
-    contentBase: './'
-  },
   module: {
     rules: [
       {
@@ -19,7 +16,6 @@ const baseConfig: webpack.Configuration = {
       {
         test: /\.tsx?$/,
         loader: 'ts-loader',
-        exclude: /(node_modules)|(startServer\.ts)/,
         options: {
           // speed up build times and get type checking through the forked checker plugin
           transpileOnly: true,

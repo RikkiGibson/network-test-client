@@ -88,4 +88,5 @@ dist/
 typings/
 *.js
 *.js.map
+*.gz
 

@@ -38,7 +38,7 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  deleteMethod(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDeleteMethod(resourceGroupName, loadBalancerName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -63,14 +63,14 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, loadBalancerName: string, options?: Models.LoadBalancersGetOptionalParams): Promise<msRest.HttpOperationResponse<Models.LoadBalancer>> {
+  get(resourceGroupName: string, loadBalancerName: string, options?: Models.LoadBalancersGetOptionalParams): Promise<Models.LoadBalancersGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         loadBalancerName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.LoadBalancersGetResponse>;
   }
 
 
@@ -92,7 +92,7 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: Models.LoadBalancer, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  createOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: Models.LoadBalancer, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancersCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, loadBalancerName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -112,7 +112,7 @@ export class LoadBalancers {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LoadBalancersCreateOrUpdateResponse>;
   }
 
 
@@ -133,7 +133,7 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  updateTags(resourceGroupName: string, loadBalancerName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  updateTags(resourceGroupName: string, loadBalancerName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancersUpdateTagsResponse> {
     return this.beginUpdateTags(resourceGroupName, loadBalancerName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -153,7 +153,7 @@ export class LoadBalancers {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.LoadBalancersUpdateTagsResponse>;
   }
 
   /**
@@ -167,12 +167,12 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAll(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerListResult>> {
+  listAll(options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancersListAllResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listAllOperationSpec);
+      listAllOperationSpec) as Promise<Models.LoadBalancersListAllResponse>;
   }
 
   /**
@@ -188,13 +188,13 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerListResult>> {
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancersListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.LoadBalancersListResponse>;
   }
 
   /**
@@ -212,7 +212,7 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -240,7 +240,7 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: Models.LoadBalancer, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancer>> {
+  beginCreateOrUpdate(resourceGroupName: string, loadBalancerName: string, parameters: Models.LoadBalancer, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancersBeginCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -248,7 +248,7 @@ export class LoadBalancers {
         parameters,
         options
       },
-      beginCreateOrUpdateOperationSpec);
+      beginCreateOrUpdateOperationSpec) as Promise<Models.LoadBalancersBeginCreateOrUpdateResponse>;
   }
 
   /**
@@ -268,7 +268,7 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginUpdateTags(resourceGroupName: string, loadBalancerName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancer>> {
+  beginUpdateTags(resourceGroupName: string, loadBalancerName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancersBeginUpdateTagsResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -276,7 +276,7 @@ export class LoadBalancers {
         parameters,
         options
       },
-      beginUpdateTagsOperationSpec);
+      beginUpdateTagsOperationSpec) as Promise<Models.LoadBalancersBeginUpdateTagsResponse>;
   }
 
   /**
@@ -292,13 +292,13 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerListResult>> {
+  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancersListAllNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listAllNextOperationSpec);
+      listAllNextOperationSpec) as Promise<Models.LoadBalancersListAllNextResponse>;
   }
 
   /**
@@ -314,13 +314,13 @@ export class LoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancersListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.LoadBalancersListNextResponse>;
   }
 
 }

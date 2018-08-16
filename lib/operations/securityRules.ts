@@ -40,7 +40,7 @@ export class SecurityRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  deleteMethod(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDeleteMethod(resourceGroupName, networkSecurityGroupName, securityRuleName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -67,7 +67,7 @@ export class SecurityRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SecurityRule>> {
+  get(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: msRest.RequestOptionsBase): Promise<Models.SecurityRulesGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -75,7 +75,7 @@ export class SecurityRules {
         securityRuleName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.SecurityRulesGetResponse>;
   }
 
 
@@ -99,7 +99,7 @@ export class SecurityRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdate(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, securityRuleParameters: Models.SecurityRule, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  createOrUpdate(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, securityRuleParameters: Models.SecurityRule, options?: msRest.RequestOptionsBase): Promise<Models.SecurityRulesCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, networkSecurityGroupName, securityRuleName, securityRuleParameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -119,7 +119,7 @@ export class SecurityRules {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.SecurityRulesCreateOrUpdateResponse>;
   }
 
   /**
@@ -137,14 +137,14 @@ export class SecurityRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, networkSecurityGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SecurityRuleListResult>> {
+  list(resourceGroupName: string, networkSecurityGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.SecurityRulesListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         networkSecurityGroupName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.SecurityRulesListResponse>;
   }
 
   /**
@@ -164,7 +164,7 @@ export class SecurityRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -195,7 +195,7 @@ export class SecurityRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, securityRuleParameters: Models.SecurityRule, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SecurityRule>> {
+  beginCreateOrUpdate(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, securityRuleParameters: Models.SecurityRule, options?: msRest.RequestOptionsBase): Promise<Models.SecurityRulesBeginCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -204,7 +204,7 @@ export class SecurityRules {
         securityRuleParameters,
         options
       },
-      beginCreateOrUpdateOperationSpec);
+      beginCreateOrUpdateOperationSpec) as Promise<Models.SecurityRulesBeginCreateOrUpdateResponse>;
   }
 
   /**
@@ -220,13 +220,13 @@ export class SecurityRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SecurityRuleListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.SecurityRulesListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.SecurityRulesListNextResponse>;
   }
 
 }

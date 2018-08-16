@@ -35,13 +35,13 @@ export class AvailableEndpointServices {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(location: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.EndpointServicesListResult>> {
+  list(location: string, options?: msRest.RequestOptionsBase): Promise<Models.AvailableEndpointServicesListResponse> {
     return this.client.sendOperationRequest(
       {
         location,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.AvailableEndpointServicesListResponse>;
   }
 
   /**
@@ -57,13 +57,13 @@ export class AvailableEndpointServices {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.EndpointServicesListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.AvailableEndpointServicesListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.AvailableEndpointServicesListNextResponse>;
   }
 
 }

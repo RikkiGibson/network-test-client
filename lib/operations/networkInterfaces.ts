@@ -38,7 +38,7 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  deleteMethod(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDeleteMethod(resourceGroupName, networkInterfaceName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -63,14 +63,14 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, networkInterfaceName: string, options?: Models.NetworkInterfacesGetOptionalParams): Promise<msRest.HttpOperationResponse<Models.NetworkInterface>> {
+  get(resourceGroupName: string, networkInterfaceName: string, options?: Models.NetworkInterfacesGetOptionalParams): Promise<Models.NetworkInterfacesGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         networkInterfaceName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.NetworkInterfacesGetResponse>;
   }
 
 
@@ -92,7 +92,7 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  createOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfacesCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, networkInterfaceName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -112,7 +112,7 @@ export class NetworkInterfaces {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.NetworkInterfacesCreateOrUpdateResponse>;
   }
 
 
@@ -133,7 +133,7 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  updateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  updateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfacesUpdateTagsResponse> {
     return this.beginUpdateTags(resourceGroupName, networkInterfaceName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -153,7 +153,7 @@ export class NetworkInterfaces {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.NetworkInterfacesUpdateTagsResponse>;
   }
 
   /**
@@ -167,12 +167,12 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAll(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceListResult>> {
+  listAll(options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfacesListAllResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listAllOperationSpec);
+      listAllOperationSpec) as Promise<Models.NetworkInterfacesListAllResponse>;
   }
 
   /**
@@ -188,13 +188,13 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceListResult>> {
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfacesListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.NetworkInterfacesListResponse>;
   }
 
 
@@ -213,7 +213,7 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  getEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfacesGetEffectiveRouteTableResponse> {
     return this.beginGetEffectiveRouteTable(resourceGroupName, networkInterfaceName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -233,7 +233,7 @@ export class NetworkInterfaces {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.NetworkInterfacesGetEffectiveRouteTableResponse>;
   }
 
 
@@ -252,7 +252,7 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  listEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse> {
     return this.beginListEffectiveNetworkSecurityGroups(resourceGroupName, networkInterfaceName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -272,7 +272,7 @@ export class NetworkInterfaces {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse>;
   }
 
   /**
@@ -293,7 +293,7 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listVirtualMachineScaleSetVMNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceListResult>> {
+  listVirtualMachineScaleSetVMNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -301,7 +301,7 @@ export class NetworkInterfaces {
         virtualmachineIndex,
         options
       },
-      listVirtualMachineScaleSetVMNetworkInterfacesOperationSpec);
+      listVirtualMachineScaleSetVMNetworkInterfacesOperationSpec) as Promise<Models.NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesResponse>;
   }
 
   /**
@@ -319,14 +319,14 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listVirtualMachineScaleSetNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceListResult>> {
+  listVirtualMachineScaleSetNetworkInterfaces(resourceGroupName: string, virtualMachineScaleSetName: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         virtualMachineScaleSetName,
         options
       },
-      listVirtualMachineScaleSetNetworkInterfacesOperationSpec);
+      listVirtualMachineScaleSetNetworkInterfacesOperationSpec) as Promise<Models.NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesResponse>;
   }
 
   /**
@@ -349,7 +349,7 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getVirtualMachineScaleSetNetworkInterface(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options?: Models.NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams): Promise<msRest.HttpOperationResponse<Models.NetworkInterface>> {
+  getVirtualMachineScaleSetNetworkInterface(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options?: Models.NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams): Promise<Models.NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -358,7 +358,7 @@ export class NetworkInterfaces {
         networkInterfaceName,
         options
       },
-      getVirtualMachineScaleSetNetworkInterfaceOperationSpec);
+      getVirtualMachineScaleSetNetworkInterfaceOperationSpec) as Promise<Models.NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceResponse>;
   }
 
   /**
@@ -381,7 +381,7 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listVirtualMachineScaleSetIpConfigurations(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options?: Models.NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceIPConfigurationListResult>> {
+  listVirtualMachineScaleSetIpConfigurations(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, options?: Models.NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams): Promise<Models.NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -390,7 +390,7 @@ export class NetworkInterfaces {
         networkInterfaceName,
         options
       },
-      listVirtualMachineScaleSetIpConfigurationsOperationSpec);
+      listVirtualMachineScaleSetIpConfigurationsOperationSpec) as Promise<Models.NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsResponse>;
   }
 
   /**
@@ -415,7 +415,7 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getVirtualMachineScaleSetIpConfiguration(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, options?: Models.NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceIPConfiguration>> {
+  getVirtualMachineScaleSetIpConfiguration(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, options?: Models.NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams): Promise<Models.NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -425,7 +425,7 @@ export class NetworkInterfaces {
         ipConfigurationName,
         options
       },
-      getVirtualMachineScaleSetIpConfigurationOperationSpec);
+      getVirtualMachineScaleSetIpConfigurationOperationSpec) as Promise<Models.NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationResponse>;
   }
 
   /**
@@ -443,7 +443,7 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -471,7 +471,7 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterface>> {
+  beginCreateOrUpdate(resourceGroupName: string, networkInterfaceName: string, parameters: Models.NetworkInterface, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfacesBeginCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -479,7 +479,7 @@ export class NetworkInterfaces {
         parameters,
         options
       },
-      beginCreateOrUpdateOperationSpec);
+      beginCreateOrUpdateOperationSpec) as Promise<Models.NetworkInterfacesBeginCreateOrUpdateResponse>;
   }
 
   /**
@@ -499,7 +499,7 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginUpdateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterface>> {
+  beginUpdateTags(resourceGroupName: string, networkInterfaceName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfacesBeginUpdateTagsResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -507,7 +507,7 @@ export class NetworkInterfaces {
         parameters,
         options
       },
-      beginUpdateTagsOperationSpec);
+      beginUpdateTagsOperationSpec) as Promise<Models.NetworkInterfacesBeginUpdateTagsResponse>;
   }
 
   /**
@@ -525,14 +525,14 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.EffectiveRouteListResult>> {
+  beginGetEffectiveRouteTable(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfacesBeginGetEffectiveRouteTableResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         networkInterfaceName,
         options
       },
-      beginGetEffectiveRouteTableOperationSpec);
+      beginGetEffectiveRouteTableOperationSpec) as Promise<Models.NetworkInterfacesBeginGetEffectiveRouteTableResponse>;
   }
 
   /**
@@ -550,14 +550,14 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginListEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.EffectiveNetworkSecurityGroupListResult>> {
+  beginListEffectiveNetworkSecurityGroups(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfacesBeginListEffectiveNetworkSecurityGroupsResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         networkInterfaceName,
         options
       },
-      beginListEffectiveNetworkSecurityGroupsOperationSpec);
+      beginListEffectiveNetworkSecurityGroupsOperationSpec) as Promise<Models.NetworkInterfacesBeginListEffectiveNetworkSecurityGroupsResponse>;
   }
 
   /**
@@ -573,13 +573,13 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceListResult>> {
+  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfacesListAllNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listAllNextOperationSpec);
+      listAllNextOperationSpec) as Promise<Models.NetworkInterfacesListAllNextResponse>;
   }
 
   /**
@@ -595,13 +595,13 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfacesListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.NetworkInterfacesListNextResponse>;
   }
 
   /**
@@ -618,13 +618,13 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listVirtualMachineScaleSetVMNetworkInterfacesNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceListResult>> {
+  listVirtualMachineScaleSetVMNetworkInterfacesNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listVirtualMachineScaleSetVMNetworkInterfacesNextOperationSpec);
+      listVirtualMachineScaleSetVMNetworkInterfacesNextOperationSpec) as Promise<Models.NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextResponse>;
   }
 
   /**
@@ -640,13 +640,13 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listVirtualMachineScaleSetNetworkInterfacesNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceListResult>> {
+  listVirtualMachineScaleSetNetworkInterfacesNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listVirtualMachineScaleSetNetworkInterfacesNextOperationSpec);
+      listVirtualMachineScaleSetNetworkInterfacesNextOperationSpec) as Promise<Models.NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextResponse>;
   }
 
   /**
@@ -662,13 +662,13 @@ export class NetworkInterfaces {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listVirtualMachineScaleSetIpConfigurationsNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceIPConfigurationListResult>> {
+  listVirtualMachineScaleSetIpConfigurationsNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listVirtualMachineScaleSetIpConfigurationsNextOperationSpec);
+      listVirtualMachineScaleSetIpConfigurationsNextOperationSpec) as Promise<Models.NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextResponse>;
   }
 
 }

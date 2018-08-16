@@ -146,14 +146,14 @@ class NetworkManagementClient extends NetworkManagementClientContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  checkDnsNameAvailability(location: string, domainNameLabel: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DnsNameAvailabilityResult>> {
+  checkDnsNameAvailability(location: string, domainNameLabel: string, options?: msRest.RequestOptionsBase): Promise<Models.CheckDnsNameAvailabilityResponse> {
     return this.sendOperationRequest(
       {
         location,
         domainNameLabel,
         options
       },
-      checkDnsNameAvailabilityOperationSpec);
+      checkDnsNameAvailabilityOperationSpec) as Promise<Models.CheckDnsNameAvailabilityResponse>;
   }
 }
 
@@ -184,4 +184,10 @@ const checkDnsNameAvailabilityOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
-export { NetworkManagementClient, Models as NetworkManagementModels, Mappers as NetworkManagementMappers };
+export {
+  NetworkManagementClient,
+  NetworkManagementClientContext,
+  Models as NetworkManagementModels,
+  Mappers as NetworkManagementMappers
+};
+export * from "./operations";

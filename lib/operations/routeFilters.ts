@@ -38,7 +38,7 @@ export class RouteFilters {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, routeFilterName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  deleteMethod(resourceGroupName: string, routeFilterName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDeleteMethod(resourceGroupName, routeFilterName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -63,14 +63,14 @@ export class RouteFilters {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, routeFilterName: string, options?: Models.RouteFiltersGetOptionalParams): Promise<msRest.HttpOperationResponse<Models.RouteFilter>> {
+  get(resourceGroupName: string, routeFilterName: string, options?: Models.RouteFiltersGetOptionalParams): Promise<Models.RouteFiltersGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         routeFilterName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.RouteFiltersGetResponse>;
   }
 
 
@@ -92,7 +92,7 @@ export class RouteFilters {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdate(resourceGroupName: string, routeFilterName: string, routeFilterParameters: Models.RouteFilter, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  createOrUpdate(resourceGroupName: string, routeFilterName: string, routeFilterParameters: Models.RouteFilter, options?: msRest.RequestOptionsBase): Promise<Models.RouteFiltersCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, routeFilterName, routeFilterParameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -112,7 +112,7 @@ export class RouteFilters {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.RouteFiltersCreateOrUpdateResponse>;
   }
 
 
@@ -134,7 +134,7 @@ export class RouteFilters {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  update(resourceGroupName: string, routeFilterName: string, routeFilterParameters: Models.PatchRouteFilter, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  update(resourceGroupName: string, routeFilterName: string, routeFilterParameters: Models.PatchRouteFilter, options?: msRest.RequestOptionsBase): Promise<Models.RouteFiltersUpdateResponse> {
     return this.beginUpdate(resourceGroupName, routeFilterName, routeFilterParameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -154,7 +154,7 @@ export class RouteFilters {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.RouteFiltersUpdateResponse>;
   }
 
   /**
@@ -170,13 +170,13 @@ export class RouteFilters {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listByResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RouteFilterListResult>> {
+  listByResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.RouteFiltersListByResourceGroupResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listByResourceGroupOperationSpec);
+      listByResourceGroupOperationSpec) as Promise<Models.RouteFiltersListByResourceGroupResponse>;
   }
 
   /**
@@ -190,12 +190,12 @@ export class RouteFilters {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RouteFilterListResult>> {
+  list(options?: msRest.RequestOptionsBase): Promise<Models.RouteFiltersListResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.RouteFiltersListResponse>;
   }
 
   /**
@@ -213,7 +213,7 @@ export class RouteFilters {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, routeFilterName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, routeFilterName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -241,7 +241,7 @@ export class RouteFilters {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, routeFilterName: string, routeFilterParameters: Models.RouteFilter, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RouteFilter>> {
+  beginCreateOrUpdate(resourceGroupName: string, routeFilterName: string, routeFilterParameters: Models.RouteFilter, options?: msRest.RequestOptionsBase): Promise<Models.RouteFiltersBeginCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -249,7 +249,7 @@ export class RouteFilters {
         routeFilterParameters,
         options
       },
-      beginCreateOrUpdateOperationSpec);
+      beginCreateOrUpdateOperationSpec) as Promise<Models.RouteFiltersBeginCreateOrUpdateResponse>;
   }
 
   /**
@@ -270,7 +270,7 @@ export class RouteFilters {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginUpdate(resourceGroupName: string, routeFilterName: string, routeFilterParameters: Models.PatchRouteFilter, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RouteFilter>> {
+  beginUpdate(resourceGroupName: string, routeFilterName: string, routeFilterParameters: Models.PatchRouteFilter, options?: msRest.RequestOptionsBase): Promise<Models.RouteFiltersBeginUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -278,7 +278,7 @@ export class RouteFilters {
         routeFilterParameters,
         options
       },
-      beginUpdateOperationSpec);
+      beginUpdateOperationSpec) as Promise<Models.RouteFiltersBeginUpdateResponse>;
   }
 
   /**
@@ -294,13 +294,13 @@ export class RouteFilters {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listByResourceGroupNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RouteFilterListResult>> {
+  listByResourceGroupNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.RouteFiltersListByResourceGroupNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listByResourceGroupNextOperationSpec);
+      listByResourceGroupNextOperationSpec) as Promise<Models.RouteFiltersListByResourceGroupNextResponse>;
   }
 
   /**
@@ -316,13 +316,13 @@ export class RouteFilters {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RouteFilterListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.RouteFiltersListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.RouteFiltersListNextResponse>;
   }
 
 }

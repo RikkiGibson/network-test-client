@@ -42,7 +42,7 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  create(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  create(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options?: msRest.RequestOptionsBase): Promise<Models.PacketCapturesCreateResponse> {
     return this.beginCreate(resourceGroupName, networkWatcherName, packetCaptureName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -62,7 +62,7 @@ export class PacketCaptures {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.PacketCapturesCreateResponse>;
   }
 
   /**
@@ -82,7 +82,7 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureResult>> {
+  get(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<Models.PacketCapturesGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -90,7 +90,7 @@ export class PacketCaptures {
         packetCaptureName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.PacketCapturesGetResponse>;
   }
 
 
@@ -111,7 +111,7 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  deleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDeleteMethod(resourceGroupName, networkWatcherName, packetCaptureName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -139,7 +139,7 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  stop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  stop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginStop(resourceGroupName, networkWatcherName, packetCaptureName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -167,7 +167,7 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  getStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<Models.PacketCapturesGetStatusResponse> {
     return this.beginGetStatus(resourceGroupName, networkWatcherName, packetCaptureName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -187,7 +187,7 @@ export class PacketCaptures {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.PacketCapturesGetStatusResponse>;
   }
 
   /**
@@ -205,14 +205,14 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureListResult>> {
+  list(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<Models.PacketCapturesListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         networkWatcherName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.PacketCapturesListResponse>;
   }
 
   /**
@@ -234,7 +234,7 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreate(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureResult>> {
+  beginCreate(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, parameters: Models.PacketCapture, options?: msRest.RequestOptionsBase): Promise<Models.PacketCapturesBeginCreateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -243,7 +243,7 @@ export class PacketCaptures {
         parameters,
         options
       },
-      beginCreateOperationSpec);
+      beginCreateOperationSpec) as Promise<Models.PacketCapturesBeginCreateResponse>;
   }
 
   /**
@@ -263,7 +263,7 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -291,7 +291,7 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginStop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginStop(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -319,7 +319,7 @@ export class PacketCaptures {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PacketCaptureQueryStatusResult>> {
+  beginGetStatus(resourceGroupName: string, networkWatcherName: string, packetCaptureName: string, options?: msRest.RequestOptionsBase): Promise<Models.PacketCapturesBeginGetStatusResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -327,7 +327,7 @@ export class PacketCaptures {
         packetCaptureName,
         options
       },
-      beginGetStatusOperationSpec);
+      beginGetStatusOperationSpec) as Promise<Models.PacketCapturesBeginGetStatusResponse>;
   }
 
 }

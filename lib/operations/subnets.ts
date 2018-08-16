@@ -40,7 +40,7 @@ export class Subnets {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  deleteMethod(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDeleteMethod(resourceGroupName, virtualNetworkName, subnetName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -67,7 +67,7 @@ export class Subnets {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: Models.SubnetsGetOptionalParams): Promise<msRest.HttpOperationResponse<Models.Subnet>> {
+  get(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: Models.SubnetsGetOptionalParams): Promise<Models.SubnetsGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -75,7 +75,7 @@ export class Subnets {
         subnetName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.SubnetsGetResponse>;
   }
 
 
@@ -98,7 +98,7 @@ export class Subnets {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdate(resourceGroupName: string, virtualNetworkName: string, subnetName: string, subnetParameters: Models.Subnet, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  createOrUpdate(resourceGroupName: string, virtualNetworkName: string, subnetName: string, subnetParameters: Models.Subnet, options?: msRest.RequestOptionsBase): Promise<Models.SubnetsCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, virtualNetworkName, subnetName, subnetParameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -118,7 +118,7 @@ export class Subnets {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.SubnetsCreateOrUpdateResponse>;
   }
 
   /**
@@ -136,14 +136,14 @@ export class Subnets {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, virtualNetworkName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SubnetListResult>> {
+  list(resourceGroupName: string, virtualNetworkName: string, options?: msRest.RequestOptionsBase): Promise<Models.SubnetsListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         virtualNetworkName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.SubnetsListResponse>;
   }
 
   /**
@@ -163,7 +163,7 @@ export class Subnets {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -193,7 +193,7 @@ export class Subnets {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkName: string, subnetName: string, subnetParameters: Models.Subnet, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Subnet>> {
+  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkName: string, subnetName: string, subnetParameters: Models.Subnet, options?: msRest.RequestOptionsBase): Promise<Models.SubnetsBeginCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -202,7 +202,7 @@ export class Subnets {
         subnetParameters,
         options
       },
-      beginCreateOrUpdateOperationSpec);
+      beginCreateOrUpdateOperationSpec) as Promise<Models.SubnetsBeginCreateOrUpdateResponse>;
   }
 
   /**
@@ -218,13 +218,13 @@ export class Subnets {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SubnetListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.SubnetsListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.SubnetsListNextResponse>;
   }
 
 }

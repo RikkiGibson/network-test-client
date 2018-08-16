@@ -4,12 +4,13 @@
  * regenerated.
  */
 
-import {CloudErrorMapper, BaseResourceMapper } from "ms-rest-azure-js";
+import { CloudErrorMapper, BaseResourceMapper } from "ms-rest-azure-js";
+import * as msRest from "ms-rest-js";
 
 export const CloudError = CloudErrorMapper;
 export const BaseResource = BaseResourceMapper;
 
-export const SubResource = {
+export const SubResource: msRest.CompositeMapper = {
   serializedName: "SubResource",
   type: {
     name: "Composite",
@@ -25,7 +26,7 @@ export const SubResource = {
   }
 };
 
-export const BackendAddressPool = {
+export const BackendAddressPool: msRest.CompositeMapper = {
   serializedName: "BackendAddressPool",
   type: {
     name: "Composite",
@@ -38,7 +39,6 @@ export const BackendAddressPool = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "NetworkInterfaceIPConfigurationElementType",
             type: {
               name: "Composite",
               className: "NetworkInterfaceIPConfiguration"
@@ -52,7 +52,6 @@ export const BackendAddressPool = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -90,7 +89,7 @@ export const BackendAddressPool = {
   }
 };
 
-export const InboundNatRule = {
+export const InboundNatRule: msRest.CompositeMapper = {
   serializedName: "InboundNatRule",
   type: {
     name: "Composite",
@@ -164,7 +163,7 @@ export const InboundNatRule = {
   }
 };
 
-export const Resource = {
+export const Resource: msRest.CompositeMapper = {
   serializedName: "Resource",
   type: {
     name: "Composite",
@@ -201,7 +200,6 @@ export const Resource = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -212,7 +210,7 @@ export const Resource = {
   }
 };
 
-export const ApplicationSecurityGroup = {
+export const ApplicationSecurityGroup: msRest.CompositeMapper = {
   serializedName: "ApplicationSecurityGroup",
   type: {
     name: "Composite",
@@ -244,7 +242,7 @@ export const ApplicationSecurityGroup = {
   }
 };
 
-export const SecurityRule = {
+export const SecurityRule: msRest.CompositeMapper = {
   serializedName: "SecurityRule",
   type: {
     name: "Composite",
@@ -287,7 +285,6 @@ export const SecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -299,7 +296,6 @@ export const SecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationSecurityGroupElementType",
             type: {
               name: "Composite",
               className: "ApplicationSecurityGroup"
@@ -318,7 +314,6 @@ export const SecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -330,7 +325,6 @@ export const SecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationSecurityGroupElementType",
             type: {
               name: "Composite",
               className: "ApplicationSecurityGroup"
@@ -343,7 +337,6 @@ export const SecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -355,7 +348,6 @@ export const SecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -404,7 +396,7 @@ export const SecurityRule = {
   }
 };
 
-export const NetworkInterfaceDnsSettings = {
+export const NetworkInterfaceDnsSettings: msRest.CompositeMapper = {
   serializedName: "NetworkInterfaceDnsSettings",
   type: {
     name: "Composite",
@@ -415,7 +407,6 @@ export const NetworkInterfaceDnsSettings = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -427,7 +418,6 @@ export const NetworkInterfaceDnsSettings = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -456,7 +446,7 @@ export const NetworkInterfaceDnsSettings = {
   }
 };
 
-export const NetworkInterface = {
+export const NetworkInterface: msRest.CompositeMapper = {
   serializedName: "NetworkInterface",
   type: {
     name: "Composite",
@@ -482,7 +472,6 @@ export const NetworkInterface = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "NetworkInterfaceIPConfigurationElementType",
             type: {
               name: "Composite",
               className: "NetworkInterfaceIPConfiguration"
@@ -543,7 +532,7 @@ export const NetworkInterface = {
   }
 };
 
-export const NetworkSecurityGroup = {
+export const NetworkSecurityGroup: msRest.CompositeMapper = {
   serializedName: "NetworkSecurityGroup",
   type: {
     name: "Composite",
@@ -555,7 +544,6 @@ export const NetworkSecurityGroup = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SecurityRuleElementType",
             type: {
               name: "Composite",
               className: "SecurityRule"
@@ -568,7 +556,6 @@ export const NetworkSecurityGroup = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SecurityRuleElementType",
             type: {
               name: "Composite",
               className: "SecurityRule"
@@ -582,7 +569,6 @@ export const NetworkSecurityGroup = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "NetworkInterfaceElementType",
             type: {
               name: "Composite",
               className: "NetworkInterface"
@@ -596,7 +582,6 @@ export const NetworkSecurityGroup = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubnetElementType",
             type: {
               name: "Composite",
               className: "Subnet"
@@ -626,7 +611,7 @@ export const NetworkSecurityGroup = {
   }
 };
 
-export const Route = {
+export const Route: msRest.CompositeMapper = {
   serializedName: "Route",
   type: {
     name: "Composite",
@@ -674,7 +659,7 @@ export const Route = {
   }
 };
 
-export const RouteTable = {
+export const RouteTable: msRest.CompositeMapper = {
   serializedName: "RouteTable",
   type: {
     name: "Composite",
@@ -686,7 +671,6 @@ export const RouteTable = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "RouteElementType",
             type: {
               name: "Composite",
               className: "Route"
@@ -700,7 +684,6 @@ export const RouteTable = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubnetElementType",
             type: {
               name: "Composite",
               className: "Subnet"
@@ -730,7 +713,7 @@ export const RouteTable = {
   }
 };
 
-export const ServiceEndpointPropertiesFormat = {
+export const ServiceEndpointPropertiesFormat: msRest.CompositeMapper = {
   serializedName: "ServiceEndpointPropertiesFormat",
   type: {
     name: "Composite",
@@ -747,7 +730,6 @@ export const ServiceEndpointPropertiesFormat = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -764,7 +746,7 @@ export const ServiceEndpointPropertiesFormat = {
   }
 };
 
-export const PublicIPAddressSku = {
+export const PublicIPAddressSku: msRest.CompositeMapper = {
   serializedName: "PublicIPAddressSku",
   type: {
     name: "Composite",
@@ -780,7 +762,7 @@ export const PublicIPAddressSku = {
   }
 };
 
-export const PublicIPAddressDnsSettings = {
+export const PublicIPAddressDnsSettings: msRest.CompositeMapper = {
   serializedName: "PublicIPAddressDnsSettings",
   type: {
     name: "Composite",
@@ -808,7 +790,7 @@ export const PublicIPAddressDnsSettings = {
   }
 };
 
-export const IpTag = {
+export const IpTag: msRest.CompositeMapper = {
   serializedName: "IpTag",
   type: {
     name: "Composite",
@@ -830,7 +812,7 @@ export const IpTag = {
   }
 };
 
-export const PublicIPAddress = {
+export const PublicIPAddress: msRest.CompositeMapper = {
   serializedName: "PublicIPAddress",
   type: {
     name: "Composite",
@@ -876,7 +858,6 @@ export const PublicIPAddress = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "IpTagElementType",
             type: {
               name: "Composite",
               className: "IpTag"
@@ -919,7 +900,6 @@ export const PublicIPAddress = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -930,7 +910,7 @@ export const PublicIPAddress = {
   }
 };
 
-export const IPConfiguration = {
+export const IPConfiguration: msRest.CompositeMapper = {
   serializedName: "IPConfiguration",
   type: {
     name: "Composite",
@@ -985,7 +965,7 @@ export const IPConfiguration = {
   }
 };
 
-export const ResourceNavigationLink = {
+export const ResourceNavigationLink: msRest.CompositeMapper = {
   serializedName: "ResourceNavigationLink",
   type: {
     name: "Composite",
@@ -1028,7 +1008,7 @@ export const ResourceNavigationLink = {
   }
 };
 
-export const Subnet = {
+export const Subnet: msRest.CompositeMapper = {
   serializedName: "Subnet",
   type: {
     name: "Composite",
@@ -1060,7 +1040,6 @@ export const Subnet = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ServiceEndpointPropertiesFormatElementType",
             type: {
               name: "Composite",
               className: "ServiceEndpointPropertiesFormat"
@@ -1074,7 +1053,6 @@ export const Subnet = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "IPConfigurationElementType",
             type: {
               name: "Composite",
               className: "IPConfiguration"
@@ -1087,7 +1065,6 @@ export const Subnet = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ResourceNavigationLinkElementType",
             type: {
               name: "Composite",
               className: "ResourceNavigationLink"
@@ -1117,7 +1094,7 @@ export const Subnet = {
   }
 };
 
-export const NetworkInterfaceIPConfiguration = {
+export const NetworkInterfaceIPConfiguration: msRest.CompositeMapper = {
   serializedName: "NetworkInterfaceIPConfiguration",
   type: {
     name: "Composite",
@@ -1129,7 +1106,6 @@ export const NetworkInterfaceIPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayBackendAddressPoolElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayBackendAddressPool"
@@ -1142,7 +1118,6 @@ export const NetworkInterfaceIPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "BackendAddressPoolElementType",
             type: {
               name: "Composite",
               className: "BackendAddressPool"
@@ -1155,7 +1130,6 @@ export const NetworkInterfaceIPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "InboundNatRuleElementType",
             type: {
               name: "Composite",
               className: "InboundNatRule"
@@ -1206,7 +1180,6 @@ export const NetworkInterfaceIPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationSecurityGroupElementType",
             type: {
               name: "Composite",
               className: "ApplicationSecurityGroup"
@@ -1236,7 +1209,7 @@ export const NetworkInterfaceIPConfiguration = {
   }
 };
 
-export const ApplicationGatewayBackendAddress = {
+export const ApplicationGatewayBackendAddress: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayBackendAddress",
   type: {
     name: "Composite",
@@ -1258,7 +1231,7 @@ export const ApplicationGatewayBackendAddress = {
   }
 };
 
-export const ApplicationGatewayBackendAddressPool = {
+export const ApplicationGatewayBackendAddressPool: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayBackendAddressPool",
   type: {
     name: "Composite",
@@ -1270,7 +1243,6 @@ export const ApplicationGatewayBackendAddressPool = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "NetworkInterfaceIPConfigurationElementType",
             type: {
               name: "Composite",
               className: "NetworkInterfaceIPConfiguration"
@@ -1283,7 +1255,6 @@ export const ApplicationGatewayBackendAddressPool = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayBackendAddressElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayBackendAddress"
@@ -1319,7 +1290,7 @@ export const ApplicationGatewayBackendAddressPool = {
   }
 };
 
-export const ApplicationGatewayConnectionDraining = {
+export const ApplicationGatewayConnectionDraining: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayConnectionDraining",
   type: {
     name: "Composite",
@@ -1347,7 +1318,7 @@ export const ApplicationGatewayConnectionDraining = {
   }
 };
 
-export const ApplicationGatewayBackendHttpSettings = {
+export const ApplicationGatewayBackendHttpSettings: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayBackendHttpSettings",
   type: {
     name: "Composite",
@@ -1390,7 +1361,6 @@ export const ApplicationGatewayBackendHttpSettings = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -1463,7 +1433,7 @@ export const ApplicationGatewayBackendHttpSettings = {
   }
 };
 
-export const ApplicationGatewayBackendHealthServer = {
+export const ApplicationGatewayBackendHealthServer: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayBackendHealthServer",
   type: {
     name: "Composite",
@@ -1492,7 +1462,7 @@ export const ApplicationGatewayBackendHealthServer = {
   }
 };
 
-export const ApplicationGatewayBackendHealthHttpSettings = {
+export const ApplicationGatewayBackendHealthHttpSettings: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayBackendHealthHttpSettings",
   type: {
     name: "Composite",
@@ -1510,7 +1480,6 @@ export const ApplicationGatewayBackendHealthHttpSettings = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayBackendHealthServerElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayBackendHealthServer"
@@ -1522,7 +1491,7 @@ export const ApplicationGatewayBackendHealthHttpSettings = {
   }
 };
 
-export const ApplicationGatewayBackendHealthPool = {
+export const ApplicationGatewayBackendHealthPool: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayBackendHealthPool",
   type: {
     name: "Composite",
@@ -1540,7 +1509,6 @@ export const ApplicationGatewayBackendHealthPool = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayBackendHealthHttpSettingsElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayBackendHealthHttpSettings"
@@ -1552,7 +1520,7 @@ export const ApplicationGatewayBackendHealthPool = {
   }
 };
 
-export const ApplicationGatewayBackendHealth = {
+export const ApplicationGatewayBackendHealth: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayBackendHealth",
   type: {
     name: "Composite",
@@ -1563,7 +1531,6 @@ export const ApplicationGatewayBackendHealth = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayBackendHealthPoolElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayBackendHealthPool"
@@ -1575,7 +1542,7 @@ export const ApplicationGatewayBackendHealth = {
   }
 };
 
-export const ApplicationGatewaySku = {
+export const ApplicationGatewaySku: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewaySku",
   type: {
     name: "Composite",
@@ -1603,7 +1570,7 @@ export const ApplicationGatewaySku = {
   }
 };
 
-export const ApplicationGatewaySslPolicy = {
+export const ApplicationGatewaySslPolicy: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewaySslPolicy",
   type: {
     name: "Composite",
@@ -1614,7 +1581,6 @@ export const ApplicationGatewaySslPolicy = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewaySslProtocolElementType",
             type: {
               name: "String"
             }
@@ -1638,7 +1604,6 @@ export const ApplicationGatewaySslPolicy = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewaySslCipherSuiteElementType",
             type: {
               name: "String"
             }
@@ -1655,7 +1620,7 @@ export const ApplicationGatewaySslPolicy = {
   }
 };
 
-export const ApplicationGatewayIPConfiguration = {
+export const ApplicationGatewayIPConfiguration: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayIPConfiguration",
   type: {
     name: "Composite",
@@ -1697,7 +1662,7 @@ export const ApplicationGatewayIPConfiguration = {
   }
 };
 
-export const ApplicationGatewayAuthenticationCertificate = {
+export const ApplicationGatewayAuthenticationCertificate: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayAuthenticationCertificate",
   type: {
     name: "Composite",
@@ -1738,7 +1703,7 @@ export const ApplicationGatewayAuthenticationCertificate = {
   }
 };
 
-export const ApplicationGatewaySslCertificate = {
+export const ApplicationGatewaySslCertificate: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewaySslCertificate",
   type: {
     name: "Composite",
@@ -1791,7 +1756,7 @@ export const ApplicationGatewaySslCertificate = {
   }
 };
 
-export const ApplicationGatewayFrontendIPConfiguration = {
+export const ApplicationGatewayFrontendIPConfiguration: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayFrontendIPConfiguration",
   type: {
     name: "Composite",
@@ -1852,7 +1817,7 @@ export const ApplicationGatewayFrontendIPConfiguration = {
   }
 };
 
-export const ApplicationGatewayFrontendPort = {
+export const ApplicationGatewayFrontendPort: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayFrontendPort",
   type: {
     name: "Composite",
@@ -1893,7 +1858,7 @@ export const ApplicationGatewayFrontendPort = {
   }
 };
 
-export const ApplicationGatewayHttpListener = {
+export const ApplicationGatewayHttpListener: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayHttpListener",
   type: {
     name: "Composite",
@@ -1967,7 +1932,7 @@ export const ApplicationGatewayHttpListener = {
   }
 };
 
-export const ApplicationGatewayPathRule = {
+export const ApplicationGatewayPathRule: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayPathRule",
   type: {
     name: "Composite",
@@ -1979,7 +1944,6 @@ export const ApplicationGatewayPathRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -2035,7 +1999,7 @@ export const ApplicationGatewayPathRule = {
   }
 };
 
-export const ApplicationGatewayProbeHealthResponseMatch = {
+export const ApplicationGatewayProbeHealthResponseMatch: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayProbeHealthResponseMatch",
   type: {
     name: "Composite",
@@ -2052,7 +2016,6 @@ export const ApplicationGatewayProbeHealthResponseMatch = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -2063,7 +2026,7 @@ export const ApplicationGatewayProbeHealthResponseMatch = {
   }
 };
 
-export const ApplicationGatewayProbe = {
+export const ApplicationGatewayProbe: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayProbe",
   type: {
     name: "Composite",
@@ -2153,7 +2116,7 @@ export const ApplicationGatewayProbe = {
   }
 };
 
-export const ApplicationGatewayRequestRoutingRule = {
+export const ApplicationGatewayRequestRoutingRule: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayRequestRoutingRule",
   type: {
     name: "Composite",
@@ -2229,7 +2192,7 @@ export const ApplicationGatewayRequestRoutingRule = {
   }
 };
 
-export const ApplicationGatewayRedirectConfiguration = {
+export const ApplicationGatewayRedirectConfiguration: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayRedirectConfiguration",
   type: {
     name: "Composite",
@@ -2272,7 +2235,6 @@ export const ApplicationGatewayRedirectConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -2285,7 +2247,6 @@ export const ApplicationGatewayRedirectConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -2298,7 +2259,6 @@ export const ApplicationGatewayRedirectConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -2328,7 +2288,7 @@ export const ApplicationGatewayRedirectConfiguration = {
   }
 };
 
-export const ApplicationGatewayUrlPathMap = {
+export const ApplicationGatewayUrlPathMap: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayUrlPathMap",
   type: {
     name: "Composite",
@@ -2361,7 +2321,6 @@ export const ApplicationGatewayUrlPathMap = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayPathRuleElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayPathRule"
@@ -2397,7 +2356,7 @@ export const ApplicationGatewayUrlPathMap = {
   }
 };
 
-export const ApplicationGatewayFirewallDisabledRuleGroup = {
+export const ApplicationGatewayFirewallDisabledRuleGroup: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayFirewallDisabledRuleGroup",
   type: {
     name: "Composite",
@@ -2415,7 +2374,6 @@ export const ApplicationGatewayFirewallDisabledRuleGroup = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "numberElementType",
             type: {
               name: "Number"
             }
@@ -2426,7 +2384,7 @@ export const ApplicationGatewayFirewallDisabledRuleGroup = {
   }
 };
 
-export const ApplicationGatewayWebApplicationFirewallConfiguration = {
+export const ApplicationGatewayWebApplicationFirewallConfiguration: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayWebApplicationFirewallConfiguration",
   type: {
     name: "Composite",
@@ -2465,7 +2423,6 @@ export const ApplicationGatewayWebApplicationFirewallConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayFirewallDisabledRuleGroupElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayFirewallDisabledRuleGroup"
@@ -2493,7 +2450,7 @@ export const ApplicationGatewayWebApplicationFirewallConfiguration = {
   }
 };
 
-export const ApplicationGateway = {
+export const ApplicationGateway: msRest.CompositeMapper = {
   serializedName: "ApplicationGateway",
   type: {
     name: "Composite",
@@ -2526,7 +2483,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayIPConfigurationElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayIPConfiguration"
@@ -2539,7 +2495,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayAuthenticationCertificateElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayAuthenticationCertificate"
@@ -2552,7 +2507,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewaySslCertificateElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewaySslCertificate"
@@ -2565,7 +2519,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayFrontendIPConfigurationElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayFrontendIPConfiguration"
@@ -2578,7 +2531,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayFrontendPortElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayFrontendPort"
@@ -2591,7 +2543,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayProbeElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayProbe"
@@ -2604,7 +2555,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayBackendAddressPoolElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayBackendAddressPool"
@@ -2617,7 +2567,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayBackendHttpSettingsElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayBackendHttpSettings"
@@ -2630,7 +2579,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayHttpListenerElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayHttpListener"
@@ -2643,7 +2591,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayUrlPathMapElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayUrlPathMap"
@@ -2656,7 +2603,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayRequestRoutingRuleElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayRequestRoutingRule"
@@ -2669,7 +2615,6 @@ export const ApplicationGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayRedirectConfigurationElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayRedirectConfiguration"
@@ -2712,7 +2657,7 @@ export const ApplicationGateway = {
   }
 };
 
-export const ApplicationGatewayFirewallRule = {
+export const ApplicationGatewayFirewallRule: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayFirewallRule",
   type: {
     name: "Composite",
@@ -2735,7 +2680,7 @@ export const ApplicationGatewayFirewallRule = {
   }
 };
 
-export const ApplicationGatewayFirewallRuleGroup = {
+export const ApplicationGatewayFirewallRuleGroup: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayFirewallRuleGroup",
   type: {
     name: "Composite",
@@ -2760,7 +2705,6 @@ export const ApplicationGatewayFirewallRuleGroup = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayFirewallRuleElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayFirewallRule"
@@ -2772,7 +2716,7 @@ export const ApplicationGatewayFirewallRuleGroup = {
   }
 };
 
-export const ApplicationGatewayFirewallRuleSet = {
+export const ApplicationGatewayFirewallRuleSet: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayFirewallRuleSet",
   type: {
     name: "Composite",
@@ -2805,7 +2749,6 @@ export const ApplicationGatewayFirewallRuleSet = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayFirewallRuleGroupElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayFirewallRuleGroup"
@@ -2817,7 +2760,7 @@ export const ApplicationGatewayFirewallRuleSet = {
   }
 };
 
-export const ApplicationGatewayAvailableWafRuleSetsResult = {
+export const ApplicationGatewayAvailableWafRuleSetsResult: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayAvailableWafRuleSetsResult",
   type: {
     name: "Composite",
@@ -2828,7 +2771,6 @@ export const ApplicationGatewayAvailableWafRuleSetsResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayFirewallRuleSetElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewayFirewallRuleSet"
@@ -2840,7 +2782,7 @@ export const ApplicationGatewayAvailableWafRuleSetsResult = {
   }
 };
 
-export const ApplicationGatewayAvailableSslOptions = {
+export const ApplicationGatewayAvailableSslOptions: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayAvailableSslOptions",
   type: {
     name: "Composite",
@@ -2852,7 +2794,6 @@ export const ApplicationGatewayAvailableSslOptions = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -2871,7 +2812,6 @@ export const ApplicationGatewayAvailableSslOptions = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewaySslCipherSuiteElementType",
             type: {
               name: "String"
             }
@@ -2883,7 +2823,6 @@ export const ApplicationGatewayAvailableSslOptions = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewaySslProtocolElementType",
             type: {
               name: "String"
             }
@@ -2894,7 +2833,7 @@ export const ApplicationGatewayAvailableSslOptions = {
   }
 };
 
-export const ApplicationGatewaySslPredefinedPolicy = {
+export const ApplicationGatewaySslPredefinedPolicy: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewaySslPredefinedPolicy",
   type: {
     name: "Composite",
@@ -2912,7 +2851,6 @@ export const ApplicationGatewaySslPredefinedPolicy = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewaySslCipherSuiteElementType",
             type: {
               name: "String"
             }
@@ -2929,7 +2867,7 @@ export const ApplicationGatewaySslPredefinedPolicy = {
   }
 };
 
-export const TagsObject = {
+export const TagsObject: msRest.CompositeMapper = {
   serializedName: "TagsObject",
   type: {
     name: "Composite",
@@ -2940,7 +2878,6 @@ export const TagsObject = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -2951,7 +2888,7 @@ export const TagsObject = {
   }
 };
 
-export const DnsNameAvailabilityResult = {
+export const DnsNameAvailabilityResult: msRest.CompositeMapper = {
   serializedName: "DnsNameAvailabilityResult",
   type: {
     name: "Composite",
@@ -2967,7 +2904,7 @@ export const DnsNameAvailabilityResult = {
   }
 };
 
-export const DdosProtectionPlan = {
+export const DdosProtectionPlan: msRest.CompositeMapper = {
   serializedName: "DdosProtectionPlan",
   type: {
     name: "Composite",
@@ -3005,7 +2942,6 @@ export const DdosProtectionPlan = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -3032,7 +2968,6 @@ export const DdosProtectionPlan = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -3051,7 +2986,7 @@ export const DdosProtectionPlan = {
   }
 };
 
-export const EndpointServiceResult = {
+export const EndpointServiceResult: msRest.CompositeMapper = {
   serializedName: "EndpointServiceResult",
   type: {
     name: "Composite",
@@ -3076,7 +3011,7 @@ export const EndpointServiceResult = {
   }
 };
 
-export const ExpressRouteCircuitAuthorization = {
+export const ExpressRouteCircuitAuthorization: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCircuitAuthorization",
   type: {
     name: "Composite",
@@ -3118,7 +3053,7 @@ export const ExpressRouteCircuitAuthorization = {
   }
 };
 
-export const ExpressRouteCircuitPeeringConfig = {
+export const ExpressRouteCircuitPeeringConfig: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCircuitPeeringConfig",
   type: {
     name: "Composite",
@@ -3129,7 +3064,6 @@ export const ExpressRouteCircuitPeeringConfig = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -3141,7 +3075,6 @@ export const ExpressRouteCircuitPeeringConfig = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -3176,7 +3109,7 @@ export const ExpressRouteCircuitPeeringConfig = {
   }
 };
 
-export const RouteFilterRule = {
+export const RouteFilterRule: msRest.CompositeMapper = {
   serializedName: "RouteFilterRule",
   type: {
     name: "Composite",
@@ -3205,7 +3138,6 @@ export const RouteFilterRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -3242,7 +3174,7 @@ export const RouteFilterRule = {
   }
 };
 
-export const ExpressRouteCircuitStats = {
+export const ExpressRouteCircuitStats: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCircuitStats",
   type: {
     name: "Composite",
@@ -3276,7 +3208,7 @@ export const ExpressRouteCircuitStats = {
   }
 };
 
-export const ExpressRouteCircuitConnection = {
+export const ExpressRouteCircuitConnection: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCircuitConnection",
   type: {
     name: "Composite",
@@ -3340,7 +3272,7 @@ export const ExpressRouteCircuitConnection = {
   }
 };
 
-export const ExpressRouteCircuitPeering = {
+export const ExpressRouteCircuitPeering: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCircuitPeering",
   type: {
     name: "Composite",
@@ -3462,7 +3394,6 @@ export const ExpressRouteCircuitPeering = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitConnectionElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuitConnection"
@@ -3487,7 +3418,7 @@ export const ExpressRouteCircuitPeering = {
   }
 };
 
-export const RouteFilter = {
+export const RouteFilter: msRest.CompositeMapper = {
   serializedName: "RouteFilter",
   type: {
     name: "Composite",
@@ -3499,7 +3430,6 @@ export const RouteFilter = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "RouteFilterRuleElementType",
             type: {
               name: "Composite",
               className: "RouteFilterRule"
@@ -3512,7 +3442,6 @@ export const RouteFilter = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitPeeringElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuitPeering"
@@ -3538,7 +3467,7 @@ export const RouteFilter = {
   }
 };
 
-export const Ipv6ExpressRouteCircuitPeeringConfig = {
+export const Ipv6ExpressRouteCircuitPeeringConfig: msRest.CompositeMapper = {
   serializedName: "Ipv6ExpressRouteCircuitPeeringConfig",
   type: {
     name: "Composite",
@@ -3580,7 +3509,7 @@ export const Ipv6ExpressRouteCircuitPeeringConfig = {
   }
 };
 
-export const ExpressRouteCircuitSku = {
+export const ExpressRouteCircuitSku: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCircuitSku",
   type: {
     name: "Composite",
@@ -3608,7 +3537,7 @@ export const ExpressRouteCircuitSku = {
   }
 };
 
-export const ExpressRouteCircuitServiceProviderProperties = {
+export const ExpressRouteCircuitServiceProviderProperties: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCircuitServiceProviderProperties",
   type: {
     name: "Composite",
@@ -3636,7 +3565,7 @@ export const ExpressRouteCircuitServiceProviderProperties = {
   }
 };
 
-export const ExpressRouteCircuit = {
+export const ExpressRouteCircuit: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCircuit",
   type: {
     name: "Composite",
@@ -3673,7 +3602,6 @@ export const ExpressRouteCircuit = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitAuthorizationElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuitAuthorization"
@@ -3686,7 +3614,6 @@ export const ExpressRouteCircuit = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitPeeringElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuitPeering"
@@ -3736,7 +3663,7 @@ export const ExpressRouteCircuit = {
   }
 };
 
-export const ExpressRouteCircuitArpTable = {
+export const ExpressRouteCircuitArpTable: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCircuitArpTable",
   type: {
     name: "Composite",
@@ -3770,7 +3697,7 @@ export const ExpressRouteCircuitArpTable = {
   }
 };
 
-export const ExpressRouteCircuitsArpTableListResult = {
+export const ExpressRouteCircuitsArpTableListResult: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCircuitsArpTableListResult",
   type: {
     name: "Composite",
@@ -3781,7 +3708,6 @@ export const ExpressRouteCircuitsArpTableListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitArpTableElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuitArpTable"
@@ -3799,7 +3725,7 @@ export const ExpressRouteCircuitsArpTableListResult = {
   }
 };
 
-export const ExpressRouteCircuitRoutesTable = {
+export const ExpressRouteCircuitRoutesTable: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCircuitRoutesTable",
   type: {
     name: "Composite",
@@ -3839,7 +3765,7 @@ export const ExpressRouteCircuitRoutesTable = {
   }
 };
 
-export const ExpressRouteCircuitsRoutesTableListResult = {
+export const ExpressRouteCircuitsRoutesTableListResult: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCircuitsRoutesTableListResult",
   type: {
     name: "Composite",
@@ -3850,7 +3776,6 @@ export const ExpressRouteCircuitsRoutesTableListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitRoutesTableElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuitRoutesTable"
@@ -3868,7 +3793,7 @@ export const ExpressRouteCircuitsRoutesTableListResult = {
   }
 };
 
-export const ExpressRouteCircuitRoutesTableSummary = {
+export const ExpressRouteCircuitRoutesTableSummary: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCircuitRoutesTableSummary",
   type: {
     name: "Composite",
@@ -3908,7 +3833,7 @@ export const ExpressRouteCircuitRoutesTableSummary = {
   }
 };
 
-export const ExpressRouteCircuitsRoutesTableSummaryListResult = {
+export const ExpressRouteCircuitsRoutesTableSummaryListResult: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCircuitsRoutesTableSummaryListResult",
   type: {
     name: "Composite",
@@ -3919,7 +3844,6 @@ export const ExpressRouteCircuitsRoutesTableSummaryListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitRoutesTableSummaryElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuitRoutesTableSummary"
@@ -3937,7 +3861,7 @@ export const ExpressRouteCircuitsRoutesTableSummaryListResult = {
   }
 };
 
-export const ExpressRouteServiceProviderBandwidthsOffered = {
+export const ExpressRouteServiceProviderBandwidthsOffered: msRest.CompositeMapper = {
   serializedName: "ExpressRouteServiceProviderBandwidthsOffered",
   type: {
     name: "Composite",
@@ -3959,7 +3883,7 @@ export const ExpressRouteServiceProviderBandwidthsOffered = {
   }
 };
 
-export const ExpressRouteServiceProvider = {
+export const ExpressRouteServiceProvider: msRest.CompositeMapper = {
   serializedName: "ExpressRouteServiceProvider",
   type: {
     name: "Composite",
@@ -3971,7 +3895,6 @@ export const ExpressRouteServiceProvider = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -3983,7 +3906,6 @@ export const ExpressRouteServiceProvider = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteServiceProviderBandwidthsOfferedElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteServiceProviderBandwidthsOffered"
@@ -4001,7 +3923,7 @@ export const ExpressRouteServiceProvider = {
   }
 };
 
-export const ExpressRouteCrossConnectionRoutesTableSummary = {
+export const ExpressRouteCrossConnectionRoutesTableSummary: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCrossConnectionRoutesTableSummary",
   type: {
     name: "Composite",
@@ -4035,7 +3957,7 @@ export const ExpressRouteCrossConnectionRoutesTableSummary = {
   }
 };
 
-export const ExpressRouteCrossConnectionsRoutesTableSummaryListResult = {
+export const ExpressRouteCrossConnectionsRoutesTableSummaryListResult: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCrossConnectionsRoutesTableSummaryListResult",
   type: {
     name: "Composite",
@@ -4046,7 +3968,6 @@ export const ExpressRouteCrossConnectionsRoutesTableSummaryListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCrossConnectionRoutesTableSummaryElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCrossConnectionRoutesTableSummary"
@@ -4065,7 +3986,7 @@ export const ExpressRouteCrossConnectionsRoutesTableSummaryListResult = {
   }
 };
 
-export const ExpressRouteCircuitReference = {
+export const ExpressRouteCircuitReference: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCircuitReference",
   type: {
     name: "Composite",
@@ -4081,7 +4002,7 @@ export const ExpressRouteCircuitReference = {
   }
 };
 
-export const ExpressRouteCrossConnectionPeering = {
+export const ExpressRouteCrossConnectionPeering: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCrossConnectionPeering",
   type: {
     name: "Composite",
@@ -4205,7 +4126,7 @@ export const ExpressRouteCrossConnectionPeering = {
   }
 };
 
-export const ExpressRouteCrossConnection = {
+export const ExpressRouteCrossConnection: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCrossConnection",
   type: {
     name: "Composite",
@@ -4276,7 +4197,6 @@ export const ExpressRouteCrossConnection = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCrossConnectionPeeringElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCrossConnectionPeering"
@@ -4295,7 +4215,7 @@ export const ExpressRouteCrossConnection = {
   }
 };
 
-export const LoadBalancerSku = {
+export const LoadBalancerSku: msRest.CompositeMapper = {
   serializedName: "LoadBalancerSku",
   type: {
     name: "Composite",
@@ -4311,7 +4231,7 @@ export const LoadBalancerSku = {
   }
 };
 
-export const FrontendIPConfiguration = {
+export const FrontendIPConfiguration: msRest.CompositeMapper = {
   serializedName: "FrontendIPConfiguration",
   type: {
     name: "Composite",
@@ -4324,7 +4244,6 @@ export const FrontendIPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -4338,7 +4257,6 @@ export const FrontendIPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -4352,7 +4270,6 @@ export const FrontendIPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -4366,7 +4283,6 @@ export const FrontendIPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -4423,7 +4339,6 @@ export const FrontendIPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -4434,7 +4349,7 @@ export const FrontendIPConfiguration = {
   }
 };
 
-export const LoadBalancingRule = {
+export const LoadBalancingRule: msRest.CompositeMapper = {
   serializedName: "LoadBalancingRule",
   type: {
     name: "Composite",
@@ -4528,7 +4443,7 @@ export const LoadBalancingRule = {
   }
 };
 
-export const Probe = {
+export const Probe: msRest.CompositeMapper = {
   serializedName: "Probe",
   type: {
     name: "Composite",
@@ -4541,7 +4456,6 @@ export const Probe = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -4603,7 +4517,7 @@ export const Probe = {
   }
 };
 
-export const InboundNatPool = {
+export const InboundNatPool: msRest.CompositeMapper = {
   serializedName: "InboundNatPool",
   type: {
     name: "Composite",
@@ -4679,7 +4593,7 @@ export const InboundNatPool = {
   }
 };
 
-export const OutboundNatRule = {
+export const OutboundNatRule: msRest.CompositeMapper = {
   serializedName: "OutboundNatRule",
   type: {
     name: "Composite",
@@ -4697,7 +4611,6 @@ export const OutboundNatRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubResourceElementType",
             type: {
               name: "Composite",
               className: "SubResource"
@@ -4735,7 +4648,7 @@ export const OutboundNatRule = {
   }
 };
 
-export const LoadBalancer = {
+export const LoadBalancer: msRest.CompositeMapper = {
   serializedName: "LoadBalancer",
   type: {
     name: "Composite",
@@ -4754,7 +4667,6 @@ export const LoadBalancer = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "FrontendIPConfigurationElementType",
             type: {
               name: "Composite",
               className: "FrontendIPConfiguration"
@@ -4767,7 +4679,6 @@ export const LoadBalancer = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "BackendAddressPoolElementType",
             type: {
               name: "Composite",
               className: "BackendAddressPool"
@@ -4780,7 +4691,6 @@ export const LoadBalancer = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "LoadBalancingRuleElementType",
             type: {
               name: "Composite",
               className: "LoadBalancingRule"
@@ -4793,7 +4703,6 @@ export const LoadBalancer = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ProbeElementType",
             type: {
               name: "Composite",
               className: "Probe"
@@ -4806,7 +4715,6 @@ export const LoadBalancer = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "InboundNatRuleElementType",
             type: {
               name: "Composite",
               className: "InboundNatRule"
@@ -4819,7 +4727,6 @@ export const LoadBalancer = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "InboundNatPoolElementType",
             type: {
               name: "Composite",
               className: "InboundNatPool"
@@ -4832,7 +4739,6 @@ export const LoadBalancer = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "OutboundNatRuleElementType",
             type: {
               name: "Composite",
               className: "OutboundNatRule"
@@ -4862,7 +4768,7 @@ export const LoadBalancer = {
   }
 };
 
-export const ErrorDetails = {
+export const ErrorDetails: msRest.CompositeMapper = {
   serializedName: "ErrorDetails",
   type: {
     name: "Composite",
@@ -4890,7 +4796,7 @@ export const ErrorDetails = {
   }
 };
 
-export const ErrorModel = {
+export const ErrorModel: msRest.CompositeMapper = {
   serializedName: "Error",
   type: {
     name: "Composite",
@@ -4919,7 +4825,6 @@ export const ErrorModel = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ErrorDetailsElementType",
             type: {
               name: "Composite",
               className: "ErrorDetails"
@@ -4937,7 +4842,7 @@ export const ErrorModel = {
   }
 };
 
-export const AzureAsyncOperationResult = {
+export const AzureAsyncOperationResult: msRest.CompositeMapper = {
   serializedName: "AzureAsyncOperationResult",
   type: {
     name: "Composite",
@@ -4960,7 +4865,7 @@ export const AzureAsyncOperationResult = {
   }
 };
 
-export const EffectiveNetworkSecurityGroupAssociation = {
+export const EffectiveNetworkSecurityGroupAssociation: msRest.CompositeMapper = {
   serializedName: "EffectiveNetworkSecurityGroupAssociation",
   type: {
     name: "Composite",
@@ -4984,7 +4889,7 @@ export const EffectiveNetworkSecurityGroupAssociation = {
   }
 };
 
-export const EffectiveNetworkSecurityRule = {
+export const EffectiveNetworkSecurityRule: msRest.CompositeMapper = {
   serializedName: "EffectiveNetworkSecurityRule",
   type: {
     name: "Composite",
@@ -5019,7 +4924,6 @@ export const EffectiveNetworkSecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -5031,7 +4935,6 @@ export const EffectiveNetworkSecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -5055,7 +4958,6 @@ export const EffectiveNetworkSecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -5067,7 +4969,6 @@ export const EffectiveNetworkSecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -5079,7 +4980,6 @@ export const EffectiveNetworkSecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -5091,7 +4991,6 @@ export const EffectiveNetworkSecurityRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -5120,7 +5019,7 @@ export const EffectiveNetworkSecurityRule = {
   }
 };
 
-export const EffectiveNetworkSecurityGroup = {
+export const EffectiveNetworkSecurityGroup: msRest.CompositeMapper = {
   serializedName: "EffectiveNetworkSecurityGroup",
   type: {
     name: "Composite",
@@ -5145,7 +5044,6 @@ export const EffectiveNetworkSecurityGroup = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "EffectiveNetworkSecurityRuleElementType",
             type: {
               name: "Composite",
               className: "EffectiveNetworkSecurityRule"
@@ -5158,11 +5056,9 @@ export const EffectiveNetworkSecurityGroup = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "ArrayElementType",
             type: {
               name: "Sequence",
               element: {
-                serializedName: "stringElementType",
                 type: {
                   name: "String"
                 }
@@ -5175,7 +5071,7 @@ export const EffectiveNetworkSecurityGroup = {
   }
 };
 
-export const EffectiveNetworkSecurityGroupListResult = {
+export const EffectiveNetworkSecurityGroupListResult: msRest.CompositeMapper = {
   serializedName: "EffectiveNetworkSecurityGroupListResult",
   type: {
     name: "Composite",
@@ -5186,7 +5082,6 @@ export const EffectiveNetworkSecurityGroupListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "EffectiveNetworkSecurityGroupElementType",
             type: {
               name: "Composite",
               className: "EffectiveNetworkSecurityGroup"
@@ -5205,7 +5100,7 @@ export const EffectiveNetworkSecurityGroupListResult = {
   }
 };
 
-export const EffectiveRoute = {
+export const EffectiveRoute: msRest.CompositeMapper = {
   serializedName: "EffectiveRoute",
   type: {
     name: "Composite",
@@ -5234,7 +5129,6 @@ export const EffectiveRoute = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -5246,7 +5140,6 @@ export const EffectiveRoute = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -5263,7 +5156,7 @@ export const EffectiveRoute = {
   }
 };
 
-export const EffectiveRouteListResult = {
+export const EffectiveRouteListResult: msRest.CompositeMapper = {
   serializedName: "EffectiveRouteListResult",
   type: {
     name: "Composite",
@@ -5274,7 +5167,6 @@ export const EffectiveRouteListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "EffectiveRouteElementType",
             type: {
               name: "Composite",
               className: "EffectiveRoute"
@@ -5293,7 +5185,7 @@ export const EffectiveRouteListResult = {
   }
 };
 
-export const NetworkWatcher = {
+export const NetworkWatcher: msRest.CompositeMapper = {
   serializedName: "NetworkWatcher",
   type: {
     name: "Composite",
@@ -5317,7 +5209,7 @@ export const NetworkWatcher = {
   }
 };
 
-export const TopologyParameters = {
+export const TopologyParameters: msRest.CompositeMapper = {
   serializedName: "TopologyParameters",
   type: {
     name: "Composite",
@@ -5347,7 +5239,7 @@ export const TopologyParameters = {
   }
 };
 
-export const TopologyAssociation = {
+export const TopologyAssociation: msRest.CompositeMapper = {
   serializedName: "TopologyAssociation",
   type: {
     name: "Composite",
@@ -5375,7 +5267,7 @@ export const TopologyAssociation = {
   }
 };
 
-export const TopologyResource = {
+export const TopologyResource: msRest.CompositeMapper = {
   serializedName: "TopologyResource",
   type: {
     name: "Composite",
@@ -5404,7 +5296,6 @@ export const TopologyResource = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "TopologyAssociationElementType",
             type: {
               name: "Composite",
               className: "TopologyAssociation"
@@ -5416,7 +5307,7 @@ export const TopologyResource = {
   }
 };
 
-export const Topology = {
+export const Topology: msRest.CompositeMapper = {
   serializedName: "Topology",
   type: {
     name: "Composite",
@@ -5448,7 +5339,6 @@ export const Topology = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "TopologyResourceElementType",
             type: {
               name: "Composite",
               className: "TopologyResource"
@@ -5460,7 +5350,7 @@ export const Topology = {
   }
 };
 
-export const VerificationIPFlowParameters = {
+export const VerificationIPFlowParameters: msRest.CompositeMapper = {
   serializedName: "VerificationIPFlowParameters",
   type: {
     name: "Composite",
@@ -5525,7 +5415,7 @@ export const VerificationIPFlowParameters = {
   }
 };
 
-export const VerificationIPFlowResult = {
+export const VerificationIPFlowResult: msRest.CompositeMapper = {
   serializedName: "VerificationIPFlowResult",
   type: {
     name: "Composite",
@@ -5547,7 +5437,7 @@ export const VerificationIPFlowResult = {
   }
 };
 
-export const NextHopParameters = {
+export const NextHopParameters: msRest.CompositeMapper = {
   serializedName: "NextHopParameters",
   type: {
     name: "Composite",
@@ -5584,7 +5474,7 @@ export const NextHopParameters = {
   }
 };
 
-export const NextHopResult = {
+export const NextHopResult: msRest.CompositeMapper = {
   serializedName: "NextHopResult",
   type: {
     name: "Composite",
@@ -5612,7 +5502,7 @@ export const NextHopResult = {
   }
 };
 
-export const SecurityGroupViewParameters = {
+export const SecurityGroupViewParameters: msRest.CompositeMapper = {
   serializedName: "SecurityGroupViewParameters",
   type: {
     name: "Composite",
@@ -5629,7 +5519,7 @@ export const SecurityGroupViewParameters = {
   }
 };
 
-export const NetworkInterfaceAssociation = {
+export const NetworkInterfaceAssociation: msRest.CompositeMapper = {
   serializedName: "NetworkInterfaceAssociation",
   type: {
     name: "Composite",
@@ -5647,7 +5537,6 @@ export const NetworkInterfaceAssociation = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SecurityRuleElementType",
             type: {
               name: "Composite",
               className: "SecurityRule"
@@ -5659,7 +5548,7 @@ export const NetworkInterfaceAssociation = {
   }
 };
 
-export const SubnetAssociation = {
+export const SubnetAssociation: msRest.CompositeMapper = {
   serializedName: "SubnetAssociation",
   type: {
     name: "Composite",
@@ -5677,7 +5566,6 @@ export const SubnetAssociation = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SecurityRuleElementType",
             type: {
               name: "Composite",
               className: "SecurityRule"
@@ -5689,7 +5577,7 @@ export const SubnetAssociation = {
   }
 };
 
-export const SecurityRuleAssociations = {
+export const SecurityRuleAssociations: msRest.CompositeMapper = {
   serializedName: "SecurityRuleAssociations",
   type: {
     name: "Composite",
@@ -5714,7 +5602,6 @@ export const SecurityRuleAssociations = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SecurityRuleElementType",
             type: {
               name: "Composite",
               className: "SecurityRule"
@@ -5727,7 +5614,6 @@ export const SecurityRuleAssociations = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "EffectiveNetworkSecurityRuleElementType",
             type: {
               name: "Composite",
               className: "EffectiveNetworkSecurityRule"
@@ -5739,7 +5625,7 @@ export const SecurityRuleAssociations = {
   }
 };
 
-export const SecurityGroupNetworkInterface = {
+export const SecurityGroupNetworkInterface: msRest.CompositeMapper = {
   serializedName: "SecurityGroupNetworkInterface",
   type: {
     name: "Composite",
@@ -5762,7 +5648,7 @@ export const SecurityGroupNetworkInterface = {
   }
 };
 
-export const SecurityGroupViewResult = {
+export const SecurityGroupViewResult: msRest.CompositeMapper = {
   serializedName: "SecurityGroupViewResult",
   type: {
     name: "Composite",
@@ -5773,7 +5659,6 @@ export const SecurityGroupViewResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SecurityGroupNetworkInterfaceElementType",
             type: {
               name: "Composite",
               className: "SecurityGroupNetworkInterface"
@@ -5785,7 +5670,7 @@ export const SecurityGroupViewResult = {
   }
 };
 
-export const PacketCaptureStorageLocation = {
+export const PacketCaptureStorageLocation: msRest.CompositeMapper = {
   serializedName: "PacketCaptureStorageLocation",
   type: {
     name: "Composite",
@@ -5813,7 +5698,7 @@ export const PacketCaptureStorageLocation = {
   }
 };
 
-export const PacketCaptureFilter = {
+export const PacketCaptureFilter: msRest.CompositeMapper = {
   serializedName: "PacketCaptureFilter",
   type: {
     name: "Composite",
@@ -5854,7 +5739,7 @@ export const PacketCaptureFilter = {
   }
 };
 
-export const PacketCaptureParameters = {
+export const PacketCaptureParameters: msRest.CompositeMapper = {
   serializedName: "PacketCaptureParameters",
   type: {
     name: "Composite",
@@ -5901,7 +5786,6 @@ export const PacketCaptureParameters = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "PacketCaptureFilterElementType",
             type: {
               name: "Composite",
               className: "PacketCaptureFilter"
@@ -5913,7 +5797,7 @@ export const PacketCaptureParameters = {
   }
 };
 
-export const PacketCapture = {
+export const PacketCapture: msRest.CompositeMapper = {
   serializedName: "PacketCapture",
   type: {
     name: "Composite",
@@ -5960,7 +5844,6 @@ export const PacketCapture = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "PacketCaptureFilterElementType",
             type: {
               name: "Composite",
               className: "PacketCaptureFilter"
@@ -5972,7 +5855,7 @@ export const PacketCapture = {
   }
 };
 
-export const PacketCaptureResult = {
+export const PacketCaptureResult: msRest.CompositeMapper = {
   serializedName: "PacketCaptureResult",
   type: {
     name: "Composite",
@@ -6040,7 +5923,6 @@ export const PacketCaptureResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "PacketCaptureFilterElementType",
             type: {
               name: "Composite",
               className: "PacketCaptureFilter"
@@ -6058,7 +5940,7 @@ export const PacketCaptureResult = {
   }
 };
 
-export const PacketCaptureQueryStatusResult = {
+export const PacketCaptureQueryStatusResult: msRest.CompositeMapper = {
   serializedName: "PacketCaptureQueryStatusResult",
   type: {
     name: "Composite",
@@ -6099,7 +5981,6 @@ export const PacketCaptureQueryStatusResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "PcErrorElementType",
             type: {
               name: "String"
             }
@@ -6110,7 +5991,7 @@ export const PacketCaptureQueryStatusResult = {
   }
 };
 
-export const TroubleshootingParameters = {
+export const TroubleshootingParameters: msRest.CompositeMapper = {
   serializedName: "TroubleshootingParameters",
   type: {
     name: "Composite",
@@ -6141,7 +6022,7 @@ export const TroubleshootingParameters = {
   }
 };
 
-export const QueryTroubleshootingParameters = {
+export const QueryTroubleshootingParameters: msRest.CompositeMapper = {
   serializedName: "QueryTroubleshootingParameters",
   type: {
     name: "Composite",
@@ -6158,7 +6039,7 @@ export const QueryTroubleshootingParameters = {
   }
 };
 
-export const TroubleshootingRecommendedActions = {
+export const TroubleshootingRecommendedActions: msRest.CompositeMapper = {
   serializedName: "TroubleshootingRecommendedActions",
   type: {
     name: "Composite",
@@ -6192,7 +6073,7 @@ export const TroubleshootingRecommendedActions = {
   }
 };
 
-export const TroubleshootingDetails = {
+export const TroubleshootingDetails: msRest.CompositeMapper = {
   serializedName: "TroubleshootingDetails",
   type: {
     name: "Composite",
@@ -6227,7 +6108,6 @@ export const TroubleshootingDetails = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "TroubleshootingRecommendedActionsElementType",
             type: {
               name: "Composite",
               className: "TroubleshootingRecommendedActions"
@@ -6239,7 +6119,7 @@ export const TroubleshootingDetails = {
   }
 };
 
-export const TroubleshootingResult = {
+export const TroubleshootingResult: msRest.CompositeMapper = {
   serializedName: "TroubleshootingResult",
   type: {
     name: "Composite",
@@ -6268,7 +6148,6 @@ export const TroubleshootingResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "TroubleshootingDetailsElementType",
             type: {
               name: "Composite",
               className: "TroubleshootingDetails"
@@ -6280,7 +6159,7 @@ export const TroubleshootingResult = {
   }
 };
 
-export const RetentionPolicyParameters = {
+export const RetentionPolicyParameters: msRest.CompositeMapper = {
   serializedName: "RetentionPolicyParameters",
   type: {
     name: "Composite",
@@ -6304,7 +6183,7 @@ export const RetentionPolicyParameters = {
   }
 };
 
-export const FlowLogStatusParameters = {
+export const FlowLogStatusParameters: msRest.CompositeMapper = {
   serializedName: "FlowLogStatusParameters",
   type: {
     name: "Composite",
@@ -6321,7 +6200,7 @@ export const FlowLogStatusParameters = {
   }
 };
 
-export const TrafficAnalyticsConfigurationProperties = {
+export const TrafficAnalyticsConfigurationProperties: msRest.CompositeMapper = {
   serializedName: "TrafficAnalyticsConfigurationProperties",
   type: {
     name: "Composite",
@@ -6359,7 +6238,7 @@ export const TrafficAnalyticsConfigurationProperties = {
   }
 };
 
-export const TrafficAnalyticsProperties = {
+export const TrafficAnalyticsProperties: msRest.CompositeMapper = {
   serializedName: "TrafficAnalyticsProperties",
   type: {
     name: "Composite",
@@ -6377,7 +6256,7 @@ export const TrafficAnalyticsProperties = {
   }
 };
 
-export const FlowLogInformation = {
+export const FlowLogInformation: msRest.CompositeMapper = {
   serializedName: "FlowLogInformation",
   type: {
     name: "Composite",
@@ -6422,7 +6301,7 @@ export const FlowLogInformation = {
   }
 };
 
-export const ConnectivitySource = {
+export const ConnectivitySource: msRest.CompositeMapper = {
   serializedName: "ConnectivitySource",
   type: {
     name: "Composite",
@@ -6445,7 +6324,7 @@ export const ConnectivitySource = {
   }
 };
 
-export const ConnectivityDestination = {
+export const ConnectivityDestination: msRest.CompositeMapper = {
   serializedName: "ConnectivityDestination",
   type: {
     name: "Composite",
@@ -6473,7 +6352,7 @@ export const ConnectivityDestination = {
   }
 };
 
-export const HTTPHeader = {
+export const HTTPHeader: msRest.CompositeMapper = {
   serializedName: "HTTPHeader",
   type: {
     name: "Composite",
@@ -6495,7 +6374,7 @@ export const HTTPHeader = {
   }
 };
 
-export const HTTPConfiguration = {
+export const HTTPConfiguration: msRest.CompositeMapper = {
   serializedName: "HTTPConfiguration",
   type: {
     name: "Composite",
@@ -6512,7 +6391,6 @@ export const HTTPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "HTTPHeaderElementType",
             type: {
               name: "Composite",
               className: "HTTPHeader"
@@ -6525,7 +6403,6 @@ export const HTTPConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "numberElementType",
             type: {
               name: "Number"
             }
@@ -6536,7 +6413,7 @@ export const HTTPConfiguration = {
   }
 };
 
-export const ProtocolConfiguration = {
+export const ProtocolConfiguration: msRest.CompositeMapper = {
   serializedName: "ProtocolConfiguration",
   type: {
     name: "Composite",
@@ -6553,7 +6430,7 @@ export const ProtocolConfiguration = {
   }
 };
 
-export const ConnectivityParameters = {
+export const ConnectivityParameters: msRest.CompositeMapper = {
   serializedName: "ConnectivityParameters",
   type: {
     name: "Composite",
@@ -6592,7 +6469,7 @@ export const ConnectivityParameters = {
   }
 };
 
-export const ConnectivityIssue = {
+export const ConnectivityIssue: msRest.CompositeMapper = {
   serializedName: "ConnectivityIssue",
   type: {
     name: "Composite",
@@ -6625,11 +6502,9 @@ export const ConnectivityIssue = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ObjectElementType",
             type: {
               name: "Dictionary",
               value: {
-                serializedName: "stringElementType",
                 type: {
                   name: "String"
                 }
@@ -6642,7 +6517,7 @@ export const ConnectivityIssue = {
   }
 };
 
-export const ConnectivityHop = {
+export const ConnectivityHop: msRest.CompositeMapper = {
   serializedName: "ConnectivityHop",
   type: {
     name: "Composite",
@@ -6682,7 +6557,6 @@ export const ConnectivityHop = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -6695,7 +6569,6 @@ export const ConnectivityHop = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ConnectivityIssueElementType",
             type: {
               name: "Composite",
               className: "ConnectivityIssue"
@@ -6707,7 +6580,7 @@ export const ConnectivityHop = {
   }
 };
 
-export const ConnectivityInformation = {
+export const ConnectivityInformation: msRest.CompositeMapper = {
   serializedName: "ConnectivityInformation",
   type: {
     name: "Composite",
@@ -6719,7 +6592,6 @@ export const ConnectivityInformation = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ConnectivityHopElementType",
             type: {
               name: "Composite",
               className: "ConnectivityHop"
@@ -6773,7 +6645,7 @@ export const ConnectivityInformation = {
   }
 };
 
-export const AzureReachabilityReportLocation = {
+export const AzureReachabilityReportLocation: msRest.CompositeMapper = {
   serializedName: "AzureReachabilityReportLocation",
   type: {
     name: "Composite",
@@ -6802,7 +6674,7 @@ export const AzureReachabilityReportLocation = {
   }
 };
 
-export const AzureReachabilityReportParameters = {
+export const AzureReachabilityReportParameters: msRest.CompositeMapper = {
   serializedName: "AzureReachabilityReportParameters",
   type: {
     name: "Composite",
@@ -6821,7 +6693,6 @@ export const AzureReachabilityReportParameters = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -6833,7 +6704,6 @@ export const AzureReachabilityReportParameters = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -6858,7 +6728,7 @@ export const AzureReachabilityReportParameters = {
   }
 };
 
-export const AzureReachabilityReportLatencyInfo = {
+export const AzureReachabilityReportLatencyInfo: msRest.CompositeMapper = {
   serializedName: "AzureReachabilityReportLatencyInfo",
   type: {
     name: "Composite",
@@ -6884,7 +6754,7 @@ export const AzureReachabilityReportLatencyInfo = {
   }
 };
 
-export const AzureReachabilityReportItem = {
+export const AzureReachabilityReportItem: msRest.CompositeMapper = {
   serializedName: "AzureReachabilityReportItem",
   type: {
     name: "Composite",
@@ -6907,7 +6777,6 @@ export const AzureReachabilityReportItem = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "AzureReachabilityReportLatencyInfoElementType",
             type: {
               name: "Composite",
               className: "AzureReachabilityReportLatencyInfo"
@@ -6919,7 +6788,7 @@ export const AzureReachabilityReportItem = {
   }
 };
 
-export const AzureReachabilityReport = {
+export const AzureReachabilityReport: msRest.CompositeMapper = {
   serializedName: "AzureReachabilityReport",
   type: {
     name: "Composite",
@@ -6946,7 +6815,6 @@ export const AzureReachabilityReport = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "AzureReachabilityReportItemElementType",
             type: {
               name: "Composite",
               className: "AzureReachabilityReportItem"
@@ -6958,7 +6826,7 @@ export const AzureReachabilityReport = {
   }
 };
 
-export const AvailableProvidersListParameters = {
+export const AvailableProvidersListParameters: msRest.CompositeMapper = {
   serializedName: "AvailableProvidersListParameters",
   type: {
     name: "Composite",
@@ -6969,7 +6837,6 @@ export const AvailableProvidersListParameters = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -6998,7 +6865,7 @@ export const AvailableProvidersListParameters = {
   }
 };
 
-export const AvailableProvidersListCity = {
+export const AvailableProvidersListCity: msRest.CompositeMapper = {
   serializedName: "AvailableProvidersListCity",
   type: {
     name: "Composite",
@@ -7015,7 +6882,6 @@ export const AvailableProvidersListCity = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -7026,7 +6892,7 @@ export const AvailableProvidersListCity = {
   }
 };
 
-export const AvailableProvidersListState = {
+export const AvailableProvidersListState: msRest.CompositeMapper = {
   serializedName: "AvailableProvidersListState",
   type: {
     name: "Composite",
@@ -7043,7 +6909,6 @@ export const AvailableProvidersListState = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -7055,7 +6920,6 @@ export const AvailableProvidersListState = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "AvailableProvidersListCityElementType",
             type: {
               name: "Composite",
               className: "AvailableProvidersListCity"
@@ -7067,7 +6931,7 @@ export const AvailableProvidersListState = {
   }
 };
 
-export const AvailableProvidersListCountry = {
+export const AvailableProvidersListCountry: msRest.CompositeMapper = {
   serializedName: "AvailableProvidersListCountry",
   type: {
     name: "Composite",
@@ -7084,7 +6948,6 @@ export const AvailableProvidersListCountry = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -7096,7 +6959,6 @@ export const AvailableProvidersListCountry = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "AvailableProvidersListStateElementType",
             type: {
               name: "Composite",
               className: "AvailableProvidersListState"
@@ -7108,7 +6970,7 @@ export const AvailableProvidersListCountry = {
   }
 };
 
-export const AvailableProvidersList = {
+export const AvailableProvidersList: msRest.CompositeMapper = {
   serializedName: "AvailableProvidersList",
   type: {
     name: "Composite",
@@ -7120,7 +6982,6 @@ export const AvailableProvidersList = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "AvailableProvidersListCountryElementType",
             type: {
               name: "Composite",
               className: "AvailableProvidersListCountry"
@@ -7132,7 +6993,7 @@ export const AvailableProvidersList = {
   }
 };
 
-export const ConnectionMonitorSource = {
+export const ConnectionMonitorSource: msRest.CompositeMapper = {
   serializedName: "ConnectionMonitorSource",
   type: {
     name: "Composite",
@@ -7155,7 +7016,7 @@ export const ConnectionMonitorSource = {
   }
 };
 
-export const ConnectionMonitorDestination = {
+export const ConnectionMonitorDestination: msRest.CompositeMapper = {
   serializedName: "ConnectionMonitorDestination",
   type: {
     name: "Composite",
@@ -7183,7 +7044,7 @@ export const ConnectionMonitorDestination = {
   }
 };
 
-export const ConnectionMonitorParameters = {
+export const ConnectionMonitorParameters: msRest.CompositeMapper = {
   serializedName: "ConnectionMonitorParameters",
   type: {
     name: "Composite",
@@ -7223,7 +7084,7 @@ export const ConnectionMonitorParameters = {
   }
 };
 
-export const ConnectionMonitor = {
+export const ConnectionMonitor: msRest.CompositeMapper = {
   serializedName: "ConnectionMonitor",
   type: {
     name: "Composite",
@@ -7240,7 +7101,6 @@ export const ConnectionMonitor = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -7281,7 +7141,7 @@ export const ConnectionMonitor = {
   }
 };
 
-export const ConnectionMonitorResult = {
+export const ConnectionMonitorResult: msRest.CompositeMapper = {
   serializedName: "ConnectionMonitorResult",
   type: {
     name: "Composite",
@@ -7326,7 +7186,6 @@ export const ConnectionMonitorResult = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -7385,7 +7244,7 @@ export const ConnectionMonitorResult = {
   }
 };
 
-export const ConnectionStateSnapshot = {
+export const ConnectionStateSnapshot: msRest.CompositeMapper = {
   serializedName: "ConnectionStateSnapshot",
   type: {
     name: "Composite",
@@ -7421,7 +7280,6 @@ export const ConnectionStateSnapshot = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ConnectivityHopElementType",
             type: {
               name: "Composite",
               className: "ConnectivityHop"
@@ -7433,7 +7291,7 @@ export const ConnectionStateSnapshot = {
   }
 };
 
-export const ConnectionMonitorQueryResult = {
+export const ConnectionMonitorQueryResult: msRest.CompositeMapper = {
   serializedName: "ConnectionMonitorQueryResult",
   type: {
     name: "Composite",
@@ -7450,7 +7308,6 @@ export const ConnectionMonitorQueryResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ConnectionStateSnapshotElementType",
             type: {
               name: "Composite",
               className: "ConnectionStateSnapshot"
@@ -7462,7 +7319,7 @@ export const ConnectionMonitorQueryResult = {
   }
 };
 
-export const OperationDisplay = {
+export const OperationDisplay: msRest.CompositeMapper = {
   serializedName: "Operation_display",
   type: {
     name: "Composite",
@@ -7496,7 +7353,7 @@ export const OperationDisplay = {
   }
 };
 
-export const Availability = {
+export const Availability: msRest.CompositeMapper = {
   serializedName: "Availability",
   type: {
     name: "Composite",
@@ -7524,7 +7381,7 @@ export const Availability = {
   }
 };
 
-export const Dimension = {
+export const Dimension: msRest.CompositeMapper = {
   serializedName: "Dimension",
   type: {
     name: "Composite",
@@ -7552,7 +7409,7 @@ export const Dimension = {
   }
 };
 
-export const MetricSpecification = {
+export const MetricSpecification: msRest.CompositeMapper = {
   serializedName: "MetricSpecification",
   type: {
     name: "Composite",
@@ -7593,7 +7450,6 @@ export const MetricSpecification = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "AvailabilityElementType",
             type: {
               name: "Composite",
               className: "Availability"
@@ -7624,7 +7480,6 @@ export const MetricSpecification = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "DimensionElementType",
             type: {
               name: "Composite",
               className: "Dimension"
@@ -7660,7 +7515,7 @@ export const MetricSpecification = {
   }
 };
 
-export const LogSpecification = {
+export const LogSpecification: msRest.CompositeMapper = {
   serializedName: "LogSpecification",
   type: {
     name: "Composite",
@@ -7688,7 +7543,7 @@ export const LogSpecification = {
   }
 };
 
-export const OperationPropertiesFormatServiceSpecification = {
+export const OperationPropertiesFormatServiceSpecification: msRest.CompositeMapper = {
   serializedName: "OperationPropertiesFormat_serviceSpecification",
   type: {
     name: "Composite",
@@ -7699,7 +7554,6 @@ export const OperationPropertiesFormatServiceSpecification = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "MetricSpecificationElementType",
             type: {
               name: "Composite",
               className: "MetricSpecification"
@@ -7712,7 +7566,6 @@ export const OperationPropertiesFormatServiceSpecification = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "LogSpecificationElementType",
             type: {
               name: "Composite",
               className: "LogSpecification"
@@ -7724,7 +7577,7 @@ export const OperationPropertiesFormatServiceSpecification = {
   }
 };
 
-export const Operation = {
+export const Operation: msRest.CompositeMapper = {
   serializedName: "Operation",
   type: {
     name: "Composite",
@@ -7760,7 +7613,7 @@ export const Operation = {
   }
 };
 
-export const PatchRouteFilterRule = {
+export const PatchRouteFilterRule: msRest.CompositeMapper = {
   serializedName: "PatchRouteFilterRule",
   type: {
     name: "Composite",
@@ -7789,7 +7642,6 @@ export const PatchRouteFilterRule = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -7821,7 +7673,7 @@ export const PatchRouteFilterRule = {
   }
 };
 
-export const PatchRouteFilter = {
+export const PatchRouteFilter: msRest.CompositeMapper = {
   serializedName: "PatchRouteFilter",
   type: {
     name: "Composite",
@@ -7833,7 +7685,6 @@ export const PatchRouteFilter = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "RouteFilterRuleElementType",
             type: {
               name: "Composite",
               className: "RouteFilterRule"
@@ -7846,7 +7697,6 @@ export const PatchRouteFilter = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitPeeringElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuitPeering"
@@ -7887,7 +7737,6 @@ export const PatchRouteFilter = {
         type: {
           name: "Dictionary",
           value: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -7898,7 +7747,7 @@ export const PatchRouteFilter = {
   }
 };
 
-export const BGPCommunity = {
+export const BGPCommunity: msRest.CompositeMapper = {
   serializedName: "BGPCommunity",
   type: {
     name: "Composite",
@@ -7927,7 +7776,6 @@ export const BGPCommunity = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -7950,7 +7798,7 @@ export const BGPCommunity = {
   }
 };
 
-export const BgpServiceCommunity = {
+export const BgpServiceCommunity: msRest.CompositeMapper = {
   serializedName: "BgpServiceCommunity",
   type: {
     name: "Composite",
@@ -7968,7 +7816,6 @@ export const BgpServiceCommunity = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "BGPCommunityElementType",
             type: {
               name: "Composite",
               className: "BGPCommunity"
@@ -7980,7 +7827,7 @@ export const BgpServiceCommunity = {
   }
 };
 
-export const UsageName = {
+export const UsageName: msRest.CompositeMapper = {
   serializedName: "UsageName",
   type: {
     name: "Composite",
@@ -8002,7 +7849,7 @@ export const UsageName = {
   }
 };
 
-export const Usage = {
+export const Usage: msRest.CompositeMapper = {
   serializedName: "Usage",
   type: {
     name: "Composite",
@@ -8050,7 +7897,7 @@ export const Usage = {
   }
 };
 
-export const AddressSpace = {
+export const AddressSpace: msRest.CompositeMapper = {
   serializedName: "AddressSpace",
   type: {
     name: "Composite",
@@ -8061,7 +7908,6 @@ export const AddressSpace = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -8072,7 +7918,7 @@ export const AddressSpace = {
   }
 };
 
-export const VirtualNetworkPeering = {
+export const VirtualNetworkPeering: msRest.CompositeMapper = {
   serializedName: "VirtualNetworkPeering",
   type: {
     name: "Composite",
@@ -8145,7 +7991,7 @@ export const VirtualNetworkPeering = {
   }
 };
 
-export const DhcpOptions = {
+export const DhcpOptions: msRest.CompositeMapper = {
   serializedName: "DhcpOptions",
   type: {
     name: "Composite",
@@ -8156,7 +8002,6 @@ export const DhcpOptions = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -8167,7 +8012,7 @@ export const DhcpOptions = {
   }
 };
 
-export const VirtualNetwork = {
+export const VirtualNetwork: msRest.CompositeMapper = {
   serializedName: "VirtualNetwork",
   type: {
     name: "Composite",
@@ -8193,7 +8038,6 @@ export const VirtualNetwork = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubnetElementType",
             type: {
               name: "Composite",
               className: "Subnet"
@@ -8206,7 +8050,6 @@ export const VirtualNetwork = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VirtualNetworkPeeringElementType",
             type: {
               name: "Composite",
               className: "VirtualNetworkPeering"
@@ -8257,7 +8100,7 @@ export const VirtualNetwork = {
   }
 };
 
-export const IPAddressAvailabilityResult = {
+export const IPAddressAvailabilityResult: msRest.CompositeMapper = {
   serializedName: "IPAddressAvailabilityResult",
   type: {
     name: "Composite",
@@ -8274,7 +8117,6 @@ export const IPAddressAvailabilityResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -8285,7 +8127,7 @@ export const IPAddressAvailabilityResult = {
   }
 };
 
-export const VirtualNetworkUsageName = {
+export const VirtualNetworkUsageName: msRest.CompositeMapper = {
   serializedName: "VirtualNetworkUsageName",
   type: {
     name: "Composite",
@@ -8309,7 +8151,7 @@ export const VirtualNetworkUsageName = {
   }
 };
 
-export const VirtualNetworkUsage = {
+export const VirtualNetworkUsage: msRest.CompositeMapper = {
   serializedName: "VirtualNetworkUsage",
   type: {
     name: "Composite",
@@ -8355,7 +8197,7 @@ export const VirtualNetworkUsage = {
   }
 };
 
-export const VirtualNetworkGatewayIPConfiguration = {
+export const VirtualNetworkGatewayIPConfiguration: msRest.CompositeMapper = {
   serializedName: "VirtualNetworkGatewayIPConfiguration",
   type: {
     name: "Composite",
@@ -8405,7 +8247,7 @@ export const VirtualNetworkGatewayIPConfiguration = {
   }
 };
 
-export const VirtualNetworkGatewaySku = {
+export const VirtualNetworkGatewaySku: msRest.CompositeMapper = {
   serializedName: "VirtualNetworkGatewaySku",
   type: {
     name: "Composite",
@@ -8433,7 +8275,7 @@ export const VirtualNetworkGatewaySku = {
   }
 };
 
-export const VpnClientRootCertificate = {
+export const VpnClientRootCertificate: msRest.CompositeMapper = {
   serializedName: "VpnClientRootCertificate",
   type: {
     name: "Composite",
@@ -8470,7 +8312,7 @@ export const VpnClientRootCertificate = {
   }
 };
 
-export const VpnClientRevokedCertificate = {
+export const VpnClientRevokedCertificate: msRest.CompositeMapper = {
   serializedName: "VpnClientRevokedCertificate",
   type: {
     name: "Composite",
@@ -8506,7 +8348,7 @@ export const VpnClientRevokedCertificate = {
   }
 };
 
-export const IpsecPolicy = {
+export const IpsecPolicy: msRest.CompositeMapper = {
   serializedName: "IpsecPolicy",
   type: {
     name: "Composite",
@@ -8572,7 +8414,7 @@ export const IpsecPolicy = {
   }
 };
 
-export const VpnClientConfiguration = {
+export const VpnClientConfiguration: msRest.CompositeMapper = {
   serializedName: "VpnClientConfiguration",
   type: {
     name: "Composite",
@@ -8590,7 +8432,6 @@ export const VpnClientConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VpnClientRootCertificateElementType",
             type: {
               name: "Composite",
               className: "VpnClientRootCertificate"
@@ -8603,7 +8444,6 @@ export const VpnClientConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VpnClientRevokedCertificateElementType",
             type: {
               name: "Composite",
               className: "VpnClientRevokedCertificate"
@@ -8616,7 +8456,6 @@ export const VpnClientConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VpnClientProtocolElementType",
             type: {
               name: "String"
             }
@@ -8628,7 +8467,6 @@ export const VpnClientConfiguration = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "IpsecPolicyElementType",
             type: {
               name: "Composite",
               className: "IpsecPolicy"
@@ -8652,7 +8490,7 @@ export const VpnClientConfiguration = {
   }
 };
 
-export const BgpSettings = {
+export const BgpSettings: msRest.CompositeMapper = {
   serializedName: "BgpSettings",
   type: {
     name: "Composite",
@@ -8680,7 +8518,7 @@ export const BgpSettings = {
   }
 };
 
-export const BgpPeerStatus = {
+export const BgpPeerStatus: msRest.CompositeMapper = {
   serializedName: "BgpPeerStatus",
   type: {
     name: "Composite",
@@ -8746,7 +8584,7 @@ export const BgpPeerStatus = {
   }
 };
 
-export const GatewayRoute = {
+export const GatewayRoute: msRest.CompositeMapper = {
   serializedName: "GatewayRoute",
   type: {
     name: "Composite",
@@ -8805,7 +8643,7 @@ export const GatewayRoute = {
   }
 };
 
-export const VirtualNetworkGateway = {
+export const VirtualNetworkGateway: msRest.CompositeMapper = {
   serializedName: "VirtualNetworkGateway",
   type: {
     name: "Composite",
@@ -8817,7 +8655,6 @@ export const VirtualNetworkGateway = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VirtualNetworkGatewayIPConfigurationElementType",
             type: {
               name: "Composite",
               className: "VirtualNetworkGatewayIPConfiguration"
@@ -8900,7 +8737,7 @@ export const VirtualNetworkGateway = {
   }
 };
 
-export const VpnClientParameters = {
+export const VpnClientParameters: msRest.CompositeMapper = {
   serializedName: "VpnClientParameters",
   type: {
     name: "Composite",
@@ -8929,7 +8766,6 @@ export const VpnClientParameters = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "stringElementType",
             type: {
               name: "String"
             }
@@ -8940,7 +8776,7 @@ export const VpnClientParameters = {
   }
 };
 
-export const BgpPeerStatusListResult = {
+export const BgpPeerStatusListResult: msRest.CompositeMapper = {
   serializedName: "BgpPeerStatusListResult",
   type: {
     name: "Composite",
@@ -8951,7 +8787,6 @@ export const BgpPeerStatusListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "BgpPeerStatusElementType",
             type: {
               name: "Composite",
               className: "BgpPeerStatus"
@@ -8963,7 +8798,7 @@ export const BgpPeerStatusListResult = {
   }
 };
 
-export const GatewayRouteListResult = {
+export const GatewayRouteListResult: msRest.CompositeMapper = {
   serializedName: "GatewayRouteListResult",
   type: {
     name: "Composite",
@@ -8974,7 +8809,6 @@ export const GatewayRouteListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "GatewayRouteElementType",
             type: {
               name: "Composite",
               className: "GatewayRoute"
@@ -8986,7 +8820,7 @@ export const GatewayRouteListResult = {
   }
 };
 
-export const TunnelConnectionHealth = {
+export const TunnelConnectionHealth: msRest.CompositeMapper = {
   serializedName: "TunnelConnectionHealth",
   type: {
     name: "Composite",
@@ -9031,7 +8865,7 @@ export const TunnelConnectionHealth = {
   }
 };
 
-export const LocalNetworkGateway = {
+export const LocalNetworkGateway: msRest.CompositeMapper = {
   serializedName: "LocalNetworkGateway",
   type: {
     name: "Composite",
@@ -9081,7 +8915,7 @@ export const LocalNetworkGateway = {
   }
 };
 
-export const VirtualNetworkGatewayConnection = {
+export const VirtualNetworkGatewayConnection: msRest.CompositeMapper = {
   serializedName: "VirtualNetworkGatewayConnection",
   type: {
     name: "Composite",
@@ -9148,7 +8982,6 @@ export const VirtualNetworkGatewayConnection = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "TunnelConnectionHealthElementType",
             type: {
               name: "Composite",
               className: "TunnelConnectionHealth"
@@ -9194,7 +9027,6 @@ export const VirtualNetworkGatewayConnection = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "IpsecPolicyElementType",
             type: {
               name: "Composite",
               className: "IpsecPolicy"
@@ -9225,7 +9057,7 @@ export const VirtualNetworkGatewayConnection = {
   }
 };
 
-export const ConnectionResetSharedKey = {
+export const ConnectionResetSharedKey: msRest.CompositeMapper = {
   serializedName: "ConnectionResetSharedKey",
   type: {
     name: "Composite",
@@ -9246,7 +9078,7 @@ export const ConnectionResetSharedKey = {
   }
 };
 
-export const ConnectionSharedKey = {
+export const ConnectionSharedKey: msRest.CompositeMapper = {
   serializedName: "ConnectionSharedKey",
   type: {
     name: "Composite",
@@ -9263,7 +9095,7 @@ export const ConnectionSharedKey = {
   }
 };
 
-export const VpnClientIPsecParameters = {
+export const VpnClientIPsecParameters: msRest.CompositeMapper = {
   serializedName: "VpnClientIPsecParameters",
   type: {
     name: "Composite",
@@ -9329,7 +9161,7 @@ export const VpnClientIPsecParameters = {
   }
 };
 
-export const VirtualNetworkConnectionGatewayReference = {
+export const VirtualNetworkConnectionGatewayReference: msRest.CompositeMapper = {
   serializedName: "virtualNetworkConnectionGatewayReference",
   type: {
     name: "Composite",
@@ -9346,7 +9178,7 @@ export const VirtualNetworkConnectionGatewayReference = {
   }
 };
 
-export const VirtualNetworkGatewayConnectionListEntity = {
+export const VirtualNetworkGatewayConnectionListEntity: msRest.CompositeMapper = {
   serializedName: "VirtualNetworkGatewayConnectionListEntity",
   type: {
     name: "Composite",
@@ -9413,7 +9245,6 @@ export const VirtualNetworkGatewayConnectionListEntity = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "TunnelConnectionHealthElementType",
             type: {
               name: "Composite",
               className: "TunnelConnectionHealth"
@@ -9459,7 +9290,6 @@ export const VirtualNetworkGatewayConnectionListEntity = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "IpsecPolicyElementType",
             type: {
               name: "Composite",
               className: "IpsecPolicy"
@@ -9490,7 +9320,7 @@ export const VirtualNetworkGatewayConnectionListEntity = {
   }
 };
 
-export const VpnDeviceScriptParameters = {
+export const VpnDeviceScriptParameters: msRest.CompositeMapper = {
   serializedName: "VpnDeviceScriptParameters",
   type: {
     name: "Composite",
@@ -9518,7 +9348,7 @@ export const VpnDeviceScriptParameters = {
   }
 };
 
-export const ApplicationGatewaysBackendHealthOptionalParams = {
+export const ApplicationGatewaysBackendHealthOptionalParams: msRest.CompositeMapper = {
   serializedName: "BackendHealthOptions",
   type: {
     name: "Composite",
@@ -9534,7 +9364,7 @@ export const ApplicationGatewaysBackendHealthOptionalParams = {
   }
 };
 
-export const ApplicationGatewaysBeginBackendHealthOptionalParams = {
+export const ApplicationGatewaysBeginBackendHealthOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginBackendHealthOptions",
   type: {
     name: "Composite",
@@ -9550,7 +9380,7 @@ export const ApplicationGatewaysBeginBackendHealthOptionalParams = {
   }
 };
 
-export const LoadBalancersGetOptionalParams = {
+export const LoadBalancersGetOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetOptions",
   type: {
     name: "Composite",
@@ -9566,7 +9396,7 @@ export const LoadBalancersGetOptionalParams = {
   }
 };
 
-export const InboundNatRulesGetOptionalParams = {
+export const InboundNatRulesGetOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetOptions",
   type: {
     name: "Composite",
@@ -9582,7 +9412,7 @@ export const InboundNatRulesGetOptionalParams = {
   }
 };
 
-export const NetworkInterfacesGetOptionalParams = {
+export const NetworkInterfacesGetOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetOptions",
   type: {
     name: "Composite",
@@ -9598,7 +9428,7 @@ export const NetworkInterfacesGetOptionalParams = {
   }
 };
 
-export const NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams = {
+export const NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetVirtualMachineScaleSetNetworkInterfaceOptions",
   type: {
     name: "Composite",
@@ -9614,7 +9444,7 @@ export const NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalP
   }
 };
 
-export const NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams = {
+export const NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams: msRest.CompositeMapper = {
   serializedName: "ListVirtualMachineScaleSetIpConfigurationsOptions",
   type: {
     name: "Composite",
@@ -9630,7 +9460,7 @@ export const NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptional
   }
 };
 
-export const NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams = {
+export const NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetVirtualMachineScaleSetIpConfigurationOptions",
   type: {
     name: "Composite",
@@ -9646,7 +9476,7 @@ export const NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalPa
   }
 };
 
-export const NetworkSecurityGroupsGetOptionalParams = {
+export const NetworkSecurityGroupsGetOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetOptions",
   type: {
     name: "Composite",
@@ -9662,7 +9492,7 @@ export const NetworkSecurityGroupsGetOptionalParams = {
   }
 };
 
-export const PublicIPAddressesGetOptionalParams = {
+export const PublicIPAddressesGetOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetOptions",
   type: {
     name: "Composite",
@@ -9678,7 +9508,7 @@ export const PublicIPAddressesGetOptionalParams = {
   }
 };
 
-export const PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressOptionalParams = {
+export const PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetVirtualMachineScaleSetPublicIPAddressOptions",
   type: {
     name: "Composite",
@@ -9694,7 +9524,7 @@ export const PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressOptionalPa
   }
 };
 
-export const RouteFiltersGetOptionalParams = {
+export const RouteFiltersGetOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetOptions",
   type: {
     name: "Composite",
@@ -9710,7 +9540,7 @@ export const RouteFiltersGetOptionalParams = {
   }
 };
 
-export const RouteTablesGetOptionalParams = {
+export const RouteTablesGetOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetOptions",
   type: {
     name: "Composite",
@@ -9726,7 +9556,7 @@ export const RouteTablesGetOptionalParams = {
   }
 };
 
-export const VirtualNetworksGetOptionalParams = {
+export const VirtualNetworksGetOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetOptions",
   type: {
     name: "Composite",
@@ -9742,7 +9572,7 @@ export const VirtualNetworksGetOptionalParams = {
   }
 };
 
-export const VirtualNetworksCheckIPAddressAvailabilityOptionalParams = {
+export const VirtualNetworksCheckIPAddressAvailabilityOptionalParams: msRest.CompositeMapper = {
   serializedName: "CheckIPAddressAvailabilityOptions",
   type: {
     name: "Composite",
@@ -9758,7 +9588,7 @@ export const VirtualNetworksCheckIPAddressAvailabilityOptionalParams = {
   }
 };
 
-export const SubnetsGetOptionalParams = {
+export const SubnetsGetOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetOptions",
   type: {
     name: "Composite",
@@ -9774,7 +9604,7 @@ export const SubnetsGetOptionalParams = {
   }
 };
 
-export const VirtualNetworkGatewaysResetOptionalParams = {
+export const VirtualNetworkGatewaysResetOptionalParams: msRest.CompositeMapper = {
   serializedName: "ResetOptions",
   type: {
     name: "Composite",
@@ -9790,7 +9620,7 @@ export const VirtualNetworkGatewaysResetOptionalParams = {
   }
 };
 
-export const VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams = {
+export const VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams: msRest.CompositeMapper = {
   serializedName: "GetBgpPeerStatusOptions",
   type: {
     name: "Composite",
@@ -9806,7 +9636,7 @@ export const VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams = {
   }
 };
 
-export const VirtualNetworkGatewaysBeginResetOptionalParams = {
+export const VirtualNetworkGatewaysBeginResetOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginResetOptions",
   type: {
     name: "Composite",
@@ -9822,7 +9652,7 @@ export const VirtualNetworkGatewaysBeginResetOptionalParams = {
   }
 };
 
-export const VirtualNetworkGatewaysBeginGetBgpPeerStatusOptionalParams = {
+export const VirtualNetworkGatewaysBeginGetBgpPeerStatusOptionalParams: msRest.CompositeMapper = {
   serializedName: "BeginGetBgpPeerStatusOptions",
   type: {
     name: "Composite",
@@ -9838,7 +9668,7 @@ export const VirtualNetworkGatewaysBeginGetBgpPeerStatusOptionalParams = {
   }
 };
 
-export const ApplicationGatewayListResult = {
+export const ApplicationGatewayListResult: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayListResult",
   type: {
     name: "Composite",
@@ -9849,7 +9679,6 @@ export const ApplicationGatewayListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewayElementType",
             type: {
               name: "Composite",
               className: "ApplicationGateway"
@@ -9867,7 +9696,7 @@ export const ApplicationGatewayListResult = {
   }
 };
 
-export const ApplicationGatewayAvailableSslPredefinedPolicies = {
+export const ApplicationGatewayAvailableSslPredefinedPolicies: msRest.CompositeMapper = {
   serializedName: "ApplicationGatewayAvailableSslPredefinedPolicies",
   type: {
     name: "Composite",
@@ -9878,7 +9707,6 @@ export const ApplicationGatewayAvailableSslPredefinedPolicies = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationGatewaySslPredefinedPolicyElementType",
             type: {
               name: "Composite",
               className: "ApplicationGatewaySslPredefinedPolicy"
@@ -9896,7 +9724,7 @@ export const ApplicationGatewayAvailableSslPredefinedPolicies = {
   }
 };
 
-export const ApplicationSecurityGroupListResult = {
+export const ApplicationSecurityGroupListResult: msRest.CompositeMapper = {
   serializedName: "ApplicationSecurityGroupListResult",
   type: {
     name: "Composite",
@@ -9907,7 +9735,6 @@ export const ApplicationSecurityGroupListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ApplicationSecurityGroupElementType",
             type: {
               name: "Composite",
               className: "ApplicationSecurityGroup"
@@ -9926,7 +9753,7 @@ export const ApplicationSecurityGroupListResult = {
   }
 };
 
-export const DdosProtectionPlanListResult = {
+export const DdosProtectionPlanListResult: msRest.CompositeMapper = {
   serializedName: "DdosProtectionPlanListResult",
   type: {
     name: "Composite",
@@ -9937,7 +9764,6 @@ export const DdosProtectionPlanListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "DdosProtectionPlanElementType",
             type: {
               name: "Composite",
               className: "DdosProtectionPlan"
@@ -9956,7 +9782,7 @@ export const DdosProtectionPlanListResult = {
   }
 };
 
-export const EndpointServicesListResult = {
+export const EndpointServicesListResult: msRest.CompositeMapper = {
   serializedName: "EndpointServicesListResult",
   type: {
     name: "Composite",
@@ -9967,7 +9793,6 @@ export const EndpointServicesListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "EndpointServiceResultElementType",
             type: {
               name: "Composite",
               className: "EndpointServiceResult"
@@ -9985,7 +9810,7 @@ export const EndpointServicesListResult = {
   }
 };
 
-export const AuthorizationListResult = {
+export const AuthorizationListResult: msRest.CompositeMapper = {
   serializedName: "AuthorizationListResult",
   type: {
     name: "Composite",
@@ -9996,7 +9821,6 @@ export const AuthorizationListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitAuthorizationElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuitAuthorization"
@@ -10014,7 +9838,7 @@ export const AuthorizationListResult = {
   }
 };
 
-export const ExpressRouteCircuitPeeringListResult = {
+export const ExpressRouteCircuitPeeringListResult: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCircuitPeeringListResult",
   type: {
     name: "Composite",
@@ -10025,7 +9849,6 @@ export const ExpressRouteCircuitPeeringListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitPeeringElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuitPeering"
@@ -10043,7 +9866,7 @@ export const ExpressRouteCircuitPeeringListResult = {
   }
 };
 
-export const ExpressRouteCircuitListResult = {
+export const ExpressRouteCircuitListResult: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCircuitListResult",
   type: {
     name: "Composite",
@@ -10054,7 +9877,6 @@ export const ExpressRouteCircuitListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCircuitElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCircuit"
@@ -10072,7 +9894,7 @@ export const ExpressRouteCircuitListResult = {
   }
 };
 
-export const ExpressRouteServiceProviderListResult = {
+export const ExpressRouteServiceProviderListResult: msRest.CompositeMapper = {
   serializedName: "ExpressRouteServiceProviderListResult",
   type: {
     name: "Composite",
@@ -10083,7 +9905,6 @@ export const ExpressRouteServiceProviderListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteServiceProviderElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteServiceProvider"
@@ -10101,7 +9922,7 @@ export const ExpressRouteServiceProviderListResult = {
   }
 };
 
-export const ExpressRouteCrossConnectionListResult = {
+export const ExpressRouteCrossConnectionListResult: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCrossConnectionListResult",
   type: {
     name: "Composite",
@@ -10112,7 +9933,6 @@ export const ExpressRouteCrossConnectionListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCrossConnectionElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCrossConnection"
@@ -10131,7 +9951,7 @@ export const ExpressRouteCrossConnectionListResult = {
   }
 };
 
-export const ExpressRouteCrossConnectionPeeringList = {
+export const ExpressRouteCrossConnectionPeeringList: msRest.CompositeMapper = {
   serializedName: "ExpressRouteCrossConnectionPeeringList",
   type: {
     name: "Composite",
@@ -10142,7 +9962,6 @@ export const ExpressRouteCrossConnectionPeeringList = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ExpressRouteCrossConnectionPeeringElementType",
             type: {
               name: "Composite",
               className: "ExpressRouteCrossConnectionPeering"
@@ -10161,7 +9980,7 @@ export const ExpressRouteCrossConnectionPeeringList = {
   }
 };
 
-export const LoadBalancerListResult = {
+export const LoadBalancerListResult: msRest.CompositeMapper = {
   serializedName: "LoadBalancerListResult",
   type: {
     name: "Composite",
@@ -10172,7 +9991,6 @@ export const LoadBalancerListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "LoadBalancerElementType",
             type: {
               name: "Composite",
               className: "LoadBalancer"
@@ -10191,7 +10009,7 @@ export const LoadBalancerListResult = {
   }
 };
 
-export const LoadBalancerBackendAddressPoolListResult = {
+export const LoadBalancerBackendAddressPoolListResult: msRest.CompositeMapper = {
   serializedName: "LoadBalancerBackendAddressPoolListResult",
   type: {
     name: "Composite",
@@ -10202,7 +10020,6 @@ export const LoadBalancerBackendAddressPoolListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "BackendAddressPoolElementType",
             type: {
               name: "Composite",
               className: "BackendAddressPool"
@@ -10221,7 +10038,7 @@ export const LoadBalancerBackendAddressPoolListResult = {
   }
 };
 
-export const LoadBalancerFrontendIPConfigurationListResult = {
+export const LoadBalancerFrontendIPConfigurationListResult: msRest.CompositeMapper = {
   serializedName: "LoadBalancerFrontendIPConfigurationListResult",
   type: {
     name: "Composite",
@@ -10232,7 +10049,6 @@ export const LoadBalancerFrontendIPConfigurationListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "FrontendIPConfigurationElementType",
             type: {
               name: "Composite",
               className: "FrontendIPConfiguration"
@@ -10251,7 +10067,7 @@ export const LoadBalancerFrontendIPConfigurationListResult = {
   }
 };
 
-export const InboundNatRuleListResult = {
+export const InboundNatRuleListResult: msRest.CompositeMapper = {
   serializedName: "InboundNatRuleListResult",
   type: {
     name: "Composite",
@@ -10262,7 +10078,6 @@ export const InboundNatRuleListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "InboundNatRuleElementType",
             type: {
               name: "Composite",
               className: "InboundNatRule"
@@ -10281,7 +10096,7 @@ export const InboundNatRuleListResult = {
   }
 };
 
-export const LoadBalancerLoadBalancingRuleListResult = {
+export const LoadBalancerLoadBalancingRuleListResult: msRest.CompositeMapper = {
   serializedName: "LoadBalancerLoadBalancingRuleListResult",
   type: {
     name: "Composite",
@@ -10292,7 +10107,6 @@ export const LoadBalancerLoadBalancingRuleListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "LoadBalancingRuleElementType",
             type: {
               name: "Composite",
               className: "LoadBalancingRule"
@@ -10311,7 +10125,7 @@ export const LoadBalancerLoadBalancingRuleListResult = {
   }
 };
 
-export const NetworkInterfaceListResult = {
+export const NetworkInterfaceListResult: msRest.CompositeMapper = {
   serializedName: "NetworkInterfaceListResult",
   type: {
     name: "Composite",
@@ -10322,7 +10136,6 @@ export const NetworkInterfaceListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "NetworkInterfaceElementType",
             type: {
               name: "Composite",
               className: "NetworkInterface"
@@ -10341,7 +10154,7 @@ export const NetworkInterfaceListResult = {
   }
 };
 
-export const LoadBalancerProbeListResult = {
+export const LoadBalancerProbeListResult: msRest.CompositeMapper = {
   serializedName: "LoadBalancerProbeListResult",
   type: {
     name: "Composite",
@@ -10352,7 +10165,6 @@ export const LoadBalancerProbeListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ProbeElementType",
             type: {
               name: "Composite",
               className: "Probe"
@@ -10371,7 +10183,7 @@ export const LoadBalancerProbeListResult = {
   }
 };
 
-export const NetworkInterfaceIPConfigurationListResult = {
+export const NetworkInterfaceIPConfigurationListResult: msRest.CompositeMapper = {
   serializedName: "NetworkInterfaceIPConfigurationListResult",
   type: {
     name: "Composite",
@@ -10382,7 +10194,6 @@ export const NetworkInterfaceIPConfigurationListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "NetworkInterfaceIPConfigurationElementType",
             type: {
               name: "Composite",
               className: "NetworkInterfaceIPConfiguration"
@@ -10401,7 +10212,7 @@ export const NetworkInterfaceIPConfigurationListResult = {
   }
 };
 
-export const NetworkInterfaceLoadBalancerListResult = {
+export const NetworkInterfaceLoadBalancerListResult: msRest.CompositeMapper = {
   serializedName: "NetworkInterfaceLoadBalancerListResult",
   type: {
     name: "Composite",
@@ -10412,7 +10223,6 @@ export const NetworkInterfaceLoadBalancerListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "LoadBalancerElementType",
             type: {
               name: "Composite",
               className: "LoadBalancer"
@@ -10431,7 +10241,7 @@ export const NetworkInterfaceLoadBalancerListResult = {
   }
 };
 
-export const NetworkSecurityGroupListResult = {
+export const NetworkSecurityGroupListResult: msRest.CompositeMapper = {
   serializedName: "NetworkSecurityGroupListResult",
   type: {
     name: "Composite",
@@ -10442,7 +10252,6 @@ export const NetworkSecurityGroupListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "NetworkSecurityGroupElementType",
             type: {
               name: "Composite",
               className: "NetworkSecurityGroup"
@@ -10460,7 +10269,7 @@ export const NetworkSecurityGroupListResult = {
   }
 };
 
-export const SecurityRuleListResult = {
+export const SecurityRuleListResult: msRest.CompositeMapper = {
   serializedName: "SecurityRuleListResult",
   type: {
     name: "Composite",
@@ -10471,7 +10280,6 @@ export const SecurityRuleListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SecurityRuleElementType",
             type: {
               name: "Composite",
               className: "SecurityRule"
@@ -10489,7 +10297,7 @@ export const SecurityRuleListResult = {
   }
 };
 
-export const NetworkWatcherListResult = {
+export const NetworkWatcherListResult: msRest.CompositeMapper = {
   serializedName: "NetworkWatcherListResult",
   type: {
     name: "Composite",
@@ -10500,7 +10308,6 @@ export const NetworkWatcherListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "NetworkWatcherElementType",
             type: {
               name: "Composite",
               className: "NetworkWatcher"
@@ -10512,7 +10319,7 @@ export const NetworkWatcherListResult = {
   }
 };
 
-export const PacketCaptureListResult = {
+export const PacketCaptureListResult: msRest.CompositeMapper = {
   serializedName: "PacketCaptureListResult",
   type: {
     name: "Composite",
@@ -10523,7 +10330,6 @@ export const PacketCaptureListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "PacketCaptureResultElementType",
             type: {
               name: "Composite",
               className: "PacketCaptureResult"
@@ -10535,7 +10341,7 @@ export const PacketCaptureListResult = {
   }
 };
 
-export const ConnectionMonitorListResult = {
+export const ConnectionMonitorListResult: msRest.CompositeMapper = {
   serializedName: "ConnectionMonitorListResult",
   type: {
     name: "Composite",
@@ -10546,7 +10352,6 @@ export const ConnectionMonitorListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "ConnectionMonitorResultElementType",
             type: {
               name: "Composite",
               className: "ConnectionMonitorResult"
@@ -10558,7 +10363,7 @@ export const ConnectionMonitorListResult = {
   }
 };
 
-export const OperationListResult = {
+export const OperationListResult: msRest.CompositeMapper = {
   serializedName: "OperationListResult",
   type: {
     name: "Composite",
@@ -10569,7 +10374,6 @@ export const OperationListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "OperationElementType",
             type: {
               name: "Composite",
               className: "Operation"
@@ -10587,7 +10391,7 @@ export const OperationListResult = {
   }
 };
 
-export const PublicIPAddressListResult = {
+export const PublicIPAddressListResult: msRest.CompositeMapper = {
   serializedName: "PublicIPAddressListResult",
   type: {
     name: "Composite",
@@ -10598,7 +10402,6 @@ export const PublicIPAddressListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "PublicIPAddressElementType",
             type: {
               name: "Composite",
               className: "PublicIPAddress"
@@ -10616,7 +10419,7 @@ export const PublicIPAddressListResult = {
   }
 };
 
-export const RouteFilterListResult = {
+export const RouteFilterListResult: msRest.CompositeMapper = {
   serializedName: "RouteFilterListResult",
   type: {
     name: "Composite",
@@ -10627,7 +10430,6 @@ export const RouteFilterListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "RouteFilterElementType",
             type: {
               name: "Composite",
               className: "RouteFilter"
@@ -10645,7 +10447,7 @@ export const RouteFilterListResult = {
   }
 };
 
-export const RouteFilterRuleListResult = {
+export const RouteFilterRuleListResult: msRest.CompositeMapper = {
   serializedName: "RouteFilterRuleListResult",
   type: {
     name: "Composite",
@@ -10656,7 +10458,6 @@ export const RouteFilterRuleListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "RouteFilterRuleElementType",
             type: {
               name: "Composite",
               className: "RouteFilterRule"
@@ -10674,7 +10475,7 @@ export const RouteFilterRuleListResult = {
   }
 };
 
-export const RouteTableListResult = {
+export const RouteTableListResult: msRest.CompositeMapper = {
   serializedName: "RouteTableListResult",
   type: {
     name: "Composite",
@@ -10685,7 +10486,6 @@ export const RouteTableListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "RouteTableElementType",
             type: {
               name: "Composite",
               className: "RouteTable"
@@ -10703,7 +10503,7 @@ export const RouteTableListResult = {
   }
 };
 
-export const RouteListResult = {
+export const RouteListResult: msRest.CompositeMapper = {
   serializedName: "RouteListResult",
   type: {
     name: "Composite",
@@ -10714,7 +10514,6 @@ export const RouteListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "RouteElementType",
             type: {
               name: "Composite",
               className: "Route"
@@ -10732,7 +10531,7 @@ export const RouteListResult = {
   }
 };
 
-export const BgpServiceCommunityListResult = {
+export const BgpServiceCommunityListResult: msRest.CompositeMapper = {
   serializedName: "BgpServiceCommunityListResult",
   type: {
     name: "Composite",
@@ -10743,7 +10542,6 @@ export const BgpServiceCommunityListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "BgpServiceCommunityElementType",
             type: {
               name: "Composite",
               className: "BgpServiceCommunity"
@@ -10761,7 +10559,7 @@ export const BgpServiceCommunityListResult = {
   }
 };
 
-export const UsagesListResult = {
+export const UsagesListResult: msRest.CompositeMapper = {
   serializedName: "UsagesListResult",
   type: {
     name: "Composite",
@@ -10772,7 +10570,6 @@ export const UsagesListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "UsageElementType",
             type: {
               name: "Composite",
               className: "Usage"
@@ -10790,7 +10587,7 @@ export const UsagesListResult = {
   }
 };
 
-export const VirtualNetworkListResult = {
+export const VirtualNetworkListResult: msRest.CompositeMapper = {
   serializedName: "VirtualNetworkListResult",
   type: {
     name: "Composite",
@@ -10801,7 +10598,6 @@ export const VirtualNetworkListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VirtualNetworkElementType",
             type: {
               name: "Composite",
               className: "VirtualNetwork"
@@ -10819,7 +10615,7 @@ export const VirtualNetworkListResult = {
   }
 };
 
-export const VirtualNetworkListUsageResult = {
+export const VirtualNetworkListUsageResult: msRest.CompositeMapper = {
   serializedName: "VirtualNetworkListUsageResult",
   type: {
     name: "Composite",
@@ -10831,7 +10627,6 @@ export const VirtualNetworkListUsageResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VirtualNetworkUsageElementType",
             type: {
               name: "Composite",
               className: "VirtualNetworkUsage"
@@ -10849,7 +10644,7 @@ export const VirtualNetworkListUsageResult = {
   }
 };
 
-export const SubnetListResult = {
+export const SubnetListResult: msRest.CompositeMapper = {
   serializedName: "SubnetListResult",
   type: {
     name: "Composite",
@@ -10860,7 +10655,6 @@ export const SubnetListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "SubnetElementType",
             type: {
               name: "Composite",
               className: "Subnet"
@@ -10878,7 +10672,7 @@ export const SubnetListResult = {
   }
 };
 
-export const VirtualNetworkPeeringListResult = {
+export const VirtualNetworkPeeringListResult: msRest.CompositeMapper = {
   serializedName: "VirtualNetworkPeeringListResult",
   type: {
     name: "Composite",
@@ -10889,7 +10683,6 @@ export const VirtualNetworkPeeringListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VirtualNetworkPeeringElementType",
             type: {
               name: "Composite",
               className: "VirtualNetworkPeering"
@@ -10907,7 +10700,7 @@ export const VirtualNetworkPeeringListResult = {
   }
 };
 
-export const VirtualNetworkGatewayListResult = {
+export const VirtualNetworkGatewayListResult: msRest.CompositeMapper = {
   serializedName: "VirtualNetworkGatewayListResult",
   type: {
     name: "Composite",
@@ -10918,7 +10711,6 @@ export const VirtualNetworkGatewayListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VirtualNetworkGatewayElementType",
             type: {
               name: "Composite",
               className: "VirtualNetworkGateway"
@@ -10937,7 +10729,7 @@ export const VirtualNetworkGatewayListResult = {
   }
 };
 
-export const VirtualNetworkGatewayListConnectionsResult = {
+export const VirtualNetworkGatewayListConnectionsResult: msRest.CompositeMapper = {
   serializedName: "VirtualNetworkGatewayListConnectionsResult",
   type: {
     name: "Composite",
@@ -10948,7 +10740,6 @@ export const VirtualNetworkGatewayListConnectionsResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VirtualNetworkGatewayConnectionListEntityElementType",
             type: {
               name: "Composite",
               className: "VirtualNetworkGatewayConnectionListEntity"
@@ -10967,7 +10758,7 @@ export const VirtualNetworkGatewayListConnectionsResult = {
   }
 };
 
-export const VirtualNetworkGatewayConnectionListResult = {
+export const VirtualNetworkGatewayConnectionListResult: msRest.CompositeMapper = {
   serializedName: "VirtualNetworkGatewayConnectionListResult",
   type: {
     name: "Composite",
@@ -10978,7 +10769,6 @@ export const VirtualNetworkGatewayConnectionListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "VirtualNetworkGatewayConnectionElementType",
             type: {
               name: "Composite",
               className: "VirtualNetworkGatewayConnection"
@@ -10997,7 +10787,7 @@ export const VirtualNetworkGatewayConnectionListResult = {
   }
 };
 
-export const LocalNetworkGatewayListResult = {
+export const LocalNetworkGatewayListResult: msRest.CompositeMapper = {
   serializedName: "LocalNetworkGatewayListResult",
   type: {
     name: "Composite",
@@ -11008,7 +10798,6 @@ export const LocalNetworkGatewayListResult = {
         type: {
           name: "Sequence",
           element: {
-            serializedName: "LocalNetworkGatewayElementType",
             type: {
               name: "Composite",
               className: "LocalNetworkGateway"

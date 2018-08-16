@@ -39,7 +39,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdate(resourceGroupName: string, networkWatcherName: string, parameters: Models.NetworkWatcher, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkWatcher>> {
+  createOrUpdate(resourceGroupName: string, networkWatcherName: string, parameters: Models.NetworkWatcher, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -47,7 +47,7 @@ export class NetworkWatchers {
         parameters,
         options
       },
-      createOrUpdateOperationSpec);
+      createOrUpdateOperationSpec) as Promise<Models.NetworkWatchersCreateOrUpdateResponse>;
   }
 
   /**
@@ -65,14 +65,14 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkWatcher>> {
+  get(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         networkWatcherName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.NetworkWatchersGetResponse>;
   }
 
 
@@ -91,7 +91,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  deleteMethod(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDeleteMethod(resourceGroupName, networkWatcherName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -118,7 +118,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  updateTags(resourceGroupName: string, networkWatcherName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkWatcher>> {
+  updateTags(resourceGroupName: string, networkWatcherName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersUpdateTagsResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -126,7 +126,7 @@ export class NetworkWatchers {
         parameters,
         options
       },
-      updateTagsOperationSpec);
+      updateTagsOperationSpec) as Promise<Models.NetworkWatchersUpdateTagsResponse>;
   }
 
   /**
@@ -142,13 +142,13 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkWatcherListResult>> {
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.NetworkWatchersListResponse>;
   }
 
   /**
@@ -162,12 +162,12 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAll(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkWatcherListResult>> {
+  listAll(options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersListAllResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listAllOperationSpec);
+      listAllOperationSpec) as Promise<Models.NetworkWatchersListAllResponse>;
   }
 
   /**
@@ -187,7 +187,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getTopology(resourceGroupName: string, networkWatcherName: string, parameters: Models.TopologyParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Topology>> {
+  getTopology(resourceGroupName: string, networkWatcherName: string, parameters: Models.TopologyParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersGetTopologyResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -195,7 +195,7 @@ export class NetworkWatchers {
         parameters,
         options
       },
-      getTopologyOperationSpec);
+      getTopologyOperationSpec) as Promise<Models.NetworkWatchersGetTopologyResponse>;
   }
 
 
@@ -217,7 +217,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  verifyIPFlow(resourceGroupName: string, networkWatcherName: string, parameters: Models.VerificationIPFlowParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  verifyIPFlow(resourceGroupName: string, networkWatcherName: string, parameters: Models.VerificationIPFlowParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersVerifyIPFlowResponse> {
     return this.beginVerifyIPFlow(resourceGroupName, networkWatcherName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -237,7 +237,7 @@ export class NetworkWatchers {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.NetworkWatchersVerifyIPFlowResponse>;
   }
 
 
@@ -259,7 +259,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getNextHop(resourceGroupName: string, networkWatcherName: string, parameters: Models.NextHopParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  getNextHop(resourceGroupName: string, networkWatcherName: string, parameters: Models.NextHopParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersGetNextHopResponse> {
     return this.beginGetNextHop(resourceGroupName, networkWatcherName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -279,7 +279,7 @@ export class NetworkWatchers {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.NetworkWatchersGetNextHopResponse>;
   }
 
 
@@ -301,7 +301,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getVMSecurityRules(resourceGroupName: string, networkWatcherName: string, parameters: Models.SecurityGroupViewParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  getVMSecurityRules(resourceGroupName: string, networkWatcherName: string, parameters: Models.SecurityGroupViewParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersGetVMSecurityRulesResponse> {
     return this.beginGetVMSecurityRules(resourceGroupName, networkWatcherName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -321,7 +321,7 @@ export class NetworkWatchers {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.NetworkWatchersGetVMSecurityRulesResponse>;
   }
 
 
@@ -343,7 +343,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getTroubleshooting(resourceGroupName: string, networkWatcherName: string, parameters: Models.TroubleshootingParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  getTroubleshooting(resourceGroupName: string, networkWatcherName: string, parameters: Models.TroubleshootingParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersGetTroubleshootingResponse> {
     return this.beginGetTroubleshooting(resourceGroupName, networkWatcherName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -363,7 +363,7 @@ export class NetworkWatchers {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.NetworkWatchersGetTroubleshootingResponse>;
   }
 
 
@@ -385,7 +385,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getTroubleshootingResult(resourceGroupName: string, networkWatcherName: string, parameters: Models.QueryTroubleshootingParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  getTroubleshootingResult(resourceGroupName: string, networkWatcherName: string, parameters: Models.QueryTroubleshootingParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersGetTroubleshootingResultResponse> {
     return this.beginGetTroubleshootingResult(resourceGroupName, networkWatcherName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -405,7 +405,7 @@ export class NetworkWatchers {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.NetworkWatchersGetTroubleshootingResultResponse>;
   }
 
 
@@ -426,7 +426,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  setFlowLogConfiguration(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogInformation, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  setFlowLogConfiguration(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogInformation, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersSetFlowLogConfigurationResponse> {
     return this.beginSetFlowLogConfiguration(resourceGroupName, networkWatcherName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -446,7 +446,7 @@ export class NetworkWatchers {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.NetworkWatchersSetFlowLogConfigurationResponse>;
   }
 
 
@@ -468,7 +468,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getFlowLogStatus(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogStatusParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  getFlowLogStatus(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogStatusParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersGetFlowLogStatusResponse> {
     return this.beginGetFlowLogStatus(resourceGroupName, networkWatcherName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -488,7 +488,7 @@ export class NetworkWatchers {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.NetworkWatchersGetFlowLogStatusResponse>;
   }
 
 
@@ -511,7 +511,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  checkConnectivity(resourceGroupName: string, networkWatcherName: string, parameters: Models.ConnectivityParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  checkConnectivity(resourceGroupName: string, networkWatcherName: string, parameters: Models.ConnectivityParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersCheckConnectivityResponse> {
     return this.beginCheckConnectivity(resourceGroupName, networkWatcherName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -531,7 +531,7 @@ export class NetworkWatchers {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.NetworkWatchersCheckConnectivityResponse>;
   }
 
 
@@ -554,7 +554,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getAzureReachabilityReport(resourceGroupName: string, networkWatcherName: string, parameters: Models.AzureReachabilityReportParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  getAzureReachabilityReport(resourceGroupName: string, networkWatcherName: string, parameters: Models.AzureReachabilityReportParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersGetAzureReachabilityReportResponse> {
     return this.beginGetAzureReachabilityReport(resourceGroupName, networkWatcherName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -574,7 +574,7 @@ export class NetworkWatchers {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.NetworkWatchersGetAzureReachabilityReportResponse>;
   }
 
 
@@ -596,7 +596,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAvailableProviders(resourceGroupName: string, networkWatcherName: string, parameters: Models.AvailableProvidersListParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  listAvailableProviders(resourceGroupName: string, networkWatcherName: string, parameters: Models.AvailableProvidersListParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersListAvailableProvidersResponse> {
     return this.beginListAvailableProviders(resourceGroupName, networkWatcherName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -616,7 +616,7 @@ export class NetworkWatchers {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.NetworkWatchersListAvailableProvidersResponse>;
   }
 
   /**
@@ -634,7 +634,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -662,7 +662,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginVerifyIPFlow(resourceGroupName: string, networkWatcherName: string, parameters: Models.VerificationIPFlowParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VerificationIPFlowResult>> {
+  beginVerifyIPFlow(resourceGroupName: string, networkWatcherName: string, parameters: Models.VerificationIPFlowParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersBeginVerifyIPFlowResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -670,7 +670,7 @@ export class NetworkWatchers {
         parameters,
         options
       },
-      beginVerifyIPFlowOperationSpec);
+      beginVerifyIPFlowOperationSpec) as Promise<Models.NetworkWatchersBeginVerifyIPFlowResponse>;
   }
 
   /**
@@ -691,7 +691,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetNextHop(resourceGroupName: string, networkWatcherName: string, parameters: Models.NextHopParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NextHopResult>> {
+  beginGetNextHop(resourceGroupName: string, networkWatcherName: string, parameters: Models.NextHopParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersBeginGetNextHopResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -699,7 +699,7 @@ export class NetworkWatchers {
         parameters,
         options
       },
-      beginGetNextHopOperationSpec);
+      beginGetNextHopOperationSpec) as Promise<Models.NetworkWatchersBeginGetNextHopResponse>;
   }
 
   /**
@@ -720,7 +720,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetVMSecurityRules(resourceGroupName: string, networkWatcherName: string, parameters: Models.SecurityGroupViewParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.SecurityGroupViewResult>> {
+  beginGetVMSecurityRules(resourceGroupName: string, networkWatcherName: string, parameters: Models.SecurityGroupViewParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersBeginGetVMSecurityRulesResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -728,7 +728,7 @@ export class NetworkWatchers {
         parameters,
         options
       },
-      beginGetVMSecurityRulesOperationSpec);
+      beginGetVMSecurityRulesOperationSpec) as Promise<Models.NetworkWatchersBeginGetVMSecurityRulesResponse>;
   }
 
   /**
@@ -749,7 +749,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetTroubleshooting(resourceGroupName: string, networkWatcherName: string, parameters: Models.TroubleshootingParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.TroubleshootingResult>> {
+  beginGetTroubleshooting(resourceGroupName: string, networkWatcherName: string, parameters: Models.TroubleshootingParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersBeginGetTroubleshootingResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -757,7 +757,7 @@ export class NetworkWatchers {
         parameters,
         options
       },
-      beginGetTroubleshootingOperationSpec);
+      beginGetTroubleshootingOperationSpec) as Promise<Models.NetworkWatchersBeginGetTroubleshootingResponse>;
   }
 
   /**
@@ -778,7 +778,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetTroubleshootingResult(resourceGroupName: string, networkWatcherName: string, parameters: Models.QueryTroubleshootingParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.TroubleshootingResult>> {
+  beginGetTroubleshootingResult(resourceGroupName: string, networkWatcherName: string, parameters: Models.QueryTroubleshootingParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersBeginGetTroubleshootingResultResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -786,7 +786,7 @@ export class NetworkWatchers {
         parameters,
         options
       },
-      beginGetTroubleshootingResultOperationSpec);
+      beginGetTroubleshootingResultOperationSpec) as Promise<Models.NetworkWatchersBeginGetTroubleshootingResultResponse>;
   }
 
   /**
@@ -806,7 +806,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginSetFlowLogConfiguration(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogInformation, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FlowLogInformation>> {
+  beginSetFlowLogConfiguration(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogInformation, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersBeginSetFlowLogConfigurationResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -814,7 +814,7 @@ export class NetworkWatchers {
         parameters,
         options
       },
-      beginSetFlowLogConfigurationOperationSpec);
+      beginSetFlowLogConfigurationOperationSpec) as Promise<Models.NetworkWatchersBeginSetFlowLogConfigurationResponse>;
   }
 
   /**
@@ -835,7 +835,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetFlowLogStatus(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogStatusParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FlowLogInformation>> {
+  beginGetFlowLogStatus(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogStatusParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersBeginGetFlowLogStatusResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -843,7 +843,7 @@ export class NetworkWatchers {
         parameters,
         options
       },
-      beginGetFlowLogStatusOperationSpec);
+      beginGetFlowLogStatusOperationSpec) as Promise<Models.NetworkWatchersBeginGetFlowLogStatusResponse>;
   }
 
   /**
@@ -865,7 +865,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCheckConnectivity(resourceGroupName: string, networkWatcherName: string, parameters: Models.ConnectivityParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectivityInformation>> {
+  beginCheckConnectivity(resourceGroupName: string, networkWatcherName: string, parameters: Models.ConnectivityParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersBeginCheckConnectivityResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -873,7 +873,7 @@ export class NetworkWatchers {
         parameters,
         options
       },
-      beginCheckConnectivityOperationSpec);
+      beginCheckConnectivityOperationSpec) as Promise<Models.NetworkWatchersBeginCheckConnectivityResponse>;
   }
 
   /**
@@ -895,7 +895,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetAzureReachabilityReport(resourceGroupName: string, networkWatcherName: string, parameters: Models.AzureReachabilityReportParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.AzureReachabilityReport>> {
+  beginGetAzureReachabilityReport(resourceGroupName: string, networkWatcherName: string, parameters: Models.AzureReachabilityReportParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersBeginGetAzureReachabilityReportResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -903,7 +903,7 @@ export class NetworkWatchers {
         parameters,
         options
       },
-      beginGetAzureReachabilityReportOperationSpec);
+      beginGetAzureReachabilityReportOperationSpec) as Promise<Models.NetworkWatchersBeginGetAzureReachabilityReportResponse>;
   }
 
   /**
@@ -924,7 +924,7 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginListAvailableProviders(resourceGroupName: string, networkWatcherName: string, parameters: Models.AvailableProvidersListParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.AvailableProvidersList>> {
+  beginListAvailableProviders(resourceGroupName: string, networkWatcherName: string, parameters: Models.AvailableProvidersListParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersBeginListAvailableProvidersResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -932,7 +932,7 @@ export class NetworkWatchers {
         parameters,
         options
       },
-      beginListAvailableProvidersOperationSpec);
+      beginListAvailableProvidersOperationSpec) as Promise<Models.NetworkWatchersBeginListAvailableProvidersResponse>;
   }
 
 }

@@ -37,14 +37,14 @@ export class LoadBalancerFrontendIPConfigurations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerFrontendIPConfigurationListResult>> {
+  list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancerFrontendIPConfigurationsListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         loadBalancerName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.LoadBalancerFrontendIPConfigurationsListResponse>;
   }
 
   /**
@@ -64,7 +64,7 @@ export class LoadBalancerFrontendIPConfigurations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, loadBalancerName: string, frontendIPConfigurationName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.FrontendIPConfiguration>> {
+  get(resourceGroupName: string, loadBalancerName: string, frontendIPConfigurationName: string, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancerFrontendIPConfigurationsGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -72,7 +72,7 @@ export class LoadBalancerFrontendIPConfigurations {
         frontendIPConfigurationName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.LoadBalancerFrontendIPConfigurationsGetResponse>;
   }
 
   /**
@@ -88,13 +88,13 @@ export class LoadBalancerFrontendIPConfigurations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerFrontendIPConfigurationListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancerFrontendIPConfigurationsListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.LoadBalancerFrontendIPConfigurationsListNextResponse>;
   }
 
 }

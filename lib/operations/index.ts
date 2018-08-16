@@ -4,60 +4,44 @@
  * regenerated.
  */
 
-import { ApplicationGateways } from "./applicationGateways";
-import { ApplicationSecurityGroups } from "./applicationSecurityGroups";
-import { DdosProtectionPlans } from "./ddosProtectionPlans";
-import { AvailableEndpointServices } from "./availableEndpointServices";
-import { ExpressRouteCircuitAuthorizations } from "./expressRouteCircuitAuthorizations";
-import { ExpressRouteCircuitPeerings } from "./expressRouteCircuitPeerings";
-import { ExpressRouteCircuitConnections } from "./expressRouteCircuitConnections";
-import { ExpressRouteCircuits } from "./expressRouteCircuits";
-import { ExpressRouteServiceProviders } from "./expressRouteServiceProviders";
-import { ExpressRouteCrossConnections } from "./expressRouteCrossConnections";
-import { ExpressRouteCrossConnectionPeerings } from "./expressRouteCrossConnectionPeerings";
-import { LoadBalancers } from "./loadBalancers";
-import { LoadBalancerBackendAddressPools } from "./loadBalancerBackendAddressPools";
-import { LoadBalancerFrontendIPConfigurations } from "./loadBalancerFrontendIPConfigurations";
-import { InboundNatRules } from "./inboundNatRules";
-import { LoadBalancerLoadBalancingRules } from "./loadBalancerLoadBalancingRules";
-import { LoadBalancerNetworkInterfaces } from "./loadBalancerNetworkInterfaces";
-import { LoadBalancerProbes } from "./loadBalancerProbes";
-import { NetworkInterfaces } from "./networkInterfaces";
-import { NetworkInterfaceIPConfigurations } from "./networkInterfaceIPConfigurations";
-import { NetworkInterfaceLoadBalancers } from "./networkInterfaceLoadBalancers";
-import { NetworkSecurityGroups } from "./networkSecurityGroups";
-import { SecurityRules } from "./securityRules";
-import { DefaultSecurityRules } from "./defaultSecurityRules";
-import { NetworkWatchers } from "./networkWatchers";
-import { PacketCaptures } from "./packetCaptures";
-import { ConnectionMonitors } from "./connectionMonitors";
-import { Operations } from "./operations";
-import { PublicIPAddresses } from "./publicIPAddresses";
-import { RouteFilters } from "./routeFilters";
-import { RouteFilterRules } from "./routeFilterRules";
-import { RouteTables } from "./routeTables";
-import { Routes } from "./routes";
-import { BgpServiceCommunities } from "./bgpServiceCommunities";
-import { Usages } from "./usages";
-import { VirtualNetworks } from "./virtualNetworks";
-import { Subnets } from "./subnets";
-import { VirtualNetworkPeerings } from "./virtualNetworkPeerings";
-import { VirtualNetworkGateways } from "./virtualNetworkGateways";
-import { VirtualNetworkGatewayConnections } from "./virtualNetworkGatewayConnections";
-import { LocalNetworkGateways } from "./localNetworkGateways";
-
-export { ApplicationGateways, ApplicationSecurityGroups, DdosProtectionPlans,
-AvailableEndpointServices, ExpressRouteCircuitAuthorizations,
-ExpressRouteCircuitPeerings, ExpressRouteCircuitConnections,
-ExpressRouteCircuits, ExpressRouteServiceProviders,
-ExpressRouteCrossConnections, ExpressRouteCrossConnectionPeerings,
-LoadBalancers, LoadBalancerBackendAddressPools,
-LoadBalancerFrontendIPConfigurations, InboundNatRules,
-LoadBalancerLoadBalancingRules, LoadBalancerNetworkInterfaces,
-LoadBalancerProbes, NetworkInterfaces, NetworkInterfaceIPConfigurations,
-NetworkInterfaceLoadBalancers, NetworkSecurityGroups, SecurityRules,
-DefaultSecurityRules, NetworkWatchers, PacketCaptures, ConnectionMonitors,
-Operations, PublicIPAddresses, RouteFilters, RouteFilterRules, RouteTables,
-Routes, BgpServiceCommunities, Usages, VirtualNetworks, Subnets,
-VirtualNetworkPeerings, VirtualNetworkGateways,
-VirtualNetworkGatewayConnections, LocalNetworkGateways };
+export * from "./applicationGateways";
+export * from "./applicationSecurityGroups";
+export * from "./ddosProtectionPlans";
+export * from "./availableEndpointServices";
+export * from "./expressRouteCircuitAuthorizations";
+export * from "./expressRouteCircuitPeerings";
+export * from "./expressRouteCircuitConnections";
+export * from "./expressRouteCircuits";
+export * from "./expressRouteServiceProviders";
+export * from "./expressRouteCrossConnections";
+export * from "./expressRouteCrossConnectionPeerings";
+export * from "./loadBalancers";
+export * from "./loadBalancerBackendAddressPools";
+export * from "./loadBalancerFrontendIPConfigurations";
+export * from "./inboundNatRules";
+export * from "./loadBalancerLoadBalancingRules";
+export * from "./loadBalancerNetworkInterfaces";
+export * from "./loadBalancerProbes";
+export * from "./networkInterfaces";
+export * from "./networkInterfaceIPConfigurations";
+export * from "./networkInterfaceLoadBalancers";
+export * from "./networkSecurityGroups";
+export * from "./securityRules";
+export * from "./defaultSecurityRules";
+export * from "./networkWatchers";
+export * from "./packetCaptures";
+export * from "./connectionMonitors";
+export * from "./operations";
+export * from "./publicIPAddresses";
+export * from "./routeFilters";
+export * from "./routeFilterRules";
+export * from "./routeTables";
+export * from "./routes";
+export * from "./bgpServiceCommunities";
+export * from "./usages";
+export * from "./virtualNetworks";
+export * from "./subnets";
+export * from "./virtualNetworkPeerings";
+export * from "./virtualNetworkGateways";
+export * from "./virtualNetworkGatewayConnections";
+export * from "./localNetworkGateways";

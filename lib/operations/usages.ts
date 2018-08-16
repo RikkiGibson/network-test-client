@@ -35,13 +35,13 @@ export class Usages {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(location: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.UsagesListResult>> {
+  list(location: string, options?: msRest.RequestOptionsBase): Promise<Models.UsagesListResponse> {
     return this.client.sendOperationRequest(
       {
         location,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.UsagesListResponse>;
   }
 
   /**
@@ -57,13 +57,13 @@ export class Usages {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.UsagesListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.UsagesListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.UsagesListNextResponse>;
   }
 
 }

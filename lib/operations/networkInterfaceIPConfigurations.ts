@@ -37,14 +37,14 @@ export class NetworkInterfaceIPConfigurations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceIPConfigurationListResult>> {
+  list(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceIPConfigurationsListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         networkInterfaceName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.NetworkInterfaceIPConfigurationsListResponse>;
   }
 
   /**
@@ -64,7 +64,7 @@ export class NetworkInterfaceIPConfigurations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, networkInterfaceName: string, ipConfigurationName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceIPConfiguration>> {
+  get(resourceGroupName: string, networkInterfaceName: string, ipConfigurationName: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceIPConfigurationsGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -72,7 +72,7 @@ export class NetworkInterfaceIPConfigurations {
         ipConfigurationName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.NetworkInterfaceIPConfigurationsGetResponse>;
   }
 
   /**
@@ -88,13 +88,13 @@ export class NetworkInterfaceIPConfigurations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceIPConfigurationListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceIPConfigurationsListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.NetworkInterfaceIPConfigurationsListNextResponse>;
   }
 
 }

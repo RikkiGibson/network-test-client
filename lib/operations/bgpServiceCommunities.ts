@@ -33,12 +33,12 @@ export class BgpServiceCommunities {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.BgpServiceCommunityListResult>> {
+  list(options?: msRest.RequestOptionsBase): Promise<Models.BgpServiceCommunitiesListResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.BgpServiceCommunitiesListResponse>;
   }
 
   /**
@@ -54,13 +54,13 @@ export class BgpServiceCommunities {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.BgpServiceCommunityListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.BgpServiceCommunitiesListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.BgpServiceCommunitiesListNextResponse>;
   }
 
 }

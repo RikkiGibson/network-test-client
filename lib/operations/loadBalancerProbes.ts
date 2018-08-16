@@ -37,14 +37,14 @@ export class LoadBalancerProbes {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerProbeListResult>> {
+  list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancerProbesListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         loadBalancerName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.LoadBalancerProbesListResponse>;
   }
 
   /**
@@ -64,7 +64,7 @@ export class LoadBalancerProbes {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, loadBalancerName: string, probeName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Probe>> {
+  get(resourceGroupName: string, loadBalancerName: string, probeName: string, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancerProbesGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -72,7 +72,7 @@ export class LoadBalancerProbes {
         probeName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.LoadBalancerProbesGetResponse>;
   }
 
   /**
@@ -88,13 +88,13 @@ export class LoadBalancerProbes {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerProbeListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancerProbesListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.LoadBalancerProbesListNextResponse>;
   }
 
 }

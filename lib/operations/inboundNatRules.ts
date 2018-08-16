@@ -37,14 +37,14 @@ export class InboundNatRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.InboundNatRuleListResult>> {
+  list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<Models.InboundNatRulesListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         loadBalancerName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.InboundNatRulesListResponse>;
   }
 
 
@@ -65,7 +65,7 @@ export class InboundNatRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  deleteMethod(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDeleteMethod(resourceGroupName, loadBalancerName, inboundNatRuleName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -92,7 +92,7 @@ export class InboundNatRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: Models.InboundNatRulesGetOptionalParams): Promise<msRest.HttpOperationResponse<Models.InboundNatRule>> {
+  get(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: Models.InboundNatRulesGetOptionalParams): Promise<Models.InboundNatRulesGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -100,7 +100,7 @@ export class InboundNatRules {
         inboundNatRuleName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.InboundNatRulesGetResponse>;
   }
 
 
@@ -124,7 +124,7 @@ export class InboundNatRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  createOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule, options?: msRest.RequestOptionsBase): Promise<Models.InboundNatRulesCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, loadBalancerName, inboundNatRuleName, inboundNatRuleParameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -144,7 +144,7 @@ export class InboundNatRules {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.InboundNatRulesCreateOrUpdateResponse>;
   }
 
   /**
@@ -164,7 +164,7 @@ export class InboundNatRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -195,7 +195,7 @@ export class InboundNatRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.InboundNatRule>> {
+  beginCreateOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule, options?: msRest.RequestOptionsBase): Promise<Models.InboundNatRulesBeginCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -204,7 +204,7 @@ export class InboundNatRules {
         inboundNatRuleParameters,
         options
       },
-      beginCreateOrUpdateOperationSpec);
+      beginCreateOrUpdateOperationSpec) as Promise<Models.InboundNatRulesBeginCreateOrUpdateResponse>;
   }
 
   /**
@@ -220,13 +220,13 @@ export class InboundNatRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.InboundNatRuleListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.InboundNatRulesListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.InboundNatRulesListNextResponse>;
   }
 
 }

@@ -42,7 +42,7 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  createOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayConnectionsCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -62,7 +62,7 @@ export class VirtualNetworkGatewayConnections {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.VirtualNetworkGatewayConnectionsCreateOrUpdateResponse>;
   }
 
   /**
@@ -81,14 +81,14 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnection>> {
+  get(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayConnectionsGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         virtualNetworkGatewayConnectionName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.VirtualNetworkGatewayConnectionsGetResponse>;
   }
 
 
@@ -108,7 +108,7 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  deleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDeleteMethod(resourceGroupName, virtualNetworkGatewayConnectionName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -138,7 +138,7 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  updateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  updateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayConnectionsUpdateTagsResponse> {
     return this.beginUpdateTags(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -158,7 +158,7 @@ export class VirtualNetworkGatewayConnections {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.VirtualNetworkGatewayConnectionsUpdateTagsResponse>;
   }
 
 
@@ -182,7 +182,7 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  setSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  setSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayConnectionsSetSharedKeyResponse> {
     return this.beginSetSharedKey(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -202,7 +202,7 @@ export class VirtualNetworkGatewayConnections {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.VirtualNetworkGatewayConnectionsSetSharedKeyResponse>;
   }
 
   /**
@@ -222,14 +222,14 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionSharedKey>> {
+  getSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayConnectionsGetSharedKeyResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         virtualNetworkGatewayConnectionName,
         options
       },
-      getSharedKeyOperationSpec);
+      getSharedKeyOperationSpec) as Promise<Models.VirtualNetworkGatewayConnectionsGetSharedKeyResponse>;
   }
 
   /**
@@ -246,13 +246,13 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnectionListResult>> {
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayConnectionsListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.VirtualNetworkGatewayConnectionsListResponse>;
   }
 
 
@@ -277,7 +277,7 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  resetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  resetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayConnectionsResetSharedKeyResponse> {
     return this.beginResetSharedKey(resourceGroupName, virtualNetworkGatewayConnectionName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -297,7 +297,7 @@ export class VirtualNetworkGatewayConnections {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.VirtualNetworkGatewayConnectionsResetSharedKeyResponse>;
   }
 
   /**
@@ -319,7 +319,7 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnection>> {
+  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VirtualNetworkGatewayConnection, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayConnectionsBeginCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -327,7 +327,7 @@ export class VirtualNetworkGatewayConnections {
         parameters,
         options
       },
-      beginCreateOrUpdateOperationSpec);
+      beginCreateOrUpdateOperationSpec) as Promise<Models.VirtualNetworkGatewayConnectionsBeginCreateOrUpdateResponse>;
   }
 
   /**
@@ -346,7 +346,7 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -375,7 +375,7 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnectionListEntity>> {
+  beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayConnectionsBeginUpdateTagsResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -383,7 +383,7 @@ export class VirtualNetworkGatewayConnections {
         parameters,
         options
       },
-      beginUpdateTagsOperationSpec);
+      beginUpdateTagsOperationSpec) as Promise<Models.VirtualNetworkGatewayConnectionsBeginUpdateTagsResponse>;
   }
 
   /**
@@ -406,7 +406,7 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginSetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionSharedKey>> {
+  beginSetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionSharedKey, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayConnectionsBeginSetSharedKeyResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -414,7 +414,7 @@ export class VirtualNetworkGatewayConnections {
         parameters,
         options
       },
-      beginSetSharedKeyOperationSpec);
+      beginSetSharedKeyOperationSpec) as Promise<Models.VirtualNetworkGatewayConnectionsBeginSetSharedKeyResponse>;
   }
 
   /**
@@ -438,7 +438,7 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginResetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionResetSharedKey>> {
+  beginResetSharedKey(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.ConnectionResetSharedKey, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayConnectionsBeginResetSharedKeyResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -446,7 +446,7 @@ export class VirtualNetworkGatewayConnections {
         parameters,
         options
       },
-      beginResetSharedKeyOperationSpec);
+      beginResetSharedKeyOperationSpec) as Promise<Models.VirtualNetworkGatewayConnectionsBeginResetSharedKeyResponse>;
   }
 
   /**
@@ -463,13 +463,13 @@ export class VirtualNetworkGatewayConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayConnectionListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewayConnectionsListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.VirtualNetworkGatewayConnectionsListNextResponse>;
   }
 
 }

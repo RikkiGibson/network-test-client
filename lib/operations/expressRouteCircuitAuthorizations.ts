@@ -40,7 +40,7 @@ export class ExpressRouteCircuitAuthorizations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  deleteMethod(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDeleteMethod(resourceGroupName, circuitName, authorizationName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -67,7 +67,7 @@ export class ExpressRouteCircuitAuthorizations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitAuthorization>> {
+  get(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitAuthorizationsGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -75,7 +75,7 @@ export class ExpressRouteCircuitAuthorizations {
         authorizationName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.ExpressRouteCircuitAuthorizationsGetResponse>;
   }
 
 
@@ -99,7 +99,7 @@ export class ExpressRouteCircuitAuthorizations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  createOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, circuitName, authorizationName, authorizationParameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -119,7 +119,7 @@ export class ExpressRouteCircuitAuthorizations {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse>;
   }
 
   /**
@@ -137,14 +137,14 @@ export class ExpressRouteCircuitAuthorizations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, circuitName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.AuthorizationListResult>> {
+  list(resourceGroupName: string, circuitName: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitAuthorizationsListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         circuitName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.ExpressRouteCircuitAuthorizationsListResponse>;
   }
 
   /**
@@ -164,7 +164,7 @@ export class ExpressRouteCircuitAuthorizations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -195,7 +195,7 @@ export class ExpressRouteCircuitAuthorizations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitAuthorization>> {
+  beginCreateOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitAuthorizationsBeginCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -204,7 +204,7 @@ export class ExpressRouteCircuitAuthorizations {
         authorizationParameters,
         options
       },
-      beginCreateOrUpdateOperationSpec);
+      beginCreateOrUpdateOperationSpec) as Promise<Models.ExpressRouteCircuitAuthorizationsBeginCreateOrUpdateResponse>;
   }
 
   /**
@@ -220,13 +220,13 @@ export class ExpressRouteCircuitAuthorizations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.AuthorizationListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitAuthorizationsListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.ExpressRouteCircuitAuthorizationsListNextResponse>;
   }
 
 }

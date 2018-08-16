@@ -33,12 +33,12 @@ export class ExpressRouteServiceProviders {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteServiceProviderListResult>> {
+  list(options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteServiceProvidersListResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.ExpressRouteServiceProvidersListResponse>;
   }
 
   /**
@@ -54,13 +54,13 @@ export class ExpressRouteServiceProviders {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteServiceProviderListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteServiceProvidersListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.ExpressRouteServiceProvidersListNextResponse>;
   }
 
 }

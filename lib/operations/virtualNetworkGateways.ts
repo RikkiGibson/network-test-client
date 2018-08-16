@@ -41,7 +41,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  createOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, virtualNetworkGatewayName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -61,7 +61,7 @@ export class VirtualNetworkGateways {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.VirtualNetworkGatewaysCreateOrUpdateResponse>;
   }
 
   /**
@@ -79,14 +79,14 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGateway>> {
+  get(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         virtualNetworkGatewayName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.VirtualNetworkGatewaysGetResponse>;
   }
 
 
@@ -105,7 +105,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  deleteMethod(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDeleteMethod(resourceGroupName, virtualNetworkGatewayName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -133,7 +133,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  updateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  updateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysUpdateTagsResponse> {
     return this.beginUpdateTags(resourceGroupName, virtualNetworkGatewayName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -153,7 +153,7 @@ export class VirtualNetworkGateways {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.VirtualNetworkGatewaysUpdateTagsResponse>;
   }
 
   /**
@@ -169,13 +169,13 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayListResult>> {
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.VirtualNetworkGatewaysListResponse>;
   }
 
   /**
@@ -193,14 +193,14 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listConnections(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayListConnectionsResult>> {
+  listConnections(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysListConnectionsResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         virtualNetworkGatewayName,
         options
       },
-      listConnectionsOperationSpec);
+      listConnectionsOperationSpec) as Promise<Models.VirtualNetworkGatewaysListConnectionsResponse>;
   }
 
 
@@ -219,7 +219,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  reset(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysResetOptionalParams): Promise<msRest.HttpOperationResponse> {
+  reset(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysResetOptionalParams): Promise<Models.VirtualNetworkGatewaysResetResponse> {
     return this.beginReset(resourceGroupName, virtualNetworkGatewayName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -239,7 +239,7 @@ export class VirtualNetworkGateways {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.VirtualNetworkGatewaysResetResponse>;
   }
 
 
@@ -262,7 +262,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  generatevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  generatevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysGeneratevpnclientpackageResponse> {
     return this.beginGeneratevpnclientpackage(resourceGroupName, virtualNetworkGatewayName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -290,7 +290,7 @@ export class VirtualNetworkGateways {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.VirtualNetworkGatewaysGeneratevpnclientpackageResponse>;
   }
 
 
@@ -313,7 +313,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  generateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  generateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysGenerateVpnProfileResponse> {
     return this.beginGenerateVpnProfile(resourceGroupName, virtualNetworkGatewayName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -341,7 +341,7 @@ export class VirtualNetworkGateways {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.VirtualNetworkGatewaysGenerateVpnProfileResponse>;
   }
 
 
@@ -361,7 +361,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  getVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse> {
     return this.beginGetVpnProfilePackageUrl(resourceGroupName, virtualNetworkGatewayName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -389,7 +389,7 @@ export class VirtualNetworkGateways {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse>;
   }
 
 
@@ -408,7 +408,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams): Promise<msRest.HttpOperationResponse> {
+  getBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams): Promise<Models.VirtualNetworkGatewaysGetBgpPeerStatusResponse> {
     return this.beginGetBgpPeerStatus(resourceGroupName, virtualNetworkGatewayName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -428,7 +428,7 @@ export class VirtualNetworkGateways {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.VirtualNetworkGatewaysGetBgpPeerStatusResponse>;
   }
 
   /**
@@ -446,14 +446,14 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  supportedVpnDevices(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
+  supportedVpnDevices(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysSupportedVpnDevicesResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         virtualNetworkGatewayName,
         options
       },
-      supportedVpnDevicesOperationSpec);
+      supportedVpnDevicesOperationSpec) as Promise<Models.VirtualNetworkGatewaysSupportedVpnDevicesResponse>;
   }
 
 
@@ -473,7 +473,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  getLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysGetLearnedRoutesResponse> {
     return this.beginGetLearnedRoutes(resourceGroupName, virtualNetworkGatewayName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -493,7 +493,7 @@ export class VirtualNetworkGateways {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.VirtualNetworkGatewaysGetLearnedRoutesResponse>;
   }
 
 
@@ -515,7 +515,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  getAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysGetAdvertisedRoutesResponse> {
     return this.beginGetAdvertisedRoutes(resourceGroupName, virtualNetworkGatewayName, peer, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -535,7 +535,7 @@ export class VirtualNetworkGateways {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.VirtualNetworkGatewaysGetAdvertisedRoutesResponse>;
   }
 
 
@@ -559,7 +559,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  setVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  setVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse> {
     return this.beginSetVpnclientIpsecParameters(resourceGroupName, virtualNetworkGatewayName, vpnclientIpsecParams, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -579,7 +579,7 @@ export class VirtualNetworkGateways {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse>;
   }
 
 
@@ -600,7 +600,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  getVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse> {
     return this.beginGetVpnclientIpsecParameters(resourceGroupName, virtualNetworkGatewayName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -620,7 +620,7 @@ export class VirtualNetworkGateways {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse>;
   }
 
   /**
@@ -642,7 +642,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  vpnDeviceConfigurationScript(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VpnDeviceScriptParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
+  vpnDeviceConfigurationScript(resourceGroupName: string, virtualNetworkGatewayConnectionName: string, parameters: Models.VpnDeviceScriptParameters, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -650,7 +650,7 @@ export class VirtualNetworkGateways {
         parameters,
         options
       },
-      vpnDeviceConfigurationScriptOperationSpec);
+      vpnDeviceConfigurationScriptOperationSpec) as Promise<Models.VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse>;
   }
 
   /**
@@ -671,7 +671,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGateway>> {
+  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VirtualNetworkGateway, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysBeginCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -679,7 +679,7 @@ export class VirtualNetworkGateways {
         parameters,
         options
       },
-      beginCreateOrUpdateOperationSpec);
+      beginCreateOrUpdateOperationSpec) as Promise<Models.VirtualNetworkGatewaysBeginCreateOrUpdateResponse>;
   }
 
   /**
@@ -697,7 +697,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -724,7 +724,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGateway>> {
+  beginUpdateTags(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysBeginUpdateTagsResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -732,7 +732,7 @@ export class VirtualNetworkGateways {
         parameters,
         options
       },
-      beginUpdateTagsOperationSpec);
+      beginUpdateTagsOperationSpec) as Promise<Models.VirtualNetworkGatewaysBeginUpdateTagsResponse>;
   }
 
   /**
@@ -750,14 +750,14 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginReset(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysBeginResetOptionalParams): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGateway>> {
+  beginReset(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysBeginResetOptionalParams): Promise<Models.VirtualNetworkGatewaysBeginResetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         virtualNetworkGatewayName,
         options
       },
-      beginResetOperationSpec);
+      beginResetOperationSpec) as Promise<Models.VirtualNetworkGatewaysBeginResetResponse>;
   }
 
   /**
@@ -779,7 +779,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGeneratevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
+  beginGeneratevpnclientpackage(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysBeginGeneratevpnclientpackageResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -787,7 +787,7 @@ export class VirtualNetworkGateways {
         parameters,
         options
       },
-      beginGeneratevpnclientpackageOperationSpec);
+      beginGeneratevpnclientpackageOperationSpec) as Promise<Models.VirtualNetworkGatewaysBeginGeneratevpnclientpackageResponse>;
   }
 
   /**
@@ -809,7 +809,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGenerateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
+  beginGenerateVpnProfile(resourceGroupName: string, virtualNetworkGatewayName: string, parameters: Models.VpnClientParameters, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysBeginGenerateVpnProfileResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -817,7 +817,7 @@ export class VirtualNetworkGateways {
         parameters,
         options
       },
-      beginGenerateVpnProfileOperationSpec);
+      beginGenerateVpnProfileOperationSpec) as Promise<Models.VirtualNetworkGatewaysBeginGenerateVpnProfileResponse>;
   }
 
   /**
@@ -836,14 +836,14 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<string>> {
+  beginGetVpnProfilePackageUrl(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysBeginGetVpnProfilePackageUrlResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         virtualNetworkGatewayName,
         options
       },
-      beginGetVpnProfilePackageUrlOperationSpec);
+      beginGetVpnProfilePackageUrlOperationSpec) as Promise<Models.VirtualNetworkGatewaysBeginGetVpnProfilePackageUrlResponse>;
   }
 
   /**
@@ -862,14 +862,14 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysBeginGetBgpPeerStatusOptionalParams): Promise<msRest.HttpOperationResponse<Models.BgpPeerStatusListResult>> {
+  beginGetBgpPeerStatus(resourceGroupName: string, virtualNetworkGatewayName: string, options?: Models.VirtualNetworkGatewaysBeginGetBgpPeerStatusOptionalParams): Promise<Models.VirtualNetworkGatewaysBeginGetBgpPeerStatusResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         virtualNetworkGatewayName,
         options
       },
-      beginGetBgpPeerStatusOperationSpec);
+      beginGetBgpPeerStatusOperationSpec) as Promise<Models.VirtualNetworkGatewaysBeginGetBgpPeerStatusResponse>;
   }
 
   /**
@@ -888,14 +888,14 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.GatewayRouteListResult>> {
+  beginGetLearnedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysBeginGetLearnedRoutesResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         virtualNetworkGatewayName,
         options
       },
-      beginGetLearnedRoutesOperationSpec);
+      beginGetLearnedRoutesOperationSpec) as Promise<Models.VirtualNetworkGatewaysBeginGetLearnedRoutesResponse>;
   }
 
   /**
@@ -916,7 +916,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.GatewayRouteListResult>> {
+  beginGetAdvertisedRoutes(resourceGroupName: string, virtualNetworkGatewayName: string, peer: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysBeginGetAdvertisedRoutesResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -924,7 +924,7 @@ export class VirtualNetworkGateways {
         peer,
         options
       },
-      beginGetAdvertisedRoutesOperationSpec);
+      beginGetAdvertisedRoutesOperationSpec) as Promise<Models.VirtualNetworkGatewaysBeginGetAdvertisedRoutesResponse>;
   }
 
   /**
@@ -947,7 +947,7 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginSetVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VpnClientIPsecParameters>> {
+  beginSetVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, vpnclientIpsecParams: Models.VpnClientIPsecParameters, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysBeginSetVpnclientIpsecParametersResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -955,7 +955,7 @@ export class VirtualNetworkGateways {
         vpnclientIpsecParams,
         options
       },
-      beginSetVpnclientIpsecParametersOperationSpec);
+      beginSetVpnclientIpsecParametersOperationSpec) as Promise<Models.VirtualNetworkGatewaysBeginSetVpnclientIpsecParametersResponse>;
   }
 
   /**
@@ -975,14 +975,14 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VpnClientIPsecParameters>> {
+  beginGetVpnclientIpsecParameters(resourceGroupName: string, virtualNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysBeginGetVpnclientIpsecParametersResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         virtualNetworkGatewayName,
         options
       },
-      beginGetVpnclientIpsecParametersOperationSpec);
+      beginGetVpnclientIpsecParametersOperationSpec) as Promise<Models.VirtualNetworkGatewaysBeginGetVpnclientIpsecParametersResponse>;
   }
 
   /**
@@ -998,13 +998,13 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.VirtualNetworkGatewaysListNextResponse>;
   }
 
   /**
@@ -1020,13 +1020,13 @@ export class VirtualNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listConnectionsNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkGatewayListConnectionsResult>> {
+  listConnectionsNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkGatewaysListConnectionsNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listConnectionsNextOperationSpec);
+      listConnectionsNextOperationSpec) as Promise<Models.VirtualNetworkGatewaysListConnectionsNextResponse>;
   }
 
 }

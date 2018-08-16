@@ -38,7 +38,7 @@ export class ApplicationSecurityGroups {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, applicationSecurityGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  deleteMethod(resourceGroupName: string, applicationSecurityGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDeleteMethod(resourceGroupName, applicationSecurityGroupName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -63,14 +63,14 @@ export class ApplicationSecurityGroups {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, applicationSecurityGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ApplicationSecurityGroup>> {
+  get(resourceGroupName: string, applicationSecurityGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.ApplicationSecurityGroupsGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         applicationSecurityGroupName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.ApplicationSecurityGroupsGetResponse>;
   }
 
 
@@ -92,7 +92,7 @@ export class ApplicationSecurityGroups {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdate(resourceGroupName: string, applicationSecurityGroupName: string, parameters: Models.ApplicationSecurityGroup, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  createOrUpdate(resourceGroupName: string, applicationSecurityGroupName: string, parameters: Models.ApplicationSecurityGroup, options?: msRest.RequestOptionsBase): Promise<Models.ApplicationSecurityGroupsCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, applicationSecurityGroupName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -112,7 +112,7 @@ export class ApplicationSecurityGroups {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.ApplicationSecurityGroupsCreateOrUpdateResponse>;
   }
 
   /**
@@ -126,12 +126,12 @@ export class ApplicationSecurityGroups {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAll(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ApplicationSecurityGroupListResult>> {
+  listAll(options?: msRest.RequestOptionsBase): Promise<Models.ApplicationSecurityGroupsListAllResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listAllOperationSpec);
+      listAllOperationSpec) as Promise<Models.ApplicationSecurityGroupsListAllResponse>;
   }
 
   /**
@@ -147,13 +147,13 @@ export class ApplicationSecurityGroups {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ApplicationSecurityGroupListResult>> {
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.ApplicationSecurityGroupsListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.ApplicationSecurityGroupsListResponse>;
   }
 
   /**
@@ -171,7 +171,7 @@ export class ApplicationSecurityGroups {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, applicationSecurityGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, applicationSecurityGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -199,7 +199,7 @@ export class ApplicationSecurityGroups {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, applicationSecurityGroupName: string, parameters: Models.ApplicationSecurityGroup, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ApplicationSecurityGroup>> {
+  beginCreateOrUpdate(resourceGroupName: string, applicationSecurityGroupName: string, parameters: Models.ApplicationSecurityGroup, options?: msRest.RequestOptionsBase): Promise<Models.ApplicationSecurityGroupsBeginCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -207,7 +207,7 @@ export class ApplicationSecurityGroups {
         parameters,
         options
       },
-      beginCreateOrUpdateOperationSpec);
+      beginCreateOrUpdateOperationSpec) as Promise<Models.ApplicationSecurityGroupsBeginCreateOrUpdateResponse>;
   }
 
   /**
@@ -223,13 +223,13 @@ export class ApplicationSecurityGroups {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ApplicationSecurityGroupListResult>> {
+  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.ApplicationSecurityGroupsListAllNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listAllNextOperationSpec);
+      listAllNextOperationSpec) as Promise<Models.ApplicationSecurityGroupsListAllNextResponse>;
   }
 
   /**
@@ -245,13 +245,13 @@ export class ApplicationSecurityGroups {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ApplicationSecurityGroupListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.ApplicationSecurityGroupsListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.ApplicationSecurityGroupsListNextResponse>;
   }
 
 }

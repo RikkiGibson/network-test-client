@@ -43,7 +43,7 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdate(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: Models.ConnectionMonitor, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  createOrUpdate(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: Models.ConnectionMonitor, options?: msRest.RequestOptionsBase): Promise<Models.ConnectionMonitorsCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, networkWatcherName, connectionMonitorName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -63,7 +63,7 @@ export class ConnectionMonitors {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.ConnectionMonitorsCreateOrUpdateResponse>;
   }
 
   /**
@@ -83,7 +83,7 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionMonitorResult>> {
+  get(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<Models.ConnectionMonitorsGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -91,7 +91,7 @@ export class ConnectionMonitors {
         connectionMonitorName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.ConnectionMonitorsGetResponse>;
   }
 
 
@@ -112,7 +112,7 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  deleteMethod(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDeleteMethod(resourceGroupName, networkWatcherName, connectionMonitorName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -140,7 +140,7 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  stop(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  stop(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginStop(resourceGroupName, networkWatcherName, connectionMonitorName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -168,7 +168,7 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  start(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  start(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginStart(resourceGroupName, networkWatcherName, connectionMonitorName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -196,7 +196,7 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  query(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  query(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<Models.ConnectionMonitorsQueryResponse> {
     return this.beginQuery(resourceGroupName, networkWatcherName, connectionMonitorName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -216,7 +216,7 @@ export class ConnectionMonitors {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.ConnectionMonitorsQueryResponse>;
   }
 
   /**
@@ -234,14 +234,14 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionMonitorListResult>> {
+  list(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<Models.ConnectionMonitorsListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         networkWatcherName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.ConnectionMonitorsListResponse>;
   }
 
   /**
@@ -264,7 +264,7 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: Models.ConnectionMonitor, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionMonitorResult>> {
+  beginCreateOrUpdate(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: Models.ConnectionMonitor, options?: msRest.RequestOptionsBase): Promise<Models.ConnectionMonitorsBeginCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -273,7 +273,7 @@ export class ConnectionMonitors {
         parameters,
         options
       },
-      beginCreateOrUpdateOperationSpec);
+      beginCreateOrUpdateOperationSpec) as Promise<Models.ConnectionMonitorsBeginCreateOrUpdateResponse>;
   }
 
   /**
@@ -293,7 +293,7 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -321,7 +321,7 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginStop(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginStop(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -349,7 +349,7 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginStart(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginStart(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -377,7 +377,7 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginQuery(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ConnectionMonitorQueryResult>> {
+  beginQuery(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<Models.ConnectionMonitorsBeginQueryResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -385,7 +385,7 @@ export class ConnectionMonitors {
         connectionMonitorName,
         options
       },
-      beginQueryOperationSpec);
+      beginQueryOperationSpec) as Promise<Models.ConnectionMonitorsBeginQueryResponse>;
   }
 
 }

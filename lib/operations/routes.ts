@@ -40,7 +40,7 @@ export class Routes {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, routeTableName: string, routeName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  deleteMethod(resourceGroupName: string, routeTableName: string, routeName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDeleteMethod(resourceGroupName, routeTableName, routeName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -67,7 +67,7 @@ export class Routes {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, routeTableName: string, routeName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Route>> {
+  get(resourceGroupName: string, routeTableName: string, routeName: string, options?: msRest.RequestOptionsBase): Promise<Models.RoutesGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -75,7 +75,7 @@ export class Routes {
         routeName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.RoutesGetResponse>;
   }
 
 
@@ -98,7 +98,7 @@ export class Routes {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdate(resourceGroupName: string, routeTableName: string, routeName: string, routeParameters: Models.Route, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  createOrUpdate(resourceGroupName: string, routeTableName: string, routeName: string, routeParameters: Models.Route, options?: msRest.RequestOptionsBase): Promise<Models.RoutesCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, routeTableName, routeName, routeParameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -118,7 +118,7 @@ export class Routes {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.RoutesCreateOrUpdateResponse>;
   }
 
   /**
@@ -136,14 +136,14 @@ export class Routes {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, routeTableName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RouteListResult>> {
+  list(resourceGroupName: string, routeTableName: string, options?: msRest.RequestOptionsBase): Promise<Models.RoutesListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         routeTableName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.RoutesListResponse>;
   }
 
   /**
@@ -163,7 +163,7 @@ export class Routes {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, routeTableName: string, routeName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, routeTableName: string, routeName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -193,7 +193,7 @@ export class Routes {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, routeTableName: string, routeName: string, routeParameters: Models.Route, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.Route>> {
+  beginCreateOrUpdate(resourceGroupName: string, routeTableName: string, routeName: string, routeParameters: Models.Route, options?: msRest.RequestOptionsBase): Promise<Models.RoutesBeginCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -202,7 +202,7 @@ export class Routes {
         routeParameters,
         options
       },
-      beginCreateOrUpdateOperationSpec);
+      beginCreateOrUpdateOperationSpec) as Promise<Models.RoutesBeginCreateOrUpdateResponse>;
   }
 
   /**
@@ -218,13 +218,13 @@ export class Routes {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.RouteListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.RoutesListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.RoutesListNextResponse>;
   }
 
 }

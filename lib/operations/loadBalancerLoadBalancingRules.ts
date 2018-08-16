@@ -37,14 +37,14 @@ export class LoadBalancerLoadBalancingRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerLoadBalancingRuleListResult>> {
+  list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancerLoadBalancingRulesListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         loadBalancerName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.LoadBalancerLoadBalancingRulesListResponse>;
   }
 
   /**
@@ -64,7 +64,7 @@ export class LoadBalancerLoadBalancingRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, loadBalancerName: string, loadBalancingRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancingRule>> {
+  get(resourceGroupName: string, loadBalancerName: string, loadBalancingRuleName: string, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancerLoadBalancingRulesGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -72,7 +72,7 @@ export class LoadBalancerLoadBalancingRules {
         loadBalancingRuleName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.LoadBalancerLoadBalancingRulesGetResponse>;
   }
 
   /**
@@ -88,13 +88,13 @@ export class LoadBalancerLoadBalancingRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.LoadBalancerLoadBalancingRuleListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancerLoadBalancingRulesListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.LoadBalancerLoadBalancingRulesListNextResponse>;
   }
 
 }

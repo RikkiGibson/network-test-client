@@ -8556,3 +8556,4414 @@ export type VirtualNetworkGatewayConnectionStatus = 'Unknown' | 'Connecting' | '
  * @enum {string}
  */
 export type VirtualNetworkGatewayConnectionType = 'IPsec' | 'Vnet2Vnet' | 'ExpressRoute' | 'VPNClient';
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface ApplicationGatewaysGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationGateway;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface ApplicationGatewaysCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationGateway;
+}
+
+/**
+ * Contains response data for the updateTags operation.
+ */
+export interface ApplicationGatewaysUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationGateway;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface ApplicationGatewaysListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationGatewayListResult;
+}
+
+/**
+ * Contains response data for the listAll operation.
+ */
+export interface ApplicationGatewaysListAllResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationGatewayListResult;
+}
+
+/**
+ * Contains response data for the backendHealth operation.
+ */
+export interface ApplicationGatewaysBackendHealthResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationGatewayBackendHealth;
+}
+
+/**
+ * Contains response data for the listAvailableWafRuleSets operation.
+ */
+export interface ApplicationGatewaysListAvailableWafRuleSetsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationGatewayAvailableWafRuleSetsResult;
+}
+
+/**
+ * Contains response data for the listAvailableSslOptions operation.
+ */
+export interface ApplicationGatewaysListAvailableSslOptionsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationGatewayAvailableSslOptions;
+}
+
+/**
+ * Contains response data for the listAvailableSslPredefinedPolicies operation.
+ */
+export interface ApplicationGatewaysListAvailableSslPredefinedPoliciesResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationGatewayAvailableSslPredefinedPolicies;
+}
+
+/**
+ * Contains response data for the getSslPredefinedPolicy operation.
+ */
+export interface ApplicationGatewaysGetSslPredefinedPolicyResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationGatewaySslPredefinedPolicy;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface ApplicationGatewaysBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationGateway;
+}
+
+/**
+ * Contains response data for the beginUpdateTags operation.
+ */
+export interface ApplicationGatewaysBeginUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationGateway;
+}
+
+/**
+ * Contains response data for the beginBackendHealth operation.
+ */
+export interface ApplicationGatewaysBeginBackendHealthResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationGatewayBackendHealth;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface ApplicationGatewaysListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationGatewayListResult;
+}
+
+/**
+ * Contains response data for the listAllNext operation.
+ */
+export interface ApplicationGatewaysListAllNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationGatewayListResult;
+}
+
+/**
+ * Contains response data for the listAvailableSslPredefinedPoliciesNext
+ * operation.
+ */
+export interface ApplicationGatewaysListAvailableSslPredefinedPoliciesNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationGatewayAvailableSslPredefinedPolicies;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface ApplicationSecurityGroupsGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationSecurityGroup;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface ApplicationSecurityGroupsCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationSecurityGroup;
+}
+
+/**
+ * Contains response data for the listAll operation.
+ */
+export interface ApplicationSecurityGroupsListAllResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationSecurityGroupListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface ApplicationSecurityGroupsListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationSecurityGroupListResult;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface ApplicationSecurityGroupsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationSecurityGroup;
+}
+
+/**
+ * Contains response data for the listAllNext operation.
+ */
+export interface ApplicationSecurityGroupsListAllNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationSecurityGroupListResult;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface ApplicationSecurityGroupsListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ApplicationSecurityGroupListResult;
+}
+
+/**
+ * Contains response data for the checkDnsNameAvailability operation.
+ */
+export interface CheckDnsNameAvailabilityResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: DnsNameAvailabilityResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface DdosProtectionPlansGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: DdosProtectionPlan;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface DdosProtectionPlansCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: DdosProtectionPlan;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface DdosProtectionPlansListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: DdosProtectionPlanListResult;
+}
+
+/**
+ * Contains response data for the listByResourceGroup operation.
+ */
+export interface DdosProtectionPlansListByResourceGroupResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: DdosProtectionPlanListResult;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface DdosProtectionPlansBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: DdosProtectionPlan;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface DdosProtectionPlansListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: DdosProtectionPlanListResult;
+}
+
+/**
+ * Contains response data for the listByResourceGroupNext operation.
+ */
+export interface DdosProtectionPlansListByResourceGroupNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: DdosProtectionPlanListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface AvailableEndpointServicesListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: EndpointServicesListResult;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface AvailableEndpointServicesListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: EndpointServicesListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface ExpressRouteCircuitAuthorizationsGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitAuthorization;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitAuthorization;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface ExpressRouteCircuitAuthorizationsListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: AuthorizationListResult;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface ExpressRouteCircuitAuthorizationsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitAuthorization;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface ExpressRouteCircuitAuthorizationsListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: AuthorizationListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface ExpressRouteCircuitPeeringsGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitPeering;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface ExpressRouteCircuitPeeringsCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitPeering;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface ExpressRouteCircuitPeeringsListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitPeeringListResult;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface ExpressRouteCircuitPeeringsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitPeering;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface ExpressRouteCircuitPeeringsListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitPeeringListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface ExpressRouteCircuitConnectionsGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitConnection;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface ExpressRouteCircuitConnectionsCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitConnection;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface ExpressRouteCircuitConnectionsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitConnection;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface ExpressRouteCircuitsGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuit;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface ExpressRouteCircuitsCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuit;
+}
+
+/**
+ * Contains response data for the updateTags operation.
+ */
+export interface ExpressRouteCircuitsUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuit;
+}
+
+/**
+ * Contains response data for the listArpTable operation.
+ */
+export interface ExpressRouteCircuitsListArpTableResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitsArpTableListResult;
+}
+
+/**
+ * Contains response data for the listRoutesTable operation.
+ */
+export interface ExpressRouteCircuitsListRoutesTableResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitsRoutesTableListResult;
+}
+
+/**
+ * Contains response data for the listRoutesTableSummary operation.
+ */
+export interface ExpressRouteCircuitsListRoutesTableSummaryResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitsRoutesTableSummaryListResult;
+}
+
+/**
+ * Contains response data for the getStats operation.
+ */
+export interface ExpressRouteCircuitsGetStatsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitStats;
+}
+
+/**
+ * Contains response data for the getPeeringStats operation.
+ */
+export interface ExpressRouteCircuitsGetPeeringStatsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitStats;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface ExpressRouteCircuitsListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitListResult;
+}
+
+/**
+ * Contains response data for the listAll operation.
+ */
+export interface ExpressRouteCircuitsListAllResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitListResult;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface ExpressRouteCircuitsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuit;
+}
+
+/**
+ * Contains response data for the beginUpdateTags operation.
+ */
+export interface ExpressRouteCircuitsBeginUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuit;
+}
+
+/**
+ * Contains response data for the beginListArpTable operation.
+ */
+export interface ExpressRouteCircuitsBeginListArpTableResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitsArpTableListResult;
+}
+
+/**
+ * Contains response data for the beginListRoutesTable operation.
+ */
+export interface ExpressRouteCircuitsBeginListRoutesTableResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitsRoutesTableListResult;
+}
+
+/**
+ * Contains response data for the beginListRoutesTableSummary operation.
+ */
+export interface ExpressRouteCircuitsBeginListRoutesTableSummaryResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitsRoutesTableSummaryListResult;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface ExpressRouteCircuitsListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitListResult;
+}
+
+/**
+ * Contains response data for the listAllNext operation.
+ */
+export interface ExpressRouteCircuitsListAllNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface ExpressRouteServiceProvidersListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteServiceProviderListResult;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface ExpressRouteServiceProvidersListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteServiceProviderListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface ExpressRouteCrossConnectionsListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCrossConnectionListResult;
+}
+
+/**
+ * Contains response data for the listByResourceGroup operation.
+ */
+export interface ExpressRouteCrossConnectionsListByResourceGroupResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCrossConnectionListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface ExpressRouteCrossConnectionsGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCrossConnection;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface ExpressRouteCrossConnectionsCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCrossConnection;
+}
+
+/**
+ * Contains response data for the updateTags operation.
+ */
+export interface ExpressRouteCrossConnectionsUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCrossConnection;
+}
+
+/**
+ * Contains response data for the listArpTable operation.
+ */
+export interface ExpressRouteCrossConnectionsListArpTableResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitsArpTableListResult;
+}
+
+/**
+ * Contains response data for the listRoutesTableSummary operation.
+ */
+export interface ExpressRouteCrossConnectionsListRoutesTableSummaryResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCrossConnectionsRoutesTableSummaryListResult;
+}
+
+/**
+ * Contains response data for the listRoutesTable operation.
+ */
+export interface ExpressRouteCrossConnectionsListRoutesTableResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitsRoutesTableListResult;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface ExpressRouteCrossConnectionsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCrossConnection;
+}
+
+/**
+ * Contains response data for the beginUpdateTags operation.
+ */
+export interface ExpressRouteCrossConnectionsBeginUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCrossConnection;
+}
+
+/**
+ * Contains response data for the beginListArpTable operation.
+ */
+export interface ExpressRouteCrossConnectionsBeginListArpTableResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitsArpTableListResult;
+}
+
+/**
+ * Contains response data for the beginListRoutesTableSummary operation.
+ */
+export interface ExpressRouteCrossConnectionsBeginListRoutesTableSummaryResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCrossConnectionsRoutesTableSummaryListResult;
+}
+
+/**
+ * Contains response data for the beginListRoutesTable operation.
+ */
+export interface ExpressRouteCrossConnectionsBeginListRoutesTableResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCircuitsRoutesTableListResult;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface ExpressRouteCrossConnectionsListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCrossConnectionListResult;
+}
+
+/**
+ * Contains response data for the listByResourceGroupNext operation.
+ */
+export interface ExpressRouteCrossConnectionsListByResourceGroupNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCrossConnectionListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface ExpressRouteCrossConnectionPeeringsListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCrossConnectionPeeringList;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface ExpressRouteCrossConnectionPeeringsGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCrossConnectionPeering;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCrossConnectionPeering;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface ExpressRouteCrossConnectionPeeringsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCrossConnectionPeering;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface ExpressRouteCrossConnectionPeeringsListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ExpressRouteCrossConnectionPeeringList;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface LoadBalancersGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LoadBalancer;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface LoadBalancersCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LoadBalancer;
+}
+
+/**
+ * Contains response data for the updateTags operation.
+ */
+export interface LoadBalancersUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LoadBalancer;
+}
+
+/**
+ * Contains response data for the listAll operation.
+ */
+export interface LoadBalancersListAllResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LoadBalancerListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface LoadBalancersListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LoadBalancerListResult;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface LoadBalancersBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LoadBalancer;
+}
+
+/**
+ * Contains response data for the beginUpdateTags operation.
+ */
+export interface LoadBalancersBeginUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LoadBalancer;
+}
+
+/**
+ * Contains response data for the listAllNext operation.
+ */
+export interface LoadBalancersListAllNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LoadBalancerListResult;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface LoadBalancersListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LoadBalancerListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface LoadBalancerBackendAddressPoolsListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LoadBalancerBackendAddressPoolListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface LoadBalancerBackendAddressPoolsGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: BackendAddressPool;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface LoadBalancerBackendAddressPoolsListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LoadBalancerBackendAddressPoolListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface LoadBalancerFrontendIPConfigurationsListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LoadBalancerFrontendIPConfigurationListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface LoadBalancerFrontendIPConfigurationsGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: FrontendIPConfiguration;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface LoadBalancerFrontendIPConfigurationsListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LoadBalancerFrontendIPConfigurationListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface InboundNatRulesListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: InboundNatRuleListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface InboundNatRulesGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: InboundNatRule;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface InboundNatRulesCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: InboundNatRule;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface InboundNatRulesBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: InboundNatRule;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface InboundNatRulesListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: InboundNatRuleListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface LoadBalancerLoadBalancingRulesListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LoadBalancerLoadBalancingRuleListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface LoadBalancerLoadBalancingRulesGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LoadBalancingRule;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface LoadBalancerLoadBalancingRulesListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LoadBalancerLoadBalancingRuleListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface LoadBalancerNetworkInterfacesListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterfaceListResult;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface LoadBalancerNetworkInterfacesListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterfaceListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface LoadBalancerProbesListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LoadBalancerProbeListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface LoadBalancerProbesGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Probe;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface LoadBalancerProbesListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LoadBalancerProbeListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface NetworkInterfacesGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterface;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface NetworkInterfacesCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterface;
+}
+
+/**
+ * Contains response data for the updateTags operation.
+ */
+export interface NetworkInterfacesUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterface;
+}
+
+/**
+ * Contains response data for the listAll operation.
+ */
+export interface NetworkInterfacesListAllResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterfaceListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface NetworkInterfacesListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterfaceListResult;
+}
+
+/**
+ * Contains response data for the getEffectiveRouteTable operation.
+ */
+export interface NetworkInterfacesGetEffectiveRouteTableResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: EffectiveRouteListResult;
+}
+
+/**
+ * Contains response data for the listEffectiveNetworkSecurityGroups operation.
+ */
+export interface NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: EffectiveNetworkSecurityGroupListResult;
+}
+
+/**
+ * Contains response data for the listVirtualMachineScaleSetVMNetworkInterfaces
+ * operation.
+ */
+export interface NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterfaceListResult;
+}
+
+/**
+ * Contains response data for the listVirtualMachineScaleSetNetworkInterfaces
+ * operation.
+ */
+export interface NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterfaceListResult;
+}
+
+/**
+ * Contains response data for the getVirtualMachineScaleSetNetworkInterface
+ * operation.
+ */
+export interface NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterface;
+}
+
+/**
+ * Contains response data for the listVirtualMachineScaleSetIpConfigurations
+ * operation.
+ */
+export interface NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterfaceIPConfigurationListResult;
+}
+
+/**
+ * Contains response data for the getVirtualMachineScaleSetIpConfiguration
+ * operation.
+ */
+export interface NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterfaceIPConfiguration;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface NetworkInterfacesBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterface;
+}
+
+/**
+ * Contains response data for the beginUpdateTags operation.
+ */
+export interface NetworkInterfacesBeginUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterface;
+}
+
+/**
+ * Contains response data for the beginGetEffectiveRouteTable operation.
+ */
+export interface NetworkInterfacesBeginGetEffectiveRouteTableResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: EffectiveRouteListResult;
+}
+
+/**
+ * Contains response data for the beginListEffectiveNetworkSecurityGroups
+ * operation.
+ */
+export interface NetworkInterfacesBeginListEffectiveNetworkSecurityGroupsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: EffectiveNetworkSecurityGroupListResult;
+}
+
+/**
+ * Contains response data for the listAllNext operation.
+ */
+export interface NetworkInterfacesListAllNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterfaceListResult;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface NetworkInterfacesListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterfaceListResult;
+}
+
+/**
+ * Contains response data for the
+ * listVirtualMachineScaleSetVMNetworkInterfacesNext operation.
+ */
+export interface NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterfaceListResult;
+}
+
+/**
+ * Contains response data for the
+ * listVirtualMachineScaleSetNetworkInterfacesNext operation.
+ */
+export interface NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterfaceListResult;
+}
+
+/**
+ * Contains response data for the
+ * listVirtualMachineScaleSetIpConfigurationsNext operation.
+ */
+export interface NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterfaceIPConfigurationListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface NetworkInterfaceIPConfigurationsListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterfaceIPConfigurationListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface NetworkInterfaceIPConfigurationsGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterfaceIPConfiguration;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface NetworkInterfaceIPConfigurationsListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterfaceIPConfigurationListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface NetworkInterfaceLoadBalancersListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterfaceLoadBalancerListResult;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface NetworkInterfaceLoadBalancersListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkInterfaceLoadBalancerListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface NetworkSecurityGroupsGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkSecurityGroup;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface NetworkSecurityGroupsCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkSecurityGroup;
+}
+
+/**
+ * Contains response data for the updateTags operation.
+ */
+export interface NetworkSecurityGroupsUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkSecurityGroup;
+}
+
+/**
+ * Contains response data for the listAll operation.
+ */
+export interface NetworkSecurityGroupsListAllResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkSecurityGroupListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface NetworkSecurityGroupsListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkSecurityGroupListResult;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface NetworkSecurityGroupsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkSecurityGroup;
+}
+
+/**
+ * Contains response data for the beginUpdateTags operation.
+ */
+export interface NetworkSecurityGroupsBeginUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkSecurityGroup;
+}
+
+/**
+ * Contains response data for the listAllNext operation.
+ */
+export interface NetworkSecurityGroupsListAllNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkSecurityGroupListResult;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface NetworkSecurityGroupsListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkSecurityGroupListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface SecurityRulesGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SecurityRule;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface SecurityRulesCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SecurityRule;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface SecurityRulesListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SecurityRuleListResult;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface SecurityRulesBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SecurityRule;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface SecurityRulesListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SecurityRuleListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface DefaultSecurityRulesListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SecurityRuleListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface DefaultSecurityRulesGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SecurityRule;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface DefaultSecurityRulesListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SecurityRuleListResult;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface NetworkWatchersCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkWatcher;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface NetworkWatchersGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkWatcher;
+}
+
+/**
+ * Contains response data for the updateTags operation.
+ */
+export interface NetworkWatchersUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkWatcher;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface NetworkWatchersListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkWatcherListResult;
+}
+
+/**
+ * Contains response data for the listAll operation.
+ */
+export interface NetworkWatchersListAllResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NetworkWatcherListResult;
+}
+
+/**
+ * Contains response data for the getTopology operation.
+ */
+export interface NetworkWatchersGetTopologyResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Topology;
+}
+
+/**
+ * Contains response data for the verifyIPFlow operation.
+ */
+export interface NetworkWatchersVerifyIPFlowResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VerificationIPFlowResult;
+}
+
+/**
+ * Contains response data for the getNextHop operation.
+ */
+export interface NetworkWatchersGetNextHopResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NextHopResult;
+}
+
+/**
+ * Contains response data for the getVMSecurityRules operation.
+ */
+export interface NetworkWatchersGetVMSecurityRulesResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SecurityGroupViewResult;
+}
+
+/**
+ * Contains response data for the getTroubleshooting operation.
+ */
+export interface NetworkWatchersGetTroubleshootingResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: TroubleshootingResult;
+}
+
+/**
+ * Contains response data for the getTroubleshootingResult operation.
+ */
+export interface NetworkWatchersGetTroubleshootingResultResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: TroubleshootingResult;
+}
+
+/**
+ * Contains response data for the setFlowLogConfiguration operation.
+ */
+export interface NetworkWatchersSetFlowLogConfigurationResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: FlowLogInformation;
+}
+
+/**
+ * Contains response data for the getFlowLogStatus operation.
+ */
+export interface NetworkWatchersGetFlowLogStatusResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: FlowLogInformation;
+}
+
+/**
+ * Contains response data for the checkConnectivity operation.
+ */
+export interface NetworkWatchersCheckConnectivityResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ConnectivityInformation;
+}
+
+/**
+ * Contains response data for the getAzureReachabilityReport operation.
+ */
+export interface NetworkWatchersGetAzureReachabilityReportResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: AzureReachabilityReport;
+}
+
+/**
+ * Contains response data for the listAvailableProviders operation.
+ */
+export interface NetworkWatchersListAvailableProvidersResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: AvailableProvidersList;
+}
+
+/**
+ * Contains response data for the beginVerifyIPFlow operation.
+ */
+export interface NetworkWatchersBeginVerifyIPFlowResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VerificationIPFlowResult;
+}
+
+/**
+ * Contains response data for the beginGetNextHop operation.
+ */
+export interface NetworkWatchersBeginGetNextHopResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: NextHopResult;
+}
+
+/**
+ * Contains response data for the beginGetVMSecurityRules operation.
+ */
+export interface NetworkWatchersBeginGetVMSecurityRulesResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SecurityGroupViewResult;
+}
+
+/**
+ * Contains response data for the beginGetTroubleshooting operation.
+ */
+export interface NetworkWatchersBeginGetTroubleshootingResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: TroubleshootingResult;
+}
+
+/**
+ * Contains response data for the beginGetTroubleshootingResult operation.
+ */
+export interface NetworkWatchersBeginGetTroubleshootingResultResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: TroubleshootingResult;
+}
+
+/**
+ * Contains response data for the beginSetFlowLogConfiguration operation.
+ */
+export interface NetworkWatchersBeginSetFlowLogConfigurationResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: FlowLogInformation;
+}
+
+/**
+ * Contains response data for the beginGetFlowLogStatus operation.
+ */
+export interface NetworkWatchersBeginGetFlowLogStatusResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: FlowLogInformation;
+}
+
+/**
+ * Contains response data for the beginCheckConnectivity operation.
+ */
+export interface NetworkWatchersBeginCheckConnectivityResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ConnectivityInformation;
+}
+
+/**
+ * Contains response data for the beginGetAzureReachabilityReport operation.
+ */
+export interface NetworkWatchersBeginGetAzureReachabilityReportResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: AzureReachabilityReport;
+}
+
+/**
+ * Contains response data for the beginListAvailableProviders operation.
+ */
+export interface NetworkWatchersBeginListAvailableProvidersResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: AvailableProvidersList;
+}
+
+/**
+ * Contains response data for the create operation.
+ */
+export interface PacketCapturesCreateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: PacketCaptureResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface PacketCapturesGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: PacketCaptureResult;
+}
+
+/**
+ * Contains response data for the getStatus operation.
+ */
+export interface PacketCapturesGetStatusResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: PacketCaptureQueryStatusResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface PacketCapturesListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: PacketCaptureListResult;
+}
+
+/**
+ * Contains response data for the beginCreate operation.
+ */
+export interface PacketCapturesBeginCreateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: PacketCaptureResult;
+}
+
+/**
+ * Contains response data for the beginGetStatus operation.
+ */
+export interface PacketCapturesBeginGetStatusResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: PacketCaptureQueryStatusResult;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface ConnectionMonitorsCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ConnectionMonitorResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface ConnectionMonitorsGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ConnectionMonitorResult;
+}
+
+/**
+ * Contains response data for the query operation.
+ */
+export interface ConnectionMonitorsQueryResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ConnectionMonitorQueryResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface ConnectionMonitorsListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ConnectionMonitorListResult;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface ConnectionMonitorsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ConnectionMonitorResult;
+}
+
+/**
+ * Contains response data for the beginQuery operation.
+ */
+export interface ConnectionMonitorsBeginQueryResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ConnectionMonitorQueryResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface OperationsListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: OperationListResult;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface OperationsListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: OperationListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface PublicIPAddressesGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: PublicIPAddress;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface PublicIPAddressesCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: PublicIPAddress;
+}
+
+/**
+ * Contains response data for the updateTags operation.
+ */
+export interface PublicIPAddressesUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: PublicIPAddress;
+}
+
+/**
+ * Contains response data for the listAll operation.
+ */
+export interface PublicIPAddressesListAllResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: PublicIPAddressListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface PublicIPAddressesListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: PublicIPAddressListResult;
+}
+
+/**
+ * Contains response data for the listVirtualMachineScaleSetPublicIPAddresses
+ * operation.
+ */
+export interface PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: PublicIPAddressListResult;
+}
+
+/**
+ * Contains response data for the listVirtualMachineScaleSetVMPublicIPAddresses
+ * operation.
+ */
+export interface PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: PublicIPAddressListResult;
+}
+
+/**
+ * Contains response data for the getVirtualMachineScaleSetPublicIPAddress
+ * operation.
+ */
+export interface PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: PublicIPAddress;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface PublicIPAddressesBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: PublicIPAddress;
+}
+
+/**
+ * Contains response data for the beginUpdateTags operation.
+ */
+export interface PublicIPAddressesBeginUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: PublicIPAddress;
+}
+
+/**
+ * Contains response data for the listAllNext operation.
+ */
+export interface PublicIPAddressesListAllNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: PublicIPAddressListResult;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface PublicIPAddressesListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: PublicIPAddressListResult;
+}
+
+/**
+ * Contains response data for the
+ * listVirtualMachineScaleSetPublicIPAddressesNext operation.
+ */
+export interface PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: PublicIPAddressListResult;
+}
+
+/**
+ * Contains response data for the
+ * listVirtualMachineScaleSetVMPublicIPAddressesNext operation.
+ */
+export interface PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: PublicIPAddressListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface RouteFiltersGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteFilter;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface RouteFiltersCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteFilter;
+}
+
+/**
+ * Contains response data for the update operation.
+ */
+export interface RouteFiltersUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteFilter;
+}
+
+/**
+ * Contains response data for the listByResourceGroup operation.
+ */
+export interface RouteFiltersListByResourceGroupResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteFilterListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface RouteFiltersListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteFilterListResult;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface RouteFiltersBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteFilter;
+}
+
+/**
+ * Contains response data for the beginUpdate operation.
+ */
+export interface RouteFiltersBeginUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteFilter;
+}
+
+/**
+ * Contains response data for the listByResourceGroupNext operation.
+ */
+export interface RouteFiltersListByResourceGroupNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteFilterListResult;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface RouteFiltersListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteFilterListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface RouteFilterRulesGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteFilterRule;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface RouteFilterRulesCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteFilterRule;
+}
+
+/**
+ * Contains response data for the update operation.
+ */
+export interface RouteFilterRulesUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteFilterRule;
+}
+
+/**
+ * Contains response data for the listByRouteFilter operation.
+ */
+export interface RouteFilterRulesListByRouteFilterResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteFilterRuleListResult;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface RouteFilterRulesBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteFilterRule;
+}
+
+/**
+ * Contains response data for the beginUpdate operation.
+ */
+export interface RouteFilterRulesBeginUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteFilterRule;
+}
+
+/**
+ * Contains response data for the listByRouteFilterNext operation.
+ */
+export interface RouteFilterRulesListByRouteFilterNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteFilterRuleListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface RouteTablesGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteTable;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface RouteTablesCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteTable;
+}
+
+/**
+ * Contains response data for the updateTags operation.
+ */
+export interface RouteTablesUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteTable;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface RouteTablesListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteTableListResult;
+}
+
+/**
+ * Contains response data for the listAll operation.
+ */
+export interface RouteTablesListAllResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteTableListResult;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface RouteTablesBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteTable;
+}
+
+/**
+ * Contains response data for the beginUpdateTags operation.
+ */
+export interface RouteTablesBeginUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteTable;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface RouteTablesListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteTableListResult;
+}
+
+/**
+ * Contains response data for the listAllNext operation.
+ */
+export interface RouteTablesListAllNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteTableListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface RoutesGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Route;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface RoutesCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Route;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface RoutesListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteListResult;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface RoutesBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Route;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface RoutesListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: RouteListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface BgpServiceCommunitiesListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: BgpServiceCommunityListResult;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface BgpServiceCommunitiesListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: BgpServiceCommunityListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface UsagesListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: UsagesListResult;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface UsagesListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: UsagesListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface VirtualNetworksGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetwork;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface VirtualNetworksCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetwork;
+}
+
+/**
+ * Contains response data for the updateTags operation.
+ */
+export interface VirtualNetworksUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetwork;
+}
+
+/**
+ * Contains response data for the listAll operation.
+ */
+export interface VirtualNetworksListAllResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkListResult;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface VirtualNetworksListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkListResult;
+}
+
+/**
+ * Contains response data for the checkIPAddressAvailability operation.
+ */
+export interface VirtualNetworksCheckIPAddressAvailabilityResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: IPAddressAvailabilityResult;
+}
+
+/**
+ * Contains response data for the listUsage operation.
+ */
+export interface VirtualNetworksListUsageResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkListUsageResult;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface VirtualNetworksBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetwork;
+}
+
+/**
+ * Contains response data for the beginUpdateTags operation.
+ */
+export interface VirtualNetworksBeginUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetwork;
+}
+
+/**
+ * Contains response data for the listAllNext operation.
+ */
+export interface VirtualNetworksListAllNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkListResult;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface VirtualNetworksListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkListResult;
+}
+
+/**
+ * Contains response data for the listUsageNext operation.
+ */
+export interface VirtualNetworksListUsageNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkListUsageResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface SubnetsGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Subnet;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface SubnetsCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Subnet;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface SubnetsListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SubnetListResult;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface SubnetsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: Subnet;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface SubnetsListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: SubnetListResult;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface VirtualNetworkPeeringsGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkPeering;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface VirtualNetworkPeeringsCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkPeering;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface VirtualNetworkPeeringsListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkPeeringListResult;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface VirtualNetworkPeeringsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkPeering;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface VirtualNetworkPeeringsListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkPeeringListResult;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface VirtualNetworkGatewaysCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkGateway;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface VirtualNetworkGatewaysGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkGateway;
+}
+
+/**
+ * Contains response data for the updateTags operation.
+ */
+export interface VirtualNetworkGatewaysUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkGateway;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface VirtualNetworkGatewaysListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkGatewayListResult;
+}
+
+/**
+ * Contains response data for the listConnections operation.
+ */
+export interface VirtualNetworkGatewaysListConnectionsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkGatewayListConnectionsResult;
+}
+
+/**
+ * Contains response data for the reset operation.
+ */
+export interface VirtualNetworkGatewaysResetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkGateway;
+}
+
+/**
+ * Contains response data for the generatevpnclientpackage operation.
+ */
+export interface VirtualNetworkGatewaysGeneratevpnclientpackageResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: string;
+}
+
+/**
+ * Contains response data for the generateVpnProfile operation.
+ */
+export interface VirtualNetworkGatewaysGenerateVpnProfileResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: string;
+}
+
+/**
+ * Contains response data for the getVpnProfilePackageUrl operation.
+ */
+export interface VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: string;
+}
+
+/**
+ * Contains response data for the getBgpPeerStatus operation.
+ */
+export interface VirtualNetworkGatewaysGetBgpPeerStatusResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: BgpPeerStatusListResult;
+}
+
+/**
+ * Contains response data for the supportedVpnDevices operation.
+ */
+export interface VirtualNetworkGatewaysSupportedVpnDevicesResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: string;
+}
+
+/**
+ * Contains response data for the getLearnedRoutes operation.
+ */
+export interface VirtualNetworkGatewaysGetLearnedRoutesResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: GatewayRouteListResult;
+}
+
+/**
+ * Contains response data for the getAdvertisedRoutes operation.
+ */
+export interface VirtualNetworkGatewaysGetAdvertisedRoutesResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: GatewayRouteListResult;
+}
+
+/**
+ * Contains response data for the setVpnclientIpsecParameters operation.
+ */
+export interface VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VpnClientIPsecParameters;
+}
+
+/**
+ * Contains response data for the getVpnclientIpsecParameters operation.
+ */
+export interface VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VpnClientIPsecParameters;
+}
+
+/**
+ * Contains response data for the vpnDeviceConfigurationScript operation.
+ */
+export interface VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: string;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface VirtualNetworkGatewaysBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkGateway;
+}
+
+/**
+ * Contains response data for the beginUpdateTags operation.
+ */
+export interface VirtualNetworkGatewaysBeginUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkGateway;
+}
+
+/**
+ * Contains response data for the beginReset operation.
+ */
+export interface VirtualNetworkGatewaysBeginResetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkGateway;
+}
+
+/**
+ * Contains response data for the beginGeneratevpnclientpackage operation.
+ */
+export interface VirtualNetworkGatewaysBeginGeneratevpnclientpackageResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: string;
+}
+
+/**
+ * Contains response data for the beginGenerateVpnProfile operation.
+ */
+export interface VirtualNetworkGatewaysBeginGenerateVpnProfileResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: string;
+}
+
+/**
+ * Contains response data for the beginGetVpnProfilePackageUrl operation.
+ */
+export interface VirtualNetworkGatewaysBeginGetVpnProfilePackageUrlResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: string;
+}
+
+/**
+ * Contains response data for the beginGetBgpPeerStatus operation.
+ */
+export interface VirtualNetworkGatewaysBeginGetBgpPeerStatusResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: BgpPeerStatusListResult;
+}
+
+/**
+ * Contains response data for the beginGetLearnedRoutes operation.
+ */
+export interface VirtualNetworkGatewaysBeginGetLearnedRoutesResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: GatewayRouteListResult;
+}
+
+/**
+ * Contains response data for the beginGetAdvertisedRoutes operation.
+ */
+export interface VirtualNetworkGatewaysBeginGetAdvertisedRoutesResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: GatewayRouteListResult;
+}
+
+/**
+ * Contains response data for the beginSetVpnclientIpsecParameters operation.
+ */
+export interface VirtualNetworkGatewaysBeginSetVpnclientIpsecParametersResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VpnClientIPsecParameters;
+}
+
+/**
+ * Contains response data for the beginGetVpnclientIpsecParameters operation.
+ */
+export interface VirtualNetworkGatewaysBeginGetVpnclientIpsecParametersResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VpnClientIPsecParameters;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface VirtualNetworkGatewaysListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkGatewayListResult;
+}
+
+/**
+ * Contains response data for the listConnectionsNext operation.
+ */
+export interface VirtualNetworkGatewaysListConnectionsNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkGatewayListConnectionsResult;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface VirtualNetworkGatewayConnectionsCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkGatewayConnection;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface VirtualNetworkGatewayConnectionsGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkGatewayConnection;
+}
+
+/**
+ * Contains response data for the updateTags operation.
+ */
+export interface VirtualNetworkGatewayConnectionsUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkGatewayConnectionListEntity;
+}
+
+/**
+ * Contains response data for the setSharedKey operation.
+ */
+export interface VirtualNetworkGatewayConnectionsSetSharedKeyResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ConnectionSharedKey;
+}
+
+/**
+ * Contains response data for the getSharedKey operation.
+ */
+export interface VirtualNetworkGatewayConnectionsGetSharedKeyResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ConnectionSharedKey;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface VirtualNetworkGatewayConnectionsListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkGatewayConnectionListResult;
+}
+
+/**
+ * Contains response data for the resetSharedKey operation.
+ */
+export interface VirtualNetworkGatewayConnectionsResetSharedKeyResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ConnectionResetSharedKey;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface VirtualNetworkGatewayConnectionsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkGatewayConnection;
+}
+
+/**
+ * Contains response data for the beginUpdateTags operation.
+ */
+export interface VirtualNetworkGatewayConnectionsBeginUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkGatewayConnectionListEntity;
+}
+
+/**
+ * Contains response data for the beginSetSharedKey operation.
+ */
+export interface VirtualNetworkGatewayConnectionsBeginSetSharedKeyResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ConnectionSharedKey;
+}
+
+/**
+ * Contains response data for the beginResetSharedKey operation.
+ */
+export interface VirtualNetworkGatewayConnectionsBeginResetSharedKeyResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: ConnectionResetSharedKey;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface VirtualNetworkGatewayConnectionsListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: VirtualNetworkGatewayConnectionListResult;
+}
+
+/**
+ * Contains response data for the createOrUpdate operation.
+ */
+export interface LocalNetworkGatewaysCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LocalNetworkGateway;
+}
+
+/**
+ * Contains response data for the get operation.
+ */
+export interface LocalNetworkGatewaysGetResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LocalNetworkGateway;
+}
+
+/**
+ * Contains response data for the updateTags operation.
+ */
+export interface LocalNetworkGatewaysUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LocalNetworkGateway;
+}
+
+/**
+ * Contains response data for the list operation.
+ */
+export interface LocalNetworkGatewaysListResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LocalNetworkGatewayListResult;
+}
+
+/**
+ * Contains response data for the beginCreateOrUpdate operation.
+ */
+export interface LocalNetworkGatewaysBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LocalNetworkGateway;
+}
+
+/**
+ * Contains response data for the beginUpdateTags operation.
+ */
+export interface LocalNetworkGatewaysBeginUpdateTagsResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LocalNetworkGateway;
+}
+
+/**
+ * Contains response data for the listNext operation.
+ */
+export interface LocalNetworkGatewaysListNextResponse extends msRest.HttpResponse {
+  /**
+   * The response body as text (string format)
+   */
+  bodyAsText: string;
+  /**
+   * The response body as parsed JSON or XML
+   */
+  parsedBody: LocalNetworkGatewayListResult;
+}

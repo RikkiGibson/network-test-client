@@ -37,14 +37,14 @@ export class NetworkInterfaceLoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceLoadBalancerListResult>> {
+  list(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceLoadBalancersListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         networkInterfaceName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.NetworkInterfaceLoadBalancersListResponse>;
   }
 
   /**
@@ -60,13 +60,13 @@ export class NetworkInterfaceLoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.NetworkInterfaceLoadBalancerListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceLoadBalancersListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.NetworkInterfaceLoadBalancersListNextResponse>;
   }
 
 }

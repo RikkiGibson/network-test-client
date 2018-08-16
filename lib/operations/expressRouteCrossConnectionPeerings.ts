@@ -37,14 +37,14 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, crossConnectionName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionPeeringList>> {
+  list(resourceGroupName: string, crossConnectionName: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionPeeringsListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         crossConnectionName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.ExpressRouteCrossConnectionPeeringsListResponse>;
   }
 
 
@@ -65,7 +65,7 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  deleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDeleteMethod(resourceGroupName, crossConnectionName, peeringName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -92,7 +92,7 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionPeering>> {
+  get(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionPeeringsGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -100,7 +100,7 @@ export class ExpressRouteCrossConnectionPeerings {
         peeringName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.ExpressRouteCrossConnectionPeeringsGetResponse>;
   }
 
 
@@ -124,7 +124,7 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  createOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, crossConnectionName, peeringName, peeringParameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -144,7 +144,7 @@ export class ExpressRouteCrossConnectionPeerings {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse>;
   }
 
   /**
@@ -164,7 +164,7 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, crossConnectionName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -195,7 +195,7 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionPeering>> {
+  beginCreateOrUpdate(resourceGroupName: string, crossConnectionName: string, peeringName: string, peeringParameters: Models.ExpressRouteCrossConnectionPeering, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionPeeringsBeginCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -204,7 +204,7 @@ export class ExpressRouteCrossConnectionPeerings {
         peeringParameters,
         options
       },
-      beginCreateOrUpdateOperationSpec);
+      beginCreateOrUpdateOperationSpec) as Promise<Models.ExpressRouteCrossConnectionPeeringsBeginCreateOrUpdateResponse>;
   }
 
   /**
@@ -220,13 +220,13 @@ export class ExpressRouteCrossConnectionPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCrossConnectionPeeringList>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionPeeringsListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.ExpressRouteCrossConnectionPeeringsListNextResponse>;
   }
 
 }

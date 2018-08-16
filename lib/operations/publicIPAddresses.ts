@@ -38,7 +38,7 @@ export class PublicIPAddresses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, publicIpAddressName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  deleteMethod(resourceGroupName: string, publicIpAddressName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDeleteMethod(resourceGroupName, publicIpAddressName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -63,14 +63,14 @@ export class PublicIPAddresses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, publicIpAddressName: string, options?: Models.PublicIPAddressesGetOptionalParams): Promise<msRest.HttpOperationResponse<Models.PublicIPAddress>> {
+  get(resourceGroupName: string, publicIpAddressName: string, options?: Models.PublicIPAddressesGetOptionalParams): Promise<Models.PublicIPAddressesGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         publicIpAddressName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.PublicIPAddressesGetResponse>;
   }
 
 
@@ -92,7 +92,7 @@ export class PublicIPAddresses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdate(resourceGroupName: string, publicIpAddressName: string, parameters: Models.PublicIPAddress, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  createOrUpdate(resourceGroupName: string, publicIpAddressName: string, parameters: Models.PublicIPAddress, options?: msRest.RequestOptionsBase): Promise<Models.PublicIPAddressesCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, publicIpAddressName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -112,7 +112,7 @@ export class PublicIPAddresses {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.PublicIPAddressesCreateOrUpdateResponse>;
   }
 
 
@@ -133,7 +133,7 @@ export class PublicIPAddresses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  updateTags(resourceGroupName: string, publicIpAddressName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  updateTags(resourceGroupName: string, publicIpAddressName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.PublicIPAddressesUpdateTagsResponse> {
     return this.beginUpdateTags(resourceGroupName, publicIpAddressName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -153,7 +153,7 @@ export class PublicIPAddresses {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.PublicIPAddressesUpdateTagsResponse>;
   }
 
   /**
@@ -167,12 +167,12 @@ export class PublicIPAddresses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAll(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PublicIPAddressListResult>> {
+  listAll(options?: msRest.RequestOptionsBase): Promise<Models.PublicIPAddressesListAllResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listAllOperationSpec);
+      listAllOperationSpec) as Promise<Models.PublicIPAddressesListAllResponse>;
   }
 
   /**
@@ -188,13 +188,13 @@ export class PublicIPAddresses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PublicIPAddressListResult>> {
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.PublicIPAddressesListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.PublicIPAddressesListResponse>;
   }
 
   /**
@@ -212,14 +212,14 @@ export class PublicIPAddresses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listVirtualMachineScaleSetPublicIPAddresses(resourceGroupName: string, virtualMachineScaleSetName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PublicIPAddressListResult>> {
+  listVirtualMachineScaleSetPublicIPAddresses(resourceGroupName: string, virtualMachineScaleSetName: string, options?: msRest.RequestOptionsBase): Promise<Models.PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         virtualMachineScaleSetName,
         options
       },
-      listVirtualMachineScaleSetPublicIPAddressesOperationSpec);
+      listVirtualMachineScaleSetPublicIPAddressesOperationSpec) as Promise<Models.PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesResponse>;
   }
 
   /**
@@ -244,7 +244,7 @@ export class PublicIPAddresses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listVirtualMachineScaleSetVMPublicIPAddresses(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PublicIPAddressListResult>> {
+  listVirtualMachineScaleSetVMPublicIPAddresses(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, options?: msRest.RequestOptionsBase): Promise<Models.PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -254,7 +254,7 @@ export class PublicIPAddresses {
         ipConfigurationName,
         options
       },
-      listVirtualMachineScaleSetVMPublicIPAddressesOperationSpec);
+      listVirtualMachineScaleSetVMPublicIPAddressesOperationSpec) as Promise<Models.PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesResponse>;
   }
 
   /**
@@ -281,7 +281,7 @@ export class PublicIPAddresses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getVirtualMachineScaleSetPublicIPAddress(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, publicIpAddressName: string, options?: Models.PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressOptionalParams): Promise<msRest.HttpOperationResponse<Models.PublicIPAddress>> {
+  getVirtualMachineScaleSetPublicIPAddress(resourceGroupName: string, virtualMachineScaleSetName: string, virtualmachineIndex: string, networkInterfaceName: string, ipConfigurationName: string, publicIpAddressName: string, options?: Models.PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressOptionalParams): Promise<Models.PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -292,7 +292,7 @@ export class PublicIPAddresses {
         publicIpAddressName,
         options
       },
-      getVirtualMachineScaleSetPublicIPAddressOperationSpec);
+      getVirtualMachineScaleSetPublicIPAddressOperationSpec) as Promise<Models.PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressResponse>;
   }
 
   /**
@@ -310,7 +310,7 @@ export class PublicIPAddresses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, publicIpAddressName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, publicIpAddressName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -338,7 +338,7 @@ export class PublicIPAddresses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, publicIpAddressName: string, parameters: Models.PublicIPAddress, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PublicIPAddress>> {
+  beginCreateOrUpdate(resourceGroupName: string, publicIpAddressName: string, parameters: Models.PublicIPAddress, options?: msRest.RequestOptionsBase): Promise<Models.PublicIPAddressesBeginCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -346,7 +346,7 @@ export class PublicIPAddresses {
         parameters,
         options
       },
-      beginCreateOrUpdateOperationSpec);
+      beginCreateOrUpdateOperationSpec) as Promise<Models.PublicIPAddressesBeginCreateOrUpdateResponse>;
   }
 
   /**
@@ -366,7 +366,7 @@ export class PublicIPAddresses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginUpdateTags(resourceGroupName: string, publicIpAddressName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PublicIPAddress>> {
+  beginUpdateTags(resourceGroupName: string, publicIpAddressName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.PublicIPAddressesBeginUpdateTagsResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -374,7 +374,7 @@ export class PublicIPAddresses {
         parameters,
         options
       },
-      beginUpdateTagsOperationSpec);
+      beginUpdateTagsOperationSpec) as Promise<Models.PublicIPAddressesBeginUpdateTagsResponse>;
   }
 
   /**
@@ -390,13 +390,13 @@ export class PublicIPAddresses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PublicIPAddressListResult>> {
+  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.PublicIPAddressesListAllNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listAllNextOperationSpec);
+      listAllNextOperationSpec) as Promise<Models.PublicIPAddressesListAllNextResponse>;
   }
 
   /**
@@ -412,13 +412,13 @@ export class PublicIPAddresses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PublicIPAddressListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.PublicIPAddressesListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.PublicIPAddressesListNextResponse>;
   }
 
   /**
@@ -434,13 +434,13 @@ export class PublicIPAddresses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listVirtualMachineScaleSetPublicIPAddressesNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PublicIPAddressListResult>> {
+  listVirtualMachineScaleSetPublicIPAddressesNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listVirtualMachineScaleSetPublicIPAddressesNextOperationSpec);
+      listVirtualMachineScaleSetPublicIPAddressesNextOperationSpec) as Promise<Models.PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextResponse>;
   }
 
   /**
@@ -457,13 +457,13 @@ export class PublicIPAddresses {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listVirtualMachineScaleSetVMPublicIPAddressesNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.PublicIPAddressListResult>> {
+  listVirtualMachineScaleSetVMPublicIPAddressesNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listVirtualMachineScaleSetVMPublicIPAddressesNextOperationSpec);
+      listVirtualMachineScaleSetVMPublicIPAddressesNextOperationSpec) as Promise<Models.PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextResponse>;
   }
 
 }

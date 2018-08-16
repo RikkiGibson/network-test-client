@@ -40,7 +40,7 @@ export class VirtualNetworkPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  deleteMethod(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDeleteMethod(resourceGroupName, virtualNetworkName, virtualNetworkPeeringName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -67,7 +67,7 @@ export class VirtualNetworkPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkPeering>> {
+  get(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkPeeringsGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -75,7 +75,7 @@ export class VirtualNetworkPeerings {
         virtualNetworkPeeringName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.VirtualNetworkPeeringsGetResponse>;
   }
 
 
@@ -99,7 +99,7 @@ export class VirtualNetworkPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdate(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, virtualNetworkPeeringParameters: Models.VirtualNetworkPeering, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  createOrUpdate(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, virtualNetworkPeeringParameters: Models.VirtualNetworkPeering, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkPeeringsCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, virtualNetworkName, virtualNetworkPeeringName, virtualNetworkPeeringParameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -119,7 +119,7 @@ export class VirtualNetworkPeerings {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.VirtualNetworkPeeringsCreateOrUpdateResponse>;
   }
 
   /**
@@ -137,14 +137,14 @@ export class VirtualNetworkPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, virtualNetworkName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkPeeringListResult>> {
+  list(resourceGroupName: string, virtualNetworkName: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkPeeringsListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         virtualNetworkName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.VirtualNetworkPeeringsListResponse>;
   }
 
   /**
@@ -164,7 +164,7 @@ export class VirtualNetworkPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -195,7 +195,7 @@ export class VirtualNetworkPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, virtualNetworkPeeringParameters: Models.VirtualNetworkPeering, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkPeering>> {
+  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, virtualNetworkPeeringParameters: Models.VirtualNetworkPeering, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkPeeringsBeginCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -204,7 +204,7 @@ export class VirtualNetworkPeerings {
         virtualNetworkPeeringParameters,
         options
       },
-      beginCreateOrUpdateOperationSpec);
+      beginCreateOrUpdateOperationSpec) as Promise<Models.VirtualNetworkPeeringsBeginCreateOrUpdateResponse>;
   }
 
   /**
@@ -220,13 +220,13 @@ export class VirtualNetworkPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.VirtualNetworkPeeringListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkPeeringsListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.VirtualNetworkPeeringsListNextResponse>;
   }
 
 }

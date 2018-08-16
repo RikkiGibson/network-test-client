@@ -38,7 +38,7 @@ export class DdosProtectionPlans {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, ddosProtectionPlanName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  deleteMethod(resourceGroupName: string, ddosProtectionPlanName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDeleteMethod(resourceGroupName, ddosProtectionPlanName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -63,14 +63,14 @@ export class DdosProtectionPlans {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, ddosProtectionPlanName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlan>> {
+  get(resourceGroupName: string, ddosProtectionPlanName: string, options?: msRest.RequestOptionsBase): Promise<Models.DdosProtectionPlansGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         ddosProtectionPlanName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.DdosProtectionPlansGetResponse>;
   }
 
 
@@ -91,7 +91,7 @@ export class DdosProtectionPlans {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: Models.DdosProtectionPlan, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  createOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: Models.DdosProtectionPlan, options?: msRest.RequestOptionsBase): Promise<Models.DdosProtectionPlansCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, ddosProtectionPlanName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -111,7 +111,7 @@ export class DdosProtectionPlans {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.DdosProtectionPlansCreateOrUpdateResponse>;
   }
 
   /**
@@ -125,12 +125,12 @@ export class DdosProtectionPlans {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlanListResult>> {
+  list(options?: msRest.RequestOptionsBase): Promise<Models.DdosProtectionPlansListResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.DdosProtectionPlansListResponse>;
   }
 
   /**
@@ -146,13 +146,13 @@ export class DdosProtectionPlans {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listByResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlanListResult>> {
+  listByResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.DdosProtectionPlansListByResourceGroupResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listByResourceGroupOperationSpec);
+      listByResourceGroupOperationSpec) as Promise<Models.DdosProtectionPlansListByResourceGroupResponse>;
   }
 
   /**
@@ -170,7 +170,7 @@ export class DdosProtectionPlans {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, ddosProtectionPlanName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, ddosProtectionPlanName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -197,7 +197,7 @@ export class DdosProtectionPlans {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: Models.DdosProtectionPlan, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlan>> {
+  beginCreateOrUpdate(resourceGroupName: string, ddosProtectionPlanName: string, parameters: Models.DdosProtectionPlan, options?: msRest.RequestOptionsBase): Promise<Models.DdosProtectionPlansBeginCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -205,7 +205,7 @@ export class DdosProtectionPlans {
         parameters,
         options
       },
-      beginCreateOrUpdateOperationSpec);
+      beginCreateOrUpdateOperationSpec) as Promise<Models.DdosProtectionPlansBeginCreateOrUpdateResponse>;
   }
 
   /**
@@ -221,13 +221,13 @@ export class DdosProtectionPlans {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlanListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.DdosProtectionPlansListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.DdosProtectionPlansListNextResponse>;
   }
 
   /**
@@ -243,13 +243,13 @@ export class DdosProtectionPlans {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listByResourceGroupNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.DdosProtectionPlanListResult>> {
+  listByResourceGroupNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.DdosProtectionPlansListByResourceGroupNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listByResourceGroupNextOperationSpec);
+      listByResourceGroupNextOperationSpec) as Promise<Models.DdosProtectionPlansListByResourceGroupNextResponse>;
   }
 
 }

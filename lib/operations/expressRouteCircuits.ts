@@ -38,7 +38,7 @@ export class ExpressRouteCircuits {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, circuitName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  deleteMethod(resourceGroupName: string, circuitName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.beginDeleteMethod(resourceGroupName, circuitName, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -63,14 +63,14 @@ export class ExpressRouteCircuits {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, circuitName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuit>> {
+  get(resourceGroupName: string, circuitName: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         circuitName,
         options
       },
-      getOperationSpec);
+      getOperationSpec) as Promise<Models.ExpressRouteCircuitsGetResponse>;
   }
 
 
@@ -92,7 +92,7 @@ export class ExpressRouteCircuits {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdate(resourceGroupName: string, circuitName: string, parameters: Models.ExpressRouteCircuit, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  createOrUpdate(resourceGroupName: string, circuitName: string, parameters: Models.ExpressRouteCircuit, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, circuitName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -112,7 +112,7 @@ export class ExpressRouteCircuits {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.ExpressRouteCircuitsCreateOrUpdateResponse>;
   }
 
 
@@ -133,7 +133,7 @@ export class ExpressRouteCircuits {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  updateTags(resourceGroupName: string, circuitName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  updateTags(resourceGroupName: string, circuitName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsUpdateTagsResponse> {
     return this.beginUpdateTags(resourceGroupName, circuitName, parameters, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -153,7 +153,7 @@ export class ExpressRouteCircuits {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.ExpressRouteCircuitsUpdateTagsResponse>;
   }
 
 
@@ -177,7 +177,7 @@ export class ExpressRouteCircuits {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listArpTable(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  listArpTable(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsListArpTableResponse> {
     return this.beginListArpTable(resourceGroupName, circuitName, peeringName, devicePath, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -197,7 +197,7 @@ export class ExpressRouteCircuits {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.ExpressRouteCircuitsListArpTableResponse>;
   }
 
 
@@ -221,7 +221,7 @@ export class ExpressRouteCircuits {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listRoutesTable(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  listRoutesTable(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsListRoutesTableResponse> {
     return this.beginListRoutesTable(resourceGroupName, circuitName, peeringName, devicePath, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -241,7 +241,7 @@ export class ExpressRouteCircuits {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.ExpressRouteCircuitsListRoutesTableResponse>;
   }
 
 
@@ -265,7 +265,7 @@ export class ExpressRouteCircuits {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listRoutesTableSummary(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse> {
+  listRoutesTableSummary(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsListRoutesTableSummaryResponse> {
     return this.beginListRoutesTableSummary(resourceGroupName, circuitName, peeringName, devicePath, options)
       .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
       .then(operationRes => {
@@ -285,7 +285,7 @@ export class ExpressRouteCircuits {
           }
         }
         return operationRes;
-      });
+      }) as Promise<Models.ExpressRouteCircuitsListRoutesTableSummaryResponse>;
   }
 
   /**
@@ -303,14 +303,14 @@ export class ExpressRouteCircuits {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getStats(resourceGroupName: string, circuitName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitStats>> {
+  getStats(resourceGroupName: string, circuitName: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsGetStatsResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         circuitName,
         options
       },
-      getStatsOperationSpec);
+      getStatsOperationSpec) as Promise<Models.ExpressRouteCircuitsGetStatsResponse>;
   }
 
   /**
@@ -330,7 +330,7 @@ export class ExpressRouteCircuits {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getPeeringStats(resourceGroupName: string, circuitName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitStats>> {
+  getPeeringStats(resourceGroupName: string, circuitName: string, peeringName: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsGetPeeringStatsResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -338,7 +338,7 @@ export class ExpressRouteCircuits {
         peeringName,
         options
       },
-      getPeeringStatsOperationSpec);
+      getPeeringStatsOperationSpec) as Promise<Models.ExpressRouteCircuitsGetPeeringStatsResponse>;
   }
 
   /**
@@ -354,13 +354,13 @@ export class ExpressRouteCircuits {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitListResult>> {
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listOperationSpec);
+      listOperationSpec) as Promise<Models.ExpressRouteCircuitsListResponse>;
   }
 
   /**
@@ -374,12 +374,12 @@ export class ExpressRouteCircuits {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAll(options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitListResult>> {
+  listAll(options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsListAllResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listAllOperationSpec);
+      listAllOperationSpec) as Promise<Models.ExpressRouteCircuitsListAllResponse>;
   }
 
   /**
@@ -397,7 +397,7 @@ export class ExpressRouteCircuits {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, circuitName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<void>> {
+  beginDeleteMethod(resourceGroupName: string, circuitName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -425,7 +425,7 @@ export class ExpressRouteCircuits {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, circuitName: string, parameters: Models.ExpressRouteCircuit, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuit>> {
+  beginCreateOrUpdate(resourceGroupName: string, circuitName: string, parameters: Models.ExpressRouteCircuit, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsBeginCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -433,7 +433,7 @@ export class ExpressRouteCircuits {
         parameters,
         options
       },
-      beginCreateOrUpdateOperationSpec);
+      beginCreateOrUpdateOperationSpec) as Promise<Models.ExpressRouteCircuitsBeginCreateOrUpdateResponse>;
   }
 
   /**
@@ -453,7 +453,7 @@ export class ExpressRouteCircuits {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginUpdateTags(resourceGroupName: string, circuitName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuit>> {
+  beginUpdateTags(resourceGroupName: string, circuitName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsBeginUpdateTagsResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -461,7 +461,7 @@ export class ExpressRouteCircuits {
         parameters,
         options
       },
-      beginUpdateTagsOperationSpec);
+      beginUpdateTagsOperationSpec) as Promise<Models.ExpressRouteCircuitsBeginUpdateTagsResponse>;
   }
 
   /**
@@ -484,7 +484,7 @@ export class ExpressRouteCircuits {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginListArpTable(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitsArpTableListResult>> {
+  beginListArpTable(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsBeginListArpTableResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -493,7 +493,7 @@ export class ExpressRouteCircuits {
         devicePath,
         options
       },
-      beginListArpTableOperationSpec);
+      beginListArpTableOperationSpec) as Promise<Models.ExpressRouteCircuitsBeginListArpTableResponse>;
   }
 
   /**
@@ -516,7 +516,7 @@ export class ExpressRouteCircuits {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginListRoutesTable(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitsRoutesTableListResult>> {
+  beginListRoutesTable(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsBeginListRoutesTableResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -525,7 +525,7 @@ export class ExpressRouteCircuits {
         devicePath,
         options
       },
-      beginListRoutesTableOperationSpec);
+      beginListRoutesTableOperationSpec) as Promise<Models.ExpressRouteCircuitsBeginListRoutesTableResponse>;
   }
 
   /**
@@ -548,7 +548,7 @@ export class ExpressRouteCircuits {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginListRoutesTableSummary(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitsRoutesTableSummaryListResult>> {
+  beginListRoutesTableSummary(resourceGroupName: string, circuitName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsBeginListRoutesTableSummaryResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -557,7 +557,7 @@ export class ExpressRouteCircuits {
         devicePath,
         options
       },
-      beginListRoutesTableSummaryOperationSpec);
+      beginListRoutesTableSummaryOperationSpec) as Promise<Models.ExpressRouteCircuitsBeginListRoutesTableSummaryResponse>;
   }
 
   /**
@@ -573,13 +573,13 @@ export class ExpressRouteCircuits {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitListResult>> {
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec);
+      listNextOperationSpec) as Promise<Models.ExpressRouteCircuitsListNextResponse>;
   }
 
   /**
@@ -595,13 +595,13 @@ export class ExpressRouteCircuits {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpOperationResponse<Models.ExpressRouteCircuitListResult>> {
+  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitsListAllNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listAllNextOperationSpec);
+      listAllNextOperationSpec) as Promise<Models.ExpressRouteCircuitsListAllNextResponse>;
   }
 
 }

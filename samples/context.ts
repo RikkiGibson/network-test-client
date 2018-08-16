@@ -1,5 +1,4 @@
-import { NetworkManagementClientContext } from '../lib/networkManagementClientContext';
-import { NetworkInterfaces } from '../lib/operations/networkInterfaces';
+import { NetworkManagementClientContext, NetworkInterfaces } from '../lib/networkManagementClient';
 import { TokenCredentials } from 'ms-rest-js';
 import { token, subscriptionId, resourceGroupId } from "./auth";
 

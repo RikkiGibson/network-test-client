@@ -146,14 +146,19 @@ class NetworkManagementClient extends NetworkManagementClientContext {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  checkDnsNameAvailability(location: string, domainNameLabel: string, options?: msRest.RequestOptionsBase): Promise<Models.CheckDnsNameAvailabilityResponse> {
+  checkDnsNameAvailability(location: string, domainNameLabel: string): Promise<Models.CheckDnsNameAvailabilityResponse>;
+  checkDnsNameAvailability(location: string, domainNameLabel: string, options: msRest.RequestOptionsBase): Promise<Models.CheckDnsNameAvailabilityResponse>;
+  checkDnsNameAvailability(location: string, domainNameLabel: string, callback: msRest.ServiceCallback<Models.DnsNameAvailabilityResult>): void;
+  checkDnsNameAvailability(location: string, domainNameLabel: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DnsNameAvailabilityResult>): void;
+  checkDnsNameAvailability(location: string, domainNameLabel: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.DnsNameAvailabilityResult>): Promise<Models.CheckDnsNameAvailabilityResponse> {
     return this.sendOperationRequest(
       {
         location,
         domainNameLabel,
         options
       },
-      checkDnsNameAvailabilityOperationSpec) as Promise<Models.CheckDnsNameAvailabilityResponse>;
+      checkDnsNameAvailabilityOperationSpec,
+      callback) as Promise<Models.CheckDnsNameAvailabilityResponse>;
   }
 }
 

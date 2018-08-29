@@ -33,12 +33,17 @@ export class Operations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(options?: msRest.RequestOptionsBase): Promise<Models.OperationsListResponse> {
+  list(): Promise<Models.OperationsListResponse>;
+  list(options: msRest.RequestOptionsBase): Promise<Models.OperationsListResponse>;
+  list(callback: msRest.ServiceCallback<Models.OperationListResult>): void;
+  list(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.OperationListResult>): void;
+  list(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.OperationListResult>): Promise<Models.OperationsListResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listOperationSpec) as Promise<Models.OperationsListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.OperationsListResponse>;
   }
 
   /**
@@ -54,13 +59,18 @@ export class Operations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.OperationsListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.OperationsListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.OperationsListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.OperationListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.OperationListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.OperationListResult>): Promise<Models.OperationsListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.OperationsListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.OperationsListNextResponse>;
   }
 
 }

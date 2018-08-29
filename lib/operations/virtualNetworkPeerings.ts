@@ -5,6 +5,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/virtualNetworkPeeringsMappers";
 import * as Parameters from "../models/parameters";
@@ -40,14 +41,9 @@ export class VirtualNetworkPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  deleteMethod(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginDeleteMethod(resourceGroupName, virtualNetworkName, virtualNetworkPeeringName, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      });
+      .then(lroPoller => lroPoller.pollUntilFinished());
   }
 
   /**
@@ -67,7 +63,11 @@ export class VirtualNetworkPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkPeeringsGetResponse> {
+  get(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string): Promise<Models.VirtualNetworkPeeringsGetResponse>;
+  get(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkPeeringsGetResponse>;
+  get(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, callback: msRest.ServiceCallback<Models.VirtualNetworkPeering>): void;
+  get(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkPeering>): void;
+  get(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkPeering>): Promise<Models.VirtualNetworkPeeringsGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -75,7 +75,8 @@ export class VirtualNetworkPeerings {
         virtualNetworkPeeringName,
         options
       },
-      getOperationSpec) as Promise<Models.VirtualNetworkPeeringsGetResponse>;
+      getOperationSpec,
+      callback) as Promise<Models.VirtualNetworkPeeringsGetResponse>;
   }
 
 
@@ -101,25 +102,7 @@ export class VirtualNetworkPeerings {
    */
   createOrUpdate(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, virtualNetworkPeeringParameters: Models.VirtualNetworkPeering, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkPeeringsCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, virtualNetworkName, virtualNetworkPeeringName, virtualNetworkPeeringParameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.VirtualNetworkPeering, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.VirtualNetworkPeeringsCreateOrUpdateResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.VirtualNetworkPeeringsCreateOrUpdateResponse>;
   }
 
   /**
@@ -137,14 +120,19 @@ export class VirtualNetworkPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, virtualNetworkName: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkPeeringsListResponse> {
+  list(resourceGroupName: string, virtualNetworkName: string): Promise<Models.VirtualNetworkPeeringsListResponse>;
+  list(resourceGroupName: string, virtualNetworkName: string, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkPeeringsListResponse>;
+  list(resourceGroupName: string, virtualNetworkName: string, callback: msRest.ServiceCallback<Models.VirtualNetworkPeeringListResult>): void;
+  list(resourceGroupName: string, virtualNetworkName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkPeeringListResult>): void;
+  list(resourceGroupName: string, virtualNetworkName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkPeeringListResult>): Promise<Models.VirtualNetworkPeeringsListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         virtualNetworkName,
         options
       },
-      listOperationSpec) as Promise<Models.VirtualNetworkPeeringsListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.VirtualNetworkPeeringsListResponse>;
   }
 
   /**
@@ -164,15 +152,16 @@ export class VirtualNetworkPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteMethod(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         virtualNetworkName,
         virtualNetworkPeeringName,
         options
       },
-      beginDeleteMethodOperationSpec);
+      beginDeleteMethodOperationSpec,
+      options);
   }
 
   /**
@@ -195,8 +184,8 @@ export class VirtualNetworkPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, virtualNetworkPeeringParameters: Models.VirtualNetworkPeering, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkPeeringsBeginCreateOrUpdateResponse> {
-    return this.client.sendOperationRequest(
+  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkName: string, virtualNetworkPeeringName: string, virtualNetworkPeeringParameters: Models.VirtualNetworkPeering, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         virtualNetworkName,
@@ -204,7 +193,8 @@ export class VirtualNetworkPeerings {
         virtualNetworkPeeringParameters,
         options
       },
-      beginCreateOrUpdateOperationSpec) as Promise<Models.VirtualNetworkPeeringsBeginCreateOrUpdateResponse>;
+      beginCreateOrUpdateOperationSpec,
+      options);
   }
 
   /**
@@ -220,13 +210,18 @@ export class VirtualNetworkPeerings {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkPeeringsListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.VirtualNetworkPeeringsListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworkPeeringsListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.VirtualNetworkPeeringListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkPeeringListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkPeeringListResult>): Promise<Models.VirtualNetworkPeeringsListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.VirtualNetworkPeeringsListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.VirtualNetworkPeeringsListNextResponse>;
   }
 
 }

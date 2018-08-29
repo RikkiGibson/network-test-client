@@ -5,6 +5,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/applicationGatewaysMappers";
 import * as Parameters from "../models/parameters";
@@ -38,14 +39,9 @@ export class ApplicationGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, applicationGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  deleteMethod(resourceGroupName: string, applicationGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginDeleteMethod(resourceGroupName, applicationGatewayName, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      });
+      .then(lroPoller => lroPoller.pollUntilFinished());
   }
 
   /**
@@ -63,14 +59,19 @@ export class ApplicationGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, applicationGatewayName: string, options?: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysGetResponse> {
+  get(resourceGroupName: string, applicationGatewayName: string): Promise<Models.ApplicationGatewaysGetResponse>;
+  get(resourceGroupName: string, applicationGatewayName: string, options: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysGetResponse>;
+  get(resourceGroupName: string, applicationGatewayName: string, callback: msRest.ServiceCallback<Models.ApplicationGateway>): void;
+  get(resourceGroupName: string, applicationGatewayName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ApplicationGateway>): void;
+  get(resourceGroupName: string, applicationGatewayName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ApplicationGateway>): Promise<Models.ApplicationGatewaysGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         applicationGatewayName,
         options
       },
-      getOperationSpec) as Promise<Models.ApplicationGatewaysGetResponse>;
+      getOperationSpec,
+      callback) as Promise<Models.ApplicationGatewaysGetResponse>;
   }
 
 
@@ -94,25 +95,7 @@ export class ApplicationGateways {
    */
   createOrUpdate(resourceGroupName: string, applicationGatewayName: string, parameters: Models.ApplicationGateway, options?: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, applicationGatewayName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.ApplicationGateway, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.ApplicationGatewaysCreateOrUpdateResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.ApplicationGatewaysCreateOrUpdateResponse>;
   }
 
 
@@ -135,25 +118,7 @@ export class ApplicationGateways {
    */
   updateTags(resourceGroupName: string, applicationGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysUpdateTagsResponse> {
     return this.beginUpdateTags(resourceGroupName, applicationGatewayName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.ApplicationGateway, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.ApplicationGatewaysUpdateTagsResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.ApplicationGatewaysUpdateTagsResponse>;
   }
 
   /**
@@ -169,13 +134,18 @@ export class ApplicationGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysListResponse> {
+  list(resourceGroupName: string): Promise<Models.ApplicationGatewaysListResponse>;
+  list(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysListResponse>;
+  list(resourceGroupName: string, callback: msRest.ServiceCallback<Models.ApplicationGatewayListResult>): void;
+  list(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ApplicationGatewayListResult>): void;
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ApplicationGatewayListResult>): Promise<Models.ApplicationGatewaysListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listOperationSpec) as Promise<Models.ApplicationGatewaysListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.ApplicationGatewaysListResponse>;
   }
 
   /**
@@ -189,12 +159,17 @@ export class ApplicationGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAll(options?: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysListAllResponse> {
+  listAll(): Promise<Models.ApplicationGatewaysListAllResponse>;
+  listAll(options: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysListAllResponse>;
+  listAll(callback: msRest.ServiceCallback<Models.ApplicationGatewayListResult>): void;
+  listAll(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ApplicationGatewayListResult>): void;
+  listAll(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ApplicationGatewayListResult>): Promise<Models.ApplicationGatewaysListAllResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listAllOperationSpec) as Promise<Models.ApplicationGatewaysListAllResponse>;
+      listAllOperationSpec,
+      callback) as Promise<Models.ApplicationGatewaysListAllResponse>;
   }
 
 
@@ -213,14 +188,9 @@ export class ApplicationGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  start(resourceGroupName: string, applicationGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  start(resourceGroupName: string, applicationGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginStart(resourceGroupName, applicationGatewayName, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      });
+      .then(lroPoller => lroPoller.pollUntilFinished());
   }
 
 
@@ -239,14 +209,9 @@ export class ApplicationGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  stop(resourceGroupName: string, applicationGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  stop(resourceGroupName: string, applicationGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginStop(resourceGroupName, applicationGatewayName, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      });
+      .then(lroPoller => lroPoller.pollUntilFinished());
   }
 
 
@@ -267,25 +232,7 @@ export class ApplicationGateways {
    */
   backendHealth(resourceGroupName: string, applicationGatewayName: string, options?: Models.ApplicationGatewaysBackendHealthOptionalParams): Promise<Models.ApplicationGatewaysBackendHealthResponse> {
     return this.beginBackendHealth(resourceGroupName, applicationGatewayName, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.ApplicationGatewayBackendHealth, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.ApplicationGatewaysBackendHealthResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.ApplicationGatewaysBackendHealthResponse>;
   }
 
   /**
@@ -299,12 +246,17 @@ export class ApplicationGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAvailableWafRuleSets(options?: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysListAvailableWafRuleSetsResponse> {
+  listAvailableWafRuleSets(): Promise<Models.ApplicationGatewaysListAvailableWafRuleSetsResponse>;
+  listAvailableWafRuleSets(options: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysListAvailableWafRuleSetsResponse>;
+  listAvailableWafRuleSets(callback: msRest.ServiceCallback<Models.ApplicationGatewayAvailableWafRuleSetsResult>): void;
+  listAvailableWafRuleSets(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ApplicationGatewayAvailableWafRuleSetsResult>): void;
+  listAvailableWafRuleSets(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ApplicationGatewayAvailableWafRuleSetsResult>): Promise<Models.ApplicationGatewaysListAvailableWafRuleSetsResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listAvailableWafRuleSetsOperationSpec) as Promise<Models.ApplicationGatewaysListAvailableWafRuleSetsResponse>;
+      listAvailableWafRuleSetsOperationSpec,
+      callback) as Promise<Models.ApplicationGatewaysListAvailableWafRuleSetsResponse>;
   }
 
   /**
@@ -318,12 +270,17 @@ export class ApplicationGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAvailableSslOptions(options?: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysListAvailableSslOptionsResponse> {
+  listAvailableSslOptions(): Promise<Models.ApplicationGatewaysListAvailableSslOptionsResponse>;
+  listAvailableSslOptions(options: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysListAvailableSslOptionsResponse>;
+  listAvailableSslOptions(callback: msRest.ServiceCallback<Models.ApplicationGatewayAvailableSslOptions>): void;
+  listAvailableSslOptions(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ApplicationGatewayAvailableSslOptions>): void;
+  listAvailableSslOptions(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ApplicationGatewayAvailableSslOptions>): Promise<Models.ApplicationGatewaysListAvailableSslOptionsResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listAvailableSslOptionsOperationSpec) as Promise<Models.ApplicationGatewaysListAvailableSslOptionsResponse>;
+      listAvailableSslOptionsOperationSpec,
+      callback) as Promise<Models.ApplicationGatewaysListAvailableSslOptionsResponse>;
   }
 
   /**
@@ -337,12 +294,17 @@ export class ApplicationGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAvailableSslPredefinedPolicies(options?: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysListAvailableSslPredefinedPoliciesResponse> {
+  listAvailableSslPredefinedPolicies(): Promise<Models.ApplicationGatewaysListAvailableSslPredefinedPoliciesResponse>;
+  listAvailableSslPredefinedPolicies(options: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysListAvailableSslPredefinedPoliciesResponse>;
+  listAvailableSslPredefinedPolicies(callback: msRest.ServiceCallback<Models.ApplicationGatewayAvailableSslPredefinedPolicies>): void;
+  listAvailableSslPredefinedPolicies(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ApplicationGatewayAvailableSslPredefinedPolicies>): void;
+  listAvailableSslPredefinedPolicies(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ApplicationGatewayAvailableSslPredefinedPolicies>): Promise<Models.ApplicationGatewaysListAvailableSslPredefinedPoliciesResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listAvailableSslPredefinedPoliciesOperationSpec) as Promise<Models.ApplicationGatewaysListAvailableSslPredefinedPoliciesResponse>;
+      listAvailableSslPredefinedPoliciesOperationSpec,
+      callback) as Promise<Models.ApplicationGatewaysListAvailableSslPredefinedPoliciesResponse>;
   }
 
   /**
@@ -358,13 +320,18 @@ export class ApplicationGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getSslPredefinedPolicy(predefinedPolicyName: string, options?: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysGetSslPredefinedPolicyResponse> {
+  getSslPredefinedPolicy(predefinedPolicyName: string): Promise<Models.ApplicationGatewaysGetSslPredefinedPolicyResponse>;
+  getSslPredefinedPolicy(predefinedPolicyName: string, options: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysGetSslPredefinedPolicyResponse>;
+  getSslPredefinedPolicy(predefinedPolicyName: string, callback: msRest.ServiceCallback<Models.ApplicationGatewaySslPredefinedPolicy>): void;
+  getSslPredefinedPolicy(predefinedPolicyName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ApplicationGatewaySslPredefinedPolicy>): void;
+  getSslPredefinedPolicy(predefinedPolicyName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ApplicationGatewaySslPredefinedPolicy>): Promise<Models.ApplicationGatewaysGetSslPredefinedPolicyResponse> {
     return this.client.sendOperationRequest(
       {
         predefinedPolicyName,
         options
       },
-      getSslPredefinedPolicyOperationSpec) as Promise<Models.ApplicationGatewaysGetSslPredefinedPolicyResponse>;
+      getSslPredefinedPolicyOperationSpec,
+      callback) as Promise<Models.ApplicationGatewaysGetSslPredefinedPolicyResponse>;
   }
 
   /**
@@ -382,14 +349,15 @@ export class ApplicationGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, applicationGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteMethod(resourceGroupName: string, applicationGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         applicationGatewayName,
         options
       },
-      beginDeleteMethodOperationSpec);
+      beginDeleteMethodOperationSpec,
+      options);
   }
 
   /**
@@ -410,15 +378,16 @@ export class ApplicationGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, applicationGatewayName: string, parameters: Models.ApplicationGateway, options?: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysBeginCreateOrUpdateResponse> {
-    return this.client.sendOperationRequest(
+  beginCreateOrUpdate(resourceGroupName: string, applicationGatewayName: string, parameters: Models.ApplicationGateway, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         applicationGatewayName,
         parameters,
         options
       },
-      beginCreateOrUpdateOperationSpec) as Promise<Models.ApplicationGatewaysBeginCreateOrUpdateResponse>;
+      beginCreateOrUpdateOperationSpec,
+      options);
   }
 
   /**
@@ -438,15 +407,16 @@ export class ApplicationGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginUpdateTags(resourceGroupName: string, applicationGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysBeginUpdateTagsResponse> {
-    return this.client.sendOperationRequest(
+  beginUpdateTags(resourceGroupName: string, applicationGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         applicationGatewayName,
         parameters,
         options
       },
-      beginUpdateTagsOperationSpec) as Promise<Models.ApplicationGatewaysBeginUpdateTagsResponse>;
+      beginUpdateTagsOperationSpec,
+      options);
   }
 
   /**
@@ -464,14 +434,15 @@ export class ApplicationGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginStart(resourceGroupName: string, applicationGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
+  beginStart(resourceGroupName: string, applicationGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         applicationGatewayName,
         options
       },
-      beginStartOperationSpec);
+      beginStartOperationSpec,
+      options);
   }
 
   /**
@@ -489,14 +460,15 @@ export class ApplicationGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginStop(resourceGroupName: string, applicationGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
+  beginStop(resourceGroupName: string, applicationGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         applicationGatewayName,
         options
       },
-      beginStopOperationSpec);
+      beginStopOperationSpec,
+      options);
   }
 
   /**
@@ -514,14 +486,15 @@ export class ApplicationGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginBackendHealth(resourceGroupName: string, applicationGatewayName: string, options?: Models.ApplicationGatewaysBeginBackendHealthOptionalParams): Promise<Models.ApplicationGatewaysBeginBackendHealthResponse> {
-    return this.client.sendOperationRequest(
+  beginBackendHealth(resourceGroupName: string, applicationGatewayName: string, options?: Models.ApplicationGatewaysBeginBackendHealthOptionalParams): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         applicationGatewayName,
         options
       },
-      beginBackendHealthOperationSpec) as Promise<Models.ApplicationGatewaysBeginBackendHealthResponse>;
+      beginBackendHealthOperationSpec,
+      options);
   }
 
   /**
@@ -537,13 +510,18 @@ export class ApplicationGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.ApplicationGatewaysListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ApplicationGatewayListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ApplicationGatewayListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ApplicationGatewayListResult>): Promise<Models.ApplicationGatewaysListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.ApplicationGatewaysListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.ApplicationGatewaysListNextResponse>;
   }
 
   /**
@@ -559,13 +537,18 @@ export class ApplicationGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysListAllNextResponse> {
+  listAllNext(nextPageLink: string): Promise<Models.ApplicationGatewaysListAllNextResponse>;
+  listAllNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysListAllNextResponse>;
+  listAllNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ApplicationGatewayListResult>): void;
+  listAllNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ApplicationGatewayListResult>): void;
+  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ApplicationGatewayListResult>): Promise<Models.ApplicationGatewaysListAllNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listAllNextOperationSpec) as Promise<Models.ApplicationGatewaysListAllNextResponse>;
+      listAllNextOperationSpec,
+      callback) as Promise<Models.ApplicationGatewaysListAllNextResponse>;
   }
 
   /**
@@ -581,13 +564,18 @@ export class ApplicationGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAvailableSslPredefinedPoliciesNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysListAvailableSslPredefinedPoliciesNextResponse> {
+  listAvailableSslPredefinedPoliciesNext(nextPageLink: string): Promise<Models.ApplicationGatewaysListAvailableSslPredefinedPoliciesNextResponse>;
+  listAvailableSslPredefinedPoliciesNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.ApplicationGatewaysListAvailableSslPredefinedPoliciesNextResponse>;
+  listAvailableSslPredefinedPoliciesNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ApplicationGatewayAvailableSslPredefinedPolicies>): void;
+  listAvailableSslPredefinedPoliciesNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ApplicationGatewayAvailableSslPredefinedPolicies>): void;
+  listAvailableSslPredefinedPoliciesNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ApplicationGatewayAvailableSslPredefinedPolicies>): Promise<Models.ApplicationGatewaysListAvailableSslPredefinedPoliciesNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listAvailableSslPredefinedPoliciesNextOperationSpec) as Promise<Models.ApplicationGatewaysListAvailableSslPredefinedPoliciesNextResponse>;
+      listAvailableSslPredefinedPoliciesNextOperationSpec,
+      callback) as Promise<Models.ApplicationGatewaysListAvailableSslPredefinedPoliciesNextResponse>;
   }
 
 }

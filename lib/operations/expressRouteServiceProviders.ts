@@ -33,12 +33,17 @@ export class ExpressRouteServiceProviders {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteServiceProvidersListResponse> {
+  list(): Promise<Models.ExpressRouteServiceProvidersListResponse>;
+  list(options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteServiceProvidersListResponse>;
+  list(callback: msRest.ServiceCallback<Models.ExpressRouteServiceProviderListResult>): void;
+  list(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteServiceProviderListResult>): void;
+  list(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteServiceProviderListResult>): Promise<Models.ExpressRouteServiceProvidersListResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listOperationSpec) as Promise<Models.ExpressRouteServiceProvidersListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.ExpressRouteServiceProvidersListResponse>;
   }
 
   /**
@@ -54,13 +59,18 @@ export class ExpressRouteServiceProviders {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteServiceProvidersListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.ExpressRouteServiceProvidersListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteServiceProvidersListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ExpressRouteServiceProviderListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteServiceProviderListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteServiceProviderListResult>): Promise<Models.ExpressRouteServiceProvidersListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.ExpressRouteServiceProvidersListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.ExpressRouteServiceProvidersListNextResponse>;
   }
 
 }

@@ -5,6 +5,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/subnetsMappers";
 import * as Parameters from "../models/parameters";
@@ -40,14 +41,9 @@ export class Subnets {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  deleteMethod(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginDeleteMethod(resourceGroupName, virtualNetworkName, subnetName, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      });
+      .then(lroPoller => lroPoller.pollUntilFinished());
   }
 
   /**
@@ -67,7 +63,11 @@ export class Subnets {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: Models.SubnetsGetOptionalParams): Promise<Models.SubnetsGetResponse> {
+  get(resourceGroupName: string, virtualNetworkName: string, subnetName: string): Promise<Models.SubnetsGetResponse>;
+  get(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options: Models.SubnetsGetOptionalParams): Promise<Models.SubnetsGetResponse>;
+  get(resourceGroupName: string, virtualNetworkName: string, subnetName: string, callback: msRest.ServiceCallback<Models.Subnet>): void;
+  get(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options: Models.SubnetsGetOptionalParams, callback: msRest.ServiceCallback<Models.Subnet>): void;
+  get(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: Models.SubnetsGetOptionalParams, callback?: msRest.ServiceCallback<Models.Subnet>): Promise<Models.SubnetsGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -75,7 +75,8 @@ export class Subnets {
         subnetName,
         options
       },
-      getOperationSpec) as Promise<Models.SubnetsGetResponse>;
+      getOperationSpec,
+      callback) as Promise<Models.SubnetsGetResponse>;
   }
 
 
@@ -100,25 +101,7 @@ export class Subnets {
    */
   createOrUpdate(resourceGroupName: string, virtualNetworkName: string, subnetName: string, subnetParameters: Models.Subnet, options?: msRest.RequestOptionsBase): Promise<Models.SubnetsCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, virtualNetworkName, subnetName, subnetParameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.Subnet, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.SubnetsCreateOrUpdateResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.SubnetsCreateOrUpdateResponse>;
   }
 
   /**
@@ -136,14 +119,19 @@ export class Subnets {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, virtualNetworkName: string, options?: msRest.RequestOptionsBase): Promise<Models.SubnetsListResponse> {
+  list(resourceGroupName: string, virtualNetworkName: string): Promise<Models.SubnetsListResponse>;
+  list(resourceGroupName: string, virtualNetworkName: string, options: msRest.RequestOptionsBase): Promise<Models.SubnetsListResponse>;
+  list(resourceGroupName: string, virtualNetworkName: string, callback: msRest.ServiceCallback<Models.SubnetListResult>): void;
+  list(resourceGroupName: string, virtualNetworkName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SubnetListResult>): void;
+  list(resourceGroupName: string, virtualNetworkName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SubnetListResult>): Promise<Models.SubnetsListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         virtualNetworkName,
         options
       },
-      listOperationSpec) as Promise<Models.SubnetsListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.SubnetsListResponse>;
   }
 
   /**
@@ -163,15 +151,16 @@ export class Subnets {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteMethod(resourceGroupName: string, virtualNetworkName: string, subnetName: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         virtualNetworkName,
         subnetName,
         options
       },
-      beginDeleteMethodOperationSpec);
+      beginDeleteMethodOperationSpec,
+      options);
   }
 
   /**
@@ -193,8 +182,8 @@ export class Subnets {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkName: string, subnetName: string, subnetParameters: Models.Subnet, options?: msRest.RequestOptionsBase): Promise<Models.SubnetsBeginCreateOrUpdateResponse> {
-    return this.client.sendOperationRequest(
+  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkName: string, subnetName: string, subnetParameters: Models.Subnet, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         virtualNetworkName,
@@ -202,7 +191,8 @@ export class Subnets {
         subnetParameters,
         options
       },
-      beginCreateOrUpdateOperationSpec) as Promise<Models.SubnetsBeginCreateOrUpdateResponse>;
+      beginCreateOrUpdateOperationSpec,
+      options);
   }
 
   /**
@@ -218,13 +208,18 @@ export class Subnets {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.SubnetsListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.SubnetsListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.SubnetsListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.SubnetListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SubnetListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SubnetListResult>): Promise<Models.SubnetsListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.SubnetsListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.SubnetsListNextResponse>;
   }
 
 }

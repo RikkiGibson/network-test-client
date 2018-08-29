@@ -5,6 +5,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/connectionMonitorsMappers";
 import * as Parameters from "../models/parameters";
@@ -45,25 +46,7 @@ export class ConnectionMonitors {
    */
   createOrUpdate(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: Models.ConnectionMonitor, options?: msRest.RequestOptionsBase): Promise<Models.ConnectionMonitorsCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, networkWatcherName, connectionMonitorName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.ConnectionMonitorResult, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.ConnectionMonitorsCreateOrUpdateResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.ConnectionMonitorsCreateOrUpdateResponse>;
   }
 
   /**
@@ -83,7 +66,11 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<Models.ConnectionMonitorsGetResponse> {
+  get(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string): Promise<Models.ConnectionMonitorsGetResponse>;
+  get(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options: msRest.RequestOptionsBase): Promise<Models.ConnectionMonitorsGetResponse>;
+  get(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, callback: msRest.ServiceCallback<Models.ConnectionMonitorResult>): void;
+  get(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ConnectionMonitorResult>): void;
+  get(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ConnectionMonitorResult>): Promise<Models.ConnectionMonitorsGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -91,7 +78,8 @@ export class ConnectionMonitors {
         connectionMonitorName,
         options
       },
-      getOperationSpec) as Promise<Models.ConnectionMonitorsGetResponse>;
+      getOperationSpec,
+      callback) as Promise<Models.ConnectionMonitorsGetResponse>;
   }
 
 
@@ -112,14 +100,9 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  deleteMethod(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginDeleteMethod(resourceGroupName, networkWatcherName, connectionMonitorName, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      });
+      .then(lroPoller => lroPoller.pollUntilFinished());
   }
 
 
@@ -140,14 +123,9 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  stop(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  stop(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginStop(resourceGroupName, networkWatcherName, connectionMonitorName, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      });
+      .then(lroPoller => lroPoller.pollUntilFinished());
   }
 
 
@@ -168,14 +146,9 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  start(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  start(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginStart(resourceGroupName, networkWatcherName, connectionMonitorName, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      });
+      .then(lroPoller => lroPoller.pollUntilFinished());
   }
 
 
@@ -198,25 +171,7 @@ export class ConnectionMonitors {
    */
   query(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<Models.ConnectionMonitorsQueryResponse> {
     return this.beginQuery(resourceGroupName, networkWatcherName, connectionMonitorName, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.ConnectionMonitorQueryResult, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.ConnectionMonitorsQueryResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.ConnectionMonitorsQueryResponse>;
   }
 
   /**
@@ -234,14 +189,19 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<Models.ConnectionMonitorsListResponse> {
+  list(resourceGroupName: string, networkWatcherName: string): Promise<Models.ConnectionMonitorsListResponse>;
+  list(resourceGroupName: string, networkWatcherName: string, options: msRest.RequestOptionsBase): Promise<Models.ConnectionMonitorsListResponse>;
+  list(resourceGroupName: string, networkWatcherName: string, callback: msRest.ServiceCallback<Models.ConnectionMonitorListResult>): void;
+  list(resourceGroupName: string, networkWatcherName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ConnectionMonitorListResult>): void;
+  list(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ConnectionMonitorListResult>): Promise<Models.ConnectionMonitorsListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         networkWatcherName,
         options
       },
-      listOperationSpec) as Promise<Models.ConnectionMonitorsListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.ConnectionMonitorsListResponse>;
   }
 
   /**
@@ -264,8 +224,8 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: Models.ConnectionMonitor, options?: msRest.RequestOptionsBase): Promise<Models.ConnectionMonitorsBeginCreateOrUpdateResponse> {
-    return this.client.sendOperationRequest(
+  beginCreateOrUpdate(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, parameters: Models.ConnectionMonitor, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkWatcherName,
@@ -273,7 +233,8 @@ export class ConnectionMonitors {
         parameters,
         options
       },
-      beginCreateOrUpdateOperationSpec) as Promise<Models.ConnectionMonitorsBeginCreateOrUpdateResponse>;
+      beginCreateOrUpdateOperationSpec,
+      options);
   }
 
   /**
@@ -293,15 +254,16 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkWatcherName,
         connectionMonitorName,
         options
       },
-      beginDeleteMethodOperationSpec);
+      beginDeleteMethodOperationSpec,
+      options);
   }
 
   /**
@@ -321,15 +283,16 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginStop(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
+  beginStop(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkWatcherName,
         connectionMonitorName,
         options
       },
-      beginStopOperationSpec);
+      beginStopOperationSpec,
+      options);
   }
 
   /**
@@ -349,15 +312,16 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginStart(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
+  beginStart(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkWatcherName,
         connectionMonitorName,
         options
       },
-      beginStartOperationSpec);
+      beginStartOperationSpec,
+      options);
   }
 
   /**
@@ -377,15 +341,16 @@ export class ConnectionMonitors {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginQuery(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<Models.ConnectionMonitorsBeginQueryResponse> {
-    return this.client.sendOperationRequest(
+  beginQuery(resourceGroupName: string, networkWatcherName: string, connectionMonitorName: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkWatcherName,
         connectionMonitorName,
         options
       },
-      beginQueryOperationSpec) as Promise<Models.ConnectionMonitorsBeginQueryResponse>;
+      beginQueryOperationSpec,
+      options);
   }
 
 }

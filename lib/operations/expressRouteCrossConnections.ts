@@ -5,6 +5,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/expressRouteCrossConnectionsMappers";
 import * as Parameters from "../models/parameters";
@@ -33,12 +34,17 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsListResponse> {
+  list(): Promise<Models.ExpressRouteCrossConnectionsListResponse>;
+  list(options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsListResponse>;
+  list(callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): void;
+  list(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): void;
+  list(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): Promise<Models.ExpressRouteCrossConnectionsListResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listOperationSpec) as Promise<Models.ExpressRouteCrossConnectionsListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.ExpressRouteCrossConnectionsListResponse>;
   }
 
   /**
@@ -54,13 +60,18 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listByResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsListByResourceGroupResponse> {
+  listByResourceGroup(resourceGroupName: string): Promise<Models.ExpressRouteCrossConnectionsListByResourceGroupResponse>;
+  listByResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsListByResourceGroupResponse>;
+  listByResourceGroup(resourceGroupName: string, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): void;
+  listByResourceGroup(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): void;
+  listByResourceGroup(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): Promise<Models.ExpressRouteCrossConnectionsListByResourceGroupResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listByResourceGroupOperationSpec) as Promise<Models.ExpressRouteCrossConnectionsListByResourceGroupResponse>;
+      listByResourceGroupOperationSpec,
+      callback) as Promise<Models.ExpressRouteCrossConnectionsListByResourceGroupResponse>;
   }
 
   /**
@@ -80,14 +91,19 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, crossConnectionName: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsGetResponse> {
+  get(resourceGroupName: string, crossConnectionName: string): Promise<Models.ExpressRouteCrossConnectionsGetResponse>;
+  get(resourceGroupName: string, crossConnectionName: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsGetResponse>;
+  get(resourceGroupName: string, crossConnectionName: string, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnection>): void;
+  get(resourceGroupName: string, crossConnectionName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnection>): void;
+  get(resourceGroupName: string, crossConnectionName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnection>): Promise<Models.ExpressRouteCrossConnectionsGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         crossConnectionName,
         options
       },
-      getOperationSpec) as Promise<Models.ExpressRouteCrossConnectionsGetResponse>;
+      getOperationSpec,
+      callback) as Promise<Models.ExpressRouteCrossConnectionsGetResponse>;
   }
 
 
@@ -111,25 +127,7 @@ export class ExpressRouteCrossConnections {
    */
   createOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, crossConnectionName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.ExpressRouteCrossConnection, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.ExpressRouteCrossConnectionsCreateOrUpdateResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.ExpressRouteCrossConnectionsCreateOrUpdateResponse>;
   }
 
 
@@ -153,25 +151,7 @@ export class ExpressRouteCrossConnections {
    */
   updateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsUpdateTagsResponse> {
     return this.beginUpdateTags(resourceGroupName, crossConnectionName, crossConnectionParameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.ExpressRouteCrossConnection, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.ExpressRouteCrossConnectionsUpdateTagsResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.ExpressRouteCrossConnectionsUpdateTagsResponse>;
   }
 
 
@@ -197,25 +177,7 @@ export class ExpressRouteCrossConnections {
    */
   listArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsListArpTableResponse> {
     return this.beginListArpTable(resourceGroupName, crossConnectionName, peeringName, devicePath, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.ExpressRouteCircuitsArpTableListResult, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.ExpressRouteCrossConnectionsListArpTableResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.ExpressRouteCrossConnectionsListArpTableResponse>;
   }
 
 
@@ -241,25 +203,7 @@ export class ExpressRouteCrossConnections {
    */
   listRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsListRoutesTableSummaryResponse> {
     return this.beginListRoutesTableSummary(resourceGroupName, crossConnectionName, peeringName, devicePath, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.ExpressRouteCrossConnectionsRoutesTableSummaryListResult, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.ExpressRouteCrossConnectionsListRoutesTableSummaryResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.ExpressRouteCrossConnectionsListRoutesTableSummaryResponse>;
   }
 
 
@@ -285,25 +229,7 @@ export class ExpressRouteCrossConnections {
    */
   listRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsListRoutesTableResponse> {
     return this.beginListRoutesTable(resourceGroupName, crossConnectionName, peeringName, devicePath, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.ExpressRouteCircuitsRoutesTableListResult, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.ExpressRouteCrossConnectionsListRoutesTableResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.ExpressRouteCrossConnectionsListRoutesTableResponse>;
   }
 
   /**
@@ -324,15 +250,16 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsBeginCreateOrUpdateResponse> {
-    return this.client.sendOperationRequest(
+  beginCreateOrUpdate(resourceGroupName: string, crossConnectionName: string, parameters: Models.ExpressRouteCrossConnection, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         crossConnectionName,
         parameters,
         options
       },
-      beginCreateOrUpdateOperationSpec) as Promise<Models.ExpressRouteCrossConnectionsBeginCreateOrUpdateResponse>;
+      beginCreateOrUpdateOperationSpec,
+      options);
   }
 
   /**
@@ -353,15 +280,16 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginUpdateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsBeginUpdateTagsResponse> {
-    return this.client.sendOperationRequest(
+  beginUpdateTags(resourceGroupName: string, crossConnectionName: string, crossConnectionParameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         crossConnectionName,
         crossConnectionParameters,
         options
       },
-      beginUpdateTagsOperationSpec) as Promise<Models.ExpressRouteCrossConnectionsBeginUpdateTagsResponse>;
+      beginUpdateTagsOperationSpec,
+      options);
   }
 
   /**
@@ -384,8 +312,8 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginListArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsBeginListArpTableResponse> {
-    return this.client.sendOperationRequest(
+  beginListArpTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         crossConnectionName,
@@ -393,7 +321,8 @@ export class ExpressRouteCrossConnections {
         devicePath,
         options
       },
-      beginListArpTableOperationSpec) as Promise<Models.ExpressRouteCrossConnectionsBeginListArpTableResponse>;
+      beginListArpTableOperationSpec,
+      options);
   }
 
   /**
@@ -416,8 +345,8 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginListRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsBeginListRoutesTableSummaryResponse> {
-    return this.client.sendOperationRequest(
+  beginListRoutesTableSummary(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         crossConnectionName,
@@ -425,7 +354,8 @@ export class ExpressRouteCrossConnections {
         devicePath,
         options
       },
-      beginListRoutesTableSummaryOperationSpec) as Promise<Models.ExpressRouteCrossConnectionsBeginListRoutesTableSummaryResponse>;
+      beginListRoutesTableSummaryOperationSpec,
+      options);
   }
 
   /**
@@ -448,8 +378,8 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginListRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsBeginListRoutesTableResponse> {
-    return this.client.sendOperationRequest(
+  beginListRoutesTable(resourceGroupName: string, crossConnectionName: string, peeringName: string, devicePath: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         crossConnectionName,
@@ -457,7 +387,8 @@ export class ExpressRouteCrossConnections {
         devicePath,
         options
       },
-      beginListRoutesTableOperationSpec) as Promise<Models.ExpressRouteCrossConnectionsBeginListRoutesTableResponse>;
+      beginListRoutesTableOperationSpec,
+      options);
   }
 
   /**
@@ -473,13 +404,18 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.ExpressRouteCrossConnectionsListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): Promise<Models.ExpressRouteCrossConnectionsListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.ExpressRouteCrossConnectionsListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.ExpressRouteCrossConnectionsListNextResponse>;
   }
 
   /**
@@ -495,13 +431,18 @@ export class ExpressRouteCrossConnections {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listByResourceGroupNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsListByResourceGroupNextResponse> {
+  listByResourceGroupNext(nextPageLink: string): Promise<Models.ExpressRouteCrossConnectionsListByResourceGroupNextResponse>;
+  listByResourceGroupNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCrossConnectionsListByResourceGroupNextResponse>;
+  listByResourceGroupNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): void;
+  listByResourceGroupNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): void;
+  listByResourceGroupNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCrossConnectionListResult>): Promise<Models.ExpressRouteCrossConnectionsListByResourceGroupNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listByResourceGroupNextOperationSpec) as Promise<Models.ExpressRouteCrossConnectionsListByResourceGroupNextResponse>;
+      listByResourceGroupNextOperationSpec,
+      callback) as Promise<Models.ExpressRouteCrossConnectionsListByResourceGroupNextResponse>;
   }
 
 }

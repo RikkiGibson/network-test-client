@@ -5,6 +5,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/networkSecurityGroupsMappers";
 import * as Parameters from "../models/parameters";
@@ -38,14 +39,9 @@ export class NetworkSecurityGroups {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, networkSecurityGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  deleteMethod(resourceGroupName: string, networkSecurityGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginDeleteMethod(resourceGroupName, networkSecurityGroupName, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      });
+      .then(lroPoller => lroPoller.pollUntilFinished());
   }
 
   /**
@@ -63,14 +59,19 @@ export class NetworkSecurityGroups {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, networkSecurityGroupName: string, options?: Models.NetworkSecurityGroupsGetOptionalParams): Promise<Models.NetworkSecurityGroupsGetResponse> {
+  get(resourceGroupName: string, networkSecurityGroupName: string): Promise<Models.NetworkSecurityGroupsGetResponse>;
+  get(resourceGroupName: string, networkSecurityGroupName: string, options: Models.NetworkSecurityGroupsGetOptionalParams): Promise<Models.NetworkSecurityGroupsGetResponse>;
+  get(resourceGroupName: string, networkSecurityGroupName: string, callback: msRest.ServiceCallback<Models.NetworkSecurityGroup>): void;
+  get(resourceGroupName: string, networkSecurityGroupName: string, options: Models.NetworkSecurityGroupsGetOptionalParams, callback: msRest.ServiceCallback<Models.NetworkSecurityGroup>): void;
+  get(resourceGroupName: string, networkSecurityGroupName: string, options?: Models.NetworkSecurityGroupsGetOptionalParams, callback?: msRest.ServiceCallback<Models.NetworkSecurityGroup>): Promise<Models.NetworkSecurityGroupsGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         networkSecurityGroupName,
         options
       },
-      getOperationSpec) as Promise<Models.NetworkSecurityGroupsGetResponse>;
+      getOperationSpec,
+      callback) as Promise<Models.NetworkSecurityGroupsGetResponse>;
   }
 
 
@@ -94,25 +95,7 @@ export class NetworkSecurityGroups {
    */
   createOrUpdate(resourceGroupName: string, networkSecurityGroupName: string, parameters: Models.NetworkSecurityGroup, options?: msRest.RequestOptionsBase): Promise<Models.NetworkSecurityGroupsCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, networkSecurityGroupName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.NetworkSecurityGroup, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.NetworkSecurityGroupsCreateOrUpdateResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.NetworkSecurityGroupsCreateOrUpdateResponse>;
   }
 
 
@@ -135,25 +118,7 @@ export class NetworkSecurityGroups {
    */
   updateTags(resourceGroupName: string, networkSecurityGroupName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.NetworkSecurityGroupsUpdateTagsResponse> {
     return this.beginUpdateTags(resourceGroupName, networkSecurityGroupName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.NetworkSecurityGroup, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.NetworkSecurityGroupsUpdateTagsResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.NetworkSecurityGroupsUpdateTagsResponse>;
   }
 
   /**
@@ -167,12 +132,17 @@ export class NetworkSecurityGroups {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAll(options?: msRest.RequestOptionsBase): Promise<Models.NetworkSecurityGroupsListAllResponse> {
+  listAll(): Promise<Models.NetworkSecurityGroupsListAllResponse>;
+  listAll(options: msRest.RequestOptionsBase): Promise<Models.NetworkSecurityGroupsListAllResponse>;
+  listAll(callback: msRest.ServiceCallback<Models.NetworkSecurityGroupListResult>): void;
+  listAll(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkSecurityGroupListResult>): void;
+  listAll(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkSecurityGroupListResult>): Promise<Models.NetworkSecurityGroupsListAllResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listAllOperationSpec) as Promise<Models.NetworkSecurityGroupsListAllResponse>;
+      listAllOperationSpec,
+      callback) as Promise<Models.NetworkSecurityGroupsListAllResponse>;
   }
 
   /**
@@ -188,13 +158,18 @@ export class NetworkSecurityGroups {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkSecurityGroupsListResponse> {
+  list(resourceGroupName: string): Promise<Models.NetworkSecurityGroupsListResponse>;
+  list(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.NetworkSecurityGroupsListResponse>;
+  list(resourceGroupName: string, callback: msRest.ServiceCallback<Models.NetworkSecurityGroupListResult>): void;
+  list(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkSecurityGroupListResult>): void;
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkSecurityGroupListResult>): Promise<Models.NetworkSecurityGroupsListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listOperationSpec) as Promise<Models.NetworkSecurityGroupsListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.NetworkSecurityGroupsListResponse>;
   }
 
   /**
@@ -212,14 +187,15 @@ export class NetworkSecurityGroups {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, networkSecurityGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteMethod(resourceGroupName: string, networkSecurityGroupName: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkSecurityGroupName,
         options
       },
-      beginDeleteMethodOperationSpec);
+      beginDeleteMethodOperationSpec,
+      options);
   }
 
   /**
@@ -240,15 +216,16 @@ export class NetworkSecurityGroups {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, networkSecurityGroupName: string, parameters: Models.NetworkSecurityGroup, options?: msRest.RequestOptionsBase): Promise<Models.NetworkSecurityGroupsBeginCreateOrUpdateResponse> {
-    return this.client.sendOperationRequest(
+  beginCreateOrUpdate(resourceGroupName: string, networkSecurityGroupName: string, parameters: Models.NetworkSecurityGroup, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkSecurityGroupName,
         parameters,
         options
       },
-      beginCreateOrUpdateOperationSpec) as Promise<Models.NetworkSecurityGroupsBeginCreateOrUpdateResponse>;
+      beginCreateOrUpdateOperationSpec,
+      options);
   }
 
   /**
@@ -268,15 +245,16 @@ export class NetworkSecurityGroups {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginUpdateTags(resourceGroupName: string, networkSecurityGroupName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.NetworkSecurityGroupsBeginUpdateTagsResponse> {
-    return this.client.sendOperationRequest(
+  beginUpdateTags(resourceGroupName: string, networkSecurityGroupName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkSecurityGroupName,
         parameters,
         options
       },
-      beginUpdateTagsOperationSpec) as Promise<Models.NetworkSecurityGroupsBeginUpdateTagsResponse>;
+      beginUpdateTagsOperationSpec,
+      options);
   }
 
   /**
@@ -292,13 +270,18 @@ export class NetworkSecurityGroups {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkSecurityGroupsListAllNextResponse> {
+  listAllNext(nextPageLink: string): Promise<Models.NetworkSecurityGroupsListAllNextResponse>;
+  listAllNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.NetworkSecurityGroupsListAllNextResponse>;
+  listAllNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.NetworkSecurityGroupListResult>): void;
+  listAllNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkSecurityGroupListResult>): void;
+  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkSecurityGroupListResult>): Promise<Models.NetworkSecurityGroupsListAllNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listAllNextOperationSpec) as Promise<Models.NetworkSecurityGroupsListAllNextResponse>;
+      listAllNextOperationSpec,
+      callback) as Promise<Models.NetworkSecurityGroupsListAllNextResponse>;
   }
 
   /**
@@ -314,13 +297,18 @@ export class NetworkSecurityGroups {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkSecurityGroupsListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.NetworkSecurityGroupsListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.NetworkSecurityGroupsListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.NetworkSecurityGroupListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkSecurityGroupListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkSecurityGroupListResult>): Promise<Models.NetworkSecurityGroupsListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.NetworkSecurityGroupsListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.NetworkSecurityGroupsListNextResponse>;
   }
 
 }

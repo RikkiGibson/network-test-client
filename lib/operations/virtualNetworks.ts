@@ -5,6 +5,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/virtualNetworksMappers";
 import * as Parameters from "../models/parameters";
@@ -38,14 +39,9 @@ export class VirtualNetworks {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, virtualNetworkName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  deleteMethod(resourceGroupName: string, virtualNetworkName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginDeleteMethod(resourceGroupName, virtualNetworkName, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      });
+      .then(lroPoller => lroPoller.pollUntilFinished());
   }
 
   /**
@@ -63,14 +59,19 @@ export class VirtualNetworks {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, virtualNetworkName: string, options?: Models.VirtualNetworksGetOptionalParams): Promise<Models.VirtualNetworksGetResponse> {
+  get(resourceGroupName: string, virtualNetworkName: string): Promise<Models.VirtualNetworksGetResponse>;
+  get(resourceGroupName: string, virtualNetworkName: string, options: Models.VirtualNetworksGetOptionalParams): Promise<Models.VirtualNetworksGetResponse>;
+  get(resourceGroupName: string, virtualNetworkName: string, callback: msRest.ServiceCallback<Models.VirtualNetwork>): void;
+  get(resourceGroupName: string, virtualNetworkName: string, options: Models.VirtualNetworksGetOptionalParams, callback: msRest.ServiceCallback<Models.VirtualNetwork>): void;
+  get(resourceGroupName: string, virtualNetworkName: string, options?: Models.VirtualNetworksGetOptionalParams, callback?: msRest.ServiceCallback<Models.VirtualNetwork>): Promise<Models.VirtualNetworksGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         virtualNetworkName,
         options
       },
-      getOperationSpec) as Promise<Models.VirtualNetworksGetResponse>;
+      getOperationSpec,
+      callback) as Promise<Models.VirtualNetworksGetResponse>;
   }
 
 
@@ -94,25 +95,7 @@ export class VirtualNetworks {
    */
   createOrUpdate(resourceGroupName: string, virtualNetworkName: string, parameters: Models.VirtualNetwork, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworksCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, virtualNetworkName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.VirtualNetwork, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.VirtualNetworksCreateOrUpdateResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.VirtualNetworksCreateOrUpdateResponse>;
   }
 
 
@@ -135,25 +118,7 @@ export class VirtualNetworks {
    */
   updateTags(resourceGroupName: string, virtualNetworkName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworksUpdateTagsResponse> {
     return this.beginUpdateTags(resourceGroupName, virtualNetworkName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.VirtualNetwork, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.VirtualNetworksUpdateTagsResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.VirtualNetworksUpdateTagsResponse>;
   }
 
   /**
@@ -167,12 +132,17 @@ export class VirtualNetworks {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAll(options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworksListAllResponse> {
+  listAll(): Promise<Models.VirtualNetworksListAllResponse>;
+  listAll(options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworksListAllResponse>;
+  listAll(callback: msRest.ServiceCallback<Models.VirtualNetworkListResult>): void;
+  listAll(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkListResult>): void;
+  listAll(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkListResult>): Promise<Models.VirtualNetworksListAllResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listAllOperationSpec) as Promise<Models.VirtualNetworksListAllResponse>;
+      listAllOperationSpec,
+      callback) as Promise<Models.VirtualNetworksListAllResponse>;
   }
 
   /**
@@ -188,13 +158,18 @@ export class VirtualNetworks {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworksListResponse> {
+  list(resourceGroupName: string): Promise<Models.VirtualNetworksListResponse>;
+  list(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworksListResponse>;
+  list(resourceGroupName: string, callback: msRest.ServiceCallback<Models.VirtualNetworkListResult>): void;
+  list(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkListResult>): void;
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkListResult>): Promise<Models.VirtualNetworksListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listOperationSpec) as Promise<Models.VirtualNetworksListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.VirtualNetworksListResponse>;
   }
 
   /**
@@ -212,14 +187,19 @@ export class VirtualNetworks {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  checkIPAddressAvailability(resourceGroupName: string, virtualNetworkName: string, options?: Models.VirtualNetworksCheckIPAddressAvailabilityOptionalParams): Promise<Models.VirtualNetworksCheckIPAddressAvailabilityResponse> {
+  checkIPAddressAvailability(resourceGroupName: string, virtualNetworkName: string): Promise<Models.VirtualNetworksCheckIPAddressAvailabilityResponse>;
+  checkIPAddressAvailability(resourceGroupName: string, virtualNetworkName: string, options: Models.VirtualNetworksCheckIPAddressAvailabilityOptionalParams): Promise<Models.VirtualNetworksCheckIPAddressAvailabilityResponse>;
+  checkIPAddressAvailability(resourceGroupName: string, virtualNetworkName: string, callback: msRest.ServiceCallback<Models.IPAddressAvailabilityResult>): void;
+  checkIPAddressAvailability(resourceGroupName: string, virtualNetworkName: string, options: Models.VirtualNetworksCheckIPAddressAvailabilityOptionalParams, callback: msRest.ServiceCallback<Models.IPAddressAvailabilityResult>): void;
+  checkIPAddressAvailability(resourceGroupName: string, virtualNetworkName: string, options?: Models.VirtualNetworksCheckIPAddressAvailabilityOptionalParams, callback?: msRest.ServiceCallback<Models.IPAddressAvailabilityResult>): Promise<Models.VirtualNetworksCheckIPAddressAvailabilityResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         virtualNetworkName,
         options
       },
-      checkIPAddressAvailabilityOperationSpec) as Promise<Models.VirtualNetworksCheckIPAddressAvailabilityResponse>;
+      checkIPAddressAvailabilityOperationSpec,
+      callback) as Promise<Models.VirtualNetworksCheckIPAddressAvailabilityResponse>;
   }
 
   /**
@@ -237,14 +217,19 @@ export class VirtualNetworks {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listUsage(resourceGroupName: string, virtualNetworkName: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworksListUsageResponse> {
+  listUsage(resourceGroupName: string, virtualNetworkName: string): Promise<Models.VirtualNetworksListUsageResponse>;
+  listUsage(resourceGroupName: string, virtualNetworkName: string, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworksListUsageResponse>;
+  listUsage(resourceGroupName: string, virtualNetworkName: string, callback: msRest.ServiceCallback<Models.VirtualNetworkListUsageResult>): void;
+  listUsage(resourceGroupName: string, virtualNetworkName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkListUsageResult>): void;
+  listUsage(resourceGroupName: string, virtualNetworkName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkListUsageResult>): Promise<Models.VirtualNetworksListUsageResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         virtualNetworkName,
         options
       },
-      listUsageOperationSpec) as Promise<Models.VirtualNetworksListUsageResponse>;
+      listUsageOperationSpec,
+      callback) as Promise<Models.VirtualNetworksListUsageResponse>;
   }
 
   /**
@@ -262,14 +247,15 @@ export class VirtualNetworks {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, virtualNetworkName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteMethod(resourceGroupName: string, virtualNetworkName: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         virtualNetworkName,
         options
       },
-      beginDeleteMethodOperationSpec);
+      beginDeleteMethodOperationSpec,
+      options);
   }
 
   /**
@@ -290,15 +276,16 @@ export class VirtualNetworks {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkName: string, parameters: Models.VirtualNetwork, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworksBeginCreateOrUpdateResponse> {
-    return this.client.sendOperationRequest(
+  beginCreateOrUpdate(resourceGroupName: string, virtualNetworkName: string, parameters: Models.VirtualNetwork, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         virtualNetworkName,
         parameters,
         options
       },
-      beginCreateOrUpdateOperationSpec) as Promise<Models.VirtualNetworksBeginCreateOrUpdateResponse>;
+      beginCreateOrUpdateOperationSpec,
+      options);
   }
 
   /**
@@ -318,15 +305,16 @@ export class VirtualNetworks {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginUpdateTags(resourceGroupName: string, virtualNetworkName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworksBeginUpdateTagsResponse> {
-    return this.client.sendOperationRequest(
+  beginUpdateTags(resourceGroupName: string, virtualNetworkName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         virtualNetworkName,
         parameters,
         options
       },
-      beginUpdateTagsOperationSpec) as Promise<Models.VirtualNetworksBeginUpdateTagsResponse>;
+      beginUpdateTagsOperationSpec,
+      options);
   }
 
   /**
@@ -342,13 +330,18 @@ export class VirtualNetworks {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworksListAllNextResponse> {
+  listAllNext(nextPageLink: string): Promise<Models.VirtualNetworksListAllNextResponse>;
+  listAllNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworksListAllNextResponse>;
+  listAllNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.VirtualNetworkListResult>): void;
+  listAllNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkListResult>): void;
+  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkListResult>): Promise<Models.VirtualNetworksListAllNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listAllNextOperationSpec) as Promise<Models.VirtualNetworksListAllNextResponse>;
+      listAllNextOperationSpec,
+      callback) as Promise<Models.VirtualNetworksListAllNextResponse>;
   }
 
   /**
@@ -364,13 +357,18 @@ export class VirtualNetworks {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworksListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.VirtualNetworksListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworksListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.VirtualNetworkListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkListResult>): Promise<Models.VirtualNetworksListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.VirtualNetworksListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.VirtualNetworksListNextResponse>;
   }
 
   /**
@@ -386,13 +384,18 @@ export class VirtualNetworks {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listUsageNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.VirtualNetworksListUsageNextResponse> {
+  listUsageNext(nextPageLink: string): Promise<Models.VirtualNetworksListUsageNextResponse>;
+  listUsageNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.VirtualNetworksListUsageNextResponse>;
+  listUsageNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.VirtualNetworkListUsageResult>): void;
+  listUsageNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.VirtualNetworkListUsageResult>): void;
+  listUsageNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.VirtualNetworkListUsageResult>): Promise<Models.VirtualNetworksListUsageNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listUsageNextOperationSpec) as Promise<Models.VirtualNetworksListUsageNextResponse>;
+      listUsageNextOperationSpec,
+      callback) as Promise<Models.VirtualNetworksListUsageNextResponse>;
   }
 
 }

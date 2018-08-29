@@ -37,14 +37,19 @@ export class LoadBalancerProbes {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancerProbesListResponse> {
+  list(resourceGroupName: string, loadBalancerName: string): Promise<Models.LoadBalancerProbesListResponse>;
+  list(resourceGroupName: string, loadBalancerName: string, options: msRest.RequestOptionsBase): Promise<Models.LoadBalancerProbesListResponse>;
+  list(resourceGroupName: string, loadBalancerName: string, callback: msRest.ServiceCallback<Models.LoadBalancerProbeListResult>): void;
+  list(resourceGroupName: string, loadBalancerName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LoadBalancerProbeListResult>): void;
+  list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LoadBalancerProbeListResult>): Promise<Models.LoadBalancerProbesListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         loadBalancerName,
         options
       },
-      listOperationSpec) as Promise<Models.LoadBalancerProbesListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.LoadBalancerProbesListResponse>;
   }
 
   /**
@@ -64,7 +69,11 @@ export class LoadBalancerProbes {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, loadBalancerName: string, probeName: string, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancerProbesGetResponse> {
+  get(resourceGroupName: string, loadBalancerName: string, probeName: string): Promise<Models.LoadBalancerProbesGetResponse>;
+  get(resourceGroupName: string, loadBalancerName: string, probeName: string, options: msRest.RequestOptionsBase): Promise<Models.LoadBalancerProbesGetResponse>;
+  get(resourceGroupName: string, loadBalancerName: string, probeName: string, callback: msRest.ServiceCallback<Models.Probe>): void;
+  get(resourceGroupName: string, loadBalancerName: string, probeName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Probe>): void;
+  get(resourceGroupName: string, loadBalancerName: string, probeName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Probe>): Promise<Models.LoadBalancerProbesGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -72,7 +81,8 @@ export class LoadBalancerProbes {
         probeName,
         options
       },
-      getOperationSpec) as Promise<Models.LoadBalancerProbesGetResponse>;
+      getOperationSpec,
+      callback) as Promise<Models.LoadBalancerProbesGetResponse>;
   }
 
   /**
@@ -88,13 +98,18 @@ export class LoadBalancerProbes {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancerProbesListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.LoadBalancerProbesListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.LoadBalancerProbesListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.LoadBalancerProbeListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LoadBalancerProbeListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LoadBalancerProbeListResult>): Promise<Models.LoadBalancerProbesListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.LoadBalancerProbesListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.LoadBalancerProbesListNextResponse>;
   }
 
 }

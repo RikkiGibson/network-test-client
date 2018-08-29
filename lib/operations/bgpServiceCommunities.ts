@@ -33,12 +33,17 @@ export class BgpServiceCommunities {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(options?: msRest.RequestOptionsBase): Promise<Models.BgpServiceCommunitiesListResponse> {
+  list(): Promise<Models.BgpServiceCommunitiesListResponse>;
+  list(options: msRest.RequestOptionsBase): Promise<Models.BgpServiceCommunitiesListResponse>;
+  list(callback: msRest.ServiceCallback<Models.BgpServiceCommunityListResult>): void;
+  list(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.BgpServiceCommunityListResult>): void;
+  list(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.BgpServiceCommunityListResult>): Promise<Models.BgpServiceCommunitiesListResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listOperationSpec) as Promise<Models.BgpServiceCommunitiesListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.BgpServiceCommunitiesListResponse>;
   }
 
   /**
@@ -54,13 +59,18 @@ export class BgpServiceCommunities {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.BgpServiceCommunitiesListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.BgpServiceCommunitiesListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.BgpServiceCommunitiesListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.BgpServiceCommunityListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.BgpServiceCommunityListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.BgpServiceCommunityListResult>): Promise<Models.BgpServiceCommunitiesListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.BgpServiceCommunitiesListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.BgpServiceCommunitiesListNextResponse>;
   }
 
 }

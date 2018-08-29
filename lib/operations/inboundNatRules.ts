@@ -5,6 +5,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/inboundNatRulesMappers";
 import * as Parameters from "../models/parameters";
@@ -37,14 +38,19 @@ export class InboundNatRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<Models.InboundNatRulesListResponse> {
+  list(resourceGroupName: string, loadBalancerName: string): Promise<Models.InboundNatRulesListResponse>;
+  list(resourceGroupName: string, loadBalancerName: string, options: msRest.RequestOptionsBase): Promise<Models.InboundNatRulesListResponse>;
+  list(resourceGroupName: string, loadBalancerName: string, callback: msRest.ServiceCallback<Models.InboundNatRuleListResult>): void;
+  list(resourceGroupName: string, loadBalancerName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.InboundNatRuleListResult>): void;
+  list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.InboundNatRuleListResult>): Promise<Models.InboundNatRulesListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         loadBalancerName,
         options
       },
-      listOperationSpec) as Promise<Models.InboundNatRulesListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.InboundNatRulesListResponse>;
   }
 
 
@@ -65,14 +71,9 @@ export class InboundNatRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  deleteMethod(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginDeleteMethod(resourceGroupName, loadBalancerName, inboundNatRuleName, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      });
+      .then(lroPoller => lroPoller.pollUntilFinished());
   }
 
   /**
@@ -92,7 +93,11 @@ export class InboundNatRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: Models.InboundNatRulesGetOptionalParams): Promise<Models.InboundNatRulesGetResponse> {
+  get(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string): Promise<Models.InboundNatRulesGetResponse>;
+  get(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options: Models.InboundNatRulesGetOptionalParams): Promise<Models.InboundNatRulesGetResponse>;
+  get(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, callback: msRest.ServiceCallback<Models.InboundNatRule>): void;
+  get(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options: Models.InboundNatRulesGetOptionalParams, callback: msRest.ServiceCallback<Models.InboundNatRule>): void;
+  get(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: Models.InboundNatRulesGetOptionalParams, callback?: msRest.ServiceCallback<Models.InboundNatRule>): Promise<Models.InboundNatRulesGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -100,7 +105,8 @@ export class InboundNatRules {
         inboundNatRuleName,
         options
       },
-      getOperationSpec) as Promise<Models.InboundNatRulesGetResponse>;
+      getOperationSpec,
+      callback) as Promise<Models.InboundNatRulesGetResponse>;
   }
 
 
@@ -126,25 +132,7 @@ export class InboundNatRules {
    */
   createOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule, options?: msRest.RequestOptionsBase): Promise<Models.InboundNatRulesCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, loadBalancerName, inboundNatRuleName, inboundNatRuleParameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.InboundNatRule, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.InboundNatRulesCreateOrUpdateResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.InboundNatRulesCreateOrUpdateResponse>;
   }
 
   /**
@@ -164,15 +152,16 @@ export class InboundNatRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteMethod(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         loadBalancerName,
         inboundNatRuleName,
         options
       },
-      beginDeleteMethodOperationSpec);
+      beginDeleteMethodOperationSpec,
+      options);
   }
 
   /**
@@ -195,8 +184,8 @@ export class InboundNatRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule, options?: msRest.RequestOptionsBase): Promise<Models.InboundNatRulesBeginCreateOrUpdateResponse> {
-    return this.client.sendOperationRequest(
+  beginCreateOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: Models.InboundNatRule, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         loadBalancerName,
@@ -204,7 +193,8 @@ export class InboundNatRules {
         inboundNatRuleParameters,
         options
       },
-      beginCreateOrUpdateOperationSpec) as Promise<Models.InboundNatRulesBeginCreateOrUpdateResponse>;
+      beginCreateOrUpdateOperationSpec,
+      options);
   }
 
   /**
@@ -220,13 +210,18 @@ export class InboundNatRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.InboundNatRulesListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.InboundNatRulesListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.InboundNatRulesListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.InboundNatRuleListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.InboundNatRuleListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.InboundNatRuleListResult>): Promise<Models.InboundNatRulesListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.InboundNatRulesListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.InboundNatRulesListNextResponse>;
   }
 
 }

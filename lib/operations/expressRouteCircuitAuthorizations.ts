@@ -5,6 +5,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/expressRouteCircuitAuthorizationsMappers";
 import * as Parameters from "../models/parameters";
@@ -40,14 +41,9 @@ export class ExpressRouteCircuitAuthorizations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  deleteMethod(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginDeleteMethod(resourceGroupName, circuitName, authorizationName, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      });
+      .then(lroPoller => lroPoller.pollUntilFinished());
   }
 
   /**
@@ -67,7 +63,11 @@ export class ExpressRouteCircuitAuthorizations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitAuthorizationsGetResponse> {
+  get(resourceGroupName: string, circuitName: string, authorizationName: string): Promise<Models.ExpressRouteCircuitAuthorizationsGetResponse>;
+  get(resourceGroupName: string, circuitName: string, authorizationName: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitAuthorizationsGetResponse>;
+  get(resourceGroupName: string, circuitName: string, authorizationName: string, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitAuthorization>): void;
+  get(resourceGroupName: string, circuitName: string, authorizationName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.ExpressRouteCircuitAuthorization>): void;
+  get(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.ExpressRouteCircuitAuthorization>): Promise<Models.ExpressRouteCircuitAuthorizationsGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -75,7 +75,8 @@ export class ExpressRouteCircuitAuthorizations {
         authorizationName,
         options
       },
-      getOperationSpec) as Promise<Models.ExpressRouteCircuitAuthorizationsGetResponse>;
+      getOperationSpec,
+      callback) as Promise<Models.ExpressRouteCircuitAuthorizationsGetResponse>;
   }
 
 
@@ -101,25 +102,7 @@ export class ExpressRouteCircuitAuthorizations {
    */
   createOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, circuitName, authorizationName, authorizationParameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.ExpressRouteCircuitAuthorization, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse>;
   }
 
   /**
@@ -137,14 +120,19 @@ export class ExpressRouteCircuitAuthorizations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, circuitName: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitAuthorizationsListResponse> {
+  list(resourceGroupName: string, circuitName: string): Promise<Models.ExpressRouteCircuitAuthorizationsListResponse>;
+  list(resourceGroupName: string, circuitName: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitAuthorizationsListResponse>;
+  list(resourceGroupName: string, circuitName: string, callback: msRest.ServiceCallback<Models.AuthorizationListResult>): void;
+  list(resourceGroupName: string, circuitName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.AuthorizationListResult>): void;
+  list(resourceGroupName: string, circuitName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.AuthorizationListResult>): Promise<Models.ExpressRouteCircuitAuthorizationsListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         circuitName,
         options
       },
-      listOperationSpec) as Promise<Models.ExpressRouteCircuitAuthorizationsListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.ExpressRouteCircuitAuthorizationsListResponse>;
   }
 
   /**
@@ -164,15 +152,16 @@ export class ExpressRouteCircuitAuthorizations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteMethod(resourceGroupName: string, circuitName: string, authorizationName: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         circuitName,
         authorizationName,
         options
       },
-      beginDeleteMethodOperationSpec);
+      beginDeleteMethodOperationSpec,
+      options);
   }
 
   /**
@@ -195,8 +184,8 @@ export class ExpressRouteCircuitAuthorizations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitAuthorizationsBeginCreateOrUpdateResponse> {
-    return this.client.sendOperationRequest(
+  beginCreateOrUpdate(resourceGroupName: string, circuitName: string, authorizationName: string, authorizationParameters: Models.ExpressRouteCircuitAuthorization, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         circuitName,
@@ -204,7 +193,8 @@ export class ExpressRouteCircuitAuthorizations {
         authorizationParameters,
         options
       },
-      beginCreateOrUpdateOperationSpec) as Promise<Models.ExpressRouteCircuitAuthorizationsBeginCreateOrUpdateResponse>;
+      beginCreateOrUpdateOperationSpec,
+      options);
   }
 
   /**
@@ -220,13 +210,18 @@ export class ExpressRouteCircuitAuthorizations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitAuthorizationsListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.ExpressRouteCircuitAuthorizationsListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.ExpressRouteCircuitAuthorizationsListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.AuthorizationListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.AuthorizationListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.AuthorizationListResult>): Promise<Models.ExpressRouteCircuitAuthorizationsListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.ExpressRouteCircuitAuthorizationsListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.ExpressRouteCircuitAuthorizationsListNextResponse>;
   }
 
 }

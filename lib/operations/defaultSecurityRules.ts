@@ -37,14 +37,19 @@ export class DefaultSecurityRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, networkSecurityGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.DefaultSecurityRulesListResponse> {
+  list(resourceGroupName: string, networkSecurityGroupName: string): Promise<Models.DefaultSecurityRulesListResponse>;
+  list(resourceGroupName: string, networkSecurityGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.DefaultSecurityRulesListResponse>;
+  list(resourceGroupName: string, networkSecurityGroupName: string, callback: msRest.ServiceCallback<Models.SecurityRuleListResult>): void;
+  list(resourceGroupName: string, networkSecurityGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SecurityRuleListResult>): void;
+  list(resourceGroupName: string, networkSecurityGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SecurityRuleListResult>): Promise<Models.DefaultSecurityRulesListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         networkSecurityGroupName,
         options
       },
-      listOperationSpec) as Promise<Models.DefaultSecurityRulesListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.DefaultSecurityRulesListResponse>;
   }
 
   /**
@@ -64,7 +69,11 @@ export class DefaultSecurityRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, networkSecurityGroupName: string, defaultSecurityRuleName: string, options?: msRest.RequestOptionsBase): Promise<Models.DefaultSecurityRulesGetResponse> {
+  get(resourceGroupName: string, networkSecurityGroupName: string, defaultSecurityRuleName: string): Promise<Models.DefaultSecurityRulesGetResponse>;
+  get(resourceGroupName: string, networkSecurityGroupName: string, defaultSecurityRuleName: string, options: msRest.RequestOptionsBase): Promise<Models.DefaultSecurityRulesGetResponse>;
+  get(resourceGroupName: string, networkSecurityGroupName: string, defaultSecurityRuleName: string, callback: msRest.ServiceCallback<Models.SecurityRule>): void;
+  get(resourceGroupName: string, networkSecurityGroupName: string, defaultSecurityRuleName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SecurityRule>): void;
+  get(resourceGroupName: string, networkSecurityGroupName: string, defaultSecurityRuleName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SecurityRule>): Promise<Models.DefaultSecurityRulesGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -72,7 +81,8 @@ export class DefaultSecurityRules {
         defaultSecurityRuleName,
         options
       },
-      getOperationSpec) as Promise<Models.DefaultSecurityRulesGetResponse>;
+      getOperationSpec,
+      callback) as Promise<Models.DefaultSecurityRulesGetResponse>;
   }
 
   /**
@@ -88,13 +98,18 @@ export class DefaultSecurityRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.DefaultSecurityRulesListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.DefaultSecurityRulesListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.DefaultSecurityRulesListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.SecurityRuleListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SecurityRuleListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SecurityRuleListResult>): Promise<Models.DefaultSecurityRulesListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.DefaultSecurityRulesListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.DefaultSecurityRulesListNextResponse>;
   }
 
 }

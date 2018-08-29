@@ -35,13 +35,18 @@ export class AvailableEndpointServices {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(location: string, options?: msRest.RequestOptionsBase): Promise<Models.AvailableEndpointServicesListResponse> {
+  list(location: string): Promise<Models.AvailableEndpointServicesListResponse>;
+  list(location: string, options: msRest.RequestOptionsBase): Promise<Models.AvailableEndpointServicesListResponse>;
+  list(location: string, callback: msRest.ServiceCallback<Models.EndpointServicesListResult>): void;
+  list(location: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.EndpointServicesListResult>): void;
+  list(location: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.EndpointServicesListResult>): Promise<Models.AvailableEndpointServicesListResponse> {
     return this.client.sendOperationRequest(
       {
         location,
         options
       },
-      listOperationSpec) as Promise<Models.AvailableEndpointServicesListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.AvailableEndpointServicesListResponse>;
   }
 
   /**
@@ -57,13 +62,18 @@ export class AvailableEndpointServices {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.AvailableEndpointServicesListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.AvailableEndpointServicesListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.AvailableEndpointServicesListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.EndpointServicesListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.EndpointServicesListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.EndpointServicesListResult>): Promise<Models.AvailableEndpointServicesListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.AvailableEndpointServicesListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.AvailableEndpointServicesListNextResponse>;
   }
 
 }

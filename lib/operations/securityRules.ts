@@ -5,6 +5,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/securityRulesMappers";
 import * as Parameters from "../models/parameters";
@@ -40,14 +41,9 @@ export class SecurityRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  deleteMethod(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginDeleteMethod(resourceGroupName, networkSecurityGroupName, securityRuleName, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      });
+      .then(lroPoller => lroPoller.pollUntilFinished());
   }
 
   /**
@@ -67,7 +63,11 @@ export class SecurityRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: msRest.RequestOptionsBase): Promise<Models.SecurityRulesGetResponse> {
+  get(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string): Promise<Models.SecurityRulesGetResponse>;
+  get(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options: msRest.RequestOptionsBase): Promise<Models.SecurityRulesGetResponse>;
+  get(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, callback: msRest.ServiceCallback<Models.SecurityRule>): void;
+  get(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SecurityRule>): void;
+  get(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SecurityRule>): Promise<Models.SecurityRulesGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -75,7 +75,8 @@ export class SecurityRules {
         securityRuleName,
         options
       },
-      getOperationSpec) as Promise<Models.SecurityRulesGetResponse>;
+      getOperationSpec,
+      callback) as Promise<Models.SecurityRulesGetResponse>;
   }
 
 
@@ -101,25 +102,7 @@ export class SecurityRules {
    */
   createOrUpdate(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, securityRuleParameters: Models.SecurityRule, options?: msRest.RequestOptionsBase): Promise<Models.SecurityRulesCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, networkSecurityGroupName, securityRuleName, securityRuleParameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.SecurityRule, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.SecurityRulesCreateOrUpdateResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.SecurityRulesCreateOrUpdateResponse>;
   }
 
   /**
@@ -137,14 +120,19 @@ export class SecurityRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, networkSecurityGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.SecurityRulesListResponse> {
+  list(resourceGroupName: string, networkSecurityGroupName: string): Promise<Models.SecurityRulesListResponse>;
+  list(resourceGroupName: string, networkSecurityGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.SecurityRulesListResponse>;
+  list(resourceGroupName: string, networkSecurityGroupName: string, callback: msRest.ServiceCallback<Models.SecurityRuleListResult>): void;
+  list(resourceGroupName: string, networkSecurityGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SecurityRuleListResult>): void;
+  list(resourceGroupName: string, networkSecurityGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SecurityRuleListResult>): Promise<Models.SecurityRulesListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         networkSecurityGroupName,
         options
       },
-      listOperationSpec) as Promise<Models.SecurityRulesListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.SecurityRulesListResponse>;
   }
 
   /**
@@ -164,15 +152,16 @@ export class SecurityRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteMethod(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkSecurityGroupName,
         securityRuleName,
         options
       },
-      beginDeleteMethodOperationSpec);
+      beginDeleteMethodOperationSpec,
+      options);
   }
 
   /**
@@ -195,8 +184,8 @@ export class SecurityRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, securityRuleParameters: Models.SecurityRule, options?: msRest.RequestOptionsBase): Promise<Models.SecurityRulesBeginCreateOrUpdateResponse> {
-    return this.client.sendOperationRequest(
+  beginCreateOrUpdate(resourceGroupName: string, networkSecurityGroupName: string, securityRuleName: string, securityRuleParameters: Models.SecurityRule, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkSecurityGroupName,
@@ -204,7 +193,8 @@ export class SecurityRules {
         securityRuleParameters,
         options
       },
-      beginCreateOrUpdateOperationSpec) as Promise<Models.SecurityRulesBeginCreateOrUpdateResponse>;
+      beginCreateOrUpdateOperationSpec,
+      options);
   }
 
   /**
@@ -220,13 +210,18 @@ export class SecurityRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.SecurityRulesListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.SecurityRulesListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.SecurityRulesListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.SecurityRuleListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.SecurityRuleListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.SecurityRuleListResult>): Promise<Models.SecurityRulesListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.SecurityRulesListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.SecurityRulesListNextResponse>;
   }
 
 }

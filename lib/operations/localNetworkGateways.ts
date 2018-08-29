@@ -5,6 +5,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/localNetworkGatewaysMappers";
 import * as Parameters from "../models/parameters";
@@ -43,25 +44,7 @@ export class LocalNetworkGateways {
    */
   createOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway, options?: msRest.RequestOptionsBase): Promise<Models.LocalNetworkGatewaysCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, localNetworkGatewayName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.LocalNetworkGateway, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LocalNetworkGatewaysCreateOrUpdateResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LocalNetworkGatewaysCreateOrUpdateResponse>;
   }
 
   /**
@@ -79,14 +62,19 @@ export class LocalNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, localNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<Models.LocalNetworkGatewaysGetResponse> {
+  get(resourceGroupName: string, localNetworkGatewayName: string): Promise<Models.LocalNetworkGatewaysGetResponse>;
+  get(resourceGroupName: string, localNetworkGatewayName: string, options: msRest.RequestOptionsBase): Promise<Models.LocalNetworkGatewaysGetResponse>;
+  get(resourceGroupName: string, localNetworkGatewayName: string, callback: msRest.ServiceCallback<Models.LocalNetworkGateway>): void;
+  get(resourceGroupName: string, localNetworkGatewayName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LocalNetworkGateway>): void;
+  get(resourceGroupName: string, localNetworkGatewayName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LocalNetworkGateway>): Promise<Models.LocalNetworkGatewaysGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         localNetworkGatewayName,
         options
       },
-      getOperationSpec) as Promise<Models.LocalNetworkGatewaysGetResponse>;
+      getOperationSpec,
+      callback) as Promise<Models.LocalNetworkGatewaysGetResponse>;
   }
 
 
@@ -105,14 +93,9 @@ export class LocalNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, localNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  deleteMethod(resourceGroupName: string, localNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginDeleteMethod(resourceGroupName, localNetworkGatewayName, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      });
+      .then(lroPoller => lroPoller.pollUntilFinished());
   }
 
 
@@ -135,25 +118,7 @@ export class LocalNetworkGateways {
    */
   updateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.LocalNetworkGatewaysUpdateTagsResponse> {
     return this.beginUpdateTags(resourceGroupName, localNetworkGatewayName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.LocalNetworkGateway, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.LocalNetworkGatewaysUpdateTagsResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.LocalNetworkGatewaysUpdateTagsResponse>;
   }
 
   /**
@@ -169,13 +134,18 @@ export class LocalNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.LocalNetworkGatewaysListResponse> {
+  list(resourceGroupName: string): Promise<Models.LocalNetworkGatewaysListResponse>;
+  list(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.LocalNetworkGatewaysListResponse>;
+  list(resourceGroupName: string, callback: msRest.ServiceCallback<Models.LocalNetworkGatewayListResult>): void;
+  list(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LocalNetworkGatewayListResult>): void;
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LocalNetworkGatewayListResult>): Promise<Models.LocalNetworkGatewaysListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listOperationSpec) as Promise<Models.LocalNetworkGatewaysListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.LocalNetworkGatewaysListResponse>;
   }
 
   /**
@@ -196,15 +166,16 @@ export class LocalNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway, options?: msRest.RequestOptionsBase): Promise<Models.LocalNetworkGatewaysBeginCreateOrUpdateResponse> {
-    return this.client.sendOperationRequest(
+  beginCreateOrUpdate(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.LocalNetworkGateway, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         localNetworkGatewayName,
         parameters,
         options
       },
-      beginCreateOrUpdateOperationSpec) as Promise<Models.LocalNetworkGatewaysBeginCreateOrUpdateResponse>;
+      beginCreateOrUpdateOperationSpec,
+      options);
   }
 
   /**
@@ -222,14 +193,15 @@ export class LocalNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, localNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteMethod(resourceGroupName: string, localNetworkGatewayName: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         localNetworkGatewayName,
         options
       },
-      beginDeleteMethodOperationSpec);
+      beginDeleteMethodOperationSpec,
+      options);
   }
 
   /**
@@ -249,15 +221,16 @@ export class LocalNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginUpdateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.LocalNetworkGatewaysBeginUpdateTagsResponse> {
-    return this.client.sendOperationRequest(
+  beginUpdateTags(resourceGroupName: string, localNetworkGatewayName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         localNetworkGatewayName,
         parameters,
         options
       },
-      beginUpdateTagsOperationSpec) as Promise<Models.LocalNetworkGatewaysBeginUpdateTagsResponse>;
+      beginUpdateTagsOperationSpec,
+      options);
   }
 
   /**
@@ -273,13 +246,18 @@ export class LocalNetworkGateways {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.LocalNetworkGatewaysListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.LocalNetworkGatewaysListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.LocalNetworkGatewaysListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.LocalNetworkGatewayListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LocalNetworkGatewayListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LocalNetworkGatewayListResult>): Promise<Models.LocalNetworkGatewaysListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.LocalNetworkGatewaysListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.LocalNetworkGatewaysListNextResponse>;
   }
 
 }

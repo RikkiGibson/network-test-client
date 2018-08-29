@@ -35,13 +35,18 @@ export class Usages {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(location: string, options?: msRest.RequestOptionsBase): Promise<Models.UsagesListResponse> {
+  list(location: string): Promise<Models.UsagesListResponse>;
+  list(location: string, options: msRest.RequestOptionsBase): Promise<Models.UsagesListResponse>;
+  list(location: string, callback: msRest.ServiceCallback<Models.UsagesListResult>): void;
+  list(location: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.UsagesListResult>): void;
+  list(location: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.UsagesListResult>): Promise<Models.UsagesListResponse> {
     return this.client.sendOperationRequest(
       {
         location,
         options
       },
-      listOperationSpec) as Promise<Models.UsagesListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.UsagesListResponse>;
   }
 
   /**
@@ -57,13 +62,18 @@ export class Usages {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.UsagesListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.UsagesListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.UsagesListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.UsagesListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.UsagesListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.UsagesListResult>): Promise<Models.UsagesListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.UsagesListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.UsagesListNextResponse>;
   }
 
 }

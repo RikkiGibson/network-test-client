@@ -5,6 +5,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/routeFilterRulesMappers";
 import * as Parameters from "../models/parameters";
@@ -40,14 +41,9 @@ export class RouteFilterRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  deleteMethod(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginDeleteMethod(resourceGroupName, routeFilterName, ruleName, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      });
+      .then(lroPoller => lroPoller.pollUntilFinished());
   }
 
   /**
@@ -67,7 +63,11 @@ export class RouteFilterRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: msRest.RequestOptionsBase): Promise<Models.RouteFilterRulesGetResponse> {
+  get(resourceGroupName: string, routeFilterName: string, ruleName: string): Promise<Models.RouteFilterRulesGetResponse>;
+  get(resourceGroupName: string, routeFilterName: string, ruleName: string, options: msRest.RequestOptionsBase): Promise<Models.RouteFilterRulesGetResponse>;
+  get(resourceGroupName: string, routeFilterName: string, ruleName: string, callback: msRest.ServiceCallback<Models.RouteFilterRule>): void;
+  get(resourceGroupName: string, routeFilterName: string, ruleName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RouteFilterRule>): void;
+  get(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RouteFilterRule>): Promise<Models.RouteFilterRulesGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -75,7 +75,8 @@ export class RouteFilterRules {
         ruleName,
         options
       },
-      getOperationSpec) as Promise<Models.RouteFilterRulesGetResponse>;
+      getOperationSpec,
+      callback) as Promise<Models.RouteFilterRulesGetResponse>;
   }
 
 
@@ -101,25 +102,7 @@ export class RouteFilterRules {
    */
   createOrUpdate(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.RouteFilterRule, options?: msRest.RequestOptionsBase): Promise<Models.RouteFilterRulesCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, routeFilterName, ruleName, routeFilterRuleParameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.RouteFilterRule, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.RouteFilterRulesCreateOrUpdateResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.RouteFilterRulesCreateOrUpdateResponse>;
   }
 
 
@@ -145,25 +128,7 @@ export class RouteFilterRules {
    */
   update(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.PatchRouteFilterRule, options?: msRest.RequestOptionsBase): Promise<Models.RouteFilterRulesUpdateResponse> {
     return this.beginUpdate(resourceGroupName, routeFilterName, ruleName, routeFilterRuleParameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.RouteFilterRule, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.RouteFilterRulesUpdateResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.RouteFilterRulesUpdateResponse>;
   }
 
   /**
@@ -181,14 +146,19 @@ export class RouteFilterRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listByRouteFilter(resourceGroupName: string, routeFilterName: string, options?: msRest.RequestOptionsBase): Promise<Models.RouteFilterRulesListByRouteFilterResponse> {
+  listByRouteFilter(resourceGroupName: string, routeFilterName: string): Promise<Models.RouteFilterRulesListByRouteFilterResponse>;
+  listByRouteFilter(resourceGroupName: string, routeFilterName: string, options: msRest.RequestOptionsBase): Promise<Models.RouteFilterRulesListByRouteFilterResponse>;
+  listByRouteFilter(resourceGroupName: string, routeFilterName: string, callback: msRest.ServiceCallback<Models.RouteFilterRuleListResult>): void;
+  listByRouteFilter(resourceGroupName: string, routeFilterName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RouteFilterRuleListResult>): void;
+  listByRouteFilter(resourceGroupName: string, routeFilterName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RouteFilterRuleListResult>): Promise<Models.RouteFilterRulesListByRouteFilterResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         routeFilterName,
         options
       },
-      listByRouteFilterOperationSpec) as Promise<Models.RouteFilterRulesListByRouteFilterResponse>;
+      listByRouteFilterOperationSpec,
+      callback) as Promise<Models.RouteFilterRulesListByRouteFilterResponse>;
   }
 
   /**
@@ -208,15 +178,16 @@ export class RouteFilterRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteMethod(resourceGroupName: string, routeFilterName: string, ruleName: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         routeFilterName,
         ruleName,
         options
       },
-      beginDeleteMethodOperationSpec);
+      beginDeleteMethodOperationSpec,
+      options);
   }
 
   /**
@@ -239,8 +210,8 @@ export class RouteFilterRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.RouteFilterRule, options?: msRest.RequestOptionsBase): Promise<Models.RouteFilterRulesBeginCreateOrUpdateResponse> {
-    return this.client.sendOperationRequest(
+  beginCreateOrUpdate(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.RouteFilterRule, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         routeFilterName,
@@ -248,7 +219,8 @@ export class RouteFilterRules {
         routeFilterRuleParameters,
         options
       },
-      beginCreateOrUpdateOperationSpec) as Promise<Models.RouteFilterRulesBeginCreateOrUpdateResponse>;
+      beginCreateOrUpdateOperationSpec,
+      options);
   }
 
   /**
@@ -271,8 +243,8 @@ export class RouteFilterRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginUpdate(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.PatchRouteFilterRule, options?: msRest.RequestOptionsBase): Promise<Models.RouteFilterRulesBeginUpdateResponse> {
-    return this.client.sendOperationRequest(
+  beginUpdate(resourceGroupName: string, routeFilterName: string, ruleName: string, routeFilterRuleParameters: Models.PatchRouteFilterRule, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         routeFilterName,
@@ -280,7 +252,8 @@ export class RouteFilterRules {
         routeFilterRuleParameters,
         options
       },
-      beginUpdateOperationSpec) as Promise<Models.RouteFilterRulesBeginUpdateResponse>;
+      beginUpdateOperationSpec,
+      options);
   }
 
   /**
@@ -296,13 +269,18 @@ export class RouteFilterRules {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listByRouteFilterNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.RouteFilterRulesListByRouteFilterNextResponse> {
+  listByRouteFilterNext(nextPageLink: string): Promise<Models.RouteFilterRulesListByRouteFilterNextResponse>;
+  listByRouteFilterNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.RouteFilterRulesListByRouteFilterNextResponse>;
+  listByRouteFilterNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.RouteFilterRuleListResult>): void;
+  listByRouteFilterNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RouteFilterRuleListResult>): void;
+  listByRouteFilterNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RouteFilterRuleListResult>): Promise<Models.RouteFilterRulesListByRouteFilterNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listByRouteFilterNextOperationSpec) as Promise<Models.RouteFilterRulesListByRouteFilterNextResponse>;
+      listByRouteFilterNextOperationSpec,
+      callback) as Promise<Models.RouteFilterRulesListByRouteFilterNextResponse>;
   }
 
 }

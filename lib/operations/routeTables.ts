@@ -5,6 +5,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/routeTablesMappers";
 import * as Parameters from "../models/parameters";
@@ -38,14 +39,9 @@ export class RouteTables {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, routeTableName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  deleteMethod(resourceGroupName: string, routeTableName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginDeleteMethod(resourceGroupName, routeTableName, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      });
+      .then(lroPoller => lroPoller.pollUntilFinished());
   }
 
   /**
@@ -63,14 +59,19 @@ export class RouteTables {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, routeTableName: string, options?: Models.RouteTablesGetOptionalParams): Promise<Models.RouteTablesGetResponse> {
+  get(resourceGroupName: string, routeTableName: string): Promise<Models.RouteTablesGetResponse>;
+  get(resourceGroupName: string, routeTableName: string, options: Models.RouteTablesGetOptionalParams): Promise<Models.RouteTablesGetResponse>;
+  get(resourceGroupName: string, routeTableName: string, callback: msRest.ServiceCallback<Models.RouteTable>): void;
+  get(resourceGroupName: string, routeTableName: string, options: Models.RouteTablesGetOptionalParams, callback: msRest.ServiceCallback<Models.RouteTable>): void;
+  get(resourceGroupName: string, routeTableName: string, options?: Models.RouteTablesGetOptionalParams, callback?: msRest.ServiceCallback<Models.RouteTable>): Promise<Models.RouteTablesGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         routeTableName,
         options
       },
-      getOperationSpec) as Promise<Models.RouteTablesGetResponse>;
+      getOperationSpec,
+      callback) as Promise<Models.RouteTablesGetResponse>;
   }
 
 
@@ -94,25 +95,7 @@ export class RouteTables {
    */
   createOrUpdate(resourceGroupName: string, routeTableName: string, parameters: Models.RouteTable, options?: msRest.RequestOptionsBase): Promise<Models.RouteTablesCreateOrUpdateResponse> {
     return this.beginCreateOrUpdate(resourceGroupName, routeTableName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.RouteTable, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.RouteTablesCreateOrUpdateResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.RouteTablesCreateOrUpdateResponse>;
   }
 
 
@@ -135,25 +118,7 @@ export class RouteTables {
    */
   updateTags(resourceGroupName: string, routeTableName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.RouteTablesUpdateTagsResponse> {
     return this.beginUpdateTags(resourceGroupName, routeTableName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.RouteTable, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.RouteTablesUpdateTagsResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.RouteTablesUpdateTagsResponse>;
   }
 
   /**
@@ -169,13 +134,18 @@ export class RouteTables {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.RouteTablesListResponse> {
+  list(resourceGroupName: string): Promise<Models.RouteTablesListResponse>;
+  list(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.RouteTablesListResponse>;
+  list(resourceGroupName: string, callback: msRest.ServiceCallback<Models.RouteTableListResult>): void;
+  list(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RouteTableListResult>): void;
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RouteTableListResult>): Promise<Models.RouteTablesListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listOperationSpec) as Promise<Models.RouteTablesListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.RouteTablesListResponse>;
   }
 
   /**
@@ -189,12 +159,17 @@ export class RouteTables {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAll(options?: msRest.RequestOptionsBase): Promise<Models.RouteTablesListAllResponse> {
+  listAll(): Promise<Models.RouteTablesListAllResponse>;
+  listAll(options: msRest.RequestOptionsBase): Promise<Models.RouteTablesListAllResponse>;
+  listAll(callback: msRest.ServiceCallback<Models.RouteTableListResult>): void;
+  listAll(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RouteTableListResult>): void;
+  listAll(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RouteTableListResult>): Promise<Models.RouteTablesListAllResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listAllOperationSpec) as Promise<Models.RouteTablesListAllResponse>;
+      listAllOperationSpec,
+      callback) as Promise<Models.RouteTablesListAllResponse>;
   }
 
   /**
@@ -212,14 +187,15 @@ export class RouteTables {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, routeTableName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteMethod(resourceGroupName: string, routeTableName: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         routeTableName,
         options
       },
-      beginDeleteMethodOperationSpec);
+      beginDeleteMethodOperationSpec,
+      options);
   }
 
   /**
@@ -240,15 +216,16 @@ export class RouteTables {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCreateOrUpdate(resourceGroupName: string, routeTableName: string, parameters: Models.RouteTable, options?: msRest.RequestOptionsBase): Promise<Models.RouteTablesBeginCreateOrUpdateResponse> {
-    return this.client.sendOperationRequest(
+  beginCreateOrUpdate(resourceGroupName: string, routeTableName: string, parameters: Models.RouteTable, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         routeTableName,
         parameters,
         options
       },
-      beginCreateOrUpdateOperationSpec) as Promise<Models.RouteTablesBeginCreateOrUpdateResponse>;
+      beginCreateOrUpdateOperationSpec,
+      options);
   }
 
   /**
@@ -268,15 +245,16 @@ export class RouteTables {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginUpdateTags(resourceGroupName: string, routeTableName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.RouteTablesBeginUpdateTagsResponse> {
-    return this.client.sendOperationRequest(
+  beginUpdateTags(resourceGroupName: string, routeTableName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         routeTableName,
         parameters,
         options
       },
-      beginUpdateTagsOperationSpec) as Promise<Models.RouteTablesBeginUpdateTagsResponse>;
+      beginUpdateTagsOperationSpec,
+      options);
   }
 
   /**
@@ -292,13 +270,18 @@ export class RouteTables {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.RouteTablesListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.RouteTablesListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.RouteTablesListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.RouteTableListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RouteTableListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RouteTableListResult>): Promise<Models.RouteTablesListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.RouteTablesListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.RouteTablesListNextResponse>;
   }
 
   /**
@@ -314,13 +297,18 @@ export class RouteTables {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.RouteTablesListAllNextResponse> {
+  listAllNext(nextPageLink: string): Promise<Models.RouteTablesListAllNextResponse>;
+  listAllNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.RouteTablesListAllNextResponse>;
+  listAllNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.RouteTableListResult>): void;
+  listAllNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.RouteTableListResult>): void;
+  listAllNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.RouteTableListResult>): Promise<Models.RouteTablesListAllNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listAllNextOperationSpec) as Promise<Models.RouteTablesListAllNextResponse>;
+      listAllNextOperationSpec,
+      callback) as Promise<Models.RouteTablesListAllNextResponse>;
   }
 
 }

@@ -35,16 +35,22 @@ export interface BackendAddressPool extends SubResource {
   /**
    * @member {NetworkInterfaceIPConfiguration[]} [backendIPConfigurations] Gets
    * collection of references to IP addresses defined in network interfaces.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly backendIPConfigurations?: NetworkInterfaceIPConfiguration[];
   /**
    * @member {SubResource[]} [loadBalancingRules] Gets load balancing rules
    * that use this backend address pool.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly loadBalancingRules?: SubResource[];
   /**
    * @member {SubResource} [outboundNatRule] Gets outbound rules that use this
    * backend address pool.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly outboundNatRule?: SubResource;
   /**
@@ -82,6 +88,8 @@ export interface InboundNatRule extends SubResource {
    * reference to a private IP address defined on a network interface of a VM.
    * Traffic sent to the frontend port of each of the frontend IP
    * configurations is forwarded to the backend IP.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly backendIPConfiguration?: NetworkInterfaceIPConfiguration;
   /**
@@ -147,10 +155,14 @@ export interface Resource extends BaseResource {
   id?: string;
   /**
    * @member {string} [name] Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly name?: string;
   /**
    * @member {string} [type] Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly type?: string;
   /**
@@ -176,17 +188,23 @@ export interface ApplicationSecurityGroup extends Resource {
    * application security group resource. It uniquely identifies a resource,
    * even if the user changes its name or migrate the resource across
    * subscriptions or resource groups.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly resourceGuid?: string;
   /**
    * @member {string} [provisioningState] The provisioning state of the
    * application security group resource. Possible values are: 'Succeeded',
    * 'Updating', 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly provisioningState?: string;
   /**
    * @member {string} [etag] A unique read-only string that changes whenever
    * the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly etag?: string;
 }
@@ -425,10 +443,14 @@ export interface NetworkSecurityGroup extends Resource {
   /**
    * @member {NetworkInterface[]} [networkInterfaces] A collection of
    * references to network interfaces.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly networkInterfaces?: NetworkInterface[];
   /**
    * @member {Subnet[]} [subnets] A collection of references to subnets.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly subnets?: Subnet[];
   /**
@@ -507,6 +529,8 @@ export interface RouteTable extends Resource {
   routes?: Route[];
   /**
    * @member {Subnet[]} [subnets] A collection of references to subnets.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly subnets?: Subnet[];
   /**
@@ -639,6 +663,8 @@ export interface PublicIPAddress extends Resource {
   /**
    * @member {IPConfiguration} [ipConfiguration] The IP configuration
    * associated with the public IP address.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly ipConfiguration?: IPConfiguration;
   /**
@@ -750,6 +776,8 @@ export interface ResourceNavigationLink extends SubResource {
   /**
    * @member {string} [provisioningState] Provisioning state of the
    * ResourceNavigationLink resource.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly provisioningState?: string;
   /**
@@ -760,6 +788,8 @@ export interface ResourceNavigationLink extends SubResource {
   /**
    * @member {string} [etag] A unique read-only string that changes whenever
    * the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly etag?: string;
 }
@@ -794,6 +824,8 @@ export interface Subnet extends SubResource {
   /**
    * @member {IPConfiguration[]} [ipConfigurations] Gets an array of references
    * to the network interface IP configurations using subnet.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly ipConfigurations?: IPConfiguration[];
   /**
@@ -1860,6 +1892,8 @@ export interface ApplicationGateway extends Resource {
    * @member {ApplicationGatewayOperationalState} [operationalState]
    * Operational state of the application gateway resource. Possible values
    * include: 'Stopped', 'Starting', 'Running', 'Stopping'
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly operationalState?: ApplicationGatewayOperationalState;
   /**
@@ -2135,14 +2169,20 @@ export interface DnsNameAvailabilityResult {
 export interface DdosProtectionPlan extends BaseResource {
   /**
    * @member {string} [id] Resource ID.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly id?: string;
   /**
    * @member {string} [name] Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly name?: string;
   /**
    * @member {string} [type] Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly type?: string;
   /**
@@ -2158,22 +2198,30 @@ export interface DdosProtectionPlan extends BaseResource {
    * protection plan resource. It uniquely identifies the resource, even if the
    * user changes its name or migrate the resource across subscriptions or
    * resource groups.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly resourceGuid?: string;
   /**
    * @member {string} [provisioningState] The provisioning state of the DDoS
    * protection plan resource. Possible values are: 'Succeeded', 'Updating',
    * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly provisioningState?: string;
   /**
    * @member {SubResource[]} [virtualNetworks] The list of virtual networks
    * associated with the DDoS protection plan resource. This list is read-only.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly virtualNetworks?: SubResource[];
   /**
    * @member {string} [etag] A unique read-only string that changes whenever
    * the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly etag?: string;
 }
@@ -2188,10 +2236,14 @@ export interface DdosProtectionPlan extends BaseResource {
 export interface EndpointServiceResult extends SubResource {
   /**
    * @member {string} [name] Name of the endpoint service.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly name?: string;
   /**
    * @member {string} [type] Type of the endpoint service.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly type?: string;
 }
@@ -2228,6 +2280,8 @@ export interface ExpressRouteCircuitAuthorization extends SubResource {
   /**
    * @member {string} [etag] A unique read-only string that changes whenever
    * the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly etag?: string;
 }
@@ -2294,6 +2348,8 @@ export interface RouteFilterRule extends SubResource {
    * @member {string} [provisioningState] The provisioning state of the
    * resource. Possible values are: 'Updating', 'Deleting', 'Succeeded' and
    * 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly provisioningState?: string;
   /**
@@ -2308,6 +2364,8 @@ export interface RouteFilterRule extends SubResource {
   /**
    * @member {string} [etag] A unique read-only string that changes whenever
    * the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly etag?: string;
 }
@@ -2370,12 +2428,16 @@ export interface ExpressRouteCircuitConnection extends SubResource {
    * Circuit Connection State. Possible values are: 'Connected' and
    * 'Disconnected'. Possible values include: 'Connected', 'Connecting',
    * 'Disconnected'
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly circuitConnectionStatus?: CircuitConnectionStatus;
   /**
    * @member {string} [provisioningState] Provisioning state of the circuit
    * connection resource. Possible values are: 'Succeded', 'Updating',
    * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly provisioningState?: string;
   /**
@@ -2386,6 +2448,8 @@ export interface ExpressRouteCircuitConnection extends SubResource {
   /**
    * @member {string} [etag] A unique read-only string that changes whenever
    * the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly etag?: string;
 }
@@ -2490,6 +2554,8 @@ export interface ExpressRouteCircuitPeering extends SubResource {
   /**
    * @member {string} [etag] A unique read-only string that changes whenever
    * the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly etag?: string;
 }
@@ -2516,11 +2582,15 @@ export interface RouteFilter extends Resource {
    * @member {string} [provisioningState] The provisioning state of the
    * resource. Possible values are: 'Updating', 'Deleting', 'Succeeded' and
    * 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly provisioningState?: string;
   /**
    * @member {string} [etag] Gets a unique read-only string that changes
    * whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly etag?: string;
 }
@@ -2669,6 +2739,8 @@ export interface ExpressRouteCircuit extends Resource {
   /**
    * @member {string} [etag] Gets a unique read-only string that changes
    * whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly etag?: string;
 }
@@ -2900,6 +2972,8 @@ export interface ExpressRouteCrossConnectionsRoutesTableSummaryListResult {
   value?: ExpressRouteCrossConnectionRoutesTableSummary[];
   /**
    * @member {string} [nextLink] The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextLink?: string;
 }
@@ -2936,6 +3010,8 @@ export interface ExpressRouteCrossConnectionPeering extends SubResource {
   state?: ExpressRoutePeeringState;
   /**
    * @member {number} [azureASN] The Azure ASN.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly azureASN?: number;
   /**
@@ -2953,10 +3029,14 @@ export interface ExpressRouteCrossConnectionPeering extends SubResource {
   secondaryPeerAddressPrefix?: string;
   /**
    * @member {string} [primaryAzurePort] The primary port.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly primaryAzurePort?: string;
   /**
    * @member {string} [secondaryAzurePort] The secondary port.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly secondaryAzurePort?: string;
   /**
@@ -2976,6 +3056,8 @@ export interface ExpressRouteCrossConnectionPeering extends SubResource {
    * @member {string} [provisioningState] Gets the provisioning state of the
    * public IP resource. Possible values are: 'Updating', 'Deleting', and
    * 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly provisioningState?: string;
   /**
@@ -3000,6 +3082,8 @@ export interface ExpressRouteCrossConnectionPeering extends SubResource {
   /**
    * @member {string} [etag] A unique read-only string that changes whenever
    * the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly etag?: string;
 }
@@ -3014,14 +3098,20 @@ export interface ExpressRouteCrossConnectionPeering extends SubResource {
 export interface ExpressRouteCrossConnection extends Resource {
   /**
    * @member {string} [primaryAzurePort] The name of the primary  port.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly primaryAzurePort?: string;
   /**
    * @member {string} [secondaryAzurePort] The name of the secondary  port.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly secondaryAzurePort?: string;
   /**
    * @member {number} [sTag] The identifier of the circuit traffic.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly sTag?: number;
   /**
@@ -3055,6 +3145,8 @@ export interface ExpressRouteCrossConnection extends Resource {
    * @member {string} [provisioningState] Gets the provisioning state of the
    * public IP resource. Possible values are: 'Updating', 'Deleting', and
    * 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly provisioningState?: string;
   /**
@@ -3065,6 +3157,8 @@ export interface ExpressRouteCrossConnection extends Resource {
   /**
    * @member {string} [etag] Gets a unique read-only string that changes
    * whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly etag?: string;
 }
@@ -3094,21 +3188,29 @@ export interface FrontendIPConfiguration extends SubResource {
   /**
    * @member {SubResource[]} [inboundNatRules] Read only. Inbound rules URIs
    * that use this frontend IP.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly inboundNatRules?: SubResource[];
   /**
    * @member {SubResource[]} [inboundNatPools] Read only. Inbound pools URIs
    * that use this frontend IP.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly inboundNatPools?: SubResource[];
   /**
    * @member {SubResource[]} [outboundNatRules] Read only. Outbound rules URIs
    * that use this frontend IP.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly outboundNatRules?: SubResource[];
   /**
    * @member {SubResource[]} [loadBalancingRules] Gets load balancing rules
    * URIs that use this frontend IP.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly loadBalancingRules?: SubResource[];
   /**
@@ -3251,6 +3353,8 @@ export interface Probe extends SubResource {
   /**
    * @member {SubResource[]} [loadBalancingRules] The load balancer rules that
    * use this probe.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly loadBalancingRules?: SubResource[];
   /**
@@ -3711,6 +3815,8 @@ export interface EffectiveNetworkSecurityGroupListResult {
   value?: EffectiveNetworkSecurityGroup[];
   /**
    * @member {string} [nextLink] The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextLink?: string;
 }
@@ -3773,6 +3879,8 @@ export interface EffectiveRouteListResult {
   value?: EffectiveRoute[];
   /**
    * @member {string} [nextLink] The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextLink?: string;
 }
@@ -3794,6 +3902,8 @@ export interface NetworkWatcher extends Resource {
    * @member {ProvisioningState} [provisioningState] The provisioning state of
    * the resource. Possible values include: 'Succeeded', 'Updating',
    * 'Deleting', 'Failed'
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly provisioningState?: ProvisioningState;
 }
@@ -3881,16 +3991,22 @@ export interface TopologyResource {
 export interface Topology {
   /**
    * @member {string} [id] GUID representing the operation id.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly id?: string;
   /**
    * @member {Date} [createdDateTime] The datetime when the topology was
    * initially created for the resource group.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly createdDateTime?: Date;
   /**
    * @member {Date} [lastModified] The datetime when the topology was last
    * modified.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly lastModified?: Date;
   /**
@@ -4046,6 +4162,8 @@ export interface SecurityGroupViewParameters {
 export interface NetworkInterfaceAssociation {
   /**
    * @member {string} [id] Network interface ID.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly id?: string;
   /**
@@ -4064,6 +4182,8 @@ export interface NetworkInterfaceAssociation {
 export interface SubnetAssociation {
   /**
    * @member {string} [id] Subnet ID.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly id?: string;
   /**
@@ -4286,10 +4406,14 @@ export interface PacketCapture {
 export interface PacketCaptureResult {
   /**
    * @member {string} [name] Name of the packet capture session.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly name?: string;
   /**
    * @member {string} [id] ID of the packet capture operation.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly id?: string;
   /**
@@ -4727,22 +4851,30 @@ export interface ConnectivityIssue {
   /**
    * @member {Origin} [origin] The origin of the issue. Possible values
    * include: 'Local', 'Inbound', 'Outbound'
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly origin?: Origin;
   /**
    * @member {Severity} [severity] The severity of the issue. Possible values
    * include: 'Error', 'Warning'
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly severity?: Severity;
   /**
    * @member {IssueType} [type] The type of issue. Possible values include:
    * 'Unknown', 'AgentStopped', 'GuestFirewall', 'DnsResolution', 'SocketBind',
    * 'NetworkSecurityRule', 'UserDefinedRoute', 'PortThrottled', 'Platform'
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly type?: IssueType;
   /**
    * @member {{ [propertyName: string]: string }[]} [context] Provides
    * additional context on the issue.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly context?: { [propertyName: string]: string }[];
 }
@@ -4756,27 +4888,39 @@ export interface ConnectivityIssue {
 export interface ConnectivityHop {
   /**
    * @member {string} [type] The type of the hop.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly type?: string;
   /**
    * @member {string} [id] The ID of the hop.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly id?: string;
   /**
    * @member {string} [address] The IP address of the hop.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly address?: string;
   /**
    * @member {string} [resourceId] The ID of the resource corresponding to this
    * hop.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly resourceId?: string;
   /**
    * @member {string[]} [nextHopIds] List of next hop identifiers.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextHopIds?: string[];
   /**
    * @member {ConnectivityIssue[]} [issues] List of issues.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly issues?: ConnectivityIssue[];
 }
@@ -4791,32 +4935,46 @@ export interface ConnectivityInformation {
   /**
    * @member {ConnectivityHop[]} [hops] List of hops between the source and the
    * destination.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly hops?: ConnectivityHop[];
   /**
    * @member {ConnectionStatus} [connectionStatus] The connection status.
    * Possible values include: 'Unknown', 'Connected', 'Disconnected',
    * 'Degraded'
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly connectionStatus?: ConnectionStatus;
   /**
    * @member {number} [avgLatencyInMs] Average latency in milliseconds.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly avgLatencyInMs?: number;
   /**
    * @member {number} [minLatencyInMs] Minimum latency in milliseconds.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly minLatencyInMs?: number;
   /**
    * @member {number} [maxLatencyInMs] Maximum latency in milliseconds.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly maxLatencyInMs?: number;
   /**
    * @member {number} [probesSent] Total number of probes sent.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly probesSent?: number;
   /**
    * @member {number} [probesFailed] Number of failed probes.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly probesFailed?: number;
 }
@@ -5149,10 +5307,14 @@ export interface ConnectionMonitor {
 export interface ConnectionMonitorResult extends BaseResource {
   /**
    * @member {string} [name] Name of the connection monitor.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly name?: string;
   /**
    * @member {string} [id] ID of the connection monitor.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly id?: string;
   /**
@@ -5162,6 +5324,8 @@ export interface ConnectionMonitorResult extends BaseResource {
   etag?: string;
   /**
    * @member {string} [type] Connection monitor type.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly type?: string;
   /**
@@ -5238,6 +5402,8 @@ export interface ConnectionStateSnapshot {
   /**
    * @member {ConnectivityHop[]} [hops] List of hops between the source and the
    * destination.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly hops?: ConnectivityHop[];
 }
@@ -5488,16 +5654,22 @@ export interface PatchRouteFilterRule extends SubResource {
    * @member {string} [provisioningState] The provisioning state of the
    * resource. Possible values are: 'Updating', 'Deleting', 'Succeeded' and
    * 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly provisioningState?: string;
   /**
    * @member {string} [name] The name of the resource that is unique within a
    * resource group. This name can be used to access the resource.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly name?: string;
   /**
    * @member {string} [etag] A unique read-only string that changes whenever
    * the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly etag?: string;
 }
@@ -5524,20 +5696,28 @@ export interface PatchRouteFilter extends SubResource {
    * @member {string} [provisioningState] The provisioning state of the
    * resource. Possible values are: 'Updating', 'Deleting', 'Succeeded' and
    * 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly provisioningState?: string;
   /**
    * @member {string} [name] The name of the resource that is unique within a
    * resource group. This name can be used to access the resource.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly name?: string;
   /**
    * @member {string} [etag] A unique read-only string that changes whenever
    * the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly etag?: string;
   /**
    * @member {string} [type] Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly type?: string;
   /**
@@ -5631,6 +5811,8 @@ export interface UsageName {
 export interface Usage {
   /**
    * @member {string} [id] Resource identifier.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly id?: string;
   /**
@@ -5836,10 +6018,14 @@ export interface IPAddressAvailabilityResult {
 export interface VirtualNetworkUsageName {
   /**
    * @member {string} [localizedValue] Localized subnet size and usage string.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly localizedValue?: string;
   /**
    * @member {string} [value] Subnet size and usage string.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly value?: string;
 }
@@ -5854,23 +6040,33 @@ export interface VirtualNetworkUsage {
   /**
    * @member {number} [currentValue] Indicates number of IPs used from the
    * Subnet.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly currentValue?: number;
   /**
    * @member {string} [id] Subnet identifier.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly id?: string;
   /**
    * @member {number} [limit] Indicates the size of the subnet.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly limit?: number;
   /**
    * @member {VirtualNetworkUsageName} [name] The name containing common and
    * localized value for usage.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly name?: VirtualNetworkUsageName;
   /**
    * @member {string} [unit] Usage units. Returns 'Count'
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly unit?: string;
 }
@@ -5901,6 +6097,8 @@ export interface VirtualNetworkGatewayIPConfiguration extends SubResource {
   /**
    * @member {string} [provisioningState] The provisioning state of the public
    * IP resource. Possible values are: 'Updating', 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly provisioningState?: string;
   /**
@@ -5958,6 +6156,8 @@ export interface VpnClientRootCertificate extends SubResource {
    * @member {string} [provisioningState] The provisioning state of the VPN
    * client root certificate resource. Possible values are: 'Updating',
    * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly provisioningState?: string;
   /**
@@ -5989,6 +6189,8 @@ export interface VpnClientRevokedCertificate extends SubResource {
    * @member {string} [provisioningState] The provisioning state of the VPN
    * client revoked certificate resource. Possible values are: 'Updating',
    * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly provisioningState?: string;
   /**
@@ -6137,36 +6339,52 @@ export interface BgpPeerStatus {
   /**
    * @member {string} [localAddress] The virtual network gateway's local
    * address
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly localAddress?: string;
   /**
    * @member {string} [neighbor] The remote BGP peer
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly neighbor?: string;
   /**
    * @member {number} [asn] The autonomous system number of the remote BGP peer
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly asn?: number;
   /**
    * @member {BgpPeerState} [state] The BGP peer state. Possible values
    * include: 'Unknown', 'Stopped', 'Idle', 'Connecting', 'Connected'
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly state?: BgpPeerState;
   /**
    * @member {string} [connectedDuration] For how long the peering has been up
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly connectedDuration?: string;
   /**
    * @member {number} [routesReceived] The number of routes learned from this
    * peer
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly routesReceived?: number;
   /**
    * @member {number} [messagesSent] The number of BGP messages sent
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly messagesSent?: number;
   /**
    * @member {number} [messagesReceived] The number of BGP messages received
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly messagesReceived?: number;
 }
@@ -6180,30 +6398,44 @@ export interface BgpPeerStatus {
 export interface GatewayRoute {
   /**
    * @member {string} [localAddress] The gateway's local address
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly localAddress?: string;
   /**
    * @member {string} [network] The route's network prefix
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly network?: string;
   /**
    * @member {string} [nextHop] The route's next hop
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextHop?: string;
   /**
    * @member {string} [sourcePeer] The peer this route was learned from
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly sourcePeer?: string;
   /**
    * @member {string} [origin] The source this route was learned from
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly origin?: string;
   /**
    * @member {string} [asPath] The route's AS path sequence
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly asPath?: string;
   /**
    * @member {number} [weight] The route's weight
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly weight?: number;
 }
@@ -6275,6 +6507,8 @@ export interface VirtualNetworkGateway extends Resource {
    * @member {string} [provisioningState] The provisioning state of the
    * VirtualNetworkGateway resource. Possible values are: 'Updating',
    * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly provisioningState?: string;
   /**
@@ -6353,27 +6587,37 @@ export interface GatewayRouteListResult {
 export interface TunnelConnectionHealth {
   /**
    * @member {string} [tunnel] Tunnel name.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly tunnel?: string;
   /**
    * @member {VirtualNetworkGatewayConnectionStatus} [connectionStatus] Virtual
    * network Gateway connection status. Possible values include: 'Unknown',
    * 'Connecting', 'Connected', 'NotConnected'
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly connectionStatus?: VirtualNetworkGatewayConnectionStatus;
   /**
    * @member {number} [ingressBytesTransferred] The Ingress Bytes Transferred
    * in this connection
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly ingressBytesTransferred?: number;
   /**
    * @member {number} [egressBytesTransferred] The Egress Bytes Transferred in
    * this connection
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly egressBytesTransferred?: number;
   /**
    * @member {string} [lastConnectionEstablishedUtcTime] The time at which
    * connection was established in Utc format.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly lastConnectionEstablishedUtcTime?: string;
 }
@@ -6409,6 +6653,8 @@ export interface LocalNetworkGateway extends Resource {
    * @member {string} [provisioningState] The provisioning state of the
    * LocalNetworkGateway resource. Possible values are: 'Updating', 'Deleting',
    * and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly provisioningState?: string;
   /**
@@ -6465,21 +6711,29 @@ export interface VirtualNetworkGatewayConnection extends Resource {
    * network Gateway connection status. Possible values are 'Unknown',
    * 'Connecting', 'Connected' and 'NotConnected'. Possible values include:
    * 'Unknown', 'Connecting', 'Connected', 'NotConnected'
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly connectionStatus?: VirtualNetworkGatewayConnectionStatus;
   /**
    * @member {TunnelConnectionHealth[]} [tunnelConnectionStatus] Collection of
    * all tunnels' connection health status.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly tunnelConnectionStatus?: TunnelConnectionHealth[];
   /**
    * @member {number} [egressBytesTransferred] The egress bytes transferred in
    * this connection.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly egressBytesTransferred?: number;
   /**
    * @member {number} [ingressBytesTransferred] The ingress bytes transferred
    * in this connection.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly ingressBytesTransferred?: number;
   /**
@@ -6509,6 +6763,8 @@ export interface VirtualNetworkGatewayConnection extends Resource {
    * @member {string} [provisioningState] The provisioning state of the
    * VirtualNetworkGatewayConnection resource. Possible values are: 'Updating',
    * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly provisioningState?: string;
   /**
@@ -6662,21 +6918,29 @@ export interface VirtualNetworkGatewayConnectionListEntity extends Resource {
    * network Gateway connection status. Possible values are 'Unknown',
    * 'Connecting', 'Connected' and 'NotConnected'. Possible values include:
    * 'Unknown', 'Connecting', 'Connected', 'NotConnected'
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly connectionStatus?: VirtualNetworkGatewayConnectionStatus;
   /**
    * @member {TunnelConnectionHealth[]} [tunnelConnectionStatus] Collection of
    * all tunnels' connection health status.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly tunnelConnectionStatus?: TunnelConnectionHealth[];
   /**
    * @member {number} [egressBytesTransferred] The egress bytes transferred in
    * this connection.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly egressBytesTransferred?: number;
   /**
    * @member {number} [ingressBytesTransferred] The ingress bytes transferred
    * in this connection.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly ingressBytesTransferred?: number;
   /**
@@ -6706,6 +6970,8 @@ export interface VirtualNetworkGatewayConnectionListEntity extends Resource {
    * @member {string} [provisioningState] The provisioning state of the
    * VirtualNetworkGatewayConnection resource. Possible values are: 'Updating',
    * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly provisioningState?: string;
   /**
@@ -7063,6 +7329,8 @@ export interface ApplicationGatewayAvailableSslPredefinedPolicies extends Array<
 export interface ApplicationSecurityGroupListResult extends Array<ApplicationSecurityGroup> {
   /**
    * @member {string} [nextLink] The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextLink?: string;
 }
@@ -7077,6 +7345,8 @@ export interface ApplicationSecurityGroupListResult extends Array<ApplicationSec
 export interface DdosProtectionPlanListResult extends Array<DdosProtectionPlan> {
   /**
    * @member {string} [nextLink] The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextLink?: string;
 }
@@ -7163,6 +7433,8 @@ export interface ExpressRouteServiceProviderListResult extends Array<ExpressRout
 export interface ExpressRouteCrossConnectionListResult extends Array<ExpressRouteCrossConnection> {
   /**
    * @member {string} [nextLink] The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextLink?: string;
 }
@@ -7178,6 +7450,8 @@ export interface ExpressRouteCrossConnectionListResult extends Array<ExpressRout
 export interface ExpressRouteCrossConnectionPeeringList extends Array<ExpressRouteCrossConnectionPeering> {
   /**
    * @member {string} [nextLink] The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextLink?: string;
 }
@@ -7192,6 +7466,8 @@ export interface ExpressRouteCrossConnectionPeeringList extends Array<ExpressRou
 export interface LoadBalancerListResult extends Array<LoadBalancer> {
   /**
    * @member {string} [nextLink] The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextLink?: string;
 }
@@ -7206,6 +7482,8 @@ export interface LoadBalancerListResult extends Array<LoadBalancer> {
 export interface LoadBalancerBackendAddressPoolListResult extends Array<BackendAddressPool> {
   /**
    * @member {string} [nextLink] The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextLink?: string;
 }
@@ -7220,6 +7498,8 @@ export interface LoadBalancerBackendAddressPoolListResult extends Array<BackendA
 export interface LoadBalancerFrontendIPConfigurationListResult extends Array<FrontendIPConfiguration> {
   /**
    * @member {string} [nextLink] The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextLink?: string;
 }
@@ -7234,6 +7514,8 @@ export interface LoadBalancerFrontendIPConfigurationListResult extends Array<Fro
 export interface InboundNatRuleListResult extends Array<InboundNatRule> {
   /**
    * @member {string} [nextLink] The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextLink?: string;
 }
@@ -7248,6 +7530,8 @@ export interface InboundNatRuleListResult extends Array<InboundNatRule> {
 export interface LoadBalancerLoadBalancingRuleListResult extends Array<LoadBalancingRule> {
   /**
    * @member {string} [nextLink] The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextLink?: string;
 }
@@ -7262,6 +7546,8 @@ export interface LoadBalancerLoadBalancingRuleListResult extends Array<LoadBalan
 export interface NetworkInterfaceListResult extends Array<NetworkInterface> {
   /**
    * @member {string} [nextLink] The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextLink?: string;
 }
@@ -7276,6 +7562,8 @@ export interface NetworkInterfaceListResult extends Array<NetworkInterface> {
 export interface LoadBalancerProbeListResult extends Array<Probe> {
   /**
    * @member {string} [nextLink] The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextLink?: string;
 }
@@ -7290,6 +7578,8 @@ export interface LoadBalancerProbeListResult extends Array<Probe> {
 export interface NetworkInterfaceIPConfigurationListResult extends Array<NetworkInterfaceIPConfiguration> {
   /**
    * @member {string} [nextLink] The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextLink?: string;
 }
@@ -7304,6 +7594,8 @@ export interface NetworkInterfaceIPConfigurationListResult extends Array<Network
 export interface NetworkInterfaceLoadBalancerListResult extends Array<LoadBalancer> {
   /**
    * @member {string} [nextLink] The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextLink?: string;
 }
@@ -7549,6 +7841,8 @@ export interface VirtualNetworkPeeringListResult extends Array<VirtualNetworkPee
 export interface VirtualNetworkGatewayListResult extends Array<VirtualNetworkGateway> {
   /**
    * @member {string} [nextLink] The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextLink?: string;
 }
@@ -7563,6 +7857,8 @@ export interface VirtualNetworkGatewayListResult extends Array<VirtualNetworkGat
 export interface VirtualNetworkGatewayListConnectionsResult extends Array<VirtualNetworkGatewayConnectionListEntity> {
   /**
    * @member {string} [nextLink] The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextLink?: string;
 }
@@ -7577,6 +7873,8 @@ export interface VirtualNetworkGatewayListConnectionsResult extends Array<Virtua
 export interface VirtualNetworkGatewayConnectionListResult extends Array<VirtualNetworkGatewayConnection> {
   /**
    * @member {string} [nextLink] The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextLink?: string;
 }
@@ -7591,6 +7889,8 @@ export interface VirtualNetworkGatewayConnectionListResult extends Array<Virtual
 export interface LocalNetworkGatewayListResult extends Array<LocalNetworkGateway> {
   /**
    * @member {string} [nextLink] The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by
+   * the server.**
    */
   readonly nextLink?: string;
 }
@@ -8560,4410 +8860,15334 @@ export type VirtualNetworkGatewayConnectionType = 'IPsec' | 'Vnet2Vnet' | 'Expre
 /**
  * Contains response data for the get operation.
  */
-export interface ApplicationGatewaysGetResponse extends msRest.HttpResponse {
+export type ApplicationGatewaysGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ApplicationGateway;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * SKU of the application gateway resource.
+   */
+  sku?: ApplicationGatewaySku;
+  /**
+   * SSL policy of the application gateway resource.
+   */
+  sslPolicy?: ApplicationGatewaySslPolicy;
+  /**
+   * Operational state of the application gateway resource. Possible values include: 'Stopped',
+   * 'Starting', 'Running', 'Stopping'
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly operationalState?: ApplicationGatewayOperationalState;
+  /**
+   * Subnets of application the gateway resource.
+   */
+  gatewayIPConfigurations?: ApplicationGatewayIPConfiguration[];
+  /**
+   * Authentication certificates of the application gateway resource.
+   */
+  authenticationCertificates?: ApplicationGatewayAuthenticationCertificate[];
+  /**
+   * SSL certificates of the application gateway resource.
+   */
+  sslCertificates?: ApplicationGatewaySslCertificate[];
+  /**
+   * Frontend IP addresses of the application gateway resource.
+   */
+  frontendIPConfigurations?: ApplicationGatewayFrontendIPConfiguration[];
+  /**
+   * Frontend ports of the application gateway resource.
+   */
+  frontendPorts?: ApplicationGatewayFrontendPort[];
+  /**
+   * Probes of the application gateway resource.
+   */
+  probes?: ApplicationGatewayProbe[];
+  /**
+   * Backend address pool of the application gateway resource.
+   */
+  backendAddressPools?: ApplicationGatewayBackendAddressPool[];
+  /**
+   * Backend http settings of the application gateway resource.
+   */
+  backendHttpSettingsCollection?: ApplicationGatewayBackendHttpSettings[];
+  /**
+   * Http listeners of the application gateway resource.
+   */
+  httpListeners?: ApplicationGatewayHttpListener[];
+  /**
+   * URL path map of the application gateway resource.
+   */
+  urlPathMaps?: ApplicationGatewayUrlPathMap[];
+  /**
+   * Request routing rules of the application gateway resource.
+   */
+  requestRoutingRules?: ApplicationGatewayRequestRoutingRule[];
+  /**
+   * Redirect configurations of the application gateway resource.
+   */
+  redirectConfigurations?: ApplicationGatewayRedirectConfiguration[];
+  /**
+   * Web application firewall configuration.
+   */
+  webApplicationFirewallConfiguration?: ApplicationGatewayWebApplicationFirewallConfiguration;
+  /**
+   * Whether HTTP2 is enabled on the application gateway resource.
+   */
+  enableHttp2?: boolean;
+  /**
+   * Resource GUID property of the application gateway resource.
+   */
+  resourceGuid?: string;
+  /**
+   * Provisioning state of the application gateway resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationGateway;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface ApplicationGatewaysCreateOrUpdateResponse extends msRest.HttpResponse {
+export type ApplicationGatewaysCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ApplicationGateway;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * SKU of the application gateway resource.
+   */
+  sku?: ApplicationGatewaySku;
+  /**
+   * SSL policy of the application gateway resource.
+   */
+  sslPolicy?: ApplicationGatewaySslPolicy;
+  /**
+   * Operational state of the application gateway resource. Possible values include: 'Stopped',
+   * 'Starting', 'Running', 'Stopping'
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly operationalState?: ApplicationGatewayOperationalState;
+  /**
+   * Subnets of application the gateway resource.
+   */
+  gatewayIPConfigurations?: ApplicationGatewayIPConfiguration[];
+  /**
+   * Authentication certificates of the application gateway resource.
+   */
+  authenticationCertificates?: ApplicationGatewayAuthenticationCertificate[];
+  /**
+   * SSL certificates of the application gateway resource.
+   */
+  sslCertificates?: ApplicationGatewaySslCertificate[];
+  /**
+   * Frontend IP addresses of the application gateway resource.
+   */
+  frontendIPConfigurations?: ApplicationGatewayFrontendIPConfiguration[];
+  /**
+   * Frontend ports of the application gateway resource.
+   */
+  frontendPorts?: ApplicationGatewayFrontendPort[];
+  /**
+   * Probes of the application gateway resource.
+   */
+  probes?: ApplicationGatewayProbe[];
+  /**
+   * Backend address pool of the application gateway resource.
+   */
+  backendAddressPools?: ApplicationGatewayBackendAddressPool[];
+  /**
+   * Backend http settings of the application gateway resource.
+   */
+  backendHttpSettingsCollection?: ApplicationGatewayBackendHttpSettings[];
+  /**
+   * Http listeners of the application gateway resource.
+   */
+  httpListeners?: ApplicationGatewayHttpListener[];
+  /**
+   * URL path map of the application gateway resource.
+   */
+  urlPathMaps?: ApplicationGatewayUrlPathMap[];
+  /**
+   * Request routing rules of the application gateway resource.
+   */
+  requestRoutingRules?: ApplicationGatewayRequestRoutingRule[];
+  /**
+   * Redirect configurations of the application gateway resource.
+   */
+  redirectConfigurations?: ApplicationGatewayRedirectConfiguration[];
+  /**
+   * Web application firewall configuration.
+   */
+  webApplicationFirewallConfiguration?: ApplicationGatewayWebApplicationFirewallConfiguration;
+  /**
+   * Whether HTTP2 is enabled on the application gateway resource.
+   */
+  enableHttp2?: boolean;
+  /**
+   * Resource GUID property of the application gateway resource.
+   */
+  resourceGuid?: string;
+  /**
+   * Provisioning state of the application gateway resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationGateway;
+    };
+};
 
 /**
  * Contains response data for the updateTags operation.
  */
-export interface ApplicationGatewaysUpdateTagsResponse extends msRest.HttpResponse {
+export type ApplicationGatewaysUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ApplicationGateway;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * SKU of the application gateway resource.
+   */
+  sku?: ApplicationGatewaySku;
+  /**
+   * SSL policy of the application gateway resource.
+   */
+  sslPolicy?: ApplicationGatewaySslPolicy;
+  /**
+   * Operational state of the application gateway resource. Possible values include: 'Stopped',
+   * 'Starting', 'Running', 'Stopping'
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly operationalState?: ApplicationGatewayOperationalState;
+  /**
+   * Subnets of application the gateway resource.
+   */
+  gatewayIPConfigurations?: ApplicationGatewayIPConfiguration[];
+  /**
+   * Authentication certificates of the application gateway resource.
+   */
+  authenticationCertificates?: ApplicationGatewayAuthenticationCertificate[];
+  /**
+   * SSL certificates of the application gateway resource.
+   */
+  sslCertificates?: ApplicationGatewaySslCertificate[];
+  /**
+   * Frontend IP addresses of the application gateway resource.
+   */
+  frontendIPConfigurations?: ApplicationGatewayFrontendIPConfiguration[];
+  /**
+   * Frontend ports of the application gateway resource.
+   */
+  frontendPorts?: ApplicationGatewayFrontendPort[];
+  /**
+   * Probes of the application gateway resource.
+   */
+  probes?: ApplicationGatewayProbe[];
+  /**
+   * Backend address pool of the application gateway resource.
+   */
+  backendAddressPools?: ApplicationGatewayBackendAddressPool[];
+  /**
+   * Backend http settings of the application gateway resource.
+   */
+  backendHttpSettingsCollection?: ApplicationGatewayBackendHttpSettings[];
+  /**
+   * Http listeners of the application gateway resource.
+   */
+  httpListeners?: ApplicationGatewayHttpListener[];
+  /**
+   * URL path map of the application gateway resource.
+   */
+  urlPathMaps?: ApplicationGatewayUrlPathMap[];
+  /**
+   * Request routing rules of the application gateway resource.
+   */
+  requestRoutingRules?: ApplicationGatewayRequestRoutingRule[];
+  /**
+   * Redirect configurations of the application gateway resource.
+   */
+  redirectConfigurations?: ApplicationGatewayRedirectConfiguration[];
+  /**
+   * Web application firewall configuration.
+   */
+  webApplicationFirewallConfiguration?: ApplicationGatewayWebApplicationFirewallConfiguration;
+  /**
+   * Whether HTTP2 is enabled on the application gateway resource.
+   */
+  enableHttp2?: boolean;
+  /**
+   * Resource GUID property of the application gateway resource.
+   */
+  resourceGuid?: string;
+  /**
+   * Provisioning state of the application gateway resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationGateway;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface ApplicationGatewaysListResponse extends msRest.HttpResponse {
+export type ApplicationGatewaysListResponse = {
   /**
-   * The response body as text (string format)
+   * List of an application gateways in a resource group.
    */
-  bodyAsText: string;
+  value?: ApplicationGateway[];
   /**
-   * The response body as parsed JSON or XML
+   * URL to get the next set of results.
    */
-  parsedBody: ApplicationGatewayListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationGatewayListResult;
+    };
+};
 
 /**
  * Contains response data for the listAll operation.
  */
-export interface ApplicationGatewaysListAllResponse extends msRest.HttpResponse {
+export type ApplicationGatewaysListAllResponse = {
   /**
-   * The response body as text (string format)
+   * List of an application gateways in a resource group.
    */
-  bodyAsText: string;
+  value?: ApplicationGateway[];
   /**
-   * The response body as parsed JSON or XML
+   * URL to get the next set of results.
    */
-  parsedBody: ApplicationGatewayListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationGatewayListResult;
+    };
+};
 
 /**
  * Contains response data for the backendHealth operation.
  */
-export interface ApplicationGatewaysBackendHealthResponse extends msRest.HttpResponse {
+export type ApplicationGatewaysBackendHealthResponse = {
+  backendAddressPools?: ApplicationGatewayBackendHealthPool[];
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ApplicationGatewayBackendHealth;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationGatewayBackendHealth;
+    };
+};
 
 /**
  * Contains response data for the listAvailableWafRuleSets operation.
  */
-export interface ApplicationGatewaysListAvailableWafRuleSetsResponse extends msRest.HttpResponse {
+export type ApplicationGatewaysListAvailableWafRuleSetsResponse = {
   /**
-   * The response body as text (string format)
+   * The list of application gateway rule sets.
    */
-  bodyAsText: string;
+  value?: ApplicationGatewayFirewallRuleSet[];
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: ApplicationGatewayAvailableWafRuleSetsResult;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationGatewayAvailableWafRuleSetsResult;
+    };
+};
 
 /**
  * Contains response data for the listAvailableSslOptions operation.
  */
-export interface ApplicationGatewaysListAvailableSslOptionsResponse extends msRest.HttpResponse {
+export type ApplicationGatewaysListAvailableSslOptionsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ApplicationGatewayAvailableSslOptions;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * List of available Ssl predefined policy.
+   */
+  predefinedPolicies?: SubResource[];
+  /**
+   * Name of the Ssl predefined policy applied by default to application gateway. Possible values
+   * include: 'AppGwSslPolicy20150501', 'AppGwSslPolicy20170401', 'AppGwSslPolicy20170401S'
+   */
+  defaultPolicy?: ApplicationGatewaySslPolicyName;
+  /**
+   * List of available Ssl cipher suites.
+   */
+  availableCipherSuites?: ApplicationGatewaySslCipherSuite[];
+  /**
+   * List of available Ssl protocols.
+   */
+  availableProtocols?: ApplicationGatewaySslProtocol[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationGatewayAvailableSslOptions;
+    };
+};
 
 /**
  * Contains response data for the listAvailableSslPredefinedPolicies operation.
  */
-export interface ApplicationGatewaysListAvailableSslPredefinedPoliciesResponse extends msRest.HttpResponse {
+export type ApplicationGatewaysListAvailableSslPredefinedPoliciesResponse = {
   /**
-   * The response body as text (string format)
+   * List of available Ssl predefined policy.
    */
-  bodyAsText: string;
+  value?: ApplicationGatewaySslPredefinedPolicy[];
   /**
-   * The response body as parsed JSON or XML
+   * URL to get the next set of results.
    */
-  parsedBody: ApplicationGatewayAvailableSslPredefinedPolicies;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationGatewayAvailableSslPredefinedPolicies;
+    };
+};
 
 /**
  * Contains response data for the getSslPredefinedPolicy operation.
  */
-export interface ApplicationGatewaysGetSslPredefinedPolicyResponse extends msRest.HttpResponse {
+export type ApplicationGatewaysGetSslPredefinedPolicyResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Name of the Ssl predefined policy.
    */
-  parsedBody: ApplicationGatewaySslPredefinedPolicy;
-}
+  name?: string;
+  /**
+   * Ssl cipher suites to be enabled in the specified order for application gateway.
+   */
+  cipherSuites?: ApplicationGatewaySslCipherSuite[];
+  /**
+   * Minimum version of Ssl protocol to be supported on application gateway. Possible values
+   * include: 'TLSv1_0', 'TLSv1_1', 'TLSv1_2'
+   */
+  minProtocolVersion?: ApplicationGatewaySslProtocol;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationGatewaySslPredefinedPolicy;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface ApplicationGatewaysBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type ApplicationGatewaysBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ApplicationGateway;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * SKU of the application gateway resource.
+   */
+  sku?: ApplicationGatewaySku;
+  /**
+   * SSL policy of the application gateway resource.
+   */
+  sslPolicy?: ApplicationGatewaySslPolicy;
+  /**
+   * Operational state of the application gateway resource. Possible values include: 'Stopped',
+   * 'Starting', 'Running', 'Stopping'
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly operationalState?: ApplicationGatewayOperationalState;
+  /**
+   * Subnets of application the gateway resource.
+   */
+  gatewayIPConfigurations?: ApplicationGatewayIPConfiguration[];
+  /**
+   * Authentication certificates of the application gateway resource.
+   */
+  authenticationCertificates?: ApplicationGatewayAuthenticationCertificate[];
+  /**
+   * SSL certificates of the application gateway resource.
+   */
+  sslCertificates?: ApplicationGatewaySslCertificate[];
+  /**
+   * Frontend IP addresses of the application gateway resource.
+   */
+  frontendIPConfigurations?: ApplicationGatewayFrontendIPConfiguration[];
+  /**
+   * Frontend ports of the application gateway resource.
+   */
+  frontendPorts?: ApplicationGatewayFrontendPort[];
+  /**
+   * Probes of the application gateway resource.
+   */
+  probes?: ApplicationGatewayProbe[];
+  /**
+   * Backend address pool of the application gateway resource.
+   */
+  backendAddressPools?: ApplicationGatewayBackendAddressPool[];
+  /**
+   * Backend http settings of the application gateway resource.
+   */
+  backendHttpSettingsCollection?: ApplicationGatewayBackendHttpSettings[];
+  /**
+   * Http listeners of the application gateway resource.
+   */
+  httpListeners?: ApplicationGatewayHttpListener[];
+  /**
+   * URL path map of the application gateway resource.
+   */
+  urlPathMaps?: ApplicationGatewayUrlPathMap[];
+  /**
+   * Request routing rules of the application gateway resource.
+   */
+  requestRoutingRules?: ApplicationGatewayRequestRoutingRule[];
+  /**
+   * Redirect configurations of the application gateway resource.
+   */
+  redirectConfigurations?: ApplicationGatewayRedirectConfiguration[];
+  /**
+   * Web application firewall configuration.
+   */
+  webApplicationFirewallConfiguration?: ApplicationGatewayWebApplicationFirewallConfiguration;
+  /**
+   * Whether HTTP2 is enabled on the application gateway resource.
+   */
+  enableHttp2?: boolean;
+  /**
+   * Resource GUID property of the application gateway resource.
+   */
+  resourceGuid?: string;
+  /**
+   * Provisioning state of the application gateway resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationGateway;
+    };
+};
 
 /**
  * Contains response data for the beginUpdateTags operation.
  */
-export interface ApplicationGatewaysBeginUpdateTagsResponse extends msRest.HttpResponse {
+export type ApplicationGatewaysBeginUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ApplicationGateway;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * SKU of the application gateway resource.
+   */
+  sku?: ApplicationGatewaySku;
+  /**
+   * SSL policy of the application gateway resource.
+   */
+  sslPolicy?: ApplicationGatewaySslPolicy;
+  /**
+   * Operational state of the application gateway resource. Possible values include: 'Stopped',
+   * 'Starting', 'Running', 'Stopping'
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly operationalState?: ApplicationGatewayOperationalState;
+  /**
+   * Subnets of application the gateway resource.
+   */
+  gatewayIPConfigurations?: ApplicationGatewayIPConfiguration[];
+  /**
+   * Authentication certificates of the application gateway resource.
+   */
+  authenticationCertificates?: ApplicationGatewayAuthenticationCertificate[];
+  /**
+   * SSL certificates of the application gateway resource.
+   */
+  sslCertificates?: ApplicationGatewaySslCertificate[];
+  /**
+   * Frontend IP addresses of the application gateway resource.
+   */
+  frontendIPConfigurations?: ApplicationGatewayFrontendIPConfiguration[];
+  /**
+   * Frontend ports of the application gateway resource.
+   */
+  frontendPorts?: ApplicationGatewayFrontendPort[];
+  /**
+   * Probes of the application gateway resource.
+   */
+  probes?: ApplicationGatewayProbe[];
+  /**
+   * Backend address pool of the application gateway resource.
+   */
+  backendAddressPools?: ApplicationGatewayBackendAddressPool[];
+  /**
+   * Backend http settings of the application gateway resource.
+   */
+  backendHttpSettingsCollection?: ApplicationGatewayBackendHttpSettings[];
+  /**
+   * Http listeners of the application gateway resource.
+   */
+  httpListeners?: ApplicationGatewayHttpListener[];
+  /**
+   * URL path map of the application gateway resource.
+   */
+  urlPathMaps?: ApplicationGatewayUrlPathMap[];
+  /**
+   * Request routing rules of the application gateway resource.
+   */
+  requestRoutingRules?: ApplicationGatewayRequestRoutingRule[];
+  /**
+   * Redirect configurations of the application gateway resource.
+   */
+  redirectConfigurations?: ApplicationGatewayRedirectConfiguration[];
+  /**
+   * Web application firewall configuration.
+   */
+  webApplicationFirewallConfiguration?: ApplicationGatewayWebApplicationFirewallConfiguration;
+  /**
+   * Whether HTTP2 is enabled on the application gateway resource.
+   */
+  enableHttp2?: boolean;
+  /**
+   * Resource GUID property of the application gateway resource.
+   */
+  resourceGuid?: string;
+  /**
+   * Provisioning state of the application gateway resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationGateway;
+    };
+};
 
 /**
  * Contains response data for the beginBackendHealth operation.
  */
-export interface ApplicationGatewaysBeginBackendHealthResponse extends msRest.HttpResponse {
+export type ApplicationGatewaysBeginBackendHealthResponse = {
+  backendAddressPools?: ApplicationGatewayBackendHealthPool[];
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: ApplicationGatewayBackendHealth;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationGatewayBackendHealth;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface ApplicationGatewaysListNextResponse extends msRest.HttpResponse {
+export type ApplicationGatewaysListNextResponse = {
   /**
-   * The response body as text (string format)
+   * List of an application gateways in a resource group.
    */
-  bodyAsText: string;
+  value?: ApplicationGateway[];
   /**
-   * The response body as parsed JSON or XML
+   * URL to get the next set of results.
    */
-  parsedBody: ApplicationGatewayListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationGatewayListResult;
+    };
+};
 
 /**
  * Contains response data for the listAllNext operation.
  */
-export interface ApplicationGatewaysListAllNextResponse extends msRest.HttpResponse {
+export type ApplicationGatewaysListAllNextResponse = {
   /**
-   * The response body as text (string format)
+   * List of an application gateways in a resource group.
    */
-  bodyAsText: string;
+  value?: ApplicationGateway[];
   /**
-   * The response body as parsed JSON or XML
+   * URL to get the next set of results.
    */
-  parsedBody: ApplicationGatewayListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationGatewayListResult;
+    };
+};
 
 /**
  * Contains response data for the listAvailableSslPredefinedPoliciesNext
  * operation.
  */
-export interface ApplicationGatewaysListAvailableSslPredefinedPoliciesNextResponse extends msRest.HttpResponse {
+export type ApplicationGatewaysListAvailableSslPredefinedPoliciesNextResponse = {
   /**
-   * The response body as text (string format)
+   * List of available Ssl predefined policy.
    */
-  bodyAsText: string;
+  value?: ApplicationGatewaySslPredefinedPolicy[];
   /**
-   * The response body as parsed JSON or XML
+   * URL to get the next set of results.
    */
-  parsedBody: ApplicationGatewayAvailableSslPredefinedPolicies;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationGatewayAvailableSslPredefinedPolicies;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface ApplicationSecurityGroupsGetResponse extends msRest.HttpResponse {
+export type ApplicationSecurityGroupsGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ApplicationSecurityGroup;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The resource GUID property of the application security group resource. It uniquely identifies
+   * a resource, even if the user changes its name or migrate the resource across subscriptions or
+   * resource groups.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the application security group resource. Possible values are:
+   * 'Succeeded', 'Updating', 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationSecurityGroup;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface ApplicationSecurityGroupsCreateOrUpdateResponse extends msRest.HttpResponse {
+export type ApplicationSecurityGroupsCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ApplicationSecurityGroup;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The resource GUID property of the application security group resource. It uniquely identifies
+   * a resource, even if the user changes its name or migrate the resource across subscriptions or
+   * resource groups.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the application security group resource. Possible values are:
+   * 'Succeeded', 'Updating', 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationSecurityGroup;
+    };
+};
 
 /**
  * Contains response data for the listAll operation.
  */
-export interface ApplicationSecurityGroupsListAllResponse extends msRest.HttpResponse {
+export type ApplicationSecurityGroupsListAllResponse = {
   /**
-   * The response body as text (string format)
+   * A list of application security groups.
    */
-  bodyAsText: string;
+  value?: ApplicationSecurityGroup[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ApplicationSecurityGroupListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationSecurityGroupListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface ApplicationSecurityGroupsListResponse extends msRest.HttpResponse {
+export type ApplicationSecurityGroupsListResponse = {
   /**
-   * The response body as text (string format)
+   * A list of application security groups.
    */
-  bodyAsText: string;
+  value?: ApplicationSecurityGroup[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ApplicationSecurityGroupListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationSecurityGroupListResult;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface ApplicationSecurityGroupsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type ApplicationSecurityGroupsBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ApplicationSecurityGroup;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The resource GUID property of the application security group resource. It uniquely identifies
+   * a resource, even if the user changes its name or migrate the resource across subscriptions or
+   * resource groups.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the application security group resource. Possible values are:
+   * 'Succeeded', 'Updating', 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationSecurityGroup;
+    };
+};
 
 /**
  * Contains response data for the listAllNext operation.
  */
-export interface ApplicationSecurityGroupsListAllNextResponse extends msRest.HttpResponse {
+export type ApplicationSecurityGroupsListAllNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of application security groups.
    */
-  bodyAsText: string;
+  value?: ApplicationSecurityGroup[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ApplicationSecurityGroupListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationSecurityGroupListResult;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface ApplicationSecurityGroupsListNextResponse extends msRest.HttpResponse {
+export type ApplicationSecurityGroupsListNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of application security groups.
    */
-  bodyAsText: string;
+  value?: ApplicationSecurityGroup[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ApplicationSecurityGroupListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ApplicationSecurityGroupListResult;
+    };
+};
 
 /**
  * Contains response data for the checkDnsNameAvailability operation.
  */
-export interface CheckDnsNameAvailabilityResponse extends msRest.HttpResponse {
+export type CheckDnsNameAvailabilityResponse = {
   /**
-   * The response body as text (string format)
+   * Domain availability (True/False).
    */
-  bodyAsText: string;
+  available?: boolean;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: DnsNameAvailabilityResult;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DnsNameAvailabilityResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface DdosProtectionPlansGetResponse extends msRest.HttpResponse {
+export type DdosProtectionPlansGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  bodyAsText: string;
+  readonly id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: DdosProtectionPlan;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The resource GUID property of the DDoS protection plan resource. It uniquely identifies the
+   * resource, even if the user changes its name or migrate the resource across subscriptions or
+   * resource groups.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the DDoS protection plan resource. Possible values are: 'Succeeded',
+   * 'Updating', 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * The list of virtual networks associated with the DDoS protection plan resource. This list is
+   * read-only.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly virtualNetworks?: SubResource[];
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DdosProtectionPlan;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface DdosProtectionPlansCreateOrUpdateResponse extends msRest.HttpResponse {
+export type DdosProtectionPlansCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  bodyAsText: string;
+  readonly id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: DdosProtectionPlan;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The resource GUID property of the DDoS protection plan resource. It uniquely identifies the
+   * resource, even if the user changes its name or migrate the resource across subscriptions or
+   * resource groups.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the DDoS protection plan resource. Possible values are: 'Succeeded',
+   * 'Updating', 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * The list of virtual networks associated with the DDoS protection plan resource. This list is
+   * read-only.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly virtualNetworks?: SubResource[];
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DdosProtectionPlan;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface DdosProtectionPlansListResponse extends msRest.HttpResponse {
+export type DdosProtectionPlansListResponse = {
   /**
-   * The response body as text (string format)
+   * A list of DDoS protection plans.
    */
-  bodyAsText: string;
+  value?: DdosProtectionPlan[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: DdosProtectionPlanListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DdosProtectionPlanListResult;
+    };
+};
 
 /**
  * Contains response data for the listByResourceGroup operation.
  */
-export interface DdosProtectionPlansListByResourceGroupResponse extends msRest.HttpResponse {
+export type DdosProtectionPlansListByResourceGroupResponse = {
   /**
-   * The response body as text (string format)
+   * A list of DDoS protection plans.
    */
-  bodyAsText: string;
+  value?: DdosProtectionPlan[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: DdosProtectionPlanListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DdosProtectionPlanListResult;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface DdosProtectionPlansBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type DdosProtectionPlansBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  bodyAsText: string;
+  readonly id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: DdosProtectionPlan;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The resource GUID property of the DDoS protection plan resource. It uniquely identifies the
+   * resource, even if the user changes its name or migrate the resource across subscriptions or
+   * resource groups.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly resourceGuid?: string;
+  /**
+   * The provisioning state of the DDoS protection plan resource. Possible values are: 'Succeeded',
+   * 'Updating', 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * The list of virtual networks associated with the DDoS protection plan resource. This list is
+   * read-only.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly virtualNetworks?: SubResource[];
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DdosProtectionPlan;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface DdosProtectionPlansListNextResponse extends msRest.HttpResponse {
+export type DdosProtectionPlansListNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of DDoS protection plans.
    */
-  bodyAsText: string;
+  value?: DdosProtectionPlan[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: DdosProtectionPlanListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DdosProtectionPlanListResult;
+    };
+};
 
 /**
  * Contains response data for the listByResourceGroupNext operation.
  */
-export interface DdosProtectionPlansListByResourceGroupNextResponse extends msRest.HttpResponse {
+export type DdosProtectionPlansListByResourceGroupNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of DDoS protection plans.
    */
-  bodyAsText: string;
+  value?: DdosProtectionPlan[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: DdosProtectionPlanListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DdosProtectionPlanListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface AvailableEndpointServicesListResponse extends msRest.HttpResponse {
+export type AvailableEndpointServicesListResponse = {
   /**
-   * The response body as text (string format)
+   * List of available endpoint services in a region.
    */
-  bodyAsText: string;
+  value?: EndpointServiceResult[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: EndpointServicesListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: EndpointServicesListResult;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface AvailableEndpointServicesListNextResponse extends msRest.HttpResponse {
+export type AvailableEndpointServicesListNextResponse = {
   /**
-   * The response body as text (string format)
+   * List of available endpoint services in a region.
    */
-  bodyAsText: string;
+  value?: EndpointServiceResult[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: EndpointServicesListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: EndpointServicesListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface ExpressRouteCircuitAuthorizationsGetResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitAuthorizationsGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The authorization key.
    */
-  parsedBody: ExpressRouteCircuitAuthorization;
-}
+  authorizationKey?: string;
+  /**
+   * AuthorizationUseStatus. Possible values are: 'Available' and 'InUse'. Possible values include:
+   * 'Available', 'InUse'
+   */
+  authorizationUseStatus?: AuthorizationUseStatus;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * Gets name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitAuthorization;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The authorization key.
    */
-  parsedBody: ExpressRouteCircuitAuthorization;
-}
+  authorizationKey?: string;
+  /**
+   * AuthorizationUseStatus. Possible values are: 'Available' and 'InUse'. Possible values include:
+   * 'Available', 'InUse'
+   */
+  authorizationUseStatus?: AuthorizationUseStatus;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * Gets name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitAuthorization;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface ExpressRouteCircuitAuthorizationsListResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitAuthorizationsListResponse = {
   /**
-   * The response body as text (string format)
+   * The authorizations in an ExpressRoute Circuit.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCircuitAuthorization[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: AuthorizationListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: AuthorizationListResult;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface ExpressRouteCircuitAuthorizationsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitAuthorizationsBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The authorization key.
    */
-  parsedBody: ExpressRouteCircuitAuthorization;
-}
+  authorizationKey?: string;
+  /**
+   * AuthorizationUseStatus. Possible values are: 'Available' and 'InUse'. Possible values include:
+   * 'Available', 'InUse'
+   */
+  authorizationUseStatus?: AuthorizationUseStatus;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * Gets name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitAuthorization;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface ExpressRouteCircuitAuthorizationsListNextResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitAuthorizationsListNextResponse = {
   /**
-   * The response body as text (string format)
+   * The authorizations in an ExpressRoute Circuit.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCircuitAuthorization[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: AuthorizationListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: AuthorizationListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface ExpressRouteCircuitPeeringsGetResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitPeeringsGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The peering type. Possible values include: 'AzurePublicPeering', 'AzurePrivatePeering',
+   * 'MicrosoftPeering'
    */
-  parsedBody: ExpressRouteCircuitPeering;
-}
+  peeringType?: ExpressRoutePeeringType;
+  /**
+   * The peering state. Possible values include: 'Disabled', 'Enabled'
+   */
+  state?: ExpressRoutePeeringState;
+  /**
+   * The Azure ASN.
+   */
+  azureASN?: number;
+  /**
+   * The peer ASN.
+   */
+  peerASN?: number;
+  /**
+   * The primary address prefix.
+   */
+  primaryPeerAddressPrefix?: string;
+  /**
+   * The secondary address prefix.
+   */
+  secondaryPeerAddressPrefix?: string;
+  /**
+   * The primary port.
+   */
+  primaryAzurePort?: string;
+  /**
+   * The secondary port.
+   */
+  secondaryAzurePort?: string;
+  /**
+   * The shared key.
+   */
+  sharedKey?: string;
+  /**
+   * The VLAN ID.
+   */
+  vlanId?: number;
+  /**
+   * The Microsoft peering configuration.
+   */
+  microsoftPeeringConfig?: ExpressRouteCircuitPeeringConfig;
+  /**
+   * Gets peering stats.
+   */
+  stats?: ExpressRouteCircuitStats;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * The GatewayManager Etag.
+   */
+  gatewayManagerEtag?: string;
+  /**
+   * Gets whether the provider or the customer last modified the peering.
+   */
+  lastModifiedBy?: string;
+  /**
+   * The reference of the RouteFilter resource.
+   */
+  routeFilter?: RouteFilter;
+  /**
+   * The IPv6 peering configuration.
+   */
+  ipv6PeeringConfig?: Ipv6ExpressRouteCircuitPeeringConfig;
+  /**
+   * The list of circuit connections associated with Azure Private Peering for this circuit.
+   */
+  connections?: ExpressRouteCircuitConnection[];
+  /**
+   * Gets name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitPeering;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface ExpressRouteCircuitPeeringsCreateOrUpdateResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitPeeringsCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The peering type. Possible values include: 'AzurePublicPeering', 'AzurePrivatePeering',
+   * 'MicrosoftPeering'
    */
-  parsedBody: ExpressRouteCircuitPeering;
-}
+  peeringType?: ExpressRoutePeeringType;
+  /**
+   * The peering state. Possible values include: 'Disabled', 'Enabled'
+   */
+  state?: ExpressRoutePeeringState;
+  /**
+   * The Azure ASN.
+   */
+  azureASN?: number;
+  /**
+   * The peer ASN.
+   */
+  peerASN?: number;
+  /**
+   * The primary address prefix.
+   */
+  primaryPeerAddressPrefix?: string;
+  /**
+   * The secondary address prefix.
+   */
+  secondaryPeerAddressPrefix?: string;
+  /**
+   * The primary port.
+   */
+  primaryAzurePort?: string;
+  /**
+   * The secondary port.
+   */
+  secondaryAzurePort?: string;
+  /**
+   * The shared key.
+   */
+  sharedKey?: string;
+  /**
+   * The VLAN ID.
+   */
+  vlanId?: number;
+  /**
+   * The Microsoft peering configuration.
+   */
+  microsoftPeeringConfig?: ExpressRouteCircuitPeeringConfig;
+  /**
+   * Gets peering stats.
+   */
+  stats?: ExpressRouteCircuitStats;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * The GatewayManager Etag.
+   */
+  gatewayManagerEtag?: string;
+  /**
+   * Gets whether the provider or the customer last modified the peering.
+   */
+  lastModifiedBy?: string;
+  /**
+   * The reference of the RouteFilter resource.
+   */
+  routeFilter?: RouteFilter;
+  /**
+   * The IPv6 peering configuration.
+   */
+  ipv6PeeringConfig?: Ipv6ExpressRouteCircuitPeeringConfig;
+  /**
+   * The list of circuit connections associated with Azure Private Peering for this circuit.
+   */
+  connections?: ExpressRouteCircuitConnection[];
+  /**
+   * Gets name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitPeering;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface ExpressRouteCircuitPeeringsListResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitPeeringsListResponse = {
   /**
-   * The response body as text (string format)
+   * The peerings in an express route circuit.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCircuitPeering[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: ExpressRouteCircuitPeeringListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitPeeringListResult;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface ExpressRouteCircuitPeeringsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitPeeringsBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The peering type. Possible values include: 'AzurePublicPeering', 'AzurePrivatePeering',
+   * 'MicrosoftPeering'
    */
-  parsedBody: ExpressRouteCircuitPeering;
-}
+  peeringType?: ExpressRoutePeeringType;
+  /**
+   * The peering state. Possible values include: 'Disabled', 'Enabled'
+   */
+  state?: ExpressRoutePeeringState;
+  /**
+   * The Azure ASN.
+   */
+  azureASN?: number;
+  /**
+   * The peer ASN.
+   */
+  peerASN?: number;
+  /**
+   * The primary address prefix.
+   */
+  primaryPeerAddressPrefix?: string;
+  /**
+   * The secondary address prefix.
+   */
+  secondaryPeerAddressPrefix?: string;
+  /**
+   * The primary port.
+   */
+  primaryAzurePort?: string;
+  /**
+   * The secondary port.
+   */
+  secondaryAzurePort?: string;
+  /**
+   * The shared key.
+   */
+  sharedKey?: string;
+  /**
+   * The VLAN ID.
+   */
+  vlanId?: number;
+  /**
+   * The Microsoft peering configuration.
+   */
+  microsoftPeeringConfig?: ExpressRouteCircuitPeeringConfig;
+  /**
+   * Gets peering stats.
+   */
+  stats?: ExpressRouteCircuitStats;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * The GatewayManager Etag.
+   */
+  gatewayManagerEtag?: string;
+  /**
+   * Gets whether the provider or the customer last modified the peering.
+   */
+  lastModifiedBy?: string;
+  /**
+   * The reference of the RouteFilter resource.
+   */
+  routeFilter?: RouteFilter;
+  /**
+   * The IPv6 peering configuration.
+   */
+  ipv6PeeringConfig?: Ipv6ExpressRouteCircuitPeeringConfig;
+  /**
+   * The list of circuit connections associated with Azure Private Peering for this circuit.
+   */
+  connections?: ExpressRouteCircuitConnection[];
+  /**
+   * Gets name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitPeering;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface ExpressRouteCircuitPeeringsListNextResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitPeeringsListNextResponse = {
   /**
-   * The response body as text (string format)
+   * The peerings in an express route circuit.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCircuitPeering[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: ExpressRouteCircuitPeeringListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitPeeringListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface ExpressRouteCircuitConnectionsGetResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitConnectionsGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Reference to Express Route Circuit Private Peering Resource of the circuit initiating
+   * connection.
    */
-  parsedBody: ExpressRouteCircuitConnection;
-}
+  expressRouteCircuitPeering?: SubResource;
+  /**
+   * Reference to Express Route Circuit Private Peering Resource of the peered circuit.
+   */
+  peerExpressRouteCircuitPeering?: SubResource;
+  /**
+   * /29 IP address space to carve out Customer addresses for tunnels.
+   */
+  addressPrefix?: string;
+  /**
+   * The authorization key.
+   */
+  authorizationKey?: string;
+  /**
+   * Express Route Circuit Connection State. Possible values are: 'Connected' and 'Disconnected'.
+   * Possible values include: 'Connected', 'Connecting', 'Disconnected'
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly circuitConnectionStatus?: CircuitConnectionStatus;
+  /**
+   * Provisioning state of the circuit connection resource. Possible values are: 'Succeded',
+   * 'Updating', 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitConnection;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface ExpressRouteCircuitConnectionsCreateOrUpdateResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitConnectionsCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Reference to Express Route Circuit Private Peering Resource of the circuit initiating
+   * connection.
    */
-  parsedBody: ExpressRouteCircuitConnection;
-}
+  expressRouteCircuitPeering?: SubResource;
+  /**
+   * Reference to Express Route Circuit Private Peering Resource of the peered circuit.
+   */
+  peerExpressRouteCircuitPeering?: SubResource;
+  /**
+   * /29 IP address space to carve out Customer addresses for tunnels.
+   */
+  addressPrefix?: string;
+  /**
+   * The authorization key.
+   */
+  authorizationKey?: string;
+  /**
+   * Express Route Circuit Connection State. Possible values are: 'Connected' and 'Disconnected'.
+   * Possible values include: 'Connected', 'Connecting', 'Disconnected'
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly circuitConnectionStatus?: CircuitConnectionStatus;
+  /**
+   * Provisioning state of the circuit connection resource. Possible values are: 'Succeded',
+   * 'Updating', 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitConnection;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface ExpressRouteCircuitConnectionsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitConnectionsBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Reference to Express Route Circuit Private Peering Resource of the circuit initiating
+   * connection.
    */
-  parsedBody: ExpressRouteCircuitConnection;
-}
+  expressRouteCircuitPeering?: SubResource;
+  /**
+   * Reference to Express Route Circuit Private Peering Resource of the peered circuit.
+   */
+  peerExpressRouteCircuitPeering?: SubResource;
+  /**
+   * /29 IP address space to carve out Customer addresses for tunnels.
+   */
+  addressPrefix?: string;
+  /**
+   * The authorization key.
+   */
+  authorizationKey?: string;
+  /**
+   * Express Route Circuit Connection State. Possible values are: 'Connected' and 'Disconnected'.
+   * Possible values include: 'Connected', 'Connecting', 'Disconnected'
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly circuitConnectionStatus?: CircuitConnectionStatus;
+  /**
+   * Provisioning state of the circuit connection resource. Possible values are: 'Succeded',
+   * 'Updating', 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitConnection;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface ExpressRouteCircuitsGetResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitsGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ExpressRouteCircuit;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The SKU.
+   */
+  sku?: ExpressRouteCircuitSku;
+  /**
+   * Allow classic operations
+   */
+  allowClassicOperations?: boolean;
+  /**
+   * The CircuitProvisioningState state of the resource.
+   */
+  circuitProvisioningState?: string;
+  /**
+   * The ServiceProviderProvisioningState state of the resource. Possible values are
+   * 'NotProvisioned', 'Provisioning', 'Provisioned', and 'Deprovisioning'. Possible values
+   * include: 'NotProvisioned', 'Provisioning', 'Provisioned', 'Deprovisioning'
+   */
+  serviceProviderProvisioningState?: ServiceProviderProvisioningState;
+  /**
+   * The list of authorizations.
+   */
+  authorizations?: ExpressRouteCircuitAuthorization[];
+  /**
+   * The list of peerings.
+   */
+  peerings?: ExpressRouteCircuitPeering[];
+  /**
+   * The ServiceKey.
+   */
+  serviceKey?: string;
+  /**
+   * The ServiceProviderNotes.
+   */
+  serviceProviderNotes?: string;
+  /**
+   * The ServiceProviderProperties.
+   */
+  serviceProviderProperties?: ExpressRouteCircuitServiceProviderProperties;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * The GatewayManager Etag.
+   */
+  gatewayManagerEtag?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuit;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface ExpressRouteCircuitsCreateOrUpdateResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitsCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ExpressRouteCircuit;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The SKU.
+   */
+  sku?: ExpressRouteCircuitSku;
+  /**
+   * Allow classic operations
+   */
+  allowClassicOperations?: boolean;
+  /**
+   * The CircuitProvisioningState state of the resource.
+   */
+  circuitProvisioningState?: string;
+  /**
+   * The ServiceProviderProvisioningState state of the resource. Possible values are
+   * 'NotProvisioned', 'Provisioning', 'Provisioned', and 'Deprovisioning'. Possible values
+   * include: 'NotProvisioned', 'Provisioning', 'Provisioned', 'Deprovisioning'
+   */
+  serviceProviderProvisioningState?: ServiceProviderProvisioningState;
+  /**
+   * The list of authorizations.
+   */
+  authorizations?: ExpressRouteCircuitAuthorization[];
+  /**
+   * The list of peerings.
+   */
+  peerings?: ExpressRouteCircuitPeering[];
+  /**
+   * The ServiceKey.
+   */
+  serviceKey?: string;
+  /**
+   * The ServiceProviderNotes.
+   */
+  serviceProviderNotes?: string;
+  /**
+   * The ServiceProviderProperties.
+   */
+  serviceProviderProperties?: ExpressRouteCircuitServiceProviderProperties;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * The GatewayManager Etag.
+   */
+  gatewayManagerEtag?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuit;
+    };
+};
 
 /**
  * Contains response data for the updateTags operation.
  */
-export interface ExpressRouteCircuitsUpdateTagsResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitsUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ExpressRouteCircuit;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The SKU.
+   */
+  sku?: ExpressRouteCircuitSku;
+  /**
+   * Allow classic operations
+   */
+  allowClassicOperations?: boolean;
+  /**
+   * The CircuitProvisioningState state of the resource.
+   */
+  circuitProvisioningState?: string;
+  /**
+   * The ServiceProviderProvisioningState state of the resource. Possible values are
+   * 'NotProvisioned', 'Provisioning', 'Provisioned', and 'Deprovisioning'. Possible values
+   * include: 'NotProvisioned', 'Provisioning', 'Provisioned', 'Deprovisioning'
+   */
+  serviceProviderProvisioningState?: ServiceProviderProvisioningState;
+  /**
+   * The list of authorizations.
+   */
+  authorizations?: ExpressRouteCircuitAuthorization[];
+  /**
+   * The list of peerings.
+   */
+  peerings?: ExpressRouteCircuitPeering[];
+  /**
+   * The ServiceKey.
+   */
+  serviceKey?: string;
+  /**
+   * The ServiceProviderNotes.
+   */
+  serviceProviderNotes?: string;
+  /**
+   * The ServiceProviderProperties.
+   */
+  serviceProviderProperties?: ExpressRouteCircuitServiceProviderProperties;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * The GatewayManager Etag.
+   */
+  gatewayManagerEtag?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuit;
+    };
+};
 
 /**
  * Contains response data for the listArpTable operation.
  */
-export interface ExpressRouteCircuitsListArpTableResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitsListArpTableResponse = {
   /**
-   * The response body as text (string format)
+   * Gets list of the ARP table.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCircuitArpTable[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: ExpressRouteCircuitsArpTableListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitsArpTableListResult;
+    };
+};
 
 /**
  * Contains response data for the listRoutesTable operation.
  */
-export interface ExpressRouteCircuitsListRoutesTableResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitsListRoutesTableResponse = {
   /**
-   * The response body as text (string format)
+   * The list of routes table.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCircuitRoutesTable[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: ExpressRouteCircuitsRoutesTableListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitsRoutesTableListResult;
+    };
+};
 
 /**
  * Contains response data for the listRoutesTableSummary operation.
  */
-export interface ExpressRouteCircuitsListRoutesTableSummaryResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitsListRoutesTableSummaryResponse = {
   /**
-   * The response body as text (string format)
+   * A list of the routes table.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCircuitRoutesTableSummary[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: ExpressRouteCircuitsRoutesTableSummaryListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitsRoutesTableSummaryListResult;
+    };
+};
 
 /**
  * Contains response data for the getStats operation.
  */
-export interface ExpressRouteCircuitsGetStatsResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitsGetStatsResponse = {
   /**
-   * The response body as text (string format)
+   * Gets BytesIn of the peering.
    */
-  bodyAsText: string;
+  primarybytesIn?: number;
   /**
-   * The response body as parsed JSON or XML
+   * Gets BytesOut of the peering.
    */
-  parsedBody: ExpressRouteCircuitStats;
-}
+  primarybytesOut?: number;
+  /**
+   * Gets BytesIn of the peering.
+   */
+  secondarybytesIn?: number;
+  /**
+   * Gets BytesOut of the peering.
+   */
+  secondarybytesOut?: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitStats;
+    };
+};
 
 /**
  * Contains response data for the getPeeringStats operation.
  */
-export interface ExpressRouteCircuitsGetPeeringStatsResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitsGetPeeringStatsResponse = {
   /**
-   * The response body as text (string format)
+   * Gets BytesIn of the peering.
    */
-  bodyAsText: string;
+  primarybytesIn?: number;
   /**
-   * The response body as parsed JSON or XML
+   * Gets BytesOut of the peering.
    */
-  parsedBody: ExpressRouteCircuitStats;
-}
+  primarybytesOut?: number;
+  /**
+   * Gets BytesIn of the peering.
+   */
+  secondarybytesIn?: number;
+  /**
+   * Gets BytesOut of the peering.
+   */
+  secondarybytesOut?: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitStats;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface ExpressRouteCircuitsListResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitsListResponse = {
   /**
-   * The response body as text (string format)
+   * A list of ExpressRouteCircuits in a resource group.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCircuit[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: ExpressRouteCircuitListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitListResult;
+    };
+};
 
 /**
  * Contains response data for the listAll operation.
  */
-export interface ExpressRouteCircuitsListAllResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitsListAllResponse = {
   /**
-   * The response body as text (string format)
+   * A list of ExpressRouteCircuits in a resource group.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCircuit[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: ExpressRouteCircuitListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitListResult;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface ExpressRouteCircuitsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitsBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ExpressRouteCircuit;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The SKU.
+   */
+  sku?: ExpressRouteCircuitSku;
+  /**
+   * Allow classic operations
+   */
+  allowClassicOperations?: boolean;
+  /**
+   * The CircuitProvisioningState state of the resource.
+   */
+  circuitProvisioningState?: string;
+  /**
+   * The ServiceProviderProvisioningState state of the resource. Possible values are
+   * 'NotProvisioned', 'Provisioning', 'Provisioned', and 'Deprovisioning'. Possible values
+   * include: 'NotProvisioned', 'Provisioning', 'Provisioned', 'Deprovisioning'
+   */
+  serviceProviderProvisioningState?: ServiceProviderProvisioningState;
+  /**
+   * The list of authorizations.
+   */
+  authorizations?: ExpressRouteCircuitAuthorization[];
+  /**
+   * The list of peerings.
+   */
+  peerings?: ExpressRouteCircuitPeering[];
+  /**
+   * The ServiceKey.
+   */
+  serviceKey?: string;
+  /**
+   * The ServiceProviderNotes.
+   */
+  serviceProviderNotes?: string;
+  /**
+   * The ServiceProviderProperties.
+   */
+  serviceProviderProperties?: ExpressRouteCircuitServiceProviderProperties;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * The GatewayManager Etag.
+   */
+  gatewayManagerEtag?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuit;
+    };
+};
 
 /**
  * Contains response data for the beginUpdateTags operation.
  */
-export interface ExpressRouteCircuitsBeginUpdateTagsResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitsBeginUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ExpressRouteCircuit;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The SKU.
+   */
+  sku?: ExpressRouteCircuitSku;
+  /**
+   * Allow classic operations
+   */
+  allowClassicOperations?: boolean;
+  /**
+   * The CircuitProvisioningState state of the resource.
+   */
+  circuitProvisioningState?: string;
+  /**
+   * The ServiceProviderProvisioningState state of the resource. Possible values are
+   * 'NotProvisioned', 'Provisioning', 'Provisioned', and 'Deprovisioning'. Possible values
+   * include: 'NotProvisioned', 'Provisioning', 'Provisioned', 'Deprovisioning'
+   */
+  serviceProviderProvisioningState?: ServiceProviderProvisioningState;
+  /**
+   * The list of authorizations.
+   */
+  authorizations?: ExpressRouteCircuitAuthorization[];
+  /**
+   * The list of peerings.
+   */
+  peerings?: ExpressRouteCircuitPeering[];
+  /**
+   * The ServiceKey.
+   */
+  serviceKey?: string;
+  /**
+   * The ServiceProviderNotes.
+   */
+  serviceProviderNotes?: string;
+  /**
+   * The ServiceProviderProperties.
+   */
+  serviceProviderProperties?: ExpressRouteCircuitServiceProviderProperties;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * The GatewayManager Etag.
+   */
+  gatewayManagerEtag?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuit;
+    };
+};
 
 /**
  * Contains response data for the beginListArpTable operation.
  */
-export interface ExpressRouteCircuitsBeginListArpTableResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitsBeginListArpTableResponse = {
   /**
-   * The response body as text (string format)
+   * Gets list of the ARP table.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCircuitArpTable[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: ExpressRouteCircuitsArpTableListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitsArpTableListResult;
+    };
+};
 
 /**
  * Contains response data for the beginListRoutesTable operation.
  */
-export interface ExpressRouteCircuitsBeginListRoutesTableResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitsBeginListRoutesTableResponse = {
   /**
-   * The response body as text (string format)
+   * The list of routes table.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCircuitRoutesTable[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: ExpressRouteCircuitsRoutesTableListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitsRoutesTableListResult;
+    };
+};
 
 /**
  * Contains response data for the beginListRoutesTableSummary operation.
  */
-export interface ExpressRouteCircuitsBeginListRoutesTableSummaryResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitsBeginListRoutesTableSummaryResponse = {
   /**
-   * The response body as text (string format)
+   * A list of the routes table.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCircuitRoutesTableSummary[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: ExpressRouteCircuitsRoutesTableSummaryListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitsRoutesTableSummaryListResult;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface ExpressRouteCircuitsListNextResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitsListNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of ExpressRouteCircuits in a resource group.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCircuit[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: ExpressRouteCircuitListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitListResult;
+    };
+};
 
 /**
  * Contains response data for the listAllNext operation.
  */
-export interface ExpressRouteCircuitsListAllNextResponse extends msRest.HttpResponse {
+export type ExpressRouteCircuitsListAllNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of ExpressRouteCircuits in a resource group.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCircuit[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: ExpressRouteCircuitListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface ExpressRouteServiceProvidersListResponse extends msRest.HttpResponse {
+export type ExpressRouteServiceProvidersListResponse = {
   /**
-   * The response body as text (string format)
+   * A list of ExpressRouteResourceProvider resources.
    */
-  bodyAsText: string;
+  value?: ExpressRouteServiceProvider[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: ExpressRouteServiceProviderListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteServiceProviderListResult;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface ExpressRouteServiceProvidersListNextResponse extends msRest.HttpResponse {
+export type ExpressRouteServiceProvidersListNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of ExpressRouteResourceProvider resources.
    */
-  bodyAsText: string;
+  value?: ExpressRouteServiceProvider[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: ExpressRouteServiceProviderListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteServiceProviderListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface ExpressRouteCrossConnectionsListResponse extends msRest.HttpResponse {
+export type ExpressRouteCrossConnectionsListResponse = {
   /**
-   * The response body as text (string format)
+   * A list of ExpressRouteCrossConnection resources.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCrossConnection[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ExpressRouteCrossConnectionListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCrossConnectionListResult;
+    };
+};
 
 /**
  * Contains response data for the listByResourceGroup operation.
  */
-export interface ExpressRouteCrossConnectionsListByResourceGroupResponse extends msRest.HttpResponse {
+export type ExpressRouteCrossConnectionsListByResourceGroupResponse = {
   /**
-   * The response body as text (string format)
+   * A list of ExpressRouteCrossConnection resources.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCrossConnection[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ExpressRouteCrossConnectionListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCrossConnectionListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface ExpressRouteCrossConnectionsGetResponse extends msRest.HttpResponse {
+export type ExpressRouteCrossConnectionsGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ExpressRouteCrossConnection;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The name of the primary  port.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly primaryAzurePort?: string;
+  /**
+   * The name of the secondary  port.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly secondaryAzurePort?: string;
+  /**
+   * The identifier of the circuit traffic.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly sTag?: number;
+  /**
+   * The peering location of the ExpressRoute circuit.
+   */
+  peeringLocation?: string;
+  /**
+   * The circuit bandwidth In Mbps.
+   */
+  bandwidthInMbps?: number;
+  /**
+   * The ExpressRouteCircuit
+   */
+  expressRouteCircuit?: ExpressRouteCircuitReference;
+  /**
+   * The provisioning state of the circuit in the connectivity provider system. Possible values are
+   * 'NotProvisioned', 'Provisioning', 'Provisioned'. Possible values include: 'NotProvisioned',
+   * 'Provisioning', 'Provisioned', 'Deprovisioning'
+   */
+  serviceProviderProvisioningState?: ServiceProviderProvisioningState;
+  /**
+   * Additional read only notes set by the connectivity provider.
+   */
+  serviceProviderNotes?: string;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * The list of peerings.
+   */
+  peerings?: ExpressRouteCrossConnectionPeering[];
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCrossConnection;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface ExpressRouteCrossConnectionsCreateOrUpdateResponse extends msRest.HttpResponse {
+export type ExpressRouteCrossConnectionsCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ExpressRouteCrossConnection;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The name of the primary  port.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly primaryAzurePort?: string;
+  /**
+   * The name of the secondary  port.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly secondaryAzurePort?: string;
+  /**
+   * The identifier of the circuit traffic.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly sTag?: number;
+  /**
+   * The peering location of the ExpressRoute circuit.
+   */
+  peeringLocation?: string;
+  /**
+   * The circuit bandwidth In Mbps.
+   */
+  bandwidthInMbps?: number;
+  /**
+   * The ExpressRouteCircuit
+   */
+  expressRouteCircuit?: ExpressRouteCircuitReference;
+  /**
+   * The provisioning state of the circuit in the connectivity provider system. Possible values are
+   * 'NotProvisioned', 'Provisioning', 'Provisioned'. Possible values include: 'NotProvisioned',
+   * 'Provisioning', 'Provisioned', 'Deprovisioning'
+   */
+  serviceProviderProvisioningState?: ServiceProviderProvisioningState;
+  /**
+   * Additional read only notes set by the connectivity provider.
+   */
+  serviceProviderNotes?: string;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * The list of peerings.
+   */
+  peerings?: ExpressRouteCrossConnectionPeering[];
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCrossConnection;
+    };
+};
 
 /**
  * Contains response data for the updateTags operation.
  */
-export interface ExpressRouteCrossConnectionsUpdateTagsResponse extends msRest.HttpResponse {
+export type ExpressRouteCrossConnectionsUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ExpressRouteCrossConnection;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The name of the primary  port.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly primaryAzurePort?: string;
+  /**
+   * The name of the secondary  port.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly secondaryAzurePort?: string;
+  /**
+   * The identifier of the circuit traffic.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly sTag?: number;
+  /**
+   * The peering location of the ExpressRoute circuit.
+   */
+  peeringLocation?: string;
+  /**
+   * The circuit bandwidth In Mbps.
+   */
+  bandwidthInMbps?: number;
+  /**
+   * The ExpressRouteCircuit
+   */
+  expressRouteCircuit?: ExpressRouteCircuitReference;
+  /**
+   * The provisioning state of the circuit in the connectivity provider system. Possible values are
+   * 'NotProvisioned', 'Provisioning', 'Provisioned'. Possible values include: 'NotProvisioned',
+   * 'Provisioning', 'Provisioned', 'Deprovisioning'
+   */
+  serviceProviderProvisioningState?: ServiceProviderProvisioningState;
+  /**
+   * Additional read only notes set by the connectivity provider.
+   */
+  serviceProviderNotes?: string;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * The list of peerings.
+   */
+  peerings?: ExpressRouteCrossConnectionPeering[];
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCrossConnection;
+    };
+};
 
 /**
  * Contains response data for the listArpTable operation.
  */
-export interface ExpressRouteCrossConnectionsListArpTableResponse extends msRest.HttpResponse {
+export type ExpressRouteCrossConnectionsListArpTableResponse = {
   /**
-   * The response body as text (string format)
+   * Gets list of the ARP table.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCircuitArpTable[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: ExpressRouteCircuitsArpTableListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitsArpTableListResult;
+    };
+};
 
 /**
  * Contains response data for the listRoutesTableSummary operation.
  */
-export interface ExpressRouteCrossConnectionsListRoutesTableSummaryResponse extends msRest.HttpResponse {
+export type ExpressRouteCrossConnectionsListRoutesTableSummaryResponse = {
   /**
-   * The response body as text (string format)
+   * A list of the routes table.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCrossConnectionRoutesTableSummary[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ExpressRouteCrossConnectionsRoutesTableSummaryListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCrossConnectionsRoutesTableSummaryListResult;
+    };
+};
 
 /**
  * Contains response data for the listRoutesTable operation.
  */
-export interface ExpressRouteCrossConnectionsListRoutesTableResponse extends msRest.HttpResponse {
+export type ExpressRouteCrossConnectionsListRoutesTableResponse = {
   /**
-   * The response body as text (string format)
+   * The list of routes table.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCircuitRoutesTable[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: ExpressRouteCircuitsRoutesTableListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitsRoutesTableListResult;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface ExpressRouteCrossConnectionsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type ExpressRouteCrossConnectionsBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ExpressRouteCrossConnection;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The name of the primary  port.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly primaryAzurePort?: string;
+  /**
+   * The name of the secondary  port.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly secondaryAzurePort?: string;
+  /**
+   * The identifier of the circuit traffic.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly sTag?: number;
+  /**
+   * The peering location of the ExpressRoute circuit.
+   */
+  peeringLocation?: string;
+  /**
+   * The circuit bandwidth In Mbps.
+   */
+  bandwidthInMbps?: number;
+  /**
+   * The ExpressRouteCircuit
+   */
+  expressRouteCircuit?: ExpressRouteCircuitReference;
+  /**
+   * The provisioning state of the circuit in the connectivity provider system. Possible values are
+   * 'NotProvisioned', 'Provisioning', 'Provisioned'. Possible values include: 'NotProvisioned',
+   * 'Provisioning', 'Provisioned', 'Deprovisioning'
+   */
+  serviceProviderProvisioningState?: ServiceProviderProvisioningState;
+  /**
+   * Additional read only notes set by the connectivity provider.
+   */
+  serviceProviderNotes?: string;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * The list of peerings.
+   */
+  peerings?: ExpressRouteCrossConnectionPeering[];
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCrossConnection;
+    };
+};
 
 /**
  * Contains response data for the beginUpdateTags operation.
  */
-export interface ExpressRouteCrossConnectionsBeginUpdateTagsResponse extends msRest.HttpResponse {
+export type ExpressRouteCrossConnectionsBeginUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ExpressRouteCrossConnection;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The name of the primary  port.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly primaryAzurePort?: string;
+  /**
+   * The name of the secondary  port.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly secondaryAzurePort?: string;
+  /**
+   * The identifier of the circuit traffic.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly sTag?: number;
+  /**
+   * The peering location of the ExpressRoute circuit.
+   */
+  peeringLocation?: string;
+  /**
+   * The circuit bandwidth In Mbps.
+   */
+  bandwidthInMbps?: number;
+  /**
+   * The ExpressRouteCircuit
+   */
+  expressRouteCircuit?: ExpressRouteCircuitReference;
+  /**
+   * The provisioning state of the circuit in the connectivity provider system. Possible values are
+   * 'NotProvisioned', 'Provisioning', 'Provisioned'. Possible values include: 'NotProvisioned',
+   * 'Provisioning', 'Provisioned', 'Deprovisioning'
+   */
+  serviceProviderProvisioningState?: ServiceProviderProvisioningState;
+  /**
+   * Additional read only notes set by the connectivity provider.
+   */
+  serviceProviderNotes?: string;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * The list of peerings.
+   */
+  peerings?: ExpressRouteCrossConnectionPeering[];
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCrossConnection;
+    };
+};
 
 /**
  * Contains response data for the beginListArpTable operation.
  */
-export interface ExpressRouteCrossConnectionsBeginListArpTableResponse extends msRest.HttpResponse {
+export type ExpressRouteCrossConnectionsBeginListArpTableResponse = {
   /**
-   * The response body as text (string format)
+   * Gets list of the ARP table.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCircuitArpTable[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: ExpressRouteCircuitsArpTableListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitsArpTableListResult;
+    };
+};
 
 /**
  * Contains response data for the beginListRoutesTableSummary operation.
  */
-export interface ExpressRouteCrossConnectionsBeginListRoutesTableSummaryResponse extends msRest.HttpResponse {
+export type ExpressRouteCrossConnectionsBeginListRoutesTableSummaryResponse = {
   /**
-   * The response body as text (string format)
+   * A list of the routes table.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCrossConnectionRoutesTableSummary[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ExpressRouteCrossConnectionsRoutesTableSummaryListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCrossConnectionsRoutesTableSummaryListResult;
+    };
+};
 
 /**
  * Contains response data for the beginListRoutesTable operation.
  */
-export interface ExpressRouteCrossConnectionsBeginListRoutesTableResponse extends msRest.HttpResponse {
+export type ExpressRouteCrossConnectionsBeginListRoutesTableResponse = {
   /**
-   * The response body as text (string format)
+   * The list of routes table.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCircuitRoutesTable[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: ExpressRouteCircuitsRoutesTableListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCircuitsRoutesTableListResult;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface ExpressRouteCrossConnectionsListNextResponse extends msRest.HttpResponse {
+export type ExpressRouteCrossConnectionsListNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of ExpressRouteCrossConnection resources.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCrossConnection[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ExpressRouteCrossConnectionListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCrossConnectionListResult;
+    };
+};
 
 /**
  * Contains response data for the listByResourceGroupNext operation.
  */
-export interface ExpressRouteCrossConnectionsListByResourceGroupNextResponse extends msRest.HttpResponse {
+export type ExpressRouteCrossConnectionsListByResourceGroupNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of ExpressRouteCrossConnection resources.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCrossConnection[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ExpressRouteCrossConnectionListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCrossConnectionListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface ExpressRouteCrossConnectionPeeringsListResponse extends msRest.HttpResponse {
+export type ExpressRouteCrossConnectionPeeringsListResponse = {
   /**
-   * The response body as text (string format)
+   * The peerings in an express route cross connection.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCrossConnectionPeering[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ExpressRouteCrossConnectionPeeringList;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCrossConnectionPeeringList;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface ExpressRouteCrossConnectionPeeringsGetResponse extends msRest.HttpResponse {
+export type ExpressRouteCrossConnectionPeeringsGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The peering type. Possible values include: 'AzurePublicPeering', 'AzurePrivatePeering',
+   * 'MicrosoftPeering'
    */
-  parsedBody: ExpressRouteCrossConnectionPeering;
-}
+  peeringType?: ExpressRoutePeeringType;
+  /**
+   * The peering state. Possible values include: 'Disabled', 'Enabled'
+   */
+  state?: ExpressRoutePeeringState;
+  /**
+   * The Azure ASN.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly azureASN?: number;
+  /**
+   * The peer ASN.
+   */
+  peerASN?: number;
+  /**
+   * The primary address prefix.
+   */
+  primaryPeerAddressPrefix?: string;
+  /**
+   * The secondary address prefix.
+   */
+  secondaryPeerAddressPrefix?: string;
+  /**
+   * The primary port.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly primaryAzurePort?: string;
+  /**
+   * The secondary port.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly secondaryAzurePort?: string;
+  /**
+   * The shared key.
+   */
+  sharedKey?: string;
+  /**
+   * The VLAN ID.
+   */
+  vlanId?: number;
+  /**
+   * The Microsoft peering configuration.
+   */
+  microsoftPeeringConfig?: ExpressRouteCircuitPeeringConfig;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * The GatewayManager Etag.
+   */
+  gatewayManagerEtag?: string;
+  /**
+   * Gets whether the provider or the customer last modified the peering.
+   */
+  lastModifiedBy?: string;
+  /**
+   * The IPv6 peering configuration.
+   */
+  ipv6PeeringConfig?: Ipv6ExpressRouteCircuitPeeringConfig;
+  /**
+   * Gets name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCrossConnectionPeering;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse extends msRest.HttpResponse {
+export type ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The peering type. Possible values include: 'AzurePublicPeering', 'AzurePrivatePeering',
+   * 'MicrosoftPeering'
    */
-  parsedBody: ExpressRouteCrossConnectionPeering;
-}
+  peeringType?: ExpressRoutePeeringType;
+  /**
+   * The peering state. Possible values include: 'Disabled', 'Enabled'
+   */
+  state?: ExpressRoutePeeringState;
+  /**
+   * The Azure ASN.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly azureASN?: number;
+  /**
+   * The peer ASN.
+   */
+  peerASN?: number;
+  /**
+   * The primary address prefix.
+   */
+  primaryPeerAddressPrefix?: string;
+  /**
+   * The secondary address prefix.
+   */
+  secondaryPeerAddressPrefix?: string;
+  /**
+   * The primary port.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly primaryAzurePort?: string;
+  /**
+   * The secondary port.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly secondaryAzurePort?: string;
+  /**
+   * The shared key.
+   */
+  sharedKey?: string;
+  /**
+   * The VLAN ID.
+   */
+  vlanId?: number;
+  /**
+   * The Microsoft peering configuration.
+   */
+  microsoftPeeringConfig?: ExpressRouteCircuitPeeringConfig;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * The GatewayManager Etag.
+   */
+  gatewayManagerEtag?: string;
+  /**
+   * Gets whether the provider or the customer last modified the peering.
+   */
+  lastModifiedBy?: string;
+  /**
+   * The IPv6 peering configuration.
+   */
+  ipv6PeeringConfig?: Ipv6ExpressRouteCircuitPeeringConfig;
+  /**
+   * Gets name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCrossConnectionPeering;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface ExpressRouteCrossConnectionPeeringsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type ExpressRouteCrossConnectionPeeringsBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The peering type. Possible values include: 'AzurePublicPeering', 'AzurePrivatePeering',
+   * 'MicrosoftPeering'
    */
-  parsedBody: ExpressRouteCrossConnectionPeering;
-}
+  peeringType?: ExpressRoutePeeringType;
+  /**
+   * The peering state. Possible values include: 'Disabled', 'Enabled'
+   */
+  state?: ExpressRoutePeeringState;
+  /**
+   * The Azure ASN.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly azureASN?: number;
+  /**
+   * The peer ASN.
+   */
+  peerASN?: number;
+  /**
+   * The primary address prefix.
+   */
+  primaryPeerAddressPrefix?: string;
+  /**
+   * The secondary address prefix.
+   */
+  secondaryPeerAddressPrefix?: string;
+  /**
+   * The primary port.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly primaryAzurePort?: string;
+  /**
+   * The secondary port.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly secondaryAzurePort?: string;
+  /**
+   * The shared key.
+   */
+  sharedKey?: string;
+  /**
+   * The VLAN ID.
+   */
+  vlanId?: number;
+  /**
+   * The Microsoft peering configuration.
+   */
+  microsoftPeeringConfig?: ExpressRouteCircuitPeeringConfig;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * The GatewayManager Etag.
+   */
+  gatewayManagerEtag?: string;
+  /**
+   * Gets whether the provider or the customer last modified the peering.
+   */
+  lastModifiedBy?: string;
+  /**
+   * The IPv6 peering configuration.
+   */
+  ipv6PeeringConfig?: Ipv6ExpressRouteCircuitPeeringConfig;
+  /**
+   * Gets name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCrossConnectionPeering;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface ExpressRouteCrossConnectionPeeringsListNextResponse extends msRest.HttpResponse {
+export type ExpressRouteCrossConnectionPeeringsListNextResponse = {
   /**
-   * The response body as text (string format)
+   * The peerings in an express route cross connection.
    */
-  bodyAsText: string;
+  value?: ExpressRouteCrossConnectionPeering[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ExpressRouteCrossConnectionPeeringList;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ExpressRouteCrossConnectionPeeringList;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface LoadBalancersGetResponse extends msRest.HttpResponse {
+export type LoadBalancersGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LoadBalancer;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The load balancer SKU.
+   */
+  sku?: LoadBalancerSku;
+  /**
+   * Object representing the frontend IPs to be used for the load balancer
+   */
+  frontendIPConfigurations?: FrontendIPConfiguration[];
+  /**
+   * Collection of backend address pools used by a load balancer
+   */
+  backendAddressPools?: BackendAddressPool[];
+  /**
+   * Object collection representing the load balancing rules Gets the provisioning
+   */
+  loadBalancingRules?: LoadBalancingRule[];
+  /**
+   * Collection of probe objects used in the load balancer
+   */
+  probes?: Probe[];
+  /**
+   * Collection of inbound NAT Rules used by a load balancer. Defining inbound NAT rules on your
+   * load balancer is mutually exclusive with defining an inbound NAT pool. Inbound NAT pools are
+   * referenced from virtual machine scale sets. NICs that are associated with individual virtual
+   * machines cannot reference an Inbound NAT pool. They have to reference individual inbound NAT
+   * rules.
+   */
+  inboundNatRules?: InboundNatRule[];
+  /**
+   * Defines an external port range for inbound NAT to a single backend port on NICs associated
+   * with a load balancer. Inbound NAT rules are created automatically for each NIC associated with
+   * the Load Balancer using an external port from this range. Defining an Inbound NAT pool on your
+   * Load Balancer is mutually exclusive with defining inbound Nat rules. Inbound NAT pools are
+   * referenced from virtual machine scale sets. NICs that are associated with individual virtual
+   * machines cannot reference an inbound NAT pool. They have to reference individual inbound NAT
+   * rules.
+   */
+  inboundNatPools?: InboundNatPool[];
+  /**
+   * The outbound NAT rules.
+   */
+  outboundNatRules?: OutboundNatRule[];
+  /**
+   * The resource GUID property of the load balancer resource.
+   */
+  resourceGuid?: string;
+  /**
+   * Gets the provisioning state of the PublicIP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LoadBalancer;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface LoadBalancersCreateOrUpdateResponse extends msRest.HttpResponse {
+export type LoadBalancersCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LoadBalancer;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The load balancer SKU.
+   */
+  sku?: LoadBalancerSku;
+  /**
+   * Object representing the frontend IPs to be used for the load balancer
+   */
+  frontendIPConfigurations?: FrontendIPConfiguration[];
+  /**
+   * Collection of backend address pools used by a load balancer
+   */
+  backendAddressPools?: BackendAddressPool[];
+  /**
+   * Object collection representing the load balancing rules Gets the provisioning
+   */
+  loadBalancingRules?: LoadBalancingRule[];
+  /**
+   * Collection of probe objects used in the load balancer
+   */
+  probes?: Probe[];
+  /**
+   * Collection of inbound NAT Rules used by a load balancer. Defining inbound NAT rules on your
+   * load balancer is mutually exclusive with defining an inbound NAT pool. Inbound NAT pools are
+   * referenced from virtual machine scale sets. NICs that are associated with individual virtual
+   * machines cannot reference an Inbound NAT pool. They have to reference individual inbound NAT
+   * rules.
+   */
+  inboundNatRules?: InboundNatRule[];
+  /**
+   * Defines an external port range for inbound NAT to a single backend port on NICs associated
+   * with a load balancer. Inbound NAT rules are created automatically for each NIC associated with
+   * the Load Balancer using an external port from this range. Defining an Inbound NAT pool on your
+   * Load Balancer is mutually exclusive with defining inbound Nat rules. Inbound NAT pools are
+   * referenced from virtual machine scale sets. NICs that are associated with individual virtual
+   * machines cannot reference an inbound NAT pool. They have to reference individual inbound NAT
+   * rules.
+   */
+  inboundNatPools?: InboundNatPool[];
+  /**
+   * The outbound NAT rules.
+   */
+  outboundNatRules?: OutboundNatRule[];
+  /**
+   * The resource GUID property of the load balancer resource.
+   */
+  resourceGuid?: string;
+  /**
+   * Gets the provisioning state of the PublicIP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LoadBalancer;
+    };
+};
 
 /**
  * Contains response data for the updateTags operation.
  */
-export interface LoadBalancersUpdateTagsResponse extends msRest.HttpResponse {
+export type LoadBalancersUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LoadBalancer;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The load balancer SKU.
+   */
+  sku?: LoadBalancerSku;
+  /**
+   * Object representing the frontend IPs to be used for the load balancer
+   */
+  frontendIPConfigurations?: FrontendIPConfiguration[];
+  /**
+   * Collection of backend address pools used by a load balancer
+   */
+  backendAddressPools?: BackendAddressPool[];
+  /**
+   * Object collection representing the load balancing rules Gets the provisioning
+   */
+  loadBalancingRules?: LoadBalancingRule[];
+  /**
+   * Collection of probe objects used in the load balancer
+   */
+  probes?: Probe[];
+  /**
+   * Collection of inbound NAT Rules used by a load balancer. Defining inbound NAT rules on your
+   * load balancer is mutually exclusive with defining an inbound NAT pool. Inbound NAT pools are
+   * referenced from virtual machine scale sets. NICs that are associated with individual virtual
+   * machines cannot reference an Inbound NAT pool. They have to reference individual inbound NAT
+   * rules.
+   */
+  inboundNatRules?: InboundNatRule[];
+  /**
+   * Defines an external port range for inbound NAT to a single backend port on NICs associated
+   * with a load balancer. Inbound NAT rules are created automatically for each NIC associated with
+   * the Load Balancer using an external port from this range. Defining an Inbound NAT pool on your
+   * Load Balancer is mutually exclusive with defining inbound Nat rules. Inbound NAT pools are
+   * referenced from virtual machine scale sets. NICs that are associated with individual virtual
+   * machines cannot reference an inbound NAT pool. They have to reference individual inbound NAT
+   * rules.
+   */
+  inboundNatPools?: InboundNatPool[];
+  /**
+   * The outbound NAT rules.
+   */
+  outboundNatRules?: OutboundNatRule[];
+  /**
+   * The resource GUID property of the load balancer resource.
+   */
+  resourceGuid?: string;
+  /**
+   * Gets the provisioning state of the PublicIP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LoadBalancer;
+    };
+};
 
 /**
  * Contains response data for the listAll operation.
  */
-export interface LoadBalancersListAllResponse extends msRest.HttpResponse {
+export type LoadBalancersListAllResponse = {
   /**
-   * The response body as text (string format)
+   * A list of load balancers in a resource group.
    */
-  bodyAsText: string;
+  value?: LoadBalancer[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LoadBalancerListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LoadBalancerListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface LoadBalancersListResponse extends msRest.HttpResponse {
+export type LoadBalancersListResponse = {
   /**
-   * The response body as text (string format)
+   * A list of load balancers in a resource group.
    */
-  bodyAsText: string;
+  value?: LoadBalancer[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LoadBalancerListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LoadBalancerListResult;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface LoadBalancersBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type LoadBalancersBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LoadBalancer;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The load balancer SKU.
+   */
+  sku?: LoadBalancerSku;
+  /**
+   * Object representing the frontend IPs to be used for the load balancer
+   */
+  frontendIPConfigurations?: FrontendIPConfiguration[];
+  /**
+   * Collection of backend address pools used by a load balancer
+   */
+  backendAddressPools?: BackendAddressPool[];
+  /**
+   * Object collection representing the load balancing rules Gets the provisioning
+   */
+  loadBalancingRules?: LoadBalancingRule[];
+  /**
+   * Collection of probe objects used in the load balancer
+   */
+  probes?: Probe[];
+  /**
+   * Collection of inbound NAT Rules used by a load balancer. Defining inbound NAT rules on your
+   * load balancer is mutually exclusive with defining an inbound NAT pool. Inbound NAT pools are
+   * referenced from virtual machine scale sets. NICs that are associated with individual virtual
+   * machines cannot reference an Inbound NAT pool. They have to reference individual inbound NAT
+   * rules.
+   */
+  inboundNatRules?: InboundNatRule[];
+  /**
+   * Defines an external port range for inbound NAT to a single backend port on NICs associated
+   * with a load balancer. Inbound NAT rules are created automatically for each NIC associated with
+   * the Load Balancer using an external port from this range. Defining an Inbound NAT pool on your
+   * Load Balancer is mutually exclusive with defining inbound Nat rules. Inbound NAT pools are
+   * referenced from virtual machine scale sets. NICs that are associated with individual virtual
+   * machines cannot reference an inbound NAT pool. They have to reference individual inbound NAT
+   * rules.
+   */
+  inboundNatPools?: InboundNatPool[];
+  /**
+   * The outbound NAT rules.
+   */
+  outboundNatRules?: OutboundNatRule[];
+  /**
+   * The resource GUID property of the load balancer resource.
+   */
+  resourceGuid?: string;
+  /**
+   * Gets the provisioning state of the PublicIP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LoadBalancer;
+    };
+};
 
 /**
  * Contains response data for the beginUpdateTags operation.
  */
-export interface LoadBalancersBeginUpdateTagsResponse extends msRest.HttpResponse {
+export type LoadBalancersBeginUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LoadBalancer;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The load balancer SKU.
+   */
+  sku?: LoadBalancerSku;
+  /**
+   * Object representing the frontend IPs to be used for the load balancer
+   */
+  frontendIPConfigurations?: FrontendIPConfiguration[];
+  /**
+   * Collection of backend address pools used by a load balancer
+   */
+  backendAddressPools?: BackendAddressPool[];
+  /**
+   * Object collection representing the load balancing rules Gets the provisioning
+   */
+  loadBalancingRules?: LoadBalancingRule[];
+  /**
+   * Collection of probe objects used in the load balancer
+   */
+  probes?: Probe[];
+  /**
+   * Collection of inbound NAT Rules used by a load balancer. Defining inbound NAT rules on your
+   * load balancer is mutually exclusive with defining an inbound NAT pool. Inbound NAT pools are
+   * referenced from virtual machine scale sets. NICs that are associated with individual virtual
+   * machines cannot reference an Inbound NAT pool. They have to reference individual inbound NAT
+   * rules.
+   */
+  inboundNatRules?: InboundNatRule[];
+  /**
+   * Defines an external port range for inbound NAT to a single backend port on NICs associated
+   * with a load balancer. Inbound NAT rules are created automatically for each NIC associated with
+   * the Load Balancer using an external port from this range. Defining an Inbound NAT pool on your
+   * Load Balancer is mutually exclusive with defining inbound Nat rules. Inbound NAT pools are
+   * referenced from virtual machine scale sets. NICs that are associated with individual virtual
+   * machines cannot reference an inbound NAT pool. They have to reference individual inbound NAT
+   * rules.
+   */
+  inboundNatPools?: InboundNatPool[];
+  /**
+   * The outbound NAT rules.
+   */
+  outboundNatRules?: OutboundNatRule[];
+  /**
+   * The resource GUID property of the load balancer resource.
+   */
+  resourceGuid?: string;
+  /**
+   * Gets the provisioning state of the PublicIP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LoadBalancer;
+    };
+};
 
 /**
  * Contains response data for the listAllNext operation.
  */
-export interface LoadBalancersListAllNextResponse extends msRest.HttpResponse {
+export type LoadBalancersListAllNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of load balancers in a resource group.
    */
-  bodyAsText: string;
+  value?: LoadBalancer[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LoadBalancerListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LoadBalancerListResult;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface LoadBalancersListNextResponse extends msRest.HttpResponse {
+export type LoadBalancersListNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of load balancers in a resource group.
    */
-  bodyAsText: string;
+  value?: LoadBalancer[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LoadBalancerListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LoadBalancerListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface LoadBalancerBackendAddressPoolsListResponse extends msRest.HttpResponse {
+export type LoadBalancerBackendAddressPoolsListResponse = {
   /**
-   * The response body as text (string format)
+   * A list of backend address pools in a load balancer.
    */
-  bodyAsText: string;
+  value?: BackendAddressPool[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LoadBalancerBackendAddressPoolListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LoadBalancerBackendAddressPoolListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface LoadBalancerBackendAddressPoolsGetResponse extends msRest.HttpResponse {
+export type LoadBalancerBackendAddressPoolsGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Gets collection of references to IP addresses defined in network interfaces.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: BackendAddressPool;
-}
+  readonly backendIPConfigurations?: NetworkInterfaceIPConfiguration[];
+  /**
+   * Gets load balancing rules that use this backend address pool.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly loadBalancingRules?: SubResource[];
+  /**
+   * Gets outbound rules that use this backend address pool.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly outboundNatRule?: SubResource;
+  /**
+   * Get provisioning state of the public IP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * Gets name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: BackendAddressPool;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface LoadBalancerBackendAddressPoolsListNextResponse extends msRest.HttpResponse {
+export type LoadBalancerBackendAddressPoolsListNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of backend address pools in a load balancer.
    */
-  bodyAsText: string;
+  value?: BackendAddressPool[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LoadBalancerBackendAddressPoolListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LoadBalancerBackendAddressPoolListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface LoadBalancerFrontendIPConfigurationsListResponse extends msRest.HttpResponse {
+export type LoadBalancerFrontendIPConfigurationsListResponse = {
   /**
-   * The response body as text (string format)
+   * A list of frontend IP configurations in a load balancer.
    */
-  bodyAsText: string;
+  value?: FrontendIPConfiguration[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LoadBalancerFrontendIPConfigurationListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LoadBalancerFrontendIPConfigurationListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface LoadBalancerFrontendIPConfigurationsGetResponse extends msRest.HttpResponse {
+export type LoadBalancerFrontendIPConfigurationsGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Read only. Inbound rules URIs that use this frontend IP.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: FrontendIPConfiguration;
-}
+  readonly inboundNatRules?: SubResource[];
+  /**
+   * Read only. Inbound pools URIs that use this frontend IP.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly inboundNatPools?: SubResource[];
+  /**
+   * Read only. Outbound rules URIs that use this frontend IP.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly outboundNatRules?: SubResource[];
+  /**
+   * Gets load balancing rules URIs that use this frontend IP.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly loadBalancingRules?: SubResource[];
+  /**
+   * The private IP address of the IP configuration.
+   */
+  privateIPAddress?: string;
+  /**
+   * The Private IP allocation method. Possible values are: 'Static' and 'Dynamic'. Possible values
+   * include: 'Static', 'Dynamic'
+   */
+  privateIPAllocationMethod?: IPAllocationMethod;
+  /**
+   * The reference of the subnet resource.
+   */
+  subnet?: Subnet;
+  /**
+   * The reference of the Public IP resource.
+   */
+  publicIPAddress?: PublicIPAddress;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * A list of availability zones denoting the IP allocated for the resource needs to come from.
+   */
+  zones?: string[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: FrontendIPConfiguration;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface LoadBalancerFrontendIPConfigurationsListNextResponse extends msRest.HttpResponse {
+export type LoadBalancerFrontendIPConfigurationsListNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of frontend IP configurations in a load balancer.
    */
-  bodyAsText: string;
+  value?: FrontendIPConfiguration[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LoadBalancerFrontendIPConfigurationListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LoadBalancerFrontendIPConfigurationListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface InboundNatRulesListResponse extends msRest.HttpResponse {
+export type InboundNatRulesListResponse = {
   /**
-   * The response body as text (string format)
+   * A list of inbound nat rules in a load balancer.
    */
-  bodyAsText: string;
+  value?: InboundNatRule[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: InboundNatRuleListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: InboundNatRuleListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface InboundNatRulesGetResponse extends msRest.HttpResponse {
+export type InboundNatRulesGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * A reference to frontend IP addresses.
    */
-  parsedBody: InboundNatRule;
-}
+  frontendIPConfiguration?: SubResource;
+  /**
+   * A reference to a private IP address defined on a network interface of a VM. Traffic sent to
+   * the frontend port of each of the frontend IP configurations is forwarded to the backend IP.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly backendIPConfiguration?: NetworkInterfaceIPConfiguration;
+  /**
+   * Possible values include: 'Udp', 'Tcp', 'All'
+   */
+  protocol?: TransportProtocol;
+  /**
+   * The port for the external endpoint. Port numbers for each rule must be unique within the Load
+   * Balancer. Acceptable values range from 1 to 65534.
+   */
+  frontendPort?: number;
+  /**
+   * The port used for the internal endpoint. Acceptable values range from 1 to 65535.
+   */
+  backendPort?: number;
+  /**
+   * The timeout for the TCP idle connection. The value can be set between 4 and 30 minutes. The
+   * default value is 4 minutes. This element is only used when the protocol is set to TCP.
+   */
+  idleTimeoutInMinutes?: number;
+  /**
+   * Configures a virtual machine's endpoint for the floating IP capability required to configure a
+   * SQL AlwaysOn Availability Group. This setting is required when using the SQL AlwaysOn
+   * Availability Groups in SQL server. This setting can't be changed after you create the
+   * endpoint.
+   */
+  enableFloatingIP?: boolean;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * Gets name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: InboundNatRule;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface InboundNatRulesCreateOrUpdateResponse extends msRest.HttpResponse {
+export type InboundNatRulesCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * A reference to frontend IP addresses.
    */
-  parsedBody: InboundNatRule;
-}
+  frontendIPConfiguration?: SubResource;
+  /**
+   * A reference to a private IP address defined on a network interface of a VM. Traffic sent to
+   * the frontend port of each of the frontend IP configurations is forwarded to the backend IP.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly backendIPConfiguration?: NetworkInterfaceIPConfiguration;
+  /**
+   * Possible values include: 'Udp', 'Tcp', 'All'
+   */
+  protocol?: TransportProtocol;
+  /**
+   * The port for the external endpoint. Port numbers for each rule must be unique within the Load
+   * Balancer. Acceptable values range from 1 to 65534.
+   */
+  frontendPort?: number;
+  /**
+   * The port used for the internal endpoint. Acceptable values range from 1 to 65535.
+   */
+  backendPort?: number;
+  /**
+   * The timeout for the TCP idle connection. The value can be set between 4 and 30 minutes. The
+   * default value is 4 minutes. This element is only used when the protocol is set to TCP.
+   */
+  idleTimeoutInMinutes?: number;
+  /**
+   * Configures a virtual machine's endpoint for the floating IP capability required to configure a
+   * SQL AlwaysOn Availability Group. This setting is required when using the SQL AlwaysOn
+   * Availability Groups in SQL server. This setting can't be changed after you create the
+   * endpoint.
+   */
+  enableFloatingIP?: boolean;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * Gets name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: InboundNatRule;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface InboundNatRulesBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type InboundNatRulesBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * A reference to frontend IP addresses.
    */
-  parsedBody: InboundNatRule;
-}
+  frontendIPConfiguration?: SubResource;
+  /**
+   * A reference to a private IP address defined on a network interface of a VM. Traffic sent to
+   * the frontend port of each of the frontend IP configurations is forwarded to the backend IP.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly backendIPConfiguration?: NetworkInterfaceIPConfiguration;
+  /**
+   * Possible values include: 'Udp', 'Tcp', 'All'
+   */
+  protocol?: TransportProtocol;
+  /**
+   * The port for the external endpoint. Port numbers for each rule must be unique within the Load
+   * Balancer. Acceptable values range from 1 to 65534.
+   */
+  frontendPort?: number;
+  /**
+   * The port used for the internal endpoint. Acceptable values range from 1 to 65535.
+   */
+  backendPort?: number;
+  /**
+   * The timeout for the TCP idle connection. The value can be set between 4 and 30 minutes. The
+   * default value is 4 minutes. This element is only used when the protocol is set to TCP.
+   */
+  idleTimeoutInMinutes?: number;
+  /**
+   * Configures a virtual machine's endpoint for the floating IP capability required to configure a
+   * SQL AlwaysOn Availability Group. This setting is required when using the SQL AlwaysOn
+   * Availability Groups in SQL server. This setting can't be changed after you create the
+   * endpoint.
+   */
+  enableFloatingIP?: boolean;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * Gets name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: InboundNatRule;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface InboundNatRulesListNextResponse extends msRest.HttpResponse {
+export type InboundNatRulesListNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of inbound nat rules in a load balancer.
    */
-  bodyAsText: string;
+  value?: InboundNatRule[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: InboundNatRuleListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: InboundNatRuleListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface LoadBalancerLoadBalancingRulesListResponse extends msRest.HttpResponse {
+export type LoadBalancerLoadBalancingRulesListResponse = {
   /**
-   * The response body as text (string format)
+   * A list of load balancing rules in a load balancer.
    */
-  bodyAsText: string;
+  value?: LoadBalancingRule[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LoadBalancerLoadBalancingRuleListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LoadBalancerLoadBalancingRuleListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface LoadBalancerLoadBalancingRulesGetResponse extends msRest.HttpResponse {
+export type LoadBalancerLoadBalancingRulesGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * A reference to frontend IP addresses.
    */
-  parsedBody: LoadBalancingRule;
-}
+  frontendIPConfiguration?: SubResource;
+  /**
+   * A reference to a pool of DIPs. Inbound traffic is randomly load balanced across IPs in the
+   * backend IPs.
+   */
+  backendAddressPool?: SubResource;
+  /**
+   * The reference of the load balancer probe used by the load balancing rule.
+   */
+  probe?: SubResource;
+  /**
+   * Possible values include: 'Udp', 'Tcp', 'All'
+   */
+  protocol: TransportProtocol;
+  /**
+   * The load distribution policy for this rule. Possible values are 'Default', 'SourceIP', and
+   * 'SourceIPProtocol'. Possible values include: 'Default', 'SourceIP', 'SourceIPProtocol'
+   */
+  loadDistribution?: LoadDistribution;
+  /**
+   * The port for the external endpoint. Port numbers for each rule must be unique within the Load
+   * Balancer. Acceptable values are between 0 and 65534. Note that value 0 enables "Any Port"
+   */
+  frontendPort: number;
+  /**
+   * The port used for internal connections on the endpoint. Acceptable values are between 0 and
+   * 65535. Note that value 0 enables "Any Port"
+   */
+  backendPort?: number;
+  /**
+   * The timeout for the TCP idle connection. The value can be set between 4 and 30 minutes. The
+   * default value is 4 minutes. This element is only used when the protocol is set to TCP.
+   */
+  idleTimeoutInMinutes?: number;
+  /**
+   * Configures a virtual machine's endpoint for the floating IP capability required to configure a
+   * SQL AlwaysOn Availability Group. This setting is required when using the SQL AlwaysOn
+   * Availability Groups in SQL server. This setting can't be changed after you create the
+   * endpoint.
+   */
+  enableFloatingIP?: boolean;
+  /**
+   * Configures SNAT for the VMs in the backend pool to use the publicIP address specified in the
+   * frontend of the load balancing rule.
+   */
+  disableOutboundSnat?: boolean;
+  /**
+   * Gets the provisioning state of the PublicIP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LoadBalancingRule;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface LoadBalancerLoadBalancingRulesListNextResponse extends msRest.HttpResponse {
+export type LoadBalancerLoadBalancingRulesListNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of load balancing rules in a load balancer.
    */
-  bodyAsText: string;
+  value?: LoadBalancingRule[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LoadBalancerLoadBalancingRuleListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LoadBalancerLoadBalancingRuleListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface LoadBalancerNetworkInterfacesListResponse extends msRest.HttpResponse {
+export type LoadBalancerNetworkInterfacesListResponse = {
   /**
-   * The response body as text (string format)
+   * A list of network interfaces in a resource group.
    */
-  bodyAsText: string;
+  value?: NetworkInterface[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterfaceListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterfaceListResult;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface LoadBalancerNetworkInterfacesListNextResponse extends msRest.HttpResponse {
+export type LoadBalancerNetworkInterfacesListNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of network interfaces in a resource group.
    */
-  bodyAsText: string;
+  value?: NetworkInterface[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterfaceListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterfaceListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface LoadBalancerProbesListResponse extends msRest.HttpResponse {
+export type LoadBalancerProbesListResponse = {
   /**
-   * The response body as text (string format)
+   * A list of probes in a load balancer.
    */
-  bodyAsText: string;
+  value?: Probe[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LoadBalancerProbeListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LoadBalancerProbeListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface LoadBalancerProbesGetResponse extends msRest.HttpResponse {
+export type LoadBalancerProbesGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The load balancer rules that use this probe.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: Probe;
-}
+  readonly loadBalancingRules?: SubResource[];
+  /**
+   * The protocol of the end point. Possible values are: 'Http' or 'Tcp'. If 'Tcp' is specified, a
+   * received ACK is required for the probe to be successful. If 'Http' is specified, a 200 OK
+   * response from the specifies URI is required for the probe to be successful. Possible values
+   * include: 'Http', 'Tcp'
+   */
+  protocol: ProbeProtocol;
+  /**
+   * The port for communicating the probe. Possible values range from 1 to 65535, inclusive.
+   */
+  port: number;
+  /**
+   * The interval, in seconds, for how frequently to probe the endpoint for health status.
+   * Typically, the interval is slightly less than half the allocated timeout period (in seconds)
+   * which allows two full probes before taking the instance out of rotation. The default value is
+   * 15, the minimum value is 5.
+   */
+  intervalInSeconds?: number;
+  /**
+   * The number of probes where if no response, will result in stopping further traffic from being
+   * delivered to the endpoint. This values allows endpoints to be taken out of rotation faster or
+   * slower than the typical times used in Azure.
+   */
+  numberOfProbes?: number;
+  /**
+   * The URI used for requesting health status from the VM. Path is required if a protocol is set
+   * to http. Otherwise, it is not allowed. There is no default value.
+   */
+  requestPath?: string;
+  /**
+   * Gets the provisioning state of the public IP resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * Gets name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Probe;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface LoadBalancerProbesListNextResponse extends msRest.HttpResponse {
+export type LoadBalancerProbesListNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of probes in a load balancer.
    */
-  bodyAsText: string;
+  value?: Probe[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LoadBalancerProbeListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LoadBalancerProbeListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface NetworkInterfacesGetResponse extends msRest.HttpResponse {
+export type NetworkInterfacesGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterface;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The reference of a virtual machine.
+   */
+  virtualMachine?: SubResource;
+  /**
+   * The reference of the NetworkSecurityGroup resource.
+   */
+  networkSecurityGroup?: NetworkSecurityGroup;
+  /**
+   * A list of IPConfigurations of the network interface.
+   */
+  ipConfigurations?: NetworkInterfaceIPConfiguration[];
+  /**
+   * The DNS settings in network interface.
+   */
+  dnsSettings?: NetworkInterfaceDnsSettings;
+  /**
+   * The MAC address of the network interface.
+   */
+  macAddress?: string;
+  /**
+   * Gets whether this is a primary network interface on a virtual machine.
+   */
+  primary?: boolean;
+  /**
+   * If the network interface is accelerated networking enabled.
+   */
+  enableAcceleratedNetworking?: boolean;
+  /**
+   * Indicates whether IP forwarding is enabled on this network interface.
+   */
+  enableIPForwarding?: boolean;
+  /**
+   * The resource GUID property of the network interface resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the public IP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterface;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface NetworkInterfacesCreateOrUpdateResponse extends msRest.HttpResponse {
+export type NetworkInterfacesCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterface;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The reference of a virtual machine.
+   */
+  virtualMachine?: SubResource;
+  /**
+   * The reference of the NetworkSecurityGroup resource.
+   */
+  networkSecurityGroup?: NetworkSecurityGroup;
+  /**
+   * A list of IPConfigurations of the network interface.
+   */
+  ipConfigurations?: NetworkInterfaceIPConfiguration[];
+  /**
+   * The DNS settings in network interface.
+   */
+  dnsSettings?: NetworkInterfaceDnsSettings;
+  /**
+   * The MAC address of the network interface.
+   */
+  macAddress?: string;
+  /**
+   * Gets whether this is a primary network interface on a virtual machine.
+   */
+  primary?: boolean;
+  /**
+   * If the network interface is accelerated networking enabled.
+   */
+  enableAcceleratedNetworking?: boolean;
+  /**
+   * Indicates whether IP forwarding is enabled on this network interface.
+   */
+  enableIPForwarding?: boolean;
+  /**
+   * The resource GUID property of the network interface resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the public IP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterface;
+    };
+};
 
 /**
  * Contains response data for the updateTags operation.
  */
-export interface NetworkInterfacesUpdateTagsResponse extends msRest.HttpResponse {
+export type NetworkInterfacesUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterface;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The reference of a virtual machine.
+   */
+  virtualMachine?: SubResource;
+  /**
+   * The reference of the NetworkSecurityGroup resource.
+   */
+  networkSecurityGroup?: NetworkSecurityGroup;
+  /**
+   * A list of IPConfigurations of the network interface.
+   */
+  ipConfigurations?: NetworkInterfaceIPConfiguration[];
+  /**
+   * The DNS settings in network interface.
+   */
+  dnsSettings?: NetworkInterfaceDnsSettings;
+  /**
+   * The MAC address of the network interface.
+   */
+  macAddress?: string;
+  /**
+   * Gets whether this is a primary network interface on a virtual machine.
+   */
+  primary?: boolean;
+  /**
+   * If the network interface is accelerated networking enabled.
+   */
+  enableAcceleratedNetworking?: boolean;
+  /**
+   * Indicates whether IP forwarding is enabled on this network interface.
+   */
+  enableIPForwarding?: boolean;
+  /**
+   * The resource GUID property of the network interface resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the public IP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterface;
+    };
+};
 
 /**
  * Contains response data for the listAll operation.
  */
-export interface NetworkInterfacesListAllResponse extends msRest.HttpResponse {
+export type NetworkInterfacesListAllResponse = {
   /**
-   * The response body as text (string format)
+   * A list of network interfaces in a resource group.
    */
-  bodyAsText: string;
+  value?: NetworkInterface[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterfaceListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterfaceListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface NetworkInterfacesListResponse extends msRest.HttpResponse {
+export type NetworkInterfacesListResponse = {
   /**
-   * The response body as text (string format)
+   * A list of network interfaces in a resource group.
    */
-  bodyAsText: string;
+  value?: NetworkInterface[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterfaceListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterfaceListResult;
+    };
+};
 
 /**
  * Contains response data for the getEffectiveRouteTable operation.
  */
-export interface NetworkInterfacesGetEffectiveRouteTableResponse extends msRest.HttpResponse {
+export type NetworkInterfacesGetEffectiveRouteTableResponse = {
   /**
-   * The response body as text (string format)
+   * A list of effective routes.
    */
-  bodyAsText: string;
+  value?: EffectiveRoute[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: EffectiveRouteListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: EffectiveRouteListResult;
+    };
+};
 
 /**
  * Contains response data for the listEffectiveNetworkSecurityGroups operation.
  */
-export interface NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse extends msRest.HttpResponse {
+export type NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse = {
   /**
-   * The response body as text (string format)
+   * A list of effective network security groups.
    */
-  bodyAsText: string;
+  value?: EffectiveNetworkSecurityGroup[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: EffectiveNetworkSecurityGroupListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: EffectiveNetworkSecurityGroupListResult;
+    };
+};
 
 /**
  * Contains response data for the listVirtualMachineScaleSetVMNetworkInterfaces
  * operation.
  */
-export interface NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesResponse extends msRest.HttpResponse {
+export type NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesResponse = {
   /**
-   * The response body as text (string format)
+   * A list of network interfaces in a resource group.
    */
-  bodyAsText: string;
+  value?: NetworkInterface[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterfaceListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterfaceListResult;
+    };
+};
 
 /**
  * Contains response data for the listVirtualMachineScaleSetNetworkInterfaces
  * operation.
  */
-export interface NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesResponse extends msRest.HttpResponse {
+export type NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesResponse = {
   /**
-   * The response body as text (string format)
+   * A list of network interfaces in a resource group.
    */
-  bodyAsText: string;
+  value?: NetworkInterface[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterfaceListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterfaceListResult;
+    };
+};
 
 /**
  * Contains response data for the getVirtualMachineScaleSetNetworkInterface
  * operation.
  */
-export interface NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceResponse extends msRest.HttpResponse {
+export type NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterface;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The reference of a virtual machine.
+   */
+  virtualMachine?: SubResource;
+  /**
+   * The reference of the NetworkSecurityGroup resource.
+   */
+  networkSecurityGroup?: NetworkSecurityGroup;
+  /**
+   * A list of IPConfigurations of the network interface.
+   */
+  ipConfigurations?: NetworkInterfaceIPConfiguration[];
+  /**
+   * The DNS settings in network interface.
+   */
+  dnsSettings?: NetworkInterfaceDnsSettings;
+  /**
+   * The MAC address of the network interface.
+   */
+  macAddress?: string;
+  /**
+   * Gets whether this is a primary network interface on a virtual machine.
+   */
+  primary?: boolean;
+  /**
+   * If the network interface is accelerated networking enabled.
+   */
+  enableAcceleratedNetworking?: boolean;
+  /**
+   * Indicates whether IP forwarding is enabled on this network interface.
+   */
+  enableIPForwarding?: boolean;
+  /**
+   * The resource GUID property of the network interface resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the public IP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterface;
+    };
+};
 
 /**
  * Contains response data for the listVirtualMachineScaleSetIpConfigurations
  * operation.
  */
-export interface NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsResponse extends msRest.HttpResponse {
+export type NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsResponse = {
   /**
-   * The response body as text (string format)
+   * A list of ip configurations.
    */
-  bodyAsText: string;
+  value?: NetworkInterfaceIPConfiguration[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterfaceIPConfigurationListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterfaceIPConfigurationListResult;
+    };
+};
 
 /**
  * Contains response data for the getVirtualMachineScaleSetIpConfiguration
  * operation.
  */
-export interface NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationResponse extends msRest.HttpResponse {
+export type NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The reference of ApplicationGatewayBackendAddressPool resource.
    */
-  parsedBody: NetworkInterfaceIPConfiguration;
-}
+  applicationGatewayBackendAddressPools?: ApplicationGatewayBackendAddressPool[];
+  /**
+   * The reference of LoadBalancerBackendAddressPool resource.
+   */
+  loadBalancerBackendAddressPools?: BackendAddressPool[];
+  /**
+   * A list of references of LoadBalancerInboundNatRules.
+   */
+  loadBalancerInboundNatRules?: InboundNatRule[];
+  /**
+   * Private IP address of the IP configuration.
+   */
+  privateIPAddress?: string;
+  /**
+   * Defines how a private IP address is assigned. Possible values are: 'Static' and 'Dynamic'.
+   * Possible values include: 'Static', 'Dynamic'
+   */
+  privateIPAllocationMethod?: IPAllocationMethod;
+  /**
+   * Available from Api-Version 2016-03-30 onwards, it represents whether the specific
+   * ipconfiguration is IPv4 or IPv6. Default is taken as IPv4.  Possible values are: 'IPv4' and
+   * 'IPv6'. Possible values include: 'IPv4', 'IPv6'
+   */
+  privateIPAddressVersion?: IPVersion;
+  /**
+   * Subnet bound to the IP configuration.
+   */
+  subnet?: Subnet;
+  /**
+   * Gets whether this is a primary customer address on the network interface.
+   */
+  primary?: boolean;
+  /**
+   * Public IP address bound to the IP configuration.
+   */
+  publicIPAddress?: PublicIPAddress;
+  /**
+   * Application security groups in which the IP configuration is included.
+   */
+  applicationSecurityGroups?: ApplicationSecurityGroup[];
+  /**
+   * The provisioning state of the network interface IP configuration. Possible values are:
+   * 'Updating', 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterfaceIPConfiguration;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface NetworkInterfacesBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type NetworkInterfacesBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterface;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The reference of a virtual machine.
+   */
+  virtualMachine?: SubResource;
+  /**
+   * The reference of the NetworkSecurityGroup resource.
+   */
+  networkSecurityGroup?: NetworkSecurityGroup;
+  /**
+   * A list of IPConfigurations of the network interface.
+   */
+  ipConfigurations?: NetworkInterfaceIPConfiguration[];
+  /**
+   * The DNS settings in network interface.
+   */
+  dnsSettings?: NetworkInterfaceDnsSettings;
+  /**
+   * The MAC address of the network interface.
+   */
+  macAddress?: string;
+  /**
+   * Gets whether this is a primary network interface on a virtual machine.
+   */
+  primary?: boolean;
+  /**
+   * If the network interface is accelerated networking enabled.
+   */
+  enableAcceleratedNetworking?: boolean;
+  /**
+   * Indicates whether IP forwarding is enabled on this network interface.
+   */
+  enableIPForwarding?: boolean;
+  /**
+   * The resource GUID property of the network interface resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the public IP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterface;
+    };
+};
 
 /**
  * Contains response data for the beginUpdateTags operation.
  */
-export interface NetworkInterfacesBeginUpdateTagsResponse extends msRest.HttpResponse {
+export type NetworkInterfacesBeginUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterface;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The reference of a virtual machine.
+   */
+  virtualMachine?: SubResource;
+  /**
+   * The reference of the NetworkSecurityGroup resource.
+   */
+  networkSecurityGroup?: NetworkSecurityGroup;
+  /**
+   * A list of IPConfigurations of the network interface.
+   */
+  ipConfigurations?: NetworkInterfaceIPConfiguration[];
+  /**
+   * The DNS settings in network interface.
+   */
+  dnsSettings?: NetworkInterfaceDnsSettings;
+  /**
+   * The MAC address of the network interface.
+   */
+  macAddress?: string;
+  /**
+   * Gets whether this is a primary network interface on a virtual machine.
+   */
+  primary?: boolean;
+  /**
+   * If the network interface is accelerated networking enabled.
+   */
+  enableAcceleratedNetworking?: boolean;
+  /**
+   * Indicates whether IP forwarding is enabled on this network interface.
+   */
+  enableIPForwarding?: boolean;
+  /**
+   * The resource GUID property of the network interface resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the public IP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterface;
+    };
+};
 
 /**
  * Contains response data for the beginGetEffectiveRouteTable operation.
  */
-export interface NetworkInterfacesBeginGetEffectiveRouteTableResponse extends msRest.HttpResponse {
+export type NetworkInterfacesBeginGetEffectiveRouteTableResponse = {
   /**
-   * The response body as text (string format)
+   * A list of effective routes.
    */
-  bodyAsText: string;
+  value?: EffectiveRoute[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: EffectiveRouteListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: EffectiveRouteListResult;
+    };
+};
 
 /**
  * Contains response data for the beginListEffectiveNetworkSecurityGroups
  * operation.
  */
-export interface NetworkInterfacesBeginListEffectiveNetworkSecurityGroupsResponse extends msRest.HttpResponse {
+export type NetworkInterfacesBeginListEffectiveNetworkSecurityGroupsResponse = {
   /**
-   * The response body as text (string format)
+   * A list of effective network security groups.
    */
-  bodyAsText: string;
+  value?: EffectiveNetworkSecurityGroup[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: EffectiveNetworkSecurityGroupListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: EffectiveNetworkSecurityGroupListResult;
+    };
+};
 
 /**
  * Contains response data for the listAllNext operation.
  */
-export interface NetworkInterfacesListAllNextResponse extends msRest.HttpResponse {
+export type NetworkInterfacesListAllNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of network interfaces in a resource group.
    */
-  bodyAsText: string;
+  value?: NetworkInterface[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterfaceListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterfaceListResult;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface NetworkInterfacesListNextResponse extends msRest.HttpResponse {
+export type NetworkInterfacesListNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of network interfaces in a resource group.
    */
-  bodyAsText: string;
+  value?: NetworkInterface[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterfaceListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterfaceListResult;
+    };
+};
 
 /**
  * Contains response data for the
  * listVirtualMachineScaleSetVMNetworkInterfacesNext operation.
  */
-export interface NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextResponse extends msRest.HttpResponse {
+export type NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of network interfaces in a resource group.
    */
-  bodyAsText: string;
+  value?: NetworkInterface[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterfaceListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterfaceListResult;
+    };
+};
 
 /**
  * Contains response data for the
  * listVirtualMachineScaleSetNetworkInterfacesNext operation.
  */
-export interface NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextResponse extends msRest.HttpResponse {
+export type NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of network interfaces in a resource group.
    */
-  bodyAsText: string;
+  value?: NetworkInterface[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterfaceListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterfaceListResult;
+    };
+};
 
 /**
  * Contains response data for the
  * listVirtualMachineScaleSetIpConfigurationsNext operation.
  */
-export interface NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextResponse extends msRest.HttpResponse {
+export type NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of ip configurations.
    */
-  bodyAsText: string;
+  value?: NetworkInterfaceIPConfiguration[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterfaceIPConfigurationListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterfaceIPConfigurationListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface NetworkInterfaceIPConfigurationsListResponse extends msRest.HttpResponse {
+export type NetworkInterfaceIPConfigurationsListResponse = {
   /**
-   * The response body as text (string format)
+   * A list of ip configurations.
    */
-  bodyAsText: string;
+  value?: NetworkInterfaceIPConfiguration[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterfaceIPConfigurationListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterfaceIPConfigurationListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface NetworkInterfaceIPConfigurationsGetResponse extends msRest.HttpResponse {
+export type NetworkInterfaceIPConfigurationsGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The reference of ApplicationGatewayBackendAddressPool resource.
    */
-  parsedBody: NetworkInterfaceIPConfiguration;
-}
+  applicationGatewayBackendAddressPools?: ApplicationGatewayBackendAddressPool[];
+  /**
+   * The reference of LoadBalancerBackendAddressPool resource.
+   */
+  loadBalancerBackendAddressPools?: BackendAddressPool[];
+  /**
+   * A list of references of LoadBalancerInboundNatRules.
+   */
+  loadBalancerInboundNatRules?: InboundNatRule[];
+  /**
+   * Private IP address of the IP configuration.
+   */
+  privateIPAddress?: string;
+  /**
+   * Defines how a private IP address is assigned. Possible values are: 'Static' and 'Dynamic'.
+   * Possible values include: 'Static', 'Dynamic'
+   */
+  privateIPAllocationMethod?: IPAllocationMethod;
+  /**
+   * Available from Api-Version 2016-03-30 onwards, it represents whether the specific
+   * ipconfiguration is IPv4 or IPv6. Default is taken as IPv4.  Possible values are: 'IPv4' and
+   * 'IPv6'. Possible values include: 'IPv4', 'IPv6'
+   */
+  privateIPAddressVersion?: IPVersion;
+  /**
+   * Subnet bound to the IP configuration.
+   */
+  subnet?: Subnet;
+  /**
+   * Gets whether this is a primary customer address on the network interface.
+   */
+  primary?: boolean;
+  /**
+   * Public IP address bound to the IP configuration.
+   */
+  publicIPAddress?: PublicIPAddress;
+  /**
+   * Application security groups in which the IP configuration is included.
+   */
+  applicationSecurityGroups?: ApplicationSecurityGroup[];
+  /**
+   * The provisioning state of the network interface IP configuration. Possible values are:
+   * 'Updating', 'Deleting', and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterfaceIPConfiguration;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface NetworkInterfaceIPConfigurationsListNextResponse extends msRest.HttpResponse {
+export type NetworkInterfaceIPConfigurationsListNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of ip configurations.
    */
-  bodyAsText: string;
+  value?: NetworkInterfaceIPConfiguration[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterfaceIPConfigurationListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterfaceIPConfigurationListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface NetworkInterfaceLoadBalancersListResponse extends msRest.HttpResponse {
+export type NetworkInterfaceLoadBalancersListResponse = {
   /**
-   * The response body as text (string format)
+   * A list of load balancers.
    */
-  bodyAsText: string;
+  value?: LoadBalancer[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterfaceLoadBalancerListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterfaceLoadBalancerListResult;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface NetworkInterfaceLoadBalancersListNextResponse extends msRest.HttpResponse {
+export type NetworkInterfaceLoadBalancersListNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of load balancers.
    */
-  bodyAsText: string;
+  value?: LoadBalancer[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkInterfaceLoadBalancerListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkInterfaceLoadBalancerListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface NetworkSecurityGroupsGetResponse extends msRest.HttpResponse {
+export type NetworkSecurityGroupsGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkSecurityGroup;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * A collection of security rules of the network security group.
+   */
+  securityRules?: SecurityRule[];
+  /**
+   * The default security rules of network security group.
+   */
+  defaultSecurityRules?: SecurityRule[];
+  /**
+   * A collection of references to network interfaces.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly networkInterfaces?: NetworkInterface[];
+  /**
+   * A collection of references to subnets.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly subnets?: Subnet[];
+  /**
+   * The resource GUID property of the network security group resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the public IP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkSecurityGroup;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface NetworkSecurityGroupsCreateOrUpdateResponse extends msRest.HttpResponse {
+export type NetworkSecurityGroupsCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkSecurityGroup;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * A collection of security rules of the network security group.
+   */
+  securityRules?: SecurityRule[];
+  /**
+   * The default security rules of network security group.
+   */
+  defaultSecurityRules?: SecurityRule[];
+  /**
+   * A collection of references to network interfaces.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly networkInterfaces?: NetworkInterface[];
+  /**
+   * A collection of references to subnets.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly subnets?: Subnet[];
+  /**
+   * The resource GUID property of the network security group resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the public IP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkSecurityGroup;
+    };
+};
 
 /**
  * Contains response data for the updateTags operation.
  */
-export interface NetworkSecurityGroupsUpdateTagsResponse extends msRest.HttpResponse {
+export type NetworkSecurityGroupsUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkSecurityGroup;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * A collection of security rules of the network security group.
+   */
+  securityRules?: SecurityRule[];
+  /**
+   * The default security rules of network security group.
+   */
+  defaultSecurityRules?: SecurityRule[];
+  /**
+   * A collection of references to network interfaces.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly networkInterfaces?: NetworkInterface[];
+  /**
+   * A collection of references to subnets.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly subnets?: Subnet[];
+  /**
+   * The resource GUID property of the network security group resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the public IP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkSecurityGroup;
+    };
+};
 
 /**
  * Contains response data for the listAll operation.
  */
-export interface NetworkSecurityGroupsListAllResponse extends msRest.HttpResponse {
+export type NetworkSecurityGroupsListAllResponse = {
   /**
-   * The response body as text (string format)
+   * A list of NetworkSecurityGroup resources.
    */
-  bodyAsText: string;
+  value?: NetworkSecurityGroup[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: NetworkSecurityGroupListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkSecurityGroupListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface NetworkSecurityGroupsListResponse extends msRest.HttpResponse {
+export type NetworkSecurityGroupsListResponse = {
   /**
-   * The response body as text (string format)
+   * A list of NetworkSecurityGroup resources.
    */
-  bodyAsText: string;
+  value?: NetworkSecurityGroup[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: NetworkSecurityGroupListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkSecurityGroupListResult;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface NetworkSecurityGroupsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type NetworkSecurityGroupsBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkSecurityGroup;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * A collection of security rules of the network security group.
+   */
+  securityRules?: SecurityRule[];
+  /**
+   * The default security rules of network security group.
+   */
+  defaultSecurityRules?: SecurityRule[];
+  /**
+   * A collection of references to network interfaces.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly networkInterfaces?: NetworkInterface[];
+  /**
+   * A collection of references to subnets.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly subnets?: Subnet[];
+  /**
+   * The resource GUID property of the network security group resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the public IP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkSecurityGroup;
+    };
+};
 
 /**
  * Contains response data for the beginUpdateTags operation.
  */
-export interface NetworkSecurityGroupsBeginUpdateTagsResponse extends msRest.HttpResponse {
+export type NetworkSecurityGroupsBeginUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkSecurityGroup;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * A collection of security rules of the network security group.
+   */
+  securityRules?: SecurityRule[];
+  /**
+   * The default security rules of network security group.
+   */
+  defaultSecurityRules?: SecurityRule[];
+  /**
+   * A collection of references to network interfaces.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly networkInterfaces?: NetworkInterface[];
+  /**
+   * A collection of references to subnets.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly subnets?: Subnet[];
+  /**
+   * The resource GUID property of the network security group resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the public IP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkSecurityGroup;
+    };
+};
 
 /**
  * Contains response data for the listAllNext operation.
  */
-export interface NetworkSecurityGroupsListAllNextResponse extends msRest.HttpResponse {
+export type NetworkSecurityGroupsListAllNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of NetworkSecurityGroup resources.
    */
-  bodyAsText: string;
+  value?: NetworkSecurityGroup[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: NetworkSecurityGroupListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkSecurityGroupListResult;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface NetworkSecurityGroupsListNextResponse extends msRest.HttpResponse {
+export type NetworkSecurityGroupsListNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of NetworkSecurityGroup resources.
    */
-  bodyAsText: string;
+  value?: NetworkSecurityGroup[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: NetworkSecurityGroupListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkSecurityGroupListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface SecurityRulesGetResponse extends msRest.HttpResponse {
+export type SecurityRulesGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * A description for this rule. Restricted to 140 chars.
    */
-  parsedBody: SecurityRule;
-}
+  description?: string;
+  /**
+   * Network protocol this rule applies to. Possible values are 'Tcp', 'Udp', and '*'. Possible
+   * values include: 'Tcp', 'Udp', '*'
+   */
+  protocol: SecurityRuleProtocol;
+  /**
+   * The source port or range. Integer or range between 0 and 65535. Asterix '*' can also be used
+   * to match all ports.
+   */
+  sourcePortRange?: string;
+  /**
+   * The destination port or range. Integer or range between 0 and 65535. Asterix '*' can also be
+   * used to match all ports.
+   */
+  destinationPortRange?: string;
+  /**
+   * The CIDR or source IP range. Asterix '*' can also be used to match all source IPs. Default
+   * tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used. If this is
+   * an ingress rule, specifies where network traffic originates from.
+   */
+  sourceAddressPrefix?: string;
+  /**
+   * The CIDR or source IP ranges.
+   */
+  sourceAddressPrefixes?: string[];
+  /**
+   * The application security group specified as source.
+   */
+  sourceApplicationSecurityGroups?: ApplicationSecurityGroup[];
+  /**
+   * The destination address prefix. CIDR or destination IP range. Asterix '*' can also be used to
+   * match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and
+   * 'Internet' can also be used.
+   */
+  destinationAddressPrefix?: string;
+  /**
+   * The destination address prefixes. CIDR or destination IP ranges.
+   */
+  destinationAddressPrefixes?: string[];
+  /**
+   * The application security group specified as destination.
+   */
+  destinationApplicationSecurityGroups?: ApplicationSecurityGroup[];
+  /**
+   * The source port ranges.
+   */
+  sourcePortRanges?: string[];
+  /**
+   * The destination port ranges.
+   */
+  destinationPortRanges?: string[];
+  /**
+   * The network traffic is allowed or denied. Possible values are: 'Allow' and 'Deny'. Possible
+   * values include: 'Allow', 'Deny'
+   */
+  access: SecurityRuleAccess;
+  /**
+   * The priority of the rule. The value can be between 100 and 4096. The priority number must be
+   * unique for each rule in the collection. The lower the priority number, the higher the priority
+   * of the rule.
+   */
+  priority?: number;
+  /**
+   * The direction of the rule. The direction specifies if rule will be evaluated on incoming or
+   * outcoming traffic. Possible values are: 'Inbound' and 'Outbound'. Possible values include:
+   * 'Inbound', 'Outbound'
+   */
+  direction: SecurityRuleDirection;
+  /**
+   * The provisioning state of the public IP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SecurityRule;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface SecurityRulesCreateOrUpdateResponse extends msRest.HttpResponse {
+export type SecurityRulesCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * A description for this rule. Restricted to 140 chars.
    */
-  parsedBody: SecurityRule;
-}
+  description?: string;
+  /**
+   * Network protocol this rule applies to. Possible values are 'Tcp', 'Udp', and '*'. Possible
+   * values include: 'Tcp', 'Udp', '*'
+   */
+  protocol: SecurityRuleProtocol;
+  /**
+   * The source port or range. Integer or range between 0 and 65535. Asterix '*' can also be used
+   * to match all ports.
+   */
+  sourcePortRange?: string;
+  /**
+   * The destination port or range. Integer or range between 0 and 65535. Asterix '*' can also be
+   * used to match all ports.
+   */
+  destinationPortRange?: string;
+  /**
+   * The CIDR or source IP range. Asterix '*' can also be used to match all source IPs. Default
+   * tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used. If this is
+   * an ingress rule, specifies where network traffic originates from.
+   */
+  sourceAddressPrefix?: string;
+  /**
+   * The CIDR or source IP ranges.
+   */
+  sourceAddressPrefixes?: string[];
+  /**
+   * The application security group specified as source.
+   */
+  sourceApplicationSecurityGroups?: ApplicationSecurityGroup[];
+  /**
+   * The destination address prefix. CIDR or destination IP range. Asterix '*' can also be used to
+   * match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and
+   * 'Internet' can also be used.
+   */
+  destinationAddressPrefix?: string;
+  /**
+   * The destination address prefixes. CIDR or destination IP ranges.
+   */
+  destinationAddressPrefixes?: string[];
+  /**
+   * The application security group specified as destination.
+   */
+  destinationApplicationSecurityGroups?: ApplicationSecurityGroup[];
+  /**
+   * The source port ranges.
+   */
+  sourcePortRanges?: string[];
+  /**
+   * The destination port ranges.
+   */
+  destinationPortRanges?: string[];
+  /**
+   * The network traffic is allowed or denied. Possible values are: 'Allow' and 'Deny'. Possible
+   * values include: 'Allow', 'Deny'
+   */
+  access: SecurityRuleAccess;
+  /**
+   * The priority of the rule. The value can be between 100 and 4096. The priority number must be
+   * unique for each rule in the collection. The lower the priority number, the higher the priority
+   * of the rule.
+   */
+  priority?: number;
+  /**
+   * The direction of the rule. The direction specifies if rule will be evaluated on incoming or
+   * outcoming traffic. Possible values are: 'Inbound' and 'Outbound'. Possible values include:
+   * 'Inbound', 'Outbound'
+   */
+  direction: SecurityRuleDirection;
+  /**
+   * The provisioning state of the public IP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SecurityRule;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface SecurityRulesListResponse extends msRest.HttpResponse {
+export type SecurityRulesListResponse = {
   /**
-   * The response body as text (string format)
+   * The security rules in a network security group.
    */
-  bodyAsText: string;
+  value?: SecurityRule[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: SecurityRuleListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SecurityRuleListResult;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface SecurityRulesBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type SecurityRulesBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * A description for this rule. Restricted to 140 chars.
    */
-  parsedBody: SecurityRule;
-}
+  description?: string;
+  /**
+   * Network protocol this rule applies to. Possible values are 'Tcp', 'Udp', and '*'. Possible
+   * values include: 'Tcp', 'Udp', '*'
+   */
+  protocol: SecurityRuleProtocol;
+  /**
+   * The source port or range. Integer or range between 0 and 65535. Asterix '*' can also be used
+   * to match all ports.
+   */
+  sourcePortRange?: string;
+  /**
+   * The destination port or range. Integer or range between 0 and 65535. Asterix '*' can also be
+   * used to match all ports.
+   */
+  destinationPortRange?: string;
+  /**
+   * The CIDR or source IP range. Asterix '*' can also be used to match all source IPs. Default
+   * tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used. If this is
+   * an ingress rule, specifies where network traffic originates from.
+   */
+  sourceAddressPrefix?: string;
+  /**
+   * The CIDR or source IP ranges.
+   */
+  sourceAddressPrefixes?: string[];
+  /**
+   * The application security group specified as source.
+   */
+  sourceApplicationSecurityGroups?: ApplicationSecurityGroup[];
+  /**
+   * The destination address prefix. CIDR or destination IP range. Asterix '*' can also be used to
+   * match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and
+   * 'Internet' can also be used.
+   */
+  destinationAddressPrefix?: string;
+  /**
+   * The destination address prefixes. CIDR or destination IP ranges.
+   */
+  destinationAddressPrefixes?: string[];
+  /**
+   * The application security group specified as destination.
+   */
+  destinationApplicationSecurityGroups?: ApplicationSecurityGroup[];
+  /**
+   * The source port ranges.
+   */
+  sourcePortRanges?: string[];
+  /**
+   * The destination port ranges.
+   */
+  destinationPortRanges?: string[];
+  /**
+   * The network traffic is allowed or denied. Possible values are: 'Allow' and 'Deny'. Possible
+   * values include: 'Allow', 'Deny'
+   */
+  access: SecurityRuleAccess;
+  /**
+   * The priority of the rule. The value can be between 100 and 4096. The priority number must be
+   * unique for each rule in the collection. The lower the priority number, the higher the priority
+   * of the rule.
+   */
+  priority?: number;
+  /**
+   * The direction of the rule. The direction specifies if rule will be evaluated on incoming or
+   * outcoming traffic. Possible values are: 'Inbound' and 'Outbound'. Possible values include:
+   * 'Inbound', 'Outbound'
+   */
+  direction: SecurityRuleDirection;
+  /**
+   * The provisioning state of the public IP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SecurityRule;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface SecurityRulesListNextResponse extends msRest.HttpResponse {
+export type SecurityRulesListNextResponse = {
   /**
-   * The response body as text (string format)
+   * The security rules in a network security group.
    */
-  bodyAsText: string;
+  value?: SecurityRule[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: SecurityRuleListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SecurityRuleListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface DefaultSecurityRulesListResponse extends msRest.HttpResponse {
+export type DefaultSecurityRulesListResponse = {
   /**
-   * The response body as text (string format)
+   * The security rules in a network security group.
    */
-  bodyAsText: string;
+  value?: SecurityRule[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: SecurityRuleListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SecurityRuleListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface DefaultSecurityRulesGetResponse extends msRest.HttpResponse {
+export type DefaultSecurityRulesGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * A description for this rule. Restricted to 140 chars.
    */
-  parsedBody: SecurityRule;
-}
+  description?: string;
+  /**
+   * Network protocol this rule applies to. Possible values are 'Tcp', 'Udp', and '*'. Possible
+   * values include: 'Tcp', 'Udp', '*'
+   */
+  protocol: SecurityRuleProtocol;
+  /**
+   * The source port or range. Integer or range between 0 and 65535. Asterix '*' can also be used
+   * to match all ports.
+   */
+  sourcePortRange?: string;
+  /**
+   * The destination port or range. Integer or range between 0 and 65535. Asterix '*' can also be
+   * used to match all ports.
+   */
+  destinationPortRange?: string;
+  /**
+   * The CIDR or source IP range. Asterix '*' can also be used to match all source IPs. Default
+   * tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used. If this is
+   * an ingress rule, specifies where network traffic originates from.
+   */
+  sourceAddressPrefix?: string;
+  /**
+   * The CIDR or source IP ranges.
+   */
+  sourceAddressPrefixes?: string[];
+  /**
+   * The application security group specified as source.
+   */
+  sourceApplicationSecurityGroups?: ApplicationSecurityGroup[];
+  /**
+   * The destination address prefix. CIDR or destination IP range. Asterix '*' can also be used to
+   * match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and
+   * 'Internet' can also be used.
+   */
+  destinationAddressPrefix?: string;
+  /**
+   * The destination address prefixes. CIDR or destination IP ranges.
+   */
+  destinationAddressPrefixes?: string[];
+  /**
+   * The application security group specified as destination.
+   */
+  destinationApplicationSecurityGroups?: ApplicationSecurityGroup[];
+  /**
+   * The source port ranges.
+   */
+  sourcePortRanges?: string[];
+  /**
+   * The destination port ranges.
+   */
+  destinationPortRanges?: string[];
+  /**
+   * The network traffic is allowed or denied. Possible values are: 'Allow' and 'Deny'. Possible
+   * values include: 'Allow', 'Deny'
+   */
+  access: SecurityRuleAccess;
+  /**
+   * The priority of the rule. The value can be between 100 and 4096. The priority number must be
+   * unique for each rule in the collection. The lower the priority number, the higher the priority
+   * of the rule.
+   */
+  priority?: number;
+  /**
+   * The direction of the rule. The direction specifies if rule will be evaluated on incoming or
+   * outcoming traffic. Possible values are: 'Inbound' and 'Outbound'. Possible values include:
+   * 'Inbound', 'Outbound'
+   */
+  direction: SecurityRuleDirection;
+  /**
+   * The provisioning state of the public IP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SecurityRule;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface DefaultSecurityRulesListNextResponse extends msRest.HttpResponse {
+export type DefaultSecurityRulesListNextResponse = {
   /**
-   * The response body as text (string format)
+   * The security rules in a network security group.
    */
-  bodyAsText: string;
+  value?: SecurityRule[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: SecurityRuleListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SecurityRuleListResult;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface NetworkWatchersCreateOrUpdateResponse extends msRest.HttpResponse {
+export type NetworkWatchersCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkWatcher;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The provisioning state of the resource. Possible values include: 'Succeeded', 'Updating',
+   * 'Deleting', 'Failed'
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkWatcher;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface NetworkWatchersGetResponse extends msRest.HttpResponse {
+export type NetworkWatchersGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkWatcher;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The provisioning state of the resource. Possible values include: 'Succeeded', 'Updating',
+   * 'Deleting', 'Failed'
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkWatcher;
+    };
+};
 
 /**
  * Contains response data for the updateTags operation.
  */
-export interface NetworkWatchersUpdateTagsResponse extends msRest.HttpResponse {
+export type NetworkWatchersUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: NetworkWatcher;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The provisioning state of the resource. Possible values include: 'Succeeded', 'Updating',
+   * 'Deleting', 'Failed'
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: ProvisioningState;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkWatcher;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface NetworkWatchersListResponse extends msRest.HttpResponse {
+export type NetworkWatchersListResponse = {
+  value?: NetworkWatcher[];
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: NetworkWatcherListResult;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkWatcherListResult;
+    };
+};
 
 /**
  * Contains response data for the listAll operation.
  */
-export interface NetworkWatchersListAllResponse extends msRest.HttpResponse {
+export type NetworkWatchersListAllResponse = {
+  value?: NetworkWatcher[];
   /**
-   * The response body as text (string format)
+   * The underlying HTTP response.
    */
-  bodyAsText: string;
-  /**
-   * The response body as parsed JSON or XML
-   */
-  parsedBody: NetworkWatcherListResult;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NetworkWatcherListResult;
+    };
+};
 
 /**
  * Contains response data for the getTopology operation.
  */
-export interface NetworkWatchersGetTopologyResponse extends msRest.HttpResponse {
+export type NetworkWatchersGetTopologyResponse = {
   /**
-   * The response body as text (string format)
+   * GUID representing the operation id.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  bodyAsText: string;
+  readonly id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The datetime when the topology was initially created for the resource group.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: Topology;
-}
+  readonly createdDateTime?: Date;
+  /**
+   * The datetime when the topology was last modified.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly lastModified?: Date;
+  resources?: TopologyResource[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Topology;
+    };
+};
 
 /**
  * Contains response data for the verifyIPFlow operation.
  */
-export interface NetworkWatchersVerifyIPFlowResponse extends msRest.HttpResponse {
+export type NetworkWatchersVerifyIPFlowResponse = {
   /**
-   * The response body as text (string format)
+   * Indicates whether the traffic is allowed or denied. Possible values include: 'Allow', 'Deny'
    */
-  bodyAsText: string;
+  access?: Access;
   /**
-   * The response body as parsed JSON or XML
+   * Name of the rule. If input is not matched against any security rule, it is not displayed.
    */
-  parsedBody: VerificationIPFlowResult;
-}
+  ruleName?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VerificationIPFlowResult;
+    };
+};
 
 /**
  * Contains response data for the getNextHop operation.
  */
-export interface NetworkWatchersGetNextHopResponse extends msRest.HttpResponse {
+export type NetworkWatchersGetNextHopResponse = {
   /**
-   * The response body as text (string format)
+   * Next hop type. Possible values include: 'Internet', 'VirtualAppliance',
+   * 'VirtualNetworkGateway', 'VnetLocal', 'HyperNetGateway', 'None'
    */
-  bodyAsText: string;
+  nextHopType?: NextHopType;
   /**
-   * The response body as parsed JSON or XML
+   * Next hop IP Address
    */
-  parsedBody: NextHopResult;
-}
+  nextHopIpAddress?: string;
+  /**
+   * The resource identifier for the route table associated with the route being returned. If the
+   * route being returned does not correspond to any user created routes then this field will be
+   * the string 'System Route'.
+   */
+  routeTableId?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NextHopResult;
+    };
+};
 
 /**
  * Contains response data for the getVMSecurityRules operation.
  */
-export interface NetworkWatchersGetVMSecurityRulesResponse extends msRest.HttpResponse {
+export type NetworkWatchersGetVMSecurityRulesResponse = {
   /**
-   * The response body as text (string format)
+   * List of network interfaces on the specified VM.
    */
-  bodyAsText: string;
+  networkInterfaces?: SecurityGroupNetworkInterface[];
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: SecurityGroupViewResult;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SecurityGroupViewResult;
+    };
+};
 
 /**
  * Contains response data for the getTroubleshooting operation.
  */
-export interface NetworkWatchersGetTroubleshootingResponse extends msRest.HttpResponse {
+export type NetworkWatchersGetTroubleshootingResponse = {
   /**
-   * The response body as text (string format)
+   * The start time of the troubleshooting.
    */
-  bodyAsText: string;
+  startTime?: Date;
   /**
-   * The response body as parsed JSON or XML
+   * The end time of the troubleshooting.
    */
-  parsedBody: TroubleshootingResult;
-}
+  endTime?: Date;
+  /**
+   * The result code of the troubleshooting.
+   */
+  code?: string;
+  /**
+   * Information from troubleshooting.
+   */
+  results?: TroubleshootingDetails[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: TroubleshootingResult;
+    };
+};
 
 /**
  * Contains response data for the getTroubleshootingResult operation.
  */
-export interface NetworkWatchersGetTroubleshootingResultResponse extends msRest.HttpResponse {
+export type NetworkWatchersGetTroubleshootingResultResponse = {
   /**
-   * The response body as text (string format)
+   * The start time of the troubleshooting.
    */
-  bodyAsText: string;
+  startTime?: Date;
   /**
-   * The response body as parsed JSON or XML
+   * The end time of the troubleshooting.
    */
-  parsedBody: TroubleshootingResult;
-}
+  endTime?: Date;
+  /**
+   * The result code of the troubleshooting.
+   */
+  code?: string;
+  /**
+   * Information from troubleshooting.
+   */
+  results?: TroubleshootingDetails[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: TroubleshootingResult;
+    };
+};
 
 /**
  * Contains response data for the setFlowLogConfiguration operation.
  */
-export interface NetworkWatchersSetFlowLogConfigurationResponse extends msRest.HttpResponse {
+export type NetworkWatchersSetFlowLogConfigurationResponse = {
   /**
-   * The response body as text (string format)
+   * The ID of the resource to configure for flow log and traffic analytics (optional) .
    */
-  bodyAsText: string;
+  targetResourceId: string;
   /**
-   * The response body as parsed JSON or XML
+   * ID of the storage account which is used to store the flow log.
    */
-  parsedBody: FlowLogInformation;
-}
+  storageId: string;
+  /**
+   * Flag to enable/disable flow logging.
+   */
+  enabled: boolean;
+  retentionPolicy?: RetentionPolicyParameters;
+  flowAnalyticsConfiguration?: TrafficAnalyticsProperties;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: FlowLogInformation;
+    };
+};
 
 /**
  * Contains response data for the getFlowLogStatus operation.
  */
-export interface NetworkWatchersGetFlowLogStatusResponse extends msRest.HttpResponse {
+export type NetworkWatchersGetFlowLogStatusResponse = {
   /**
-   * The response body as text (string format)
+   * The ID of the resource to configure for flow log and traffic analytics (optional) .
    */
-  bodyAsText: string;
+  targetResourceId: string;
   /**
-   * The response body as parsed JSON or XML
+   * ID of the storage account which is used to store the flow log.
    */
-  parsedBody: FlowLogInformation;
-}
+  storageId: string;
+  /**
+   * Flag to enable/disable flow logging.
+   */
+  enabled: boolean;
+  retentionPolicy?: RetentionPolicyParameters;
+  flowAnalyticsConfiguration?: TrafficAnalyticsProperties;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: FlowLogInformation;
+    };
+};
 
 /**
  * Contains response data for the checkConnectivity operation.
  */
-export interface NetworkWatchersCheckConnectivityResponse extends msRest.HttpResponse {
+export type NetworkWatchersCheckConnectivityResponse = {
   /**
-   * The response body as text (string format)
+   * List of hops between the source and the destination.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  bodyAsText: string;
+  readonly hops?: ConnectivityHop[];
   /**
-   * The response body as parsed JSON or XML
+   * The connection status. Possible values include: 'Unknown', 'Connected', 'Disconnected',
+   * 'Degraded'
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ConnectivityInformation;
-}
+  readonly connectionStatus?: ConnectionStatus;
+  /**
+   * Average latency in milliseconds.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly avgLatencyInMs?: number;
+  /**
+   * Minimum latency in milliseconds.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly minLatencyInMs?: number;
+  /**
+   * Maximum latency in milliseconds.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly maxLatencyInMs?: number;
+  /**
+   * Total number of probes sent.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly probesSent?: number;
+  /**
+   * Number of failed probes.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly probesFailed?: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ConnectivityInformation;
+    };
+};
 
 /**
  * Contains response data for the getAzureReachabilityReport operation.
  */
-export interface NetworkWatchersGetAzureReachabilityReportResponse extends msRest.HttpResponse {
+export type NetworkWatchersGetAzureReachabilityReportResponse = {
   /**
-   * The response body as text (string format)
+   * The aggregation level of Azure reachability report. Can be Country, State or City.
    */
-  bodyAsText: string;
+  aggregationLevel: string;
+  providerLocation: AzureReachabilityReportLocation;
   /**
-   * The response body as parsed JSON or XML
+   * List of Azure reachability report items.
    */
-  parsedBody: AzureReachabilityReport;
-}
+  reachabilityReport: AzureReachabilityReportItem[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: AzureReachabilityReport;
+    };
+};
 
 /**
  * Contains response data for the listAvailableProviders operation.
  */
-export interface NetworkWatchersListAvailableProvidersResponse extends msRest.HttpResponse {
+export type NetworkWatchersListAvailableProvidersResponse = {
   /**
-   * The response body as text (string format)
+   * List of available countries.
    */
-  bodyAsText: string;
+  countries: AvailableProvidersListCountry[];
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: AvailableProvidersList;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: AvailableProvidersList;
+    };
+};
 
 /**
  * Contains response data for the beginVerifyIPFlow operation.
  */
-export interface NetworkWatchersBeginVerifyIPFlowResponse extends msRest.HttpResponse {
+export type NetworkWatchersBeginVerifyIPFlowResponse = {
   /**
-   * The response body as text (string format)
+   * Indicates whether the traffic is allowed or denied. Possible values include: 'Allow', 'Deny'
    */
-  bodyAsText: string;
+  access?: Access;
   /**
-   * The response body as parsed JSON or XML
+   * Name of the rule. If input is not matched against any security rule, it is not displayed.
    */
-  parsedBody: VerificationIPFlowResult;
-}
+  ruleName?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VerificationIPFlowResult;
+    };
+};
 
 /**
  * Contains response data for the beginGetNextHop operation.
  */
-export interface NetworkWatchersBeginGetNextHopResponse extends msRest.HttpResponse {
+export type NetworkWatchersBeginGetNextHopResponse = {
   /**
-   * The response body as text (string format)
+   * Next hop type. Possible values include: 'Internet', 'VirtualAppliance',
+   * 'VirtualNetworkGateway', 'VnetLocal', 'HyperNetGateway', 'None'
    */
-  bodyAsText: string;
+  nextHopType?: NextHopType;
   /**
-   * The response body as parsed JSON or XML
+   * Next hop IP Address
    */
-  parsedBody: NextHopResult;
-}
+  nextHopIpAddress?: string;
+  /**
+   * The resource identifier for the route table associated with the route being returned. If the
+   * route being returned does not correspond to any user created routes then this field will be
+   * the string 'System Route'.
+   */
+  routeTableId?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: NextHopResult;
+    };
+};
 
 /**
  * Contains response data for the beginGetVMSecurityRules operation.
  */
-export interface NetworkWatchersBeginGetVMSecurityRulesResponse extends msRest.HttpResponse {
+export type NetworkWatchersBeginGetVMSecurityRulesResponse = {
   /**
-   * The response body as text (string format)
+   * List of network interfaces on the specified VM.
    */
-  bodyAsText: string;
+  networkInterfaces?: SecurityGroupNetworkInterface[];
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: SecurityGroupViewResult;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SecurityGroupViewResult;
+    };
+};
 
 /**
  * Contains response data for the beginGetTroubleshooting operation.
  */
-export interface NetworkWatchersBeginGetTroubleshootingResponse extends msRest.HttpResponse {
+export type NetworkWatchersBeginGetTroubleshootingResponse = {
   /**
-   * The response body as text (string format)
+   * The start time of the troubleshooting.
    */
-  bodyAsText: string;
+  startTime?: Date;
   /**
-   * The response body as parsed JSON or XML
+   * The end time of the troubleshooting.
    */
-  parsedBody: TroubleshootingResult;
-}
+  endTime?: Date;
+  /**
+   * The result code of the troubleshooting.
+   */
+  code?: string;
+  /**
+   * Information from troubleshooting.
+   */
+  results?: TroubleshootingDetails[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: TroubleshootingResult;
+    };
+};
 
 /**
  * Contains response data for the beginGetTroubleshootingResult operation.
  */
-export interface NetworkWatchersBeginGetTroubleshootingResultResponse extends msRest.HttpResponse {
+export type NetworkWatchersBeginGetTroubleshootingResultResponse = {
   /**
-   * The response body as text (string format)
+   * The start time of the troubleshooting.
    */
-  bodyAsText: string;
+  startTime?: Date;
   /**
-   * The response body as parsed JSON or XML
+   * The end time of the troubleshooting.
    */
-  parsedBody: TroubleshootingResult;
-}
+  endTime?: Date;
+  /**
+   * The result code of the troubleshooting.
+   */
+  code?: string;
+  /**
+   * Information from troubleshooting.
+   */
+  results?: TroubleshootingDetails[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: TroubleshootingResult;
+    };
+};
 
 /**
  * Contains response data for the beginSetFlowLogConfiguration operation.
  */
-export interface NetworkWatchersBeginSetFlowLogConfigurationResponse extends msRest.HttpResponse {
+export type NetworkWatchersBeginSetFlowLogConfigurationResponse = {
   /**
-   * The response body as text (string format)
+   * The ID of the resource to configure for flow log and traffic analytics (optional) .
    */
-  bodyAsText: string;
+  targetResourceId: string;
   /**
-   * The response body as parsed JSON or XML
+   * ID of the storage account which is used to store the flow log.
    */
-  parsedBody: FlowLogInformation;
-}
+  storageId: string;
+  /**
+   * Flag to enable/disable flow logging.
+   */
+  enabled: boolean;
+  retentionPolicy?: RetentionPolicyParameters;
+  flowAnalyticsConfiguration?: TrafficAnalyticsProperties;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: FlowLogInformation;
+    };
+};
 
 /**
  * Contains response data for the beginGetFlowLogStatus operation.
  */
-export interface NetworkWatchersBeginGetFlowLogStatusResponse extends msRest.HttpResponse {
+export type NetworkWatchersBeginGetFlowLogStatusResponse = {
   /**
-   * The response body as text (string format)
+   * The ID of the resource to configure for flow log and traffic analytics (optional) .
    */
-  bodyAsText: string;
+  targetResourceId: string;
   /**
-   * The response body as parsed JSON or XML
+   * ID of the storage account which is used to store the flow log.
    */
-  parsedBody: FlowLogInformation;
-}
+  storageId: string;
+  /**
+   * Flag to enable/disable flow logging.
+   */
+  enabled: boolean;
+  retentionPolicy?: RetentionPolicyParameters;
+  flowAnalyticsConfiguration?: TrafficAnalyticsProperties;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: FlowLogInformation;
+    };
+};
 
 /**
  * Contains response data for the beginCheckConnectivity operation.
  */
-export interface NetworkWatchersBeginCheckConnectivityResponse extends msRest.HttpResponse {
+export type NetworkWatchersBeginCheckConnectivityResponse = {
   /**
-   * The response body as text (string format)
+   * List of hops between the source and the destination.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  bodyAsText: string;
+  readonly hops?: ConnectivityHop[];
   /**
-   * The response body as parsed JSON or XML
+   * The connection status. Possible values include: 'Unknown', 'Connected', 'Disconnected',
+   * 'Degraded'
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ConnectivityInformation;
-}
+  readonly connectionStatus?: ConnectionStatus;
+  /**
+   * Average latency in milliseconds.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly avgLatencyInMs?: number;
+  /**
+   * Minimum latency in milliseconds.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly minLatencyInMs?: number;
+  /**
+   * Maximum latency in milliseconds.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly maxLatencyInMs?: number;
+  /**
+   * Total number of probes sent.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly probesSent?: number;
+  /**
+   * Number of failed probes.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly probesFailed?: number;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ConnectivityInformation;
+    };
+};
 
 /**
  * Contains response data for the beginGetAzureReachabilityReport operation.
  */
-export interface NetworkWatchersBeginGetAzureReachabilityReportResponse extends msRest.HttpResponse {
+export type NetworkWatchersBeginGetAzureReachabilityReportResponse = {
   /**
-   * The response body as text (string format)
+   * The aggregation level of Azure reachability report. Can be Country, State or City.
    */
-  bodyAsText: string;
+  aggregationLevel: string;
+  providerLocation: AzureReachabilityReportLocation;
   /**
-   * The response body as parsed JSON or XML
+   * List of Azure reachability report items.
    */
-  parsedBody: AzureReachabilityReport;
-}
+  reachabilityReport: AzureReachabilityReportItem[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: AzureReachabilityReport;
+    };
+};
 
 /**
  * Contains response data for the beginListAvailableProviders operation.
  */
-export interface NetworkWatchersBeginListAvailableProvidersResponse extends msRest.HttpResponse {
+export type NetworkWatchersBeginListAvailableProvidersResponse = {
   /**
-   * The response body as text (string format)
+   * List of available countries.
    */
-  bodyAsText: string;
+  countries: AvailableProvidersListCountry[];
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: AvailableProvidersList;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: AvailableProvidersList;
+    };
+};
 
 /**
  * Contains response data for the create operation.
  */
-export interface PacketCapturesCreateResponse extends msRest.HttpResponse {
+export type PacketCapturesCreateResponse = {
   /**
-   * The response body as text (string format)
+   * Name of the packet capture session.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  bodyAsText: string;
+  readonly name?: string;
   /**
-   * The response body as parsed JSON or XML
+   * ID of the packet capture operation.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: PacketCaptureResult;
-}
+  readonly id?: string;
+  etag?: string;
+  /**
+   * The ID of the targeted resource, only VM is currently supported.
+   */
+  target: string;
+  /**
+   * Number of bytes captured per packet, the remaining bytes are truncated.
+   */
+  bytesToCapturePerPacket?: number;
+  /**
+   * Maximum size of the capture output.
+   */
+  totalBytesPerSession?: number;
+  /**
+   * Maximum duration of the capture session in seconds.
+   */
+  timeLimitInSeconds?: number;
+  storageLocation: PacketCaptureStorageLocation;
+  filters?: PacketCaptureFilter[];
+  /**
+   * The provisioning state of the packet capture session. Possible values include: 'Succeeded',
+   * 'Updating', 'Deleting', 'Failed'
+   */
+  provisioningState?: ProvisioningState;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PacketCaptureResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface PacketCapturesGetResponse extends msRest.HttpResponse {
+export type PacketCapturesGetResponse = {
   /**
-   * The response body as text (string format)
+   * Name of the packet capture session.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  bodyAsText: string;
+  readonly name?: string;
   /**
-   * The response body as parsed JSON or XML
+   * ID of the packet capture operation.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: PacketCaptureResult;
-}
+  readonly id?: string;
+  etag?: string;
+  /**
+   * The ID of the targeted resource, only VM is currently supported.
+   */
+  target: string;
+  /**
+   * Number of bytes captured per packet, the remaining bytes are truncated.
+   */
+  bytesToCapturePerPacket?: number;
+  /**
+   * Maximum size of the capture output.
+   */
+  totalBytesPerSession?: number;
+  /**
+   * Maximum duration of the capture session in seconds.
+   */
+  timeLimitInSeconds?: number;
+  storageLocation: PacketCaptureStorageLocation;
+  filters?: PacketCaptureFilter[];
+  /**
+   * The provisioning state of the packet capture session. Possible values include: 'Succeeded',
+   * 'Updating', 'Deleting', 'Failed'
+   */
+  provisioningState?: ProvisioningState;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PacketCaptureResult;
+    };
+};
 
 /**
  * Contains response data for the getStatus operation.
  */
-export interface PacketCapturesGetStatusResponse extends msRest.HttpResponse {
+export type PacketCapturesGetStatusResponse = {
   /**
-   * The response body as text (string format)
+   * The name of the packet capture resource.
    */
-  bodyAsText: string;
+  name?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The ID of the packet capture resource.
    */
-  parsedBody: PacketCaptureQueryStatusResult;
-}
+  id?: string;
+  /**
+   * The start time of the packet capture session.
+   */
+  captureStartTime?: Date;
+  /**
+   * The status of the packet capture session. Possible values include: 'NotStarted', 'Running',
+   * 'Stopped', 'Error', 'Unknown'
+   */
+  packetCaptureStatus?: PcStatus;
+  /**
+   * The reason the current packet capture session was stopped.
+   */
+  stopReason?: string;
+  /**
+   * List of errors of packet capture session.
+   */
+  packetCaptureError?: PcError[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PacketCaptureQueryStatusResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface PacketCapturesListResponse extends msRest.HttpResponse {
+export type PacketCapturesListResponse = {
   /**
-   * The response body as text (string format)
+   * Information about packet capture sessions.
    */
-  bodyAsText: string;
+  value?: PacketCaptureResult[];
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: PacketCaptureListResult;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PacketCaptureListResult;
+    };
+};
 
 /**
  * Contains response data for the beginCreate operation.
  */
-export interface PacketCapturesBeginCreateResponse extends msRest.HttpResponse {
+export type PacketCapturesBeginCreateResponse = {
   /**
-   * The response body as text (string format)
+   * Name of the packet capture session.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  bodyAsText: string;
+  readonly name?: string;
   /**
-   * The response body as parsed JSON or XML
+   * ID of the packet capture operation.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: PacketCaptureResult;
-}
+  readonly id?: string;
+  etag?: string;
+  /**
+   * The ID of the targeted resource, only VM is currently supported.
+   */
+  target: string;
+  /**
+   * Number of bytes captured per packet, the remaining bytes are truncated.
+   */
+  bytesToCapturePerPacket?: number;
+  /**
+   * Maximum size of the capture output.
+   */
+  totalBytesPerSession?: number;
+  /**
+   * Maximum duration of the capture session in seconds.
+   */
+  timeLimitInSeconds?: number;
+  storageLocation: PacketCaptureStorageLocation;
+  filters?: PacketCaptureFilter[];
+  /**
+   * The provisioning state of the packet capture session. Possible values include: 'Succeeded',
+   * 'Updating', 'Deleting', 'Failed'
+   */
+  provisioningState?: ProvisioningState;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PacketCaptureResult;
+    };
+};
 
 /**
  * Contains response data for the beginGetStatus operation.
  */
-export interface PacketCapturesBeginGetStatusResponse extends msRest.HttpResponse {
+export type PacketCapturesBeginGetStatusResponse = {
   /**
-   * The response body as text (string format)
+   * The name of the packet capture resource.
    */
-  bodyAsText: string;
+  name?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The ID of the packet capture resource.
    */
-  parsedBody: PacketCaptureQueryStatusResult;
-}
+  id?: string;
+  /**
+   * The start time of the packet capture session.
+   */
+  captureStartTime?: Date;
+  /**
+   * The status of the packet capture session. Possible values include: 'NotStarted', 'Running',
+   * 'Stopped', 'Error', 'Unknown'
+   */
+  packetCaptureStatus?: PcStatus;
+  /**
+   * The reason the current packet capture session was stopped.
+   */
+  stopReason?: string;
+  /**
+   * List of errors of packet capture session.
+   */
+  packetCaptureError?: PcError[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PacketCaptureQueryStatusResult;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface ConnectionMonitorsCreateOrUpdateResponse extends msRest.HttpResponse {
+export type ConnectionMonitorsCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Name of the connection monitor.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  bodyAsText: string;
+  readonly name?: string;
   /**
-   * The response body as parsed JSON or XML
+   * ID of the connection monitor.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ConnectionMonitorResult;
-}
+  readonly id?: string;
+  etag?: string;
+  /**
+   * Connection monitor type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Connection monitor location.
+   */
+  location?: string;
+  /**
+   * Connection monitor tags.
+   */
+  tags?: { [propertyName: string]: string };
+  source: ConnectionMonitorSource;
+  destination: ConnectionMonitorDestination;
+  /**
+   * Determines if the connection monitor will start automatically once created.
+   */
+  autoStart?: boolean;
+  /**
+   * Monitoring interval in seconds.
+   */
+  monitoringIntervalInSeconds?: number;
+  /**
+   * The provisioning state of the connection monitor. Possible values include: 'Succeeded',
+   * 'Updating', 'Deleting', 'Failed'
+   */
+  provisioningState?: ProvisioningState;
+  /**
+   * The date and time when the connection monitor was started.
+   */
+  startTime?: Date;
+  /**
+   * The monitoring status of the connection monitor.
+   */
+  monitoringStatus?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ConnectionMonitorResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface ConnectionMonitorsGetResponse extends msRest.HttpResponse {
+export type ConnectionMonitorsGetResponse = {
   /**
-   * The response body as text (string format)
+   * Name of the connection monitor.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  bodyAsText: string;
+  readonly name?: string;
   /**
-   * The response body as parsed JSON or XML
+   * ID of the connection monitor.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ConnectionMonitorResult;
-}
+  readonly id?: string;
+  etag?: string;
+  /**
+   * Connection monitor type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Connection monitor location.
+   */
+  location?: string;
+  /**
+   * Connection monitor tags.
+   */
+  tags?: { [propertyName: string]: string };
+  source: ConnectionMonitorSource;
+  destination: ConnectionMonitorDestination;
+  /**
+   * Determines if the connection monitor will start automatically once created.
+   */
+  autoStart?: boolean;
+  /**
+   * Monitoring interval in seconds.
+   */
+  monitoringIntervalInSeconds?: number;
+  /**
+   * The provisioning state of the connection monitor. Possible values include: 'Succeeded',
+   * 'Updating', 'Deleting', 'Failed'
+   */
+  provisioningState?: ProvisioningState;
+  /**
+   * The date and time when the connection monitor was started.
+   */
+  startTime?: Date;
+  /**
+   * The monitoring status of the connection monitor.
+   */
+  monitoringStatus?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ConnectionMonitorResult;
+    };
+};
 
 /**
  * Contains response data for the query operation.
  */
-export interface ConnectionMonitorsQueryResponse extends msRest.HttpResponse {
+export type ConnectionMonitorsQueryResponse = {
   /**
-   * The response body as text (string format)
+   * Status of connection monitor source. Possible values include: 'Uknown', 'Active', 'Inactive'
    */
-  bodyAsText: string;
+  sourceStatus?: ConnectionMonitorSourceStatus;
   /**
-   * The response body as parsed JSON or XML
+   * Information about connection states.
    */
-  parsedBody: ConnectionMonitorQueryResult;
-}
+  states?: ConnectionStateSnapshot[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ConnectionMonitorQueryResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface ConnectionMonitorsListResponse extends msRest.HttpResponse {
+export type ConnectionMonitorsListResponse = {
   /**
-   * The response body as text (string format)
+   * Information about connection monitors.
    */
-  bodyAsText: string;
+  value?: ConnectionMonitorResult[];
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: ConnectionMonitorListResult;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ConnectionMonitorListResult;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface ConnectionMonitorsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type ConnectionMonitorsBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Name of the connection monitor.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  bodyAsText: string;
+  readonly name?: string;
   /**
-   * The response body as parsed JSON or XML
+   * ID of the connection monitor.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: ConnectionMonitorResult;
-}
+  readonly id?: string;
+  etag?: string;
+  /**
+   * Connection monitor type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Connection monitor location.
+   */
+  location?: string;
+  /**
+   * Connection monitor tags.
+   */
+  tags?: { [propertyName: string]: string };
+  source: ConnectionMonitorSource;
+  destination: ConnectionMonitorDestination;
+  /**
+   * Determines if the connection monitor will start automatically once created.
+   */
+  autoStart?: boolean;
+  /**
+   * Monitoring interval in seconds.
+   */
+  monitoringIntervalInSeconds?: number;
+  /**
+   * The provisioning state of the connection monitor. Possible values include: 'Succeeded',
+   * 'Updating', 'Deleting', 'Failed'
+   */
+  provisioningState?: ProvisioningState;
+  /**
+   * The date and time when the connection monitor was started.
+   */
+  startTime?: Date;
+  /**
+   * The monitoring status of the connection monitor.
+   */
+  monitoringStatus?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ConnectionMonitorResult;
+    };
+};
 
 /**
  * Contains response data for the beginQuery operation.
  */
-export interface ConnectionMonitorsBeginQueryResponse extends msRest.HttpResponse {
+export type ConnectionMonitorsBeginQueryResponse = {
   /**
-   * The response body as text (string format)
+   * Status of connection monitor source. Possible values include: 'Uknown', 'Active', 'Inactive'
    */
-  bodyAsText: string;
+  sourceStatus?: ConnectionMonitorSourceStatus;
   /**
-   * The response body as parsed JSON or XML
+   * Information about connection states.
    */
-  parsedBody: ConnectionMonitorQueryResult;
-}
+  states?: ConnectionStateSnapshot[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ConnectionMonitorQueryResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface OperationsListResponse extends msRest.HttpResponse {
+export type OperationsListResponse = {
   /**
-   * The response body as text (string format)
+   * List of Network operations supported by the Network resource provider.
    */
-  bodyAsText: string;
+  value?: Operation[];
   /**
-   * The response body as parsed JSON or XML
+   * URL to get the next set of operation list results if there are any.
    */
-  parsedBody: OperationListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: OperationListResult;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface OperationsListNextResponse extends msRest.HttpResponse {
+export type OperationsListNextResponse = {
   /**
-   * The response body as text (string format)
+   * List of Network operations supported by the Network resource provider.
    */
-  bodyAsText: string;
+  value?: Operation[];
   /**
-   * The response body as parsed JSON or XML
+   * URL to get the next set of operation list results if there are any.
    */
-  parsedBody: OperationListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: OperationListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface PublicIPAddressesGetResponse extends msRest.HttpResponse {
+export type PublicIPAddressesGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: PublicIPAddress;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The public IP address SKU.
+   */
+  sku?: PublicIPAddressSku;
+  /**
+   * The public IP allocation method. Possible values are: 'Static' and 'Dynamic'. Possible values
+   * include: 'Static', 'Dynamic'
+   */
+  publicIPAllocationMethod?: IPAllocationMethod;
+  /**
+   * The public IP address version. Possible values are: 'IPv4' and 'IPv6'. Possible values
+   * include: 'IPv4', 'IPv6'
+   */
+  publicIPAddressVersion?: IPVersion;
+  /**
+   * The IP configuration associated with the public IP address.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly ipConfiguration?: IPConfiguration;
+  /**
+   * The FQDN of the DNS record associated with the public IP address.
+   */
+  dnsSettings?: PublicIPAddressDnsSettings;
+  /**
+   * The list of tags associated with the public IP address.
+   */
+  ipTags?: IpTag[];
+  /**
+   * The IP address associated with the public IP address resource.
+   */
+  ipAddress?: string;
+  /**
+   * The idle timeout of the public IP address.
+   */
+  idleTimeoutInMinutes?: number;
+  /**
+   * The resource GUID property of the public IP resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the PublicIP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * A list of availability zones denoting the IP allocated for the resource needs to come from.
+   */
+  zones?: string[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PublicIPAddress;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface PublicIPAddressesCreateOrUpdateResponse extends msRest.HttpResponse {
+export type PublicIPAddressesCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: PublicIPAddress;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The public IP address SKU.
+   */
+  sku?: PublicIPAddressSku;
+  /**
+   * The public IP allocation method. Possible values are: 'Static' and 'Dynamic'. Possible values
+   * include: 'Static', 'Dynamic'
+   */
+  publicIPAllocationMethod?: IPAllocationMethod;
+  /**
+   * The public IP address version. Possible values are: 'IPv4' and 'IPv6'. Possible values
+   * include: 'IPv4', 'IPv6'
+   */
+  publicIPAddressVersion?: IPVersion;
+  /**
+   * The IP configuration associated with the public IP address.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly ipConfiguration?: IPConfiguration;
+  /**
+   * The FQDN of the DNS record associated with the public IP address.
+   */
+  dnsSettings?: PublicIPAddressDnsSettings;
+  /**
+   * The list of tags associated with the public IP address.
+   */
+  ipTags?: IpTag[];
+  /**
+   * The IP address associated with the public IP address resource.
+   */
+  ipAddress?: string;
+  /**
+   * The idle timeout of the public IP address.
+   */
+  idleTimeoutInMinutes?: number;
+  /**
+   * The resource GUID property of the public IP resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the PublicIP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * A list of availability zones denoting the IP allocated for the resource needs to come from.
+   */
+  zones?: string[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PublicIPAddress;
+    };
+};
 
 /**
  * Contains response data for the updateTags operation.
  */
-export interface PublicIPAddressesUpdateTagsResponse extends msRest.HttpResponse {
+export type PublicIPAddressesUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: PublicIPAddress;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The public IP address SKU.
+   */
+  sku?: PublicIPAddressSku;
+  /**
+   * The public IP allocation method. Possible values are: 'Static' and 'Dynamic'. Possible values
+   * include: 'Static', 'Dynamic'
+   */
+  publicIPAllocationMethod?: IPAllocationMethod;
+  /**
+   * The public IP address version. Possible values are: 'IPv4' and 'IPv6'. Possible values
+   * include: 'IPv4', 'IPv6'
+   */
+  publicIPAddressVersion?: IPVersion;
+  /**
+   * The IP configuration associated with the public IP address.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly ipConfiguration?: IPConfiguration;
+  /**
+   * The FQDN of the DNS record associated with the public IP address.
+   */
+  dnsSettings?: PublicIPAddressDnsSettings;
+  /**
+   * The list of tags associated with the public IP address.
+   */
+  ipTags?: IpTag[];
+  /**
+   * The IP address associated with the public IP address resource.
+   */
+  ipAddress?: string;
+  /**
+   * The idle timeout of the public IP address.
+   */
+  idleTimeoutInMinutes?: number;
+  /**
+   * The resource GUID property of the public IP resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the PublicIP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * A list of availability zones denoting the IP allocated for the resource needs to come from.
+   */
+  zones?: string[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PublicIPAddress;
+    };
+};
 
 /**
  * Contains response data for the listAll operation.
  */
-export interface PublicIPAddressesListAllResponse extends msRest.HttpResponse {
+export type PublicIPAddressesListAllResponse = {
   /**
-   * The response body as text (string format)
+   * A list of public IP addresses that exists in a resource group.
    */
-  bodyAsText: string;
+  value?: PublicIPAddress[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: PublicIPAddressListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PublicIPAddressListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface PublicIPAddressesListResponse extends msRest.HttpResponse {
+export type PublicIPAddressesListResponse = {
   /**
-   * The response body as text (string format)
+   * A list of public IP addresses that exists in a resource group.
    */
-  bodyAsText: string;
+  value?: PublicIPAddress[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: PublicIPAddressListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PublicIPAddressListResult;
+    };
+};
 
 /**
  * Contains response data for the listVirtualMachineScaleSetPublicIPAddresses
  * operation.
  */
-export interface PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesResponse extends msRest.HttpResponse {
+export type PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesResponse = {
   /**
-   * The response body as text (string format)
+   * A list of public IP addresses that exists in a resource group.
    */
-  bodyAsText: string;
+  value?: PublicIPAddress[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: PublicIPAddressListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PublicIPAddressListResult;
+    };
+};
 
 /**
  * Contains response data for the listVirtualMachineScaleSetVMPublicIPAddresses
  * operation.
  */
-export interface PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesResponse extends msRest.HttpResponse {
+export type PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesResponse = {
   /**
-   * The response body as text (string format)
+   * A list of public IP addresses that exists in a resource group.
    */
-  bodyAsText: string;
+  value?: PublicIPAddress[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: PublicIPAddressListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PublicIPAddressListResult;
+    };
+};
 
 /**
  * Contains response data for the getVirtualMachineScaleSetPublicIPAddress
  * operation.
  */
-export interface PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressResponse extends msRest.HttpResponse {
+export type PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: PublicIPAddress;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The public IP address SKU.
+   */
+  sku?: PublicIPAddressSku;
+  /**
+   * The public IP allocation method. Possible values are: 'Static' and 'Dynamic'. Possible values
+   * include: 'Static', 'Dynamic'
+   */
+  publicIPAllocationMethod?: IPAllocationMethod;
+  /**
+   * The public IP address version. Possible values are: 'IPv4' and 'IPv6'. Possible values
+   * include: 'IPv4', 'IPv6'
+   */
+  publicIPAddressVersion?: IPVersion;
+  /**
+   * The IP configuration associated with the public IP address.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly ipConfiguration?: IPConfiguration;
+  /**
+   * The FQDN of the DNS record associated with the public IP address.
+   */
+  dnsSettings?: PublicIPAddressDnsSettings;
+  /**
+   * The list of tags associated with the public IP address.
+   */
+  ipTags?: IpTag[];
+  /**
+   * The IP address associated with the public IP address resource.
+   */
+  ipAddress?: string;
+  /**
+   * The idle timeout of the public IP address.
+   */
+  idleTimeoutInMinutes?: number;
+  /**
+   * The resource GUID property of the public IP resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the PublicIP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * A list of availability zones denoting the IP allocated for the resource needs to come from.
+   */
+  zones?: string[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PublicIPAddress;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface PublicIPAddressesBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type PublicIPAddressesBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: PublicIPAddress;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The public IP address SKU.
+   */
+  sku?: PublicIPAddressSku;
+  /**
+   * The public IP allocation method. Possible values are: 'Static' and 'Dynamic'. Possible values
+   * include: 'Static', 'Dynamic'
+   */
+  publicIPAllocationMethod?: IPAllocationMethod;
+  /**
+   * The public IP address version. Possible values are: 'IPv4' and 'IPv6'. Possible values
+   * include: 'IPv4', 'IPv6'
+   */
+  publicIPAddressVersion?: IPVersion;
+  /**
+   * The IP configuration associated with the public IP address.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly ipConfiguration?: IPConfiguration;
+  /**
+   * The FQDN of the DNS record associated with the public IP address.
+   */
+  dnsSettings?: PublicIPAddressDnsSettings;
+  /**
+   * The list of tags associated with the public IP address.
+   */
+  ipTags?: IpTag[];
+  /**
+   * The IP address associated with the public IP address resource.
+   */
+  ipAddress?: string;
+  /**
+   * The idle timeout of the public IP address.
+   */
+  idleTimeoutInMinutes?: number;
+  /**
+   * The resource GUID property of the public IP resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the PublicIP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * A list of availability zones denoting the IP allocated for the resource needs to come from.
+   */
+  zones?: string[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PublicIPAddress;
+    };
+};
 
 /**
  * Contains response data for the beginUpdateTags operation.
  */
-export interface PublicIPAddressesBeginUpdateTagsResponse extends msRest.HttpResponse {
+export type PublicIPAddressesBeginUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: PublicIPAddress;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The public IP address SKU.
+   */
+  sku?: PublicIPAddressSku;
+  /**
+   * The public IP allocation method. Possible values are: 'Static' and 'Dynamic'. Possible values
+   * include: 'Static', 'Dynamic'
+   */
+  publicIPAllocationMethod?: IPAllocationMethod;
+  /**
+   * The public IP address version. Possible values are: 'IPv4' and 'IPv6'. Possible values
+   * include: 'IPv4', 'IPv6'
+   */
+  publicIPAddressVersion?: IPVersion;
+  /**
+   * The IP configuration associated with the public IP address.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly ipConfiguration?: IPConfiguration;
+  /**
+   * The FQDN of the DNS record associated with the public IP address.
+   */
+  dnsSettings?: PublicIPAddressDnsSettings;
+  /**
+   * The list of tags associated with the public IP address.
+   */
+  ipTags?: IpTag[];
+  /**
+   * The IP address associated with the public IP address resource.
+   */
+  ipAddress?: string;
+  /**
+   * The idle timeout of the public IP address.
+   */
+  idleTimeoutInMinutes?: number;
+  /**
+   * The resource GUID property of the public IP resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the PublicIP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * A list of availability zones denoting the IP allocated for the resource needs to come from.
+   */
+  zones?: string[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PublicIPAddress;
+    };
+};
 
 /**
  * Contains response data for the listAllNext operation.
  */
-export interface PublicIPAddressesListAllNextResponse extends msRest.HttpResponse {
+export type PublicIPAddressesListAllNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of public IP addresses that exists in a resource group.
    */
-  bodyAsText: string;
+  value?: PublicIPAddress[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: PublicIPAddressListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PublicIPAddressListResult;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface PublicIPAddressesListNextResponse extends msRest.HttpResponse {
+export type PublicIPAddressesListNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of public IP addresses that exists in a resource group.
    */
-  bodyAsText: string;
+  value?: PublicIPAddress[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: PublicIPAddressListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PublicIPAddressListResult;
+    };
+};
 
 /**
  * Contains response data for the
  * listVirtualMachineScaleSetPublicIPAddressesNext operation.
  */
-export interface PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextResponse extends msRest.HttpResponse {
+export type PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of public IP addresses that exists in a resource group.
    */
-  bodyAsText: string;
+  value?: PublicIPAddress[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: PublicIPAddressListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PublicIPAddressListResult;
+    };
+};
 
 /**
  * Contains response data for the
  * listVirtualMachineScaleSetVMPublicIPAddressesNext operation.
  */
-export interface PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextResponse extends msRest.HttpResponse {
+export type PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of public IP addresses that exists in a resource group.
    */
-  bodyAsText: string;
+  value?: PublicIPAddress[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: PublicIPAddressListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PublicIPAddressListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface RouteFiltersGetResponse extends msRest.HttpResponse {
+export type RouteFiltersGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: RouteFilter;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * Collection of RouteFilterRules contained within a route filter.
+   */
+  rules?: RouteFilterRule[];
+  /**
+   * A collection of references to express route circuit peerings.
+   */
+  peerings?: ExpressRouteCircuitPeering[];
+  /**
+   * The provisioning state of the resource. Possible values are: 'Updating', 'Deleting',
+   * 'Succeeded' and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteFilter;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface RouteFiltersCreateOrUpdateResponse extends msRest.HttpResponse {
+export type RouteFiltersCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: RouteFilter;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * Collection of RouteFilterRules contained within a route filter.
+   */
+  rules?: RouteFilterRule[];
+  /**
+   * A collection of references to express route circuit peerings.
+   */
+  peerings?: ExpressRouteCircuitPeering[];
+  /**
+   * The provisioning state of the resource. Possible values are: 'Updating', 'Deleting',
+   * 'Succeeded' and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteFilter;
+    };
+};
 
 /**
  * Contains response data for the update operation.
  */
-export interface RouteFiltersUpdateResponse extends msRest.HttpResponse {
+export type RouteFiltersUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: RouteFilter;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * Collection of RouteFilterRules contained within a route filter.
+   */
+  rules?: RouteFilterRule[];
+  /**
+   * A collection of references to express route circuit peerings.
+   */
+  peerings?: ExpressRouteCircuitPeering[];
+  /**
+   * The provisioning state of the resource. Possible values are: 'Updating', 'Deleting',
+   * 'Succeeded' and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteFilter;
+    };
+};
 
 /**
  * Contains response data for the listByResourceGroup operation.
  */
-export interface RouteFiltersListByResourceGroupResponse extends msRest.HttpResponse {
+export type RouteFiltersListByResourceGroupResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of route filters in a resource group.
    */
-  bodyAsText: string;
+  value?: RouteFilter[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: RouteFilterListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteFilterListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface RouteFiltersListResponse extends msRest.HttpResponse {
+export type RouteFiltersListResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of route filters in a resource group.
    */
-  bodyAsText: string;
+  value?: RouteFilter[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: RouteFilterListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteFilterListResult;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface RouteFiltersBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type RouteFiltersBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: RouteFilter;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * Collection of RouteFilterRules contained within a route filter.
+   */
+  rules?: RouteFilterRule[];
+  /**
+   * A collection of references to express route circuit peerings.
+   */
+  peerings?: ExpressRouteCircuitPeering[];
+  /**
+   * The provisioning state of the resource. Possible values are: 'Updating', 'Deleting',
+   * 'Succeeded' and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteFilter;
+    };
+};
 
 /**
  * Contains response data for the beginUpdate operation.
  */
-export interface RouteFiltersBeginUpdateResponse extends msRest.HttpResponse {
+export type RouteFiltersBeginUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: RouteFilter;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * Collection of RouteFilterRules contained within a route filter.
+   */
+  rules?: RouteFilterRule[];
+  /**
+   * A collection of references to express route circuit peerings.
+   */
+  peerings?: ExpressRouteCircuitPeering[];
+  /**
+   * The provisioning state of the resource. Possible values are: 'Updating', 'Deleting',
+   * 'Succeeded' and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteFilter;
+    };
+};
 
 /**
  * Contains response data for the listByResourceGroupNext operation.
  */
-export interface RouteFiltersListByResourceGroupNextResponse extends msRest.HttpResponse {
+export type RouteFiltersListByResourceGroupNextResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of route filters in a resource group.
    */
-  bodyAsText: string;
+  value?: RouteFilter[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: RouteFilterListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteFilterListResult;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface RouteFiltersListNextResponse extends msRest.HttpResponse {
+export type RouteFiltersListNextResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of route filters in a resource group.
    */
-  bodyAsText: string;
+  value?: RouteFilter[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: RouteFilterListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteFilterListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface RouteFilterRulesGetResponse extends msRest.HttpResponse {
+export type RouteFilterRulesGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The access type of the rule. Valid values are: 'Allow', 'Deny'. Possible values include:
+   * 'Allow', 'Deny'
    */
-  parsedBody: RouteFilterRule;
-}
+  access: Access;
+  /**
+   * The rule type of the rule. Valid value is: 'Community'
+   */
+  routeFilterRuleType: string;
+  /**
+   * The collection for bgp community values to filter on. e.g. ['12076:5010','12076:5020']
+   */
+  communities: string[];
+  /**
+   * The provisioning state of the resource. Possible values are: 'Updating', 'Deleting',
+   * 'Succeeded' and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteFilterRule;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface RouteFilterRulesCreateOrUpdateResponse extends msRest.HttpResponse {
+export type RouteFilterRulesCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The access type of the rule. Valid values are: 'Allow', 'Deny'. Possible values include:
+   * 'Allow', 'Deny'
    */
-  parsedBody: RouteFilterRule;
-}
+  access: Access;
+  /**
+   * The rule type of the rule. Valid value is: 'Community'
+   */
+  routeFilterRuleType: string;
+  /**
+   * The collection for bgp community values to filter on. e.g. ['12076:5010','12076:5020']
+   */
+  communities: string[];
+  /**
+   * The provisioning state of the resource. Possible values are: 'Updating', 'Deleting',
+   * 'Succeeded' and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteFilterRule;
+    };
+};
 
 /**
  * Contains response data for the update operation.
  */
-export interface RouteFilterRulesUpdateResponse extends msRest.HttpResponse {
+export type RouteFilterRulesUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The access type of the rule. Valid values are: 'Allow', 'Deny'. Possible values include:
+   * 'Allow', 'Deny'
    */
-  parsedBody: RouteFilterRule;
-}
+  access: Access;
+  /**
+   * The rule type of the rule. Valid value is: 'Community'
+   */
+  routeFilterRuleType: string;
+  /**
+   * The collection for bgp community values to filter on. e.g. ['12076:5010','12076:5020']
+   */
+  communities: string[];
+  /**
+   * The provisioning state of the resource. Possible values are: 'Updating', 'Deleting',
+   * 'Succeeded' and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteFilterRule;
+    };
+};
 
 /**
  * Contains response data for the listByRouteFilter operation.
  */
-export interface RouteFilterRulesListByRouteFilterResponse extends msRest.HttpResponse {
+export type RouteFilterRulesListByRouteFilterResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of RouteFilterRules in a resource group.
    */
-  bodyAsText: string;
+  value?: RouteFilterRule[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: RouteFilterRuleListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteFilterRuleListResult;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface RouteFilterRulesBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type RouteFilterRulesBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The access type of the rule. Valid values are: 'Allow', 'Deny'. Possible values include:
+   * 'Allow', 'Deny'
    */
-  parsedBody: RouteFilterRule;
-}
+  access: Access;
+  /**
+   * The rule type of the rule. Valid value is: 'Community'
+   */
+  routeFilterRuleType: string;
+  /**
+   * The collection for bgp community values to filter on. e.g. ['12076:5010','12076:5020']
+   */
+  communities: string[];
+  /**
+   * The provisioning state of the resource. Possible values are: 'Updating', 'Deleting',
+   * 'Succeeded' and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteFilterRule;
+    };
+};
 
 /**
  * Contains response data for the beginUpdate operation.
  */
-export interface RouteFilterRulesBeginUpdateResponse extends msRest.HttpResponse {
+export type RouteFilterRulesBeginUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The access type of the rule. Valid values are: 'Allow', 'Deny'. Possible values include:
+   * 'Allow', 'Deny'
    */
-  parsedBody: RouteFilterRule;
-}
+  access: Access;
+  /**
+   * The rule type of the rule. Valid value is: 'Community'
+   */
+  routeFilterRuleType: string;
+  /**
+   * The collection for bgp community values to filter on. e.g. ['12076:5010','12076:5020']
+   */
+  communities: string[];
+  /**
+   * The provisioning state of the resource. Possible values are: 'Updating', 'Deleting',
+   * 'Succeeded' and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteFilterRule;
+    };
+};
 
 /**
  * Contains response data for the listByRouteFilterNext operation.
  */
-export interface RouteFilterRulesListByRouteFilterNextResponse extends msRest.HttpResponse {
+export type RouteFilterRulesListByRouteFilterNextResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of RouteFilterRules in a resource group.
    */
-  bodyAsText: string;
+  value?: RouteFilterRule[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: RouteFilterRuleListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteFilterRuleListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface RouteTablesGetResponse extends msRest.HttpResponse {
+export type RouteTablesGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: RouteTable;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * Collection of routes contained within a route table.
+   */
+  routes?: Route[];
+  /**
+   * A collection of references to subnets.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly subnets?: Subnet[];
+  /**
+   * Gets or sets whether to disable the routes learned by BGP on that route table. True means
+   * disable.
+   */
+  disableBgpRoutePropagation?: boolean;
+  /**
+   * The provisioning state of the resource. Possible values are: 'Updating', 'Deleting', and
+   * 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteTable;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface RouteTablesCreateOrUpdateResponse extends msRest.HttpResponse {
+export type RouteTablesCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: RouteTable;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * Collection of routes contained within a route table.
+   */
+  routes?: Route[];
+  /**
+   * A collection of references to subnets.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly subnets?: Subnet[];
+  /**
+   * Gets or sets whether to disable the routes learned by BGP on that route table. True means
+   * disable.
+   */
+  disableBgpRoutePropagation?: boolean;
+  /**
+   * The provisioning state of the resource. Possible values are: 'Updating', 'Deleting', and
+   * 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteTable;
+    };
+};
 
 /**
  * Contains response data for the updateTags operation.
  */
-export interface RouteTablesUpdateTagsResponse extends msRest.HttpResponse {
+export type RouteTablesUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: RouteTable;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * Collection of routes contained within a route table.
+   */
+  routes?: Route[];
+  /**
+   * A collection of references to subnets.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly subnets?: Subnet[];
+  /**
+   * Gets or sets whether to disable the routes learned by BGP on that route table. True means
+   * disable.
+   */
+  disableBgpRoutePropagation?: boolean;
+  /**
+   * The provisioning state of the resource. Possible values are: 'Updating', 'Deleting', and
+   * 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteTable;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface RouteTablesListResponse extends msRest.HttpResponse {
+export type RouteTablesListResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of route tables in a resource group.
    */
-  bodyAsText: string;
+  value?: RouteTable[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: RouteTableListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteTableListResult;
+    };
+};
 
 /**
  * Contains response data for the listAll operation.
  */
-export interface RouteTablesListAllResponse extends msRest.HttpResponse {
+export type RouteTablesListAllResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of route tables in a resource group.
    */
-  bodyAsText: string;
+  value?: RouteTable[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: RouteTableListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteTableListResult;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface RouteTablesBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type RouteTablesBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: RouteTable;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * Collection of routes contained within a route table.
+   */
+  routes?: Route[];
+  /**
+   * A collection of references to subnets.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly subnets?: Subnet[];
+  /**
+   * Gets or sets whether to disable the routes learned by BGP on that route table. True means
+   * disable.
+   */
+  disableBgpRoutePropagation?: boolean;
+  /**
+   * The provisioning state of the resource. Possible values are: 'Updating', 'Deleting', and
+   * 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteTable;
+    };
+};
 
 /**
  * Contains response data for the beginUpdateTags operation.
  */
-export interface RouteTablesBeginUpdateTagsResponse extends msRest.HttpResponse {
+export type RouteTablesBeginUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: RouteTable;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * Collection of routes contained within a route table.
+   */
+  routes?: Route[];
+  /**
+   * A collection of references to subnets.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly subnets?: Subnet[];
+  /**
+   * Gets or sets whether to disable the routes learned by BGP on that route table. True means
+   * disable.
+   */
+  disableBgpRoutePropagation?: boolean;
+  /**
+   * The provisioning state of the resource. Possible values are: 'Updating', 'Deleting', and
+   * 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteTable;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface RouteTablesListNextResponse extends msRest.HttpResponse {
+export type RouteTablesListNextResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of route tables in a resource group.
    */
-  bodyAsText: string;
+  value?: RouteTable[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: RouteTableListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteTableListResult;
+    };
+};
 
 /**
  * Contains response data for the listAllNext operation.
  */
-export interface RouteTablesListAllNextResponse extends msRest.HttpResponse {
+export type RouteTablesListAllNextResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of route tables in a resource group.
    */
-  bodyAsText: string;
+  value?: RouteTable[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: RouteTableListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteTableListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface RoutesGetResponse extends msRest.HttpResponse {
+export type RoutesGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The destination CIDR to which the route applies.
    */
-  parsedBody: Route;
-}
+  addressPrefix?: string;
+  /**
+   * The type of Azure hop the packet should be sent to. Possible values are:
+   * 'VirtualNetworkGateway', 'VnetLocal', 'Internet', 'VirtualAppliance', and 'None'. Possible
+   * values include: 'VirtualNetworkGateway', 'VnetLocal', 'Internet', 'VirtualAppliance', 'None'
+   */
+  nextHopType: RouteNextHopType;
+  /**
+   * The IP address packets should be forwarded to. Next hop values are only allowed in routes
+   * where the next hop type is VirtualAppliance.
+   */
+  nextHopIpAddress?: string;
+  /**
+   * The provisioning state of the resource. Possible values are: 'Updating', 'Deleting', and
+   * 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Route;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface RoutesCreateOrUpdateResponse extends msRest.HttpResponse {
+export type RoutesCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The destination CIDR to which the route applies.
    */
-  parsedBody: Route;
-}
+  addressPrefix?: string;
+  /**
+   * The type of Azure hop the packet should be sent to. Possible values are:
+   * 'VirtualNetworkGateway', 'VnetLocal', 'Internet', 'VirtualAppliance', and 'None'. Possible
+   * values include: 'VirtualNetworkGateway', 'VnetLocal', 'Internet', 'VirtualAppliance', 'None'
+   */
+  nextHopType: RouteNextHopType;
+  /**
+   * The IP address packets should be forwarded to. Next hop values are only allowed in routes
+   * where the next hop type is VirtualAppliance.
+   */
+  nextHopIpAddress?: string;
+  /**
+   * The provisioning state of the resource. Possible values are: 'Updating', 'Deleting', and
+   * 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Route;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface RoutesListResponse extends msRest.HttpResponse {
+export type RoutesListResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of routes in a resource group.
    */
-  bodyAsText: string;
+  value?: Route[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: RouteListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteListResult;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface RoutesBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type RoutesBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The destination CIDR to which the route applies.
    */
-  parsedBody: Route;
-}
+  addressPrefix?: string;
+  /**
+   * The type of Azure hop the packet should be sent to. Possible values are:
+   * 'VirtualNetworkGateway', 'VnetLocal', 'Internet', 'VirtualAppliance', and 'None'. Possible
+   * values include: 'VirtualNetworkGateway', 'VnetLocal', 'Internet', 'VirtualAppliance', 'None'
+   */
+  nextHopType: RouteNextHopType;
+  /**
+   * The IP address packets should be forwarded to. Next hop values are only allowed in routes
+   * where the next hop type is VirtualAppliance.
+   */
+  nextHopIpAddress?: string;
+  /**
+   * The provisioning state of the resource. Possible values are: 'Updating', 'Deleting', and
+   * 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Route;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface RoutesListNextResponse extends msRest.HttpResponse {
+export type RoutesListNextResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of routes in a resource group.
    */
-  bodyAsText: string;
+  value?: Route[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: RouteListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: RouteListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface BgpServiceCommunitiesListResponse extends msRest.HttpResponse {
+export type BgpServiceCommunitiesListResponse = {
   /**
-   * The response body as text (string format)
+   * A list of service community resources.
    */
-  bodyAsText: string;
+  value?: BgpServiceCommunity[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: BgpServiceCommunityListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: BgpServiceCommunityListResult;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface BgpServiceCommunitiesListNextResponse extends msRest.HttpResponse {
+export type BgpServiceCommunitiesListNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of service community resources.
    */
-  bodyAsText: string;
+  value?: BgpServiceCommunity[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: BgpServiceCommunityListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: BgpServiceCommunityListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface UsagesListResponse extends msRest.HttpResponse {
+export type UsagesListResponse = {
   /**
-   * The response body as text (string format)
+   * The list network resource usages.
    */
-  bodyAsText: string;
+  value?: Usage[];
   /**
-   * The response body as parsed JSON or XML
+   * URL to get the next set of results.
    */
-  parsedBody: UsagesListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: UsagesListResult;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface UsagesListNextResponse extends msRest.HttpResponse {
+export type UsagesListNextResponse = {
   /**
-   * The response body as text (string format)
+   * The list network resource usages.
    */
-  bodyAsText: string;
+  value?: Usage[];
   /**
-   * The response body as parsed JSON or XML
+   * URL to get the next set of results.
    */
-  parsedBody: UsagesListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: UsagesListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface VirtualNetworksGetResponse extends msRest.HttpResponse {
+export type VirtualNetworksGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetwork;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The AddressSpace that contains an array of IP address ranges that can be used by subnets.
+   */
+  addressSpace?: AddressSpace;
+  /**
+   * The dhcpOptions that contains an array of DNS servers available to VMs deployed in the virtual
+   * network.
+   */
+  dhcpOptions?: DhcpOptions;
+  /**
+   * A list of subnets in a Virtual Network.
+   */
+  subnets?: Subnet[];
+  /**
+   * A list of peerings in a Virtual Network.
+   */
+  virtualNetworkPeerings?: VirtualNetworkPeering[];
+  /**
+   * The resourceGuid property of the Virtual Network resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the PublicIP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * Indicates if DDoS protection is enabled for all the protected resources in the virtual
+   * network. It requires a DDoS protection plan associated with the resource.
+   */
+  enableDdosProtection?: boolean;
+  /**
+   * Indicates if VM protection is enabled for all the subnets in the virtual network.
+   */
+  enableVmProtection?: boolean;
+  /**
+   * The DDoS protection plan associated with the virtual network.
+   */
+  ddosProtectionPlan?: SubResource;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetwork;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface VirtualNetworksCreateOrUpdateResponse extends msRest.HttpResponse {
+export type VirtualNetworksCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetwork;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The AddressSpace that contains an array of IP address ranges that can be used by subnets.
+   */
+  addressSpace?: AddressSpace;
+  /**
+   * The dhcpOptions that contains an array of DNS servers available to VMs deployed in the virtual
+   * network.
+   */
+  dhcpOptions?: DhcpOptions;
+  /**
+   * A list of subnets in a Virtual Network.
+   */
+  subnets?: Subnet[];
+  /**
+   * A list of peerings in a Virtual Network.
+   */
+  virtualNetworkPeerings?: VirtualNetworkPeering[];
+  /**
+   * The resourceGuid property of the Virtual Network resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the PublicIP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * Indicates if DDoS protection is enabled for all the protected resources in the virtual
+   * network. It requires a DDoS protection plan associated with the resource.
+   */
+  enableDdosProtection?: boolean;
+  /**
+   * Indicates if VM protection is enabled for all the subnets in the virtual network.
+   */
+  enableVmProtection?: boolean;
+  /**
+   * The DDoS protection plan associated with the virtual network.
+   */
+  ddosProtectionPlan?: SubResource;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetwork;
+    };
+};
 
 /**
  * Contains response data for the updateTags operation.
  */
-export interface VirtualNetworksUpdateTagsResponse extends msRest.HttpResponse {
+export type VirtualNetworksUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetwork;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The AddressSpace that contains an array of IP address ranges that can be used by subnets.
+   */
+  addressSpace?: AddressSpace;
+  /**
+   * The dhcpOptions that contains an array of DNS servers available to VMs deployed in the virtual
+   * network.
+   */
+  dhcpOptions?: DhcpOptions;
+  /**
+   * A list of subnets in a Virtual Network.
+   */
+  subnets?: Subnet[];
+  /**
+   * A list of peerings in a Virtual Network.
+   */
+  virtualNetworkPeerings?: VirtualNetworkPeering[];
+  /**
+   * The resourceGuid property of the Virtual Network resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the PublicIP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * Indicates if DDoS protection is enabled for all the protected resources in the virtual
+   * network. It requires a DDoS protection plan associated with the resource.
+   */
+  enableDdosProtection?: boolean;
+  /**
+   * Indicates if VM protection is enabled for all the subnets in the virtual network.
+   */
+  enableVmProtection?: boolean;
+  /**
+   * The DDoS protection plan associated with the virtual network.
+   */
+  ddosProtectionPlan?: SubResource;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetwork;
+    };
+};
 
 /**
  * Contains response data for the listAll operation.
  */
-export interface VirtualNetworksListAllResponse extends msRest.HttpResponse {
+export type VirtualNetworksListAllResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of VirtualNetwork resources in a resource group.
    */
-  bodyAsText: string;
+  value?: VirtualNetwork[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: VirtualNetworkListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkListResult;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface VirtualNetworksListResponse extends msRest.HttpResponse {
+export type VirtualNetworksListResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of VirtualNetwork resources in a resource group.
    */
-  bodyAsText: string;
+  value?: VirtualNetwork[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: VirtualNetworkListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkListResult;
+    };
+};
 
 /**
  * Contains response data for the checkIPAddressAvailability operation.
  */
-export interface VirtualNetworksCheckIPAddressAvailabilityResponse extends msRest.HttpResponse {
+export type VirtualNetworksCheckIPAddressAvailabilityResponse = {
   /**
-   * The response body as text (string format)
+   * Private IP address availability.
    */
-  bodyAsText: string;
+  available?: boolean;
   /**
-   * The response body as parsed JSON or XML
+   * Contains other available private IP addresses if the asked for address is taken.
    */
-  parsedBody: IPAddressAvailabilityResult;
-}
+  availableIPAddresses?: string[];
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: IPAddressAvailabilityResult;
+    };
+};
 
 /**
  * Contains response data for the listUsage operation.
  */
-export interface VirtualNetworksListUsageResponse extends msRest.HttpResponse {
+export type VirtualNetworksListUsageResponse = {
   /**
-   * The response body as text (string format)
+   * VirtualNetwork usage stats.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  bodyAsText: string;
+  readonly value?: VirtualNetworkUsage[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: VirtualNetworkListUsageResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkListUsageResult;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface VirtualNetworksBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type VirtualNetworksBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetwork;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The AddressSpace that contains an array of IP address ranges that can be used by subnets.
+   */
+  addressSpace?: AddressSpace;
+  /**
+   * The dhcpOptions that contains an array of DNS servers available to VMs deployed in the virtual
+   * network.
+   */
+  dhcpOptions?: DhcpOptions;
+  /**
+   * A list of subnets in a Virtual Network.
+   */
+  subnets?: Subnet[];
+  /**
+   * A list of peerings in a Virtual Network.
+   */
+  virtualNetworkPeerings?: VirtualNetworkPeering[];
+  /**
+   * The resourceGuid property of the Virtual Network resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the PublicIP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * Indicates if DDoS protection is enabled for all the protected resources in the virtual
+   * network. It requires a DDoS protection plan associated with the resource.
+   */
+  enableDdosProtection?: boolean;
+  /**
+   * Indicates if VM protection is enabled for all the subnets in the virtual network.
+   */
+  enableVmProtection?: boolean;
+  /**
+   * The DDoS protection plan associated with the virtual network.
+   */
+  ddosProtectionPlan?: SubResource;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetwork;
+    };
+};
 
 /**
  * Contains response data for the beginUpdateTags operation.
  */
-export interface VirtualNetworksBeginUpdateTagsResponse extends msRest.HttpResponse {
+export type VirtualNetworksBeginUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetwork;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The AddressSpace that contains an array of IP address ranges that can be used by subnets.
+   */
+  addressSpace?: AddressSpace;
+  /**
+   * The dhcpOptions that contains an array of DNS servers available to VMs deployed in the virtual
+   * network.
+   */
+  dhcpOptions?: DhcpOptions;
+  /**
+   * A list of subnets in a Virtual Network.
+   */
+  subnets?: Subnet[];
+  /**
+   * A list of peerings in a Virtual Network.
+   */
+  virtualNetworkPeerings?: VirtualNetworkPeering[];
+  /**
+   * The resourceGuid property of the Virtual Network resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the PublicIP resource. Possible values are: 'Updating', 'Deleting',
+   * and 'Failed'.
+   */
+  provisioningState?: string;
+  /**
+   * Indicates if DDoS protection is enabled for all the protected resources in the virtual
+   * network. It requires a DDoS protection plan associated with the resource.
+   */
+  enableDdosProtection?: boolean;
+  /**
+   * Indicates if VM protection is enabled for all the subnets in the virtual network.
+   */
+  enableVmProtection?: boolean;
+  /**
+   * The DDoS protection plan associated with the virtual network.
+   */
+  ddosProtectionPlan?: SubResource;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetwork;
+    };
+};
 
 /**
  * Contains response data for the listAllNext operation.
  */
-export interface VirtualNetworksListAllNextResponse extends msRest.HttpResponse {
+export type VirtualNetworksListAllNextResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of VirtualNetwork resources in a resource group.
    */
-  bodyAsText: string;
+  value?: VirtualNetwork[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: VirtualNetworkListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkListResult;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface VirtualNetworksListNextResponse extends msRest.HttpResponse {
+export type VirtualNetworksListNextResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of VirtualNetwork resources in a resource group.
    */
-  bodyAsText: string;
+  value?: VirtualNetwork[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: VirtualNetworkListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkListResult;
+    };
+};
 
 /**
  * Contains response data for the listUsageNext operation.
  */
-export interface VirtualNetworksListUsageNextResponse extends msRest.HttpResponse {
+export type VirtualNetworksListUsageNextResponse = {
   /**
-   * The response body as text (string format)
+   * VirtualNetwork usage stats.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  bodyAsText: string;
+  readonly value?: VirtualNetworkUsage[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: VirtualNetworkListUsageResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkListUsageResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface SubnetsGetResponse extends msRest.HttpResponse {
+export type SubnetsGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The address prefix for the subnet.
    */
-  parsedBody: Subnet;
-}
+  addressPrefix?: string;
+  /**
+   * The reference of the NetworkSecurityGroup resource.
+   */
+  networkSecurityGroup?: NetworkSecurityGroup;
+  /**
+   * The reference of the RouteTable resource.
+   */
+  routeTable?: RouteTable;
+  /**
+   * An array of service endpoints.
+   */
+  serviceEndpoints?: ServiceEndpointPropertiesFormat[];
+  /**
+   * Gets an array of references to the network interface IP configurations using subnet.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly ipConfigurations?: IPConfiguration[];
+  /**
+   * Gets an array of references to the external resources using subnet.
+   */
+  resourceNavigationLinks?: ResourceNavigationLink[];
+  /**
+   * The provisioning state of the resource.
+   */
+  provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Subnet;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface SubnetsCreateOrUpdateResponse extends msRest.HttpResponse {
+export type SubnetsCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The address prefix for the subnet.
    */
-  parsedBody: Subnet;
-}
+  addressPrefix?: string;
+  /**
+   * The reference of the NetworkSecurityGroup resource.
+   */
+  networkSecurityGroup?: NetworkSecurityGroup;
+  /**
+   * The reference of the RouteTable resource.
+   */
+  routeTable?: RouteTable;
+  /**
+   * An array of service endpoints.
+   */
+  serviceEndpoints?: ServiceEndpointPropertiesFormat[];
+  /**
+   * Gets an array of references to the network interface IP configurations using subnet.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly ipConfigurations?: IPConfiguration[];
+  /**
+   * Gets an array of references to the external resources using subnet.
+   */
+  resourceNavigationLinks?: ResourceNavigationLink[];
+  /**
+   * The provisioning state of the resource.
+   */
+  provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Subnet;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface SubnetsListResponse extends msRest.HttpResponse {
+export type SubnetsListResponse = {
   /**
-   * The response body as text (string format)
+   * The subnets in a virtual network.
    */
-  bodyAsText: string;
+  value?: Subnet[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: SubnetListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SubnetListResult;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface SubnetsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type SubnetsBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * The address prefix for the subnet.
    */
-  parsedBody: Subnet;
-}
+  addressPrefix?: string;
+  /**
+   * The reference of the NetworkSecurityGroup resource.
+   */
+  networkSecurityGroup?: NetworkSecurityGroup;
+  /**
+   * The reference of the RouteTable resource.
+   */
+  routeTable?: RouteTable;
+  /**
+   * An array of service endpoints.
+   */
+  serviceEndpoints?: ServiceEndpointPropertiesFormat[];
+  /**
+   * Gets an array of references to the network interface IP configurations using subnet.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly ipConfigurations?: IPConfiguration[];
+  /**
+   * Gets an array of references to the external resources using subnet.
+   */
+  resourceNavigationLinks?: ResourceNavigationLink[];
+  /**
+   * The provisioning state of the resource.
+   */
+  provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: Subnet;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface SubnetsListNextResponse extends msRest.HttpResponse {
+export type SubnetsListNextResponse = {
   /**
-   * The response body as text (string format)
+   * The subnets in a virtual network.
    */
-  bodyAsText: string;
+  value?: Subnet[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: SubnetListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: SubnetListResult;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface VirtualNetworkPeeringsGetResponse extends msRest.HttpResponse {
+export type VirtualNetworkPeeringsGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Whether the VMs in the linked virtual network space would be able to access all the VMs in
+   * local Virtual network space.
    */
-  parsedBody: VirtualNetworkPeering;
-}
+  allowVirtualNetworkAccess?: boolean;
+  /**
+   * Whether the forwarded traffic from the VMs in the remote virtual network will be
+   * allowed/disallowed.
+   */
+  allowForwardedTraffic?: boolean;
+  /**
+   * If gateway links can be used in remote virtual networking to link to this virtual network.
+   */
+  allowGatewayTransit?: boolean;
+  /**
+   * If remote gateways can be used on this virtual network. If the flag is set to true, and
+   * allowGatewayTransit on remote peering is also true, virtual network will use gateways of
+   * remote virtual network for transit. Only one peering can have this flag set to true. This flag
+   * cannot be set if virtual network already has a gateway.
+   */
+  useRemoteGateways?: boolean;
+  /**
+   * The reference of the remote virtual network. The remote virtual network can be in the same or
+   * different region (preview). See here to register for the preview and learn more
+   * (https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-create-peering).
+   */
+  remoteVirtualNetwork?: SubResource;
+  /**
+   * The reference of the remote virtual network address space.
+   */
+  remoteAddressSpace?: AddressSpace;
+  /**
+   * The status of the virtual network peering. Possible values are 'Initiated', 'Connected', and
+   * 'Disconnected'. Possible values include: 'Initiated', 'Connected', 'Disconnected'
+   */
+  peeringState?: VirtualNetworkPeeringState;
+  /**
+   * The provisioning state of the resource.
+   */
+  provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkPeering;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface VirtualNetworkPeeringsCreateOrUpdateResponse extends msRest.HttpResponse {
+export type VirtualNetworkPeeringsCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Whether the VMs in the linked virtual network space would be able to access all the VMs in
+   * local Virtual network space.
    */
-  parsedBody: VirtualNetworkPeering;
-}
+  allowVirtualNetworkAccess?: boolean;
+  /**
+   * Whether the forwarded traffic from the VMs in the remote virtual network will be
+   * allowed/disallowed.
+   */
+  allowForwardedTraffic?: boolean;
+  /**
+   * If gateway links can be used in remote virtual networking to link to this virtual network.
+   */
+  allowGatewayTransit?: boolean;
+  /**
+   * If remote gateways can be used on this virtual network. If the flag is set to true, and
+   * allowGatewayTransit on remote peering is also true, virtual network will use gateways of
+   * remote virtual network for transit. Only one peering can have this flag set to true. This flag
+   * cannot be set if virtual network already has a gateway.
+   */
+  useRemoteGateways?: boolean;
+  /**
+   * The reference of the remote virtual network. The remote virtual network can be in the same or
+   * different region (preview). See here to register for the preview and learn more
+   * (https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-create-peering).
+   */
+  remoteVirtualNetwork?: SubResource;
+  /**
+   * The reference of the remote virtual network address space.
+   */
+  remoteAddressSpace?: AddressSpace;
+  /**
+   * The status of the virtual network peering. Possible values are 'Initiated', 'Connected', and
+   * 'Disconnected'. Possible values include: 'Initiated', 'Connected', 'Disconnected'
+   */
+  peeringState?: VirtualNetworkPeeringState;
+  /**
+   * The provisioning state of the resource.
+   */
+  provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkPeering;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface VirtualNetworkPeeringsListResponse extends msRest.HttpResponse {
+export type VirtualNetworkPeeringsListResponse = {
   /**
-   * The response body as text (string format)
+   * The peerings in a virtual network.
    */
-  bodyAsText: string;
+  value?: VirtualNetworkPeering[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: VirtualNetworkPeeringListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkPeeringListResult;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface VirtualNetworkPeeringsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type VirtualNetworkPeeringsBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Whether the VMs in the linked virtual network space would be able to access all the VMs in
+   * local Virtual network space.
    */
-  parsedBody: VirtualNetworkPeering;
-}
+  allowVirtualNetworkAccess?: boolean;
+  /**
+   * Whether the forwarded traffic from the VMs in the remote virtual network will be
+   * allowed/disallowed.
+   */
+  allowForwardedTraffic?: boolean;
+  /**
+   * If gateway links can be used in remote virtual networking to link to this virtual network.
+   */
+  allowGatewayTransit?: boolean;
+  /**
+   * If remote gateways can be used on this virtual network. If the flag is set to true, and
+   * allowGatewayTransit on remote peering is also true, virtual network will use gateways of
+   * remote virtual network for transit. Only one peering can have this flag set to true. This flag
+   * cannot be set if virtual network already has a gateway.
+   */
+  useRemoteGateways?: boolean;
+  /**
+   * The reference of the remote virtual network. The remote virtual network can be in the same or
+   * different region (preview). See here to register for the preview and learn more
+   * (https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-create-peering).
+   */
+  remoteVirtualNetwork?: SubResource;
+  /**
+   * The reference of the remote virtual network address space.
+   */
+  remoteAddressSpace?: AddressSpace;
+  /**
+   * The status of the virtual network peering. Possible values are 'Initiated', 'Connected', and
+   * 'Disconnected'. Possible values include: 'Initiated', 'Connected', 'Disconnected'
+   */
+  peeringState?: VirtualNetworkPeeringState;
+  /**
+   * The provisioning state of the resource.
+   */
+  provisioningState?: string;
+  /**
+   * The name of the resource that is unique within a resource group. This name can be used to
+   * access the resource.
+   */
+  name?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkPeering;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface VirtualNetworkPeeringsListNextResponse extends msRest.HttpResponse {
+export type VirtualNetworkPeeringsListNextResponse = {
   /**
-   * The response body as text (string format)
+   * The peerings in a virtual network.
    */
-  bodyAsText: string;
+  value?: VirtualNetworkPeering[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
    */
-  parsedBody: VirtualNetworkPeeringListResult;
-}
+  nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkPeeringListResult;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface VirtualNetworkGatewaysCreateOrUpdateResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetworkGateway;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * IP configurations for virtual network gateway.
+   */
+  ipConfigurations?: VirtualNetworkGatewayIPConfiguration[];
+  /**
+   * The type of this virtual network gateway. Possible values are: 'Vpn' and 'ExpressRoute'.
+   * Possible values include: 'Vpn', 'ExpressRoute'
+   */
+  gatewayType?: VirtualNetworkGatewayType;
+  /**
+   * The type of this virtual network gateway. Possible values are: 'PolicyBased' and 'RouteBased'.
+   * Possible values include: 'PolicyBased', 'RouteBased'
+   */
+  vpnType?: VpnType;
+  /**
+   * Whether BGP is enabled for this virtual network gateway or not.
+   */
+  enableBgp?: boolean;
+  /**
+   * ActiveActive flag
+   */
+  activeActive?: boolean;
+  /**
+   * The reference of the LocalNetworkGateway resource which represents local network site having
+   * default routes. Assign Null value in case of removing existing default site setting.
+   */
+  gatewayDefaultSite?: SubResource;
+  /**
+   * The reference of the VirtualNetworkGatewaySku resource which represents the SKU selected for
+   * Virtual network gateway.
+   */
+  sku?: VirtualNetworkGatewaySku;
+  /**
+   * The reference of the VpnClientConfiguration resource which represents the P2S VpnClient
+   * configurations.
+   */
+  vpnClientConfiguration?: VpnClientConfiguration;
+  /**
+   * Virtual network gateway's BGP speaker settings.
+   */
+  bgpSettings?: BgpSettings;
+  /**
+   * The resource GUID property of the VirtualNetworkGateway resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the VirtualNetworkGateway resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkGateway;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface VirtualNetworkGatewaysGetResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetworkGateway;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * IP configurations for virtual network gateway.
+   */
+  ipConfigurations?: VirtualNetworkGatewayIPConfiguration[];
+  /**
+   * The type of this virtual network gateway. Possible values are: 'Vpn' and 'ExpressRoute'.
+   * Possible values include: 'Vpn', 'ExpressRoute'
+   */
+  gatewayType?: VirtualNetworkGatewayType;
+  /**
+   * The type of this virtual network gateway. Possible values are: 'PolicyBased' and 'RouteBased'.
+   * Possible values include: 'PolicyBased', 'RouteBased'
+   */
+  vpnType?: VpnType;
+  /**
+   * Whether BGP is enabled for this virtual network gateway or not.
+   */
+  enableBgp?: boolean;
+  /**
+   * ActiveActive flag
+   */
+  activeActive?: boolean;
+  /**
+   * The reference of the LocalNetworkGateway resource which represents local network site having
+   * default routes. Assign Null value in case of removing existing default site setting.
+   */
+  gatewayDefaultSite?: SubResource;
+  /**
+   * The reference of the VirtualNetworkGatewaySku resource which represents the SKU selected for
+   * Virtual network gateway.
+   */
+  sku?: VirtualNetworkGatewaySku;
+  /**
+   * The reference of the VpnClientConfiguration resource which represents the P2S VpnClient
+   * configurations.
+   */
+  vpnClientConfiguration?: VpnClientConfiguration;
+  /**
+   * Virtual network gateway's BGP speaker settings.
+   */
+  bgpSettings?: BgpSettings;
+  /**
+   * The resource GUID property of the VirtualNetworkGateway resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the VirtualNetworkGateway resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkGateway;
+    };
+};
 
 /**
  * Contains response data for the updateTags operation.
  */
-export interface VirtualNetworkGatewaysUpdateTagsResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetworkGateway;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * IP configurations for virtual network gateway.
+   */
+  ipConfigurations?: VirtualNetworkGatewayIPConfiguration[];
+  /**
+   * The type of this virtual network gateway. Possible values are: 'Vpn' and 'ExpressRoute'.
+   * Possible values include: 'Vpn', 'ExpressRoute'
+   */
+  gatewayType?: VirtualNetworkGatewayType;
+  /**
+   * The type of this virtual network gateway. Possible values are: 'PolicyBased' and 'RouteBased'.
+   * Possible values include: 'PolicyBased', 'RouteBased'
+   */
+  vpnType?: VpnType;
+  /**
+   * Whether BGP is enabled for this virtual network gateway or not.
+   */
+  enableBgp?: boolean;
+  /**
+   * ActiveActive flag
+   */
+  activeActive?: boolean;
+  /**
+   * The reference of the LocalNetworkGateway resource which represents local network site having
+   * default routes. Assign Null value in case of removing existing default site setting.
+   */
+  gatewayDefaultSite?: SubResource;
+  /**
+   * The reference of the VirtualNetworkGatewaySku resource which represents the SKU selected for
+   * Virtual network gateway.
+   */
+  sku?: VirtualNetworkGatewaySku;
+  /**
+   * The reference of the VpnClientConfiguration resource which represents the P2S VpnClient
+   * configurations.
+   */
+  vpnClientConfiguration?: VpnClientConfiguration;
+  /**
+   * Virtual network gateway's BGP speaker settings.
+   */
+  bgpSettings?: BgpSettings;
+  /**
+   * The resource GUID property of the VirtualNetworkGateway resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the VirtualNetworkGateway resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkGateway;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface VirtualNetworkGatewaysListResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysListResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of VirtualNetworkGateway resources that exists in a resource group.
    */
-  bodyAsText: string;
+  value?: VirtualNetworkGateway[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetworkGatewayListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkGatewayListResult;
+    };
+};
 
 /**
  * Contains response data for the listConnections operation.
  */
-export interface VirtualNetworkGatewaysListConnectionsResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysListConnectionsResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of VirtualNetworkGatewayConnection resources that exists in a resource group.
    */
-  bodyAsText: string;
+  value?: VirtualNetworkGatewayConnectionListEntity[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetworkGatewayListConnectionsResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkGatewayListConnectionsResult;
+    };
+};
 
 /**
  * Contains response data for the reset operation.
  */
-export interface VirtualNetworkGatewaysResetResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysResetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetworkGateway;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * IP configurations for virtual network gateway.
+   */
+  ipConfigurations?: VirtualNetworkGatewayIPConfiguration[];
+  /**
+   * The type of this virtual network gateway. Possible values are: 'Vpn' and 'ExpressRoute'.
+   * Possible values include: 'Vpn', 'ExpressRoute'
+   */
+  gatewayType?: VirtualNetworkGatewayType;
+  /**
+   * The type of this virtual network gateway. Possible values are: 'PolicyBased' and 'RouteBased'.
+   * Possible values include: 'PolicyBased', 'RouteBased'
+   */
+  vpnType?: VpnType;
+  /**
+   * Whether BGP is enabled for this virtual network gateway or not.
+   */
+  enableBgp?: boolean;
+  /**
+   * ActiveActive flag
+   */
+  activeActive?: boolean;
+  /**
+   * The reference of the LocalNetworkGateway resource which represents local network site having
+   * default routes. Assign Null value in case of removing existing default site setting.
+   */
+  gatewayDefaultSite?: SubResource;
+  /**
+   * The reference of the VirtualNetworkGatewaySku resource which represents the SKU selected for
+   * Virtual network gateway.
+   */
+  sku?: VirtualNetworkGatewaySku;
+  /**
+   * The reference of the VpnClientConfiguration resource which represents the P2S VpnClient
+   * configurations.
+   */
+  vpnClientConfiguration?: VpnClientConfiguration;
+  /**
+   * Virtual network gateway's BGP speaker settings.
+   */
+  bgpSettings?: BgpSettings;
+  /**
+   * The resource GUID property of the VirtualNetworkGateway resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the VirtualNetworkGateway resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkGateway;
+    };
+};
 
 /**
  * Contains response data for the generatevpnclientpackage operation.
  */
-export interface VirtualNetworkGatewaysGeneratevpnclientpackageResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysGeneratevpnclientpackageResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: string;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: string;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
+};
 
 /**
  * Contains response data for the generateVpnProfile operation.
  */
-export interface VirtualNetworkGatewaysGenerateVpnProfileResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysGenerateVpnProfileResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: string;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: string;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
+};
 
 /**
  * Contains response data for the getVpnProfilePackageUrl operation.
  */
-export interface VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: string;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: string;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
+};
 
 /**
  * Contains response data for the getBgpPeerStatus operation.
  */
-export interface VirtualNetworkGatewaysGetBgpPeerStatusResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysGetBgpPeerStatusResponse = {
   /**
-   * The response body as text (string format)
+   * List of BGP peers
    */
-  bodyAsText: string;
+  value?: BgpPeerStatus[];
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: BgpPeerStatusListResult;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: BgpPeerStatusListResult;
+    };
+};
 
 /**
  * Contains response data for the supportedVpnDevices operation.
  */
-export interface VirtualNetworkGatewaysSupportedVpnDevicesResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysSupportedVpnDevicesResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: string;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: string;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
+};
 
 /**
  * Contains response data for the getLearnedRoutes operation.
  */
-export interface VirtualNetworkGatewaysGetLearnedRoutesResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysGetLearnedRoutesResponse = {
   /**
-   * The response body as text (string format)
+   * List of gateway routes
    */
-  bodyAsText: string;
+  value?: GatewayRoute[];
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: GatewayRouteListResult;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GatewayRouteListResult;
+    };
+};
 
 /**
  * Contains response data for the getAdvertisedRoutes operation.
  */
-export interface VirtualNetworkGatewaysGetAdvertisedRoutesResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysGetAdvertisedRoutesResponse = {
   /**
-   * The response body as text (string format)
+   * List of gateway routes
    */
-  bodyAsText: string;
+  value?: GatewayRoute[];
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: GatewayRouteListResult;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GatewayRouteListResult;
+    };
+};
 
 /**
  * Contains response data for the setVpnclientIpsecParameters operation.
  */
-export interface VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse = {
   /**
-   * The response body as text (string format)
+   * The IPSec Security Association (also called Quick Mode or Phase 2 SA) lifetime in seconds for
+   * P2S client.
    */
-  bodyAsText: string;
+  saLifeTimeSeconds: number;
   /**
-   * The response body as parsed JSON or XML
+   * The IPSec Security Association (also called Quick Mode or Phase 2 SA) payload size in KB for
+   * P2S client..
    */
-  parsedBody: VpnClientIPsecParameters;
-}
+  saDataSizeKilobytes: number;
+  /**
+   * The IPSec encryption algorithm (IKE phase 1). Possible values include: 'None', 'DES', 'DES3',
+   * 'AES128', 'AES192', 'AES256', 'GCMAES128', 'GCMAES192', 'GCMAES256'
+   */
+  ipsecEncryption: IpsecEncryption;
+  /**
+   * The IPSec integrity algorithm (IKE phase 1). Possible values include: 'MD5', 'SHA1', 'SHA256',
+   * 'GCMAES128', 'GCMAES192', 'GCMAES256'
+   */
+  ipsecIntegrity: IpsecIntegrity;
+  /**
+   * The IKE encryption algorithm (IKE phase 2). Possible values include: 'DES', 'DES3', 'AES128',
+   * 'AES192', 'AES256', 'GCMAES256', 'GCMAES128'
+   */
+  ikeEncryption: IkeEncryption;
+  /**
+   * The IKE integrity algorithm (IKE phase 2). Possible values include: 'MD5', 'SHA1', 'SHA256',
+   * 'SHA384', 'GCMAES256', 'GCMAES128'
+   */
+  ikeIntegrity: IkeIntegrity;
+  /**
+   * The DH Groups used in IKE Phase 1 for initial SA. Possible values include: 'None', 'DHGroup1',
+   * 'DHGroup2', 'DHGroup14', 'DHGroup2048', 'ECP256', 'ECP384', 'DHGroup24'
+   */
+  dhGroup: DhGroup;
+  /**
+   * The Pfs Groups used in IKE Phase 2 for new child SA. Possible values include: 'None', 'PFS1',
+   * 'PFS2', 'PFS2048', 'ECP256', 'ECP384', 'PFS24', 'PFS14', 'PFSMM'
+   */
+  pfsGroup: PfsGroup;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VpnClientIPsecParameters;
+    };
+};
 
 /**
  * Contains response data for the getVpnclientIpsecParameters operation.
  */
-export interface VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse = {
   /**
-   * The response body as text (string format)
+   * The IPSec Security Association (also called Quick Mode or Phase 2 SA) lifetime in seconds for
+   * P2S client.
    */
-  bodyAsText: string;
+  saLifeTimeSeconds: number;
   /**
-   * The response body as parsed JSON or XML
+   * The IPSec Security Association (also called Quick Mode or Phase 2 SA) payload size in KB for
+   * P2S client..
    */
-  parsedBody: VpnClientIPsecParameters;
-}
+  saDataSizeKilobytes: number;
+  /**
+   * The IPSec encryption algorithm (IKE phase 1). Possible values include: 'None', 'DES', 'DES3',
+   * 'AES128', 'AES192', 'AES256', 'GCMAES128', 'GCMAES192', 'GCMAES256'
+   */
+  ipsecEncryption: IpsecEncryption;
+  /**
+   * The IPSec integrity algorithm (IKE phase 1). Possible values include: 'MD5', 'SHA1', 'SHA256',
+   * 'GCMAES128', 'GCMAES192', 'GCMAES256'
+   */
+  ipsecIntegrity: IpsecIntegrity;
+  /**
+   * The IKE encryption algorithm (IKE phase 2). Possible values include: 'DES', 'DES3', 'AES128',
+   * 'AES192', 'AES256', 'GCMAES256', 'GCMAES128'
+   */
+  ikeEncryption: IkeEncryption;
+  /**
+   * The IKE integrity algorithm (IKE phase 2). Possible values include: 'MD5', 'SHA1', 'SHA256',
+   * 'SHA384', 'GCMAES256', 'GCMAES128'
+   */
+  ikeIntegrity: IkeIntegrity;
+  /**
+   * The DH Groups used in IKE Phase 1 for initial SA. Possible values include: 'None', 'DHGroup1',
+   * 'DHGroup2', 'DHGroup14', 'DHGroup2048', 'ECP256', 'ECP384', 'DHGroup24'
+   */
+  dhGroup: DhGroup;
+  /**
+   * The Pfs Groups used in IKE Phase 2 for new child SA. Possible values include: 'None', 'PFS1',
+   * 'PFS2', 'PFS2048', 'ECP256', 'ECP384', 'PFS24', 'PFS14', 'PFSMM'
+   */
+  pfsGroup: PfsGroup;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VpnClientIPsecParameters;
+    };
+};
 
 /**
  * Contains response data for the vpnDeviceConfigurationScript operation.
  */
-export interface VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: string;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: string;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface VirtualNetworkGatewaysBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetworkGateway;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * IP configurations for virtual network gateway.
+   */
+  ipConfigurations?: VirtualNetworkGatewayIPConfiguration[];
+  /**
+   * The type of this virtual network gateway. Possible values are: 'Vpn' and 'ExpressRoute'.
+   * Possible values include: 'Vpn', 'ExpressRoute'
+   */
+  gatewayType?: VirtualNetworkGatewayType;
+  /**
+   * The type of this virtual network gateway. Possible values are: 'PolicyBased' and 'RouteBased'.
+   * Possible values include: 'PolicyBased', 'RouteBased'
+   */
+  vpnType?: VpnType;
+  /**
+   * Whether BGP is enabled for this virtual network gateway or not.
+   */
+  enableBgp?: boolean;
+  /**
+   * ActiveActive flag
+   */
+  activeActive?: boolean;
+  /**
+   * The reference of the LocalNetworkGateway resource which represents local network site having
+   * default routes. Assign Null value in case of removing existing default site setting.
+   */
+  gatewayDefaultSite?: SubResource;
+  /**
+   * The reference of the VirtualNetworkGatewaySku resource which represents the SKU selected for
+   * Virtual network gateway.
+   */
+  sku?: VirtualNetworkGatewaySku;
+  /**
+   * The reference of the VpnClientConfiguration resource which represents the P2S VpnClient
+   * configurations.
+   */
+  vpnClientConfiguration?: VpnClientConfiguration;
+  /**
+   * Virtual network gateway's BGP speaker settings.
+   */
+  bgpSettings?: BgpSettings;
+  /**
+   * The resource GUID property of the VirtualNetworkGateway resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the VirtualNetworkGateway resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkGateway;
+    };
+};
 
 /**
  * Contains response data for the beginUpdateTags operation.
  */
-export interface VirtualNetworkGatewaysBeginUpdateTagsResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysBeginUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetworkGateway;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * IP configurations for virtual network gateway.
+   */
+  ipConfigurations?: VirtualNetworkGatewayIPConfiguration[];
+  /**
+   * The type of this virtual network gateway. Possible values are: 'Vpn' and 'ExpressRoute'.
+   * Possible values include: 'Vpn', 'ExpressRoute'
+   */
+  gatewayType?: VirtualNetworkGatewayType;
+  /**
+   * The type of this virtual network gateway. Possible values are: 'PolicyBased' and 'RouteBased'.
+   * Possible values include: 'PolicyBased', 'RouteBased'
+   */
+  vpnType?: VpnType;
+  /**
+   * Whether BGP is enabled for this virtual network gateway or not.
+   */
+  enableBgp?: boolean;
+  /**
+   * ActiveActive flag
+   */
+  activeActive?: boolean;
+  /**
+   * The reference of the LocalNetworkGateway resource which represents local network site having
+   * default routes. Assign Null value in case of removing existing default site setting.
+   */
+  gatewayDefaultSite?: SubResource;
+  /**
+   * The reference of the VirtualNetworkGatewaySku resource which represents the SKU selected for
+   * Virtual network gateway.
+   */
+  sku?: VirtualNetworkGatewaySku;
+  /**
+   * The reference of the VpnClientConfiguration resource which represents the P2S VpnClient
+   * configurations.
+   */
+  vpnClientConfiguration?: VpnClientConfiguration;
+  /**
+   * Virtual network gateway's BGP speaker settings.
+   */
+  bgpSettings?: BgpSettings;
+  /**
+   * The resource GUID property of the VirtualNetworkGateway resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the VirtualNetworkGateway resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkGateway;
+    };
+};
 
 /**
  * Contains response data for the beginReset operation.
  */
-export interface VirtualNetworkGatewaysBeginResetResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysBeginResetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetworkGateway;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * IP configurations for virtual network gateway.
+   */
+  ipConfigurations?: VirtualNetworkGatewayIPConfiguration[];
+  /**
+   * The type of this virtual network gateway. Possible values are: 'Vpn' and 'ExpressRoute'.
+   * Possible values include: 'Vpn', 'ExpressRoute'
+   */
+  gatewayType?: VirtualNetworkGatewayType;
+  /**
+   * The type of this virtual network gateway. Possible values are: 'PolicyBased' and 'RouteBased'.
+   * Possible values include: 'PolicyBased', 'RouteBased'
+   */
+  vpnType?: VpnType;
+  /**
+   * Whether BGP is enabled for this virtual network gateway or not.
+   */
+  enableBgp?: boolean;
+  /**
+   * ActiveActive flag
+   */
+  activeActive?: boolean;
+  /**
+   * The reference of the LocalNetworkGateway resource which represents local network site having
+   * default routes. Assign Null value in case of removing existing default site setting.
+   */
+  gatewayDefaultSite?: SubResource;
+  /**
+   * The reference of the VirtualNetworkGatewaySku resource which represents the SKU selected for
+   * Virtual network gateway.
+   */
+  sku?: VirtualNetworkGatewaySku;
+  /**
+   * The reference of the VpnClientConfiguration resource which represents the P2S VpnClient
+   * configurations.
+   */
+  vpnClientConfiguration?: VpnClientConfiguration;
+  /**
+   * Virtual network gateway's BGP speaker settings.
+   */
+  bgpSettings?: BgpSettings;
+  /**
+   * The resource GUID property of the VirtualNetworkGateway resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the VirtualNetworkGateway resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkGateway;
+    };
+};
 
 /**
  * Contains response data for the beginGeneratevpnclientpackage operation.
  */
-export interface VirtualNetworkGatewaysBeginGeneratevpnclientpackageResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysBeginGeneratevpnclientpackageResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: string;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: string;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
+};
 
 /**
  * Contains response data for the beginGenerateVpnProfile operation.
  */
-export interface VirtualNetworkGatewaysBeginGenerateVpnProfileResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysBeginGenerateVpnProfileResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: string;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: string;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
+};
 
 /**
  * Contains response data for the beginGetVpnProfilePackageUrl operation.
  */
-export interface VirtualNetworkGatewaysBeginGetVpnProfilePackageUrlResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysBeginGetVpnProfilePackageUrlResponse = {
   /**
-   * The response body as text (string format)
+   * The parsed response body.
    */
-  bodyAsText: string;
+  body: string;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: string;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: string;
+    };
+};
 
 /**
  * Contains response data for the beginGetBgpPeerStatus operation.
  */
-export interface VirtualNetworkGatewaysBeginGetBgpPeerStatusResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysBeginGetBgpPeerStatusResponse = {
   /**
-   * The response body as text (string format)
+   * List of BGP peers
    */
-  bodyAsText: string;
+  value?: BgpPeerStatus[];
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: BgpPeerStatusListResult;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: BgpPeerStatusListResult;
+    };
+};
 
 /**
  * Contains response data for the beginGetLearnedRoutes operation.
  */
-export interface VirtualNetworkGatewaysBeginGetLearnedRoutesResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysBeginGetLearnedRoutesResponse = {
   /**
-   * The response body as text (string format)
+   * List of gateway routes
    */
-  bodyAsText: string;
+  value?: GatewayRoute[];
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: GatewayRouteListResult;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GatewayRouteListResult;
+    };
+};
 
 /**
  * Contains response data for the beginGetAdvertisedRoutes operation.
  */
-export interface VirtualNetworkGatewaysBeginGetAdvertisedRoutesResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysBeginGetAdvertisedRoutesResponse = {
   /**
-   * The response body as text (string format)
+   * List of gateway routes
    */
-  bodyAsText: string;
+  value?: GatewayRoute[];
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: GatewayRouteListResult;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GatewayRouteListResult;
+    };
+};
 
 /**
  * Contains response data for the beginSetVpnclientIpsecParameters operation.
  */
-export interface VirtualNetworkGatewaysBeginSetVpnclientIpsecParametersResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysBeginSetVpnclientIpsecParametersResponse = {
   /**
-   * The response body as text (string format)
+   * The IPSec Security Association (also called Quick Mode or Phase 2 SA) lifetime in seconds for
+   * P2S client.
    */
-  bodyAsText: string;
+  saLifeTimeSeconds: number;
   /**
-   * The response body as parsed JSON or XML
+   * The IPSec Security Association (also called Quick Mode or Phase 2 SA) payload size in KB for
+   * P2S client..
    */
-  parsedBody: VpnClientIPsecParameters;
-}
+  saDataSizeKilobytes: number;
+  /**
+   * The IPSec encryption algorithm (IKE phase 1). Possible values include: 'None', 'DES', 'DES3',
+   * 'AES128', 'AES192', 'AES256', 'GCMAES128', 'GCMAES192', 'GCMAES256'
+   */
+  ipsecEncryption: IpsecEncryption;
+  /**
+   * The IPSec integrity algorithm (IKE phase 1). Possible values include: 'MD5', 'SHA1', 'SHA256',
+   * 'GCMAES128', 'GCMAES192', 'GCMAES256'
+   */
+  ipsecIntegrity: IpsecIntegrity;
+  /**
+   * The IKE encryption algorithm (IKE phase 2). Possible values include: 'DES', 'DES3', 'AES128',
+   * 'AES192', 'AES256', 'GCMAES256', 'GCMAES128'
+   */
+  ikeEncryption: IkeEncryption;
+  /**
+   * The IKE integrity algorithm (IKE phase 2). Possible values include: 'MD5', 'SHA1', 'SHA256',
+   * 'SHA384', 'GCMAES256', 'GCMAES128'
+   */
+  ikeIntegrity: IkeIntegrity;
+  /**
+   * The DH Groups used in IKE Phase 1 for initial SA. Possible values include: 'None', 'DHGroup1',
+   * 'DHGroup2', 'DHGroup14', 'DHGroup2048', 'ECP256', 'ECP384', 'DHGroup24'
+   */
+  dhGroup: DhGroup;
+  /**
+   * The Pfs Groups used in IKE Phase 2 for new child SA. Possible values include: 'None', 'PFS1',
+   * 'PFS2', 'PFS2048', 'ECP256', 'ECP384', 'PFS24', 'PFS14', 'PFSMM'
+   */
+  pfsGroup: PfsGroup;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VpnClientIPsecParameters;
+    };
+};
 
 /**
  * Contains response data for the beginGetVpnclientIpsecParameters operation.
  */
-export interface VirtualNetworkGatewaysBeginGetVpnclientIpsecParametersResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysBeginGetVpnclientIpsecParametersResponse = {
   /**
-   * The response body as text (string format)
+   * The IPSec Security Association (also called Quick Mode or Phase 2 SA) lifetime in seconds for
+   * P2S client.
    */
-  bodyAsText: string;
+  saLifeTimeSeconds: number;
   /**
-   * The response body as parsed JSON or XML
+   * The IPSec Security Association (also called Quick Mode or Phase 2 SA) payload size in KB for
+   * P2S client..
    */
-  parsedBody: VpnClientIPsecParameters;
-}
+  saDataSizeKilobytes: number;
+  /**
+   * The IPSec encryption algorithm (IKE phase 1). Possible values include: 'None', 'DES', 'DES3',
+   * 'AES128', 'AES192', 'AES256', 'GCMAES128', 'GCMAES192', 'GCMAES256'
+   */
+  ipsecEncryption: IpsecEncryption;
+  /**
+   * The IPSec integrity algorithm (IKE phase 1). Possible values include: 'MD5', 'SHA1', 'SHA256',
+   * 'GCMAES128', 'GCMAES192', 'GCMAES256'
+   */
+  ipsecIntegrity: IpsecIntegrity;
+  /**
+   * The IKE encryption algorithm (IKE phase 2). Possible values include: 'DES', 'DES3', 'AES128',
+   * 'AES192', 'AES256', 'GCMAES256', 'GCMAES128'
+   */
+  ikeEncryption: IkeEncryption;
+  /**
+   * The IKE integrity algorithm (IKE phase 2). Possible values include: 'MD5', 'SHA1', 'SHA256',
+   * 'SHA384', 'GCMAES256', 'GCMAES128'
+   */
+  ikeIntegrity: IkeIntegrity;
+  /**
+   * The DH Groups used in IKE Phase 1 for initial SA. Possible values include: 'None', 'DHGroup1',
+   * 'DHGroup2', 'DHGroup14', 'DHGroup2048', 'ECP256', 'ECP384', 'DHGroup24'
+   */
+  dhGroup: DhGroup;
+  /**
+   * The Pfs Groups used in IKE Phase 2 for new child SA. Possible values include: 'None', 'PFS1',
+   * 'PFS2', 'PFS2048', 'ECP256', 'ECP384', 'PFS24', 'PFS14', 'PFSMM'
+   */
+  pfsGroup: PfsGroup;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VpnClientIPsecParameters;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface VirtualNetworkGatewaysListNextResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysListNextResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of VirtualNetworkGateway resources that exists in a resource group.
    */
-  bodyAsText: string;
+  value?: VirtualNetworkGateway[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetworkGatewayListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkGatewayListResult;
+    };
+};
 
 /**
  * Contains response data for the listConnectionsNext operation.
  */
-export interface VirtualNetworkGatewaysListConnectionsNextResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewaysListConnectionsNextResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of VirtualNetworkGatewayConnection resources that exists in a resource group.
    */
-  bodyAsText: string;
+  value?: VirtualNetworkGatewayConnectionListEntity[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetworkGatewayListConnectionsResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkGatewayListConnectionsResult;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface VirtualNetworkGatewayConnectionsCreateOrUpdateResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewayConnectionsCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetworkGatewayConnection;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The authorizationKey.
+   */
+  authorizationKey?: string;
+  /**
+   * The reference to virtual network gateway resource.
+   */
+  virtualNetworkGateway1: VirtualNetworkGateway;
+  /**
+   * The reference to virtual network gateway resource.
+   */
+  virtualNetworkGateway2?: VirtualNetworkGateway;
+  /**
+   * The reference to local network gateway resource.
+   */
+  localNetworkGateway2?: LocalNetworkGateway;
+  /**
+   * Gateway connection type. Possible values are: 'Ipsec','Vnet2Vnet','ExpressRoute', and
+   * 'VPNClient. Possible values include: 'IPsec', 'Vnet2Vnet', 'ExpressRoute', 'VPNClient'
+   */
+  connectionType: VirtualNetworkGatewayConnectionType;
+  /**
+   * The routing weight.
+   */
+  routingWeight?: number;
+  /**
+   * The IPSec shared key.
+   */
+  sharedKey?: string;
+  /**
+   * Virtual network Gateway connection status. Possible values are 'Unknown', 'Connecting',
+   * 'Connected' and 'NotConnected'. Possible values include: 'Unknown', 'Connecting', 'Connected',
+   * 'NotConnected'
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly connectionStatus?: VirtualNetworkGatewayConnectionStatus;
+  /**
+   * Collection of all tunnels' connection health status.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly tunnelConnectionStatus?: TunnelConnectionHealth[];
+  /**
+   * The egress bytes transferred in this connection.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly egressBytesTransferred?: number;
+  /**
+   * The ingress bytes transferred in this connection.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly ingressBytesTransferred?: number;
+  /**
+   * The reference to peerings resource.
+   */
+  peer?: SubResource;
+  /**
+   * EnableBgp flag
+   */
+  enableBgp?: boolean;
+  /**
+   * Enable policy-based traffic selectors.
+   */
+  usePolicyBasedTrafficSelectors?: boolean;
+  /**
+   * The IPSec Policies to be considered by this connection.
+   */
+  ipsecPolicies?: IpsecPolicy[];
+  /**
+   * The resource GUID property of the VirtualNetworkGatewayConnection resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the VirtualNetworkGatewayConnection resource. Possible values are:
+   * 'Updating', 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkGatewayConnection;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface VirtualNetworkGatewayConnectionsGetResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewayConnectionsGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetworkGatewayConnection;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The authorizationKey.
+   */
+  authorizationKey?: string;
+  /**
+   * The reference to virtual network gateway resource.
+   */
+  virtualNetworkGateway1: VirtualNetworkGateway;
+  /**
+   * The reference to virtual network gateway resource.
+   */
+  virtualNetworkGateway2?: VirtualNetworkGateway;
+  /**
+   * The reference to local network gateway resource.
+   */
+  localNetworkGateway2?: LocalNetworkGateway;
+  /**
+   * Gateway connection type. Possible values are: 'Ipsec','Vnet2Vnet','ExpressRoute', and
+   * 'VPNClient. Possible values include: 'IPsec', 'Vnet2Vnet', 'ExpressRoute', 'VPNClient'
+   */
+  connectionType: VirtualNetworkGatewayConnectionType;
+  /**
+   * The routing weight.
+   */
+  routingWeight?: number;
+  /**
+   * The IPSec shared key.
+   */
+  sharedKey?: string;
+  /**
+   * Virtual network Gateway connection status. Possible values are 'Unknown', 'Connecting',
+   * 'Connected' and 'NotConnected'. Possible values include: 'Unknown', 'Connecting', 'Connected',
+   * 'NotConnected'
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly connectionStatus?: VirtualNetworkGatewayConnectionStatus;
+  /**
+   * Collection of all tunnels' connection health status.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly tunnelConnectionStatus?: TunnelConnectionHealth[];
+  /**
+   * The egress bytes transferred in this connection.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly egressBytesTransferred?: number;
+  /**
+   * The ingress bytes transferred in this connection.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly ingressBytesTransferred?: number;
+  /**
+   * The reference to peerings resource.
+   */
+  peer?: SubResource;
+  /**
+   * EnableBgp flag
+   */
+  enableBgp?: boolean;
+  /**
+   * Enable policy-based traffic selectors.
+   */
+  usePolicyBasedTrafficSelectors?: boolean;
+  /**
+   * The IPSec Policies to be considered by this connection.
+   */
+  ipsecPolicies?: IpsecPolicy[];
+  /**
+   * The resource GUID property of the VirtualNetworkGatewayConnection resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the VirtualNetworkGatewayConnection resource. Possible values are:
+   * 'Updating', 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkGatewayConnection;
+    };
+};
 
 /**
  * Contains response data for the updateTags operation.
  */
-export interface VirtualNetworkGatewayConnectionsUpdateTagsResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewayConnectionsUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetworkGatewayConnectionListEntity;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The authorizationKey.
+   */
+  authorizationKey?: string;
+  /**
+   * The reference to virtual network gateway resource.
+   */
+  virtualNetworkGateway1: VirtualNetworkConnectionGatewayReference;
+  /**
+   * The reference to virtual network gateway resource.
+   */
+  virtualNetworkGateway2?: VirtualNetworkConnectionGatewayReference;
+  /**
+   * The reference to local network gateway resource.
+   */
+  localNetworkGateway2?: VirtualNetworkConnectionGatewayReference;
+  /**
+   * Gateway connection type. Possible values are: 'Ipsec','Vnet2Vnet','ExpressRoute', and
+   * 'VPNClient. Possible values include: 'IPsec', 'Vnet2Vnet', 'ExpressRoute', 'VPNClient'
+   */
+  connectionType: VirtualNetworkGatewayConnectionType;
+  /**
+   * The routing weight.
+   */
+  routingWeight?: number;
+  /**
+   * The IPSec shared key.
+   */
+  sharedKey?: string;
+  /**
+   * Virtual network Gateway connection status. Possible values are 'Unknown', 'Connecting',
+   * 'Connected' and 'NotConnected'. Possible values include: 'Unknown', 'Connecting', 'Connected',
+   * 'NotConnected'
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly connectionStatus?: VirtualNetworkGatewayConnectionStatus;
+  /**
+   * Collection of all tunnels' connection health status.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly tunnelConnectionStatus?: TunnelConnectionHealth[];
+  /**
+   * The egress bytes transferred in this connection.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly egressBytesTransferred?: number;
+  /**
+   * The ingress bytes transferred in this connection.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly ingressBytesTransferred?: number;
+  /**
+   * The reference to peerings resource.
+   */
+  peer?: SubResource;
+  /**
+   * EnableBgp flag
+   */
+  enableBgp?: boolean;
+  /**
+   * Enable policy-based traffic selectors.
+   */
+  usePolicyBasedTrafficSelectors?: boolean;
+  /**
+   * The IPSec Policies to be considered by this connection.
+   */
+  ipsecPolicies?: IpsecPolicy[];
+  /**
+   * The resource GUID property of the VirtualNetworkGatewayConnection resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the VirtualNetworkGatewayConnection resource. Possible values are:
+   * 'Updating', 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkGatewayConnectionListEntity;
+    };
+};
 
 /**
  * Contains response data for the setSharedKey operation.
  */
-export interface VirtualNetworkGatewayConnectionsSetSharedKeyResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewayConnectionsSetSharedKeyResponse = {
   /**
-   * The response body as text (string format)
+   * The virtual network connection shared key value.
    */
-  bodyAsText: string;
+  value: string;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: ConnectionSharedKey;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ConnectionSharedKey;
+    };
+};
 
 /**
  * Contains response data for the getSharedKey operation.
  */
-export interface VirtualNetworkGatewayConnectionsGetSharedKeyResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewayConnectionsGetSharedKeyResponse = {
   /**
-   * The response body as text (string format)
+   * The virtual network connection shared key value.
    */
-  bodyAsText: string;
+  value: string;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: ConnectionSharedKey;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ConnectionSharedKey;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface VirtualNetworkGatewayConnectionsListResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewayConnectionsListResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of VirtualNetworkGatewayConnection resources that exists in a resource group.
    */
-  bodyAsText: string;
+  value?: VirtualNetworkGatewayConnection[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetworkGatewayConnectionListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkGatewayConnectionListResult;
+    };
+};
 
 /**
  * Contains response data for the resetSharedKey operation.
  */
-export interface VirtualNetworkGatewayConnectionsResetSharedKeyResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewayConnectionsResetSharedKeyResponse = {
   /**
-   * The response body as text (string format)
+   * The virtual network connection reset shared key length, should between 1 and 128.
    */
-  bodyAsText: string;
+  keyLength: number;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: ConnectionResetSharedKey;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ConnectionResetSharedKey;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface VirtualNetworkGatewayConnectionsBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewayConnectionsBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetworkGatewayConnection;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The authorizationKey.
+   */
+  authorizationKey?: string;
+  /**
+   * The reference to virtual network gateway resource.
+   */
+  virtualNetworkGateway1: VirtualNetworkGateway;
+  /**
+   * The reference to virtual network gateway resource.
+   */
+  virtualNetworkGateway2?: VirtualNetworkGateway;
+  /**
+   * The reference to local network gateway resource.
+   */
+  localNetworkGateway2?: LocalNetworkGateway;
+  /**
+   * Gateway connection type. Possible values are: 'Ipsec','Vnet2Vnet','ExpressRoute', and
+   * 'VPNClient. Possible values include: 'IPsec', 'Vnet2Vnet', 'ExpressRoute', 'VPNClient'
+   */
+  connectionType: VirtualNetworkGatewayConnectionType;
+  /**
+   * The routing weight.
+   */
+  routingWeight?: number;
+  /**
+   * The IPSec shared key.
+   */
+  sharedKey?: string;
+  /**
+   * Virtual network Gateway connection status. Possible values are 'Unknown', 'Connecting',
+   * 'Connected' and 'NotConnected'. Possible values include: 'Unknown', 'Connecting', 'Connected',
+   * 'NotConnected'
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly connectionStatus?: VirtualNetworkGatewayConnectionStatus;
+  /**
+   * Collection of all tunnels' connection health status.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly tunnelConnectionStatus?: TunnelConnectionHealth[];
+  /**
+   * The egress bytes transferred in this connection.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly egressBytesTransferred?: number;
+  /**
+   * The ingress bytes transferred in this connection.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly ingressBytesTransferred?: number;
+  /**
+   * The reference to peerings resource.
+   */
+  peer?: SubResource;
+  /**
+   * EnableBgp flag
+   */
+  enableBgp?: boolean;
+  /**
+   * Enable policy-based traffic selectors.
+   */
+  usePolicyBasedTrafficSelectors?: boolean;
+  /**
+   * The IPSec Policies to be considered by this connection.
+   */
+  ipsecPolicies?: IpsecPolicy[];
+  /**
+   * The resource GUID property of the VirtualNetworkGatewayConnection resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the VirtualNetworkGatewayConnection resource. Possible values are:
+   * 'Updating', 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkGatewayConnection;
+    };
+};
 
 /**
  * Contains response data for the beginUpdateTags operation.
  */
-export interface VirtualNetworkGatewayConnectionsBeginUpdateTagsResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewayConnectionsBeginUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetworkGatewayConnectionListEntity;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * The authorizationKey.
+   */
+  authorizationKey?: string;
+  /**
+   * The reference to virtual network gateway resource.
+   */
+  virtualNetworkGateway1: VirtualNetworkConnectionGatewayReference;
+  /**
+   * The reference to virtual network gateway resource.
+   */
+  virtualNetworkGateway2?: VirtualNetworkConnectionGatewayReference;
+  /**
+   * The reference to local network gateway resource.
+   */
+  localNetworkGateway2?: VirtualNetworkConnectionGatewayReference;
+  /**
+   * Gateway connection type. Possible values are: 'Ipsec','Vnet2Vnet','ExpressRoute', and
+   * 'VPNClient. Possible values include: 'IPsec', 'Vnet2Vnet', 'ExpressRoute', 'VPNClient'
+   */
+  connectionType: VirtualNetworkGatewayConnectionType;
+  /**
+   * The routing weight.
+   */
+  routingWeight?: number;
+  /**
+   * The IPSec shared key.
+   */
+  sharedKey?: string;
+  /**
+   * Virtual network Gateway connection status. Possible values are 'Unknown', 'Connecting',
+   * 'Connected' and 'NotConnected'. Possible values include: 'Unknown', 'Connecting', 'Connected',
+   * 'NotConnected'
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly connectionStatus?: VirtualNetworkGatewayConnectionStatus;
+  /**
+   * Collection of all tunnels' connection health status.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly tunnelConnectionStatus?: TunnelConnectionHealth[];
+  /**
+   * The egress bytes transferred in this connection.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly egressBytesTransferred?: number;
+  /**
+   * The ingress bytes transferred in this connection.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly ingressBytesTransferred?: number;
+  /**
+   * The reference to peerings resource.
+   */
+  peer?: SubResource;
+  /**
+   * EnableBgp flag
+   */
+  enableBgp?: boolean;
+  /**
+   * Enable policy-based traffic selectors.
+   */
+  usePolicyBasedTrafficSelectors?: boolean;
+  /**
+   * The IPSec Policies to be considered by this connection.
+   */
+  ipsecPolicies?: IpsecPolicy[];
+  /**
+   * The resource GUID property of the VirtualNetworkGatewayConnection resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the VirtualNetworkGatewayConnection resource. Possible values are:
+   * 'Updating', 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * Gets a unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkGatewayConnectionListEntity;
+    };
+};
 
 /**
  * Contains response data for the beginSetSharedKey operation.
  */
-export interface VirtualNetworkGatewayConnectionsBeginSetSharedKeyResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewayConnectionsBeginSetSharedKeyResponse = {
   /**
-   * The response body as text (string format)
+   * The virtual network connection shared key value.
    */
-  bodyAsText: string;
+  value: string;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: ConnectionSharedKey;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ConnectionSharedKey;
+    };
+};
 
 /**
  * Contains response data for the beginResetSharedKey operation.
  */
-export interface VirtualNetworkGatewayConnectionsBeginResetSharedKeyResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewayConnectionsBeginResetSharedKeyResponse = {
   /**
-   * The response body as text (string format)
+   * The virtual network connection reset shared key length, should between 1 and 128.
    */
-  bodyAsText: string;
+  keyLength: number;
   /**
-   * The response body as parsed JSON or XML
+   * The underlying HTTP response.
    */
-  parsedBody: ConnectionResetSharedKey;
-}
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: ConnectionResetSharedKey;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface VirtualNetworkGatewayConnectionsListNextResponse extends msRest.HttpResponse {
+export type VirtualNetworkGatewayConnectionsListNextResponse = {
   /**
-   * The response body as text (string format)
+   * Gets a list of VirtualNetworkGatewayConnection resources that exists in a resource group.
    */
-  bodyAsText: string;
+  value?: VirtualNetworkGatewayConnection[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: VirtualNetworkGatewayConnectionListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: VirtualNetworkGatewayConnectionListResult;
+    };
+};
 
 /**
  * Contains response data for the createOrUpdate operation.
  */
-export interface LocalNetworkGatewaysCreateOrUpdateResponse extends msRest.HttpResponse {
+export type LocalNetworkGatewaysCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LocalNetworkGateway;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * Local network site address space.
+   */
+  localNetworkAddressSpace?: AddressSpace;
+  /**
+   * IP address of local network gateway.
+   */
+  gatewayIpAddress?: string;
+  /**
+   * Local network gateway's BGP speaker settings.
+   */
+  bgpSettings?: BgpSettings;
+  /**
+   * The resource GUID property of the LocalNetworkGateway resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the LocalNetworkGateway resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LocalNetworkGateway;
+    };
+};
 
 /**
  * Contains response data for the get operation.
  */
-export interface LocalNetworkGatewaysGetResponse extends msRest.HttpResponse {
+export type LocalNetworkGatewaysGetResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LocalNetworkGateway;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * Local network site address space.
+   */
+  localNetworkAddressSpace?: AddressSpace;
+  /**
+   * IP address of local network gateway.
+   */
+  gatewayIpAddress?: string;
+  /**
+   * Local network gateway's BGP speaker settings.
+   */
+  bgpSettings?: BgpSettings;
+  /**
+   * The resource GUID property of the LocalNetworkGateway resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the LocalNetworkGateway resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LocalNetworkGateway;
+    };
+};
 
 /**
  * Contains response data for the updateTags operation.
  */
-export interface LocalNetworkGatewaysUpdateTagsResponse extends msRest.HttpResponse {
+export type LocalNetworkGatewaysUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LocalNetworkGateway;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * Local network site address space.
+   */
+  localNetworkAddressSpace?: AddressSpace;
+  /**
+   * IP address of local network gateway.
+   */
+  gatewayIpAddress?: string;
+  /**
+   * Local network gateway's BGP speaker settings.
+   */
+  bgpSettings?: BgpSettings;
+  /**
+   * The resource GUID property of the LocalNetworkGateway resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the LocalNetworkGateway resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LocalNetworkGateway;
+    };
+};
 
 /**
  * Contains response data for the list operation.
  */
-export interface LocalNetworkGatewaysListResponse extends msRest.HttpResponse {
+export type LocalNetworkGatewaysListResponse = {
   /**
-   * The response body as text (string format)
+   * A list of local network gateways that exists in a resource group.
    */
-  bodyAsText: string;
+  value?: LocalNetworkGateway[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LocalNetworkGatewayListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LocalNetworkGatewayListResult;
+    };
+};
 
 /**
  * Contains response data for the beginCreateOrUpdate operation.
  */
-export interface LocalNetworkGatewaysBeginCreateOrUpdateResponse extends msRest.HttpResponse {
+export type LocalNetworkGatewaysBeginCreateOrUpdateResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LocalNetworkGateway;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * Local network site address space.
+   */
+  localNetworkAddressSpace?: AddressSpace;
+  /**
+   * IP address of local network gateway.
+   */
+  gatewayIpAddress?: string;
+  /**
+   * Local network gateway's BGP speaker settings.
+   */
+  bgpSettings?: BgpSettings;
+  /**
+   * The resource GUID property of the LocalNetworkGateway resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the LocalNetworkGateway resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LocalNetworkGateway;
+    };
+};
 
 /**
  * Contains response data for the beginUpdateTags operation.
  */
-export interface LocalNetworkGatewaysBeginUpdateTagsResponse extends msRest.HttpResponse {
+export type LocalNetworkGatewaysBeginUpdateTagsResponse = {
   /**
-   * The response body as text (string format)
+   * Resource ID.
    */
-  bodyAsText: string;
+  id?: string;
   /**
-   * The response body as parsed JSON or XML
+   * Resource name.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LocalNetworkGateway;
-}
+  readonly name?: string;
+  /**
+   * Resource type.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly type?: string;
+  /**
+   * Resource location.
+   */
+  location?: string;
+  /**
+   * Resource tags.
+   */
+  tags?: { [propertyName: string]: string };
+  /**
+   * Local network site address space.
+   */
+  localNetworkAddressSpace?: AddressSpace;
+  /**
+   * IP address of local network gateway.
+   */
+  gatewayIpAddress?: string;
+  /**
+   * Local network gateway's BGP speaker settings.
+   */
+  bgpSettings?: BgpSettings;
+  /**
+   * The resource GUID property of the LocalNetworkGateway resource.
+   */
+  resourceGuid?: string;
+  /**
+   * The provisioning state of the LocalNetworkGateway resource. Possible values are: 'Updating',
+   * 'Deleting', and 'Failed'.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
+   */
+  readonly provisioningState?: string;
+  /**
+   * A unique read-only string that changes whenever the resource is updated.
+   */
+  etag?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LocalNetworkGateway;
+    };
+};
 
 /**
  * Contains response data for the listNext operation.
  */
-export interface LocalNetworkGatewaysListNextResponse extends msRest.HttpResponse {
+export type LocalNetworkGatewaysListNextResponse = {
   /**
-   * The response body as text (string format)
+   * A list of local network gateways that exists in a resource group.
    */
-  bodyAsText: string;
+  value?: LocalNetworkGateway[];
   /**
-   * The response body as parsed JSON or XML
+   * The URL to get the next set of results.
+   * **NOTE: This property will not be serialized. It can only be populated by the server.**
    */
-  parsedBody: LocalNetworkGatewayListResult;
-}
+  readonly nextLink?: string;
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: LocalNetworkGatewayListResult;
+    };
+};

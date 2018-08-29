@@ -37,14 +37,19 @@ export class NetworkInterfaceIPConfigurations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceIPConfigurationsListResponse> {
+  list(resourceGroupName: string, networkInterfaceName: string): Promise<Models.NetworkInterfaceIPConfigurationsListResponse>;
+  list(resourceGroupName: string, networkInterfaceName: string, options: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceIPConfigurationsListResponse>;
+  list(resourceGroupName: string, networkInterfaceName: string, callback: msRest.ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>): void;
+  list(resourceGroupName: string, networkInterfaceName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>): void;
+  list(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>): Promise<Models.NetworkInterfaceIPConfigurationsListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         networkInterfaceName,
         options
       },
-      listOperationSpec) as Promise<Models.NetworkInterfaceIPConfigurationsListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.NetworkInterfaceIPConfigurationsListResponse>;
   }
 
   /**
@@ -64,7 +69,11 @@ export class NetworkInterfaceIPConfigurations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, networkInterfaceName: string, ipConfigurationName: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceIPConfigurationsGetResponse> {
+  get(resourceGroupName: string, networkInterfaceName: string, ipConfigurationName: string): Promise<Models.NetworkInterfaceIPConfigurationsGetResponse>;
+  get(resourceGroupName: string, networkInterfaceName: string, ipConfigurationName: string, options: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceIPConfigurationsGetResponse>;
+  get(resourceGroupName: string, networkInterfaceName: string, ipConfigurationName: string, callback: msRest.ServiceCallback<Models.NetworkInterfaceIPConfiguration>): void;
+  get(resourceGroupName: string, networkInterfaceName: string, ipConfigurationName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkInterfaceIPConfiguration>): void;
+  get(resourceGroupName: string, networkInterfaceName: string, ipConfigurationName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkInterfaceIPConfiguration>): Promise<Models.NetworkInterfaceIPConfigurationsGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -72,7 +81,8 @@ export class NetworkInterfaceIPConfigurations {
         ipConfigurationName,
         options
       },
-      getOperationSpec) as Promise<Models.NetworkInterfaceIPConfigurationsGetResponse>;
+      getOperationSpec,
+      callback) as Promise<Models.NetworkInterfaceIPConfigurationsGetResponse>;
   }
 
   /**
@@ -88,13 +98,18 @@ export class NetworkInterfaceIPConfigurations {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceIPConfigurationsListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.NetworkInterfaceIPConfigurationsListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceIPConfigurationsListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkInterfaceIPConfigurationListResult>): Promise<Models.NetworkInterfaceIPConfigurationsListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.NetworkInterfaceIPConfigurationsListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.NetworkInterfaceIPConfigurationsListNextResponse>;
   }
 
 }

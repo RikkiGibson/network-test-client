@@ -37,14 +37,19 @@ export class NetworkInterfaceLoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceLoadBalancersListResponse> {
+  list(resourceGroupName: string, networkInterfaceName: string): Promise<Models.NetworkInterfaceLoadBalancersListResponse>;
+  list(resourceGroupName: string, networkInterfaceName: string, options: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceLoadBalancersListResponse>;
+  list(resourceGroupName: string, networkInterfaceName: string, callback: msRest.ServiceCallback<Models.NetworkInterfaceLoadBalancerListResult>): void;
+  list(resourceGroupName: string, networkInterfaceName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkInterfaceLoadBalancerListResult>): void;
+  list(resourceGroupName: string, networkInterfaceName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkInterfaceLoadBalancerListResult>): Promise<Models.NetworkInterfaceLoadBalancersListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         networkInterfaceName,
         options
       },
-      listOperationSpec) as Promise<Models.NetworkInterfaceLoadBalancersListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.NetworkInterfaceLoadBalancersListResponse>;
   }
 
   /**
@@ -60,13 +65,18 @@ export class NetworkInterfaceLoadBalancers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceLoadBalancersListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.NetworkInterfaceLoadBalancersListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.NetworkInterfaceLoadBalancersListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.NetworkInterfaceLoadBalancerListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkInterfaceLoadBalancerListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkInterfaceLoadBalancerListResult>): Promise<Models.NetworkInterfaceLoadBalancersListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.NetworkInterfaceLoadBalancersListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.NetworkInterfaceLoadBalancersListNextResponse>;
   }
 
 }

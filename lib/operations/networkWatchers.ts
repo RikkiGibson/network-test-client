@@ -5,6 +5,7 @@
  */
 
 import * as msRest from "ms-rest-js";
+import * as msRestAzure from "ms-rest-azure-js";
 import * as Models from "../models";
 import * as Mappers from "../models/networkWatchersMappers";
 import * as Parameters from "../models/parameters";
@@ -39,7 +40,11 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  createOrUpdate(resourceGroupName: string, networkWatcherName: string, parameters: Models.NetworkWatcher, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersCreateOrUpdateResponse> {
+  createOrUpdate(resourceGroupName: string, networkWatcherName: string, parameters: Models.NetworkWatcher): Promise<Models.NetworkWatchersCreateOrUpdateResponse>;
+  createOrUpdate(resourceGroupName: string, networkWatcherName: string, parameters: Models.NetworkWatcher, options: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersCreateOrUpdateResponse>;
+  createOrUpdate(resourceGroupName: string, networkWatcherName: string, parameters: Models.NetworkWatcher, callback: msRest.ServiceCallback<Models.NetworkWatcher>): void;
+  createOrUpdate(resourceGroupName: string, networkWatcherName: string, parameters: Models.NetworkWatcher, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkWatcher>): void;
+  createOrUpdate(resourceGroupName: string, networkWatcherName: string, parameters: Models.NetworkWatcher, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkWatcher>): Promise<Models.NetworkWatchersCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -47,7 +52,8 @@ export class NetworkWatchers {
         parameters,
         options
       },
-      createOrUpdateOperationSpec) as Promise<Models.NetworkWatchersCreateOrUpdateResponse>;
+      createOrUpdateOperationSpec,
+      callback) as Promise<Models.NetworkWatchersCreateOrUpdateResponse>;
   }
 
   /**
@@ -65,14 +71,19 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersGetResponse> {
+  get(resourceGroupName: string, networkWatcherName: string): Promise<Models.NetworkWatchersGetResponse>;
+  get(resourceGroupName: string, networkWatcherName: string, options: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersGetResponse>;
+  get(resourceGroupName: string, networkWatcherName: string, callback: msRest.ServiceCallback<Models.NetworkWatcher>): void;
+  get(resourceGroupName: string, networkWatcherName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkWatcher>): void;
+  get(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkWatcher>): Promise<Models.NetworkWatchersGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         networkWatcherName,
         options
       },
-      getOperationSpec) as Promise<Models.NetworkWatchersGetResponse>;
+      getOperationSpec,
+      callback) as Promise<Models.NetworkWatchersGetResponse>;
   }
 
 
@@ -91,14 +102,9 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  deleteMethod(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
+  deleteMethod(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.RestResponse> {
     return this.beginDeleteMethod(resourceGroupName, networkWatcherName, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-
-        // Deserialize Response
-        return operationRes;
-      });
+      .then(lroPoller => lroPoller.pollUntilFinished());
   }
 
   /**
@@ -118,7 +124,11 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  updateTags(resourceGroupName: string, networkWatcherName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersUpdateTagsResponse> {
+  updateTags(resourceGroupName: string, networkWatcherName: string, parameters: Models.TagsObject): Promise<Models.NetworkWatchersUpdateTagsResponse>;
+  updateTags(resourceGroupName: string, networkWatcherName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersUpdateTagsResponse>;
+  updateTags(resourceGroupName: string, networkWatcherName: string, parameters: Models.TagsObject, callback: msRest.ServiceCallback<Models.NetworkWatcher>): void;
+  updateTags(resourceGroupName: string, networkWatcherName: string, parameters: Models.TagsObject, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkWatcher>): void;
+  updateTags(resourceGroupName: string, networkWatcherName: string, parameters: Models.TagsObject, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkWatcher>): Promise<Models.NetworkWatchersUpdateTagsResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -126,7 +136,8 @@ export class NetworkWatchers {
         parameters,
         options
       },
-      updateTagsOperationSpec) as Promise<Models.NetworkWatchersUpdateTagsResponse>;
+      updateTagsOperationSpec,
+      callback) as Promise<Models.NetworkWatchersUpdateTagsResponse>;
   }
 
   /**
@@ -142,13 +153,18 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersListResponse> {
+  list(resourceGroupName: string): Promise<Models.NetworkWatchersListResponse>;
+  list(resourceGroupName: string, options: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersListResponse>;
+  list(resourceGroupName: string, callback: msRest.ServiceCallback<Models.NetworkWatcherListResult>): void;
+  list(resourceGroupName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkWatcherListResult>): void;
+  list(resourceGroupName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkWatcherListResult>): Promise<Models.NetworkWatchersListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         options
       },
-      listOperationSpec) as Promise<Models.NetworkWatchersListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.NetworkWatchersListResponse>;
   }
 
   /**
@@ -162,12 +178,17 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listAll(options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersListAllResponse> {
+  listAll(): Promise<Models.NetworkWatchersListAllResponse>;
+  listAll(options: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersListAllResponse>;
+  listAll(callback: msRest.ServiceCallback<Models.NetworkWatcherListResult>): void;
+  listAll(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.NetworkWatcherListResult>): void;
+  listAll(options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.NetworkWatcherListResult>): Promise<Models.NetworkWatchersListAllResponse> {
     return this.client.sendOperationRequest(
       {
         options
       },
-      listAllOperationSpec) as Promise<Models.NetworkWatchersListAllResponse>;
+      listAllOperationSpec,
+      callback) as Promise<Models.NetworkWatchersListAllResponse>;
   }
 
   /**
@@ -187,7 +208,11 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  getTopology(resourceGroupName: string, networkWatcherName: string, parameters: Models.TopologyParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersGetTopologyResponse> {
+  getTopology(resourceGroupName: string, networkWatcherName: string, parameters: Models.TopologyParameters): Promise<Models.NetworkWatchersGetTopologyResponse>;
+  getTopology(resourceGroupName: string, networkWatcherName: string, parameters: Models.TopologyParameters, options: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersGetTopologyResponse>;
+  getTopology(resourceGroupName: string, networkWatcherName: string, parameters: Models.TopologyParameters, callback: msRest.ServiceCallback<Models.Topology>): void;
+  getTopology(resourceGroupName: string, networkWatcherName: string, parameters: Models.TopologyParameters, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.Topology>): void;
+  getTopology(resourceGroupName: string, networkWatcherName: string, parameters: Models.TopologyParameters, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.Topology>): Promise<Models.NetworkWatchersGetTopologyResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -195,7 +220,8 @@ export class NetworkWatchers {
         parameters,
         options
       },
-      getTopologyOperationSpec) as Promise<Models.NetworkWatchersGetTopologyResponse>;
+      getTopologyOperationSpec,
+      callback) as Promise<Models.NetworkWatchersGetTopologyResponse>;
   }
 
 
@@ -219,25 +245,7 @@ export class NetworkWatchers {
    */
   verifyIPFlow(resourceGroupName: string, networkWatcherName: string, parameters: Models.VerificationIPFlowParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersVerifyIPFlowResponse> {
     return this.beginVerifyIPFlow(resourceGroupName, networkWatcherName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.VerificationIPFlowResult, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.NetworkWatchersVerifyIPFlowResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.NetworkWatchersVerifyIPFlowResponse>;
   }
 
 
@@ -261,25 +269,7 @@ export class NetworkWatchers {
    */
   getNextHop(resourceGroupName: string, networkWatcherName: string, parameters: Models.NextHopParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersGetNextHopResponse> {
     return this.beginGetNextHop(resourceGroupName, networkWatcherName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.NextHopResult, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.NetworkWatchersGetNextHopResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.NetworkWatchersGetNextHopResponse>;
   }
 
 
@@ -303,25 +293,7 @@ export class NetworkWatchers {
    */
   getVMSecurityRules(resourceGroupName: string, networkWatcherName: string, parameters: Models.SecurityGroupViewParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersGetVMSecurityRulesResponse> {
     return this.beginGetVMSecurityRules(resourceGroupName, networkWatcherName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.SecurityGroupViewResult, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.NetworkWatchersGetVMSecurityRulesResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.NetworkWatchersGetVMSecurityRulesResponse>;
   }
 
 
@@ -345,25 +317,7 @@ export class NetworkWatchers {
    */
   getTroubleshooting(resourceGroupName: string, networkWatcherName: string, parameters: Models.TroubleshootingParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersGetTroubleshootingResponse> {
     return this.beginGetTroubleshooting(resourceGroupName, networkWatcherName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.TroubleshootingResult, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.NetworkWatchersGetTroubleshootingResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.NetworkWatchersGetTroubleshootingResponse>;
   }
 
 
@@ -387,25 +341,7 @@ export class NetworkWatchers {
    */
   getTroubleshootingResult(resourceGroupName: string, networkWatcherName: string, parameters: Models.QueryTroubleshootingParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersGetTroubleshootingResultResponse> {
     return this.beginGetTroubleshootingResult(resourceGroupName, networkWatcherName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.TroubleshootingResult, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.NetworkWatchersGetTroubleshootingResultResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.NetworkWatchersGetTroubleshootingResultResponse>;
   }
 
 
@@ -428,25 +364,7 @@ export class NetworkWatchers {
    */
   setFlowLogConfiguration(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogInformation, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersSetFlowLogConfigurationResponse> {
     return this.beginSetFlowLogConfiguration(resourceGroupName, networkWatcherName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.FlowLogInformation, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.NetworkWatchersSetFlowLogConfigurationResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.NetworkWatchersSetFlowLogConfigurationResponse>;
   }
 
 
@@ -470,25 +388,7 @@ export class NetworkWatchers {
    */
   getFlowLogStatus(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogStatusParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersGetFlowLogStatusResponse> {
     return this.beginGetFlowLogStatus(resourceGroupName, networkWatcherName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.FlowLogInformation, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.NetworkWatchersGetFlowLogStatusResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.NetworkWatchersGetFlowLogStatusResponse>;
   }
 
 
@@ -513,25 +413,7 @@ export class NetworkWatchers {
    */
   checkConnectivity(resourceGroupName: string, networkWatcherName: string, parameters: Models.ConnectivityParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersCheckConnectivityResponse> {
     return this.beginCheckConnectivity(resourceGroupName, networkWatcherName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.ConnectivityInformation, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.NetworkWatchersCheckConnectivityResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.NetworkWatchersCheckConnectivityResponse>;
   }
 
 
@@ -556,25 +438,7 @@ export class NetworkWatchers {
    */
   getAzureReachabilityReport(resourceGroupName: string, networkWatcherName: string, parameters: Models.AzureReachabilityReportParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersGetAzureReachabilityReportResponse> {
     return this.beginGetAzureReachabilityReport(resourceGroupName, networkWatcherName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.AzureReachabilityReport, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.NetworkWatchersGetAzureReachabilityReportResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.NetworkWatchersGetAzureReachabilityReportResponse>;
   }
 
 
@@ -598,25 +462,7 @@ export class NetworkWatchers {
    */
   listAvailableProviders(resourceGroupName: string, networkWatcherName: string, parameters: Models.AvailableProvidersListParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersListAvailableProvidersResponse> {
     return this.beginListAvailableProviders(resourceGroupName, networkWatcherName, parameters, options)
-      .then(initialResult => this.client.getLongRunningOperationResult(initialResult, options))
-      .then(operationRes => {
-        let httpRequest = operationRes.request;
-
-        // Deserialize Response
-        let parsedResponse = operationRes.parsedBody as { [key: string]: any };
-        if (parsedResponse != undefined) {
-          try {
-            const serializer = new msRest.Serializer(Mappers);
-            operationRes.parsedBody = serializer.deserialize(Mappers.AvailableProvidersList, parsedResponse, "operationRes.parsedBody")
-          } catch (error) {
-            const deserializationError = new msRest.RestError(`Error ${error} occurred in deserializing the responseBody - ${operationRes.bodyAsText}`);
-            deserializationError.request = msRest.stripRequest(httpRequest);
-            deserializationError.response = msRest.stripResponse(operationRes);
-            throw deserializationError;
-          }
-        }
-        return operationRes;
-      }) as Promise<Models.NetworkWatchersListAvailableProvidersResponse>;
+      .then(lroPoller => lroPoller.pollUntilFinished()) as Promise<Models.NetworkWatchersListAvailableProvidersResponse>;
   }
 
   /**
@@ -634,14 +480,15 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRest.HttpResponse> {
-    return this.client.sendOperationRequest(
+  beginDeleteMethod(resourceGroupName: string, networkWatcherName: string, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkWatcherName,
         options
       },
-      beginDeleteMethodOperationSpec);
+      beginDeleteMethodOperationSpec,
+      options);
   }
 
   /**
@@ -662,15 +509,16 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginVerifyIPFlow(resourceGroupName: string, networkWatcherName: string, parameters: Models.VerificationIPFlowParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersBeginVerifyIPFlowResponse> {
-    return this.client.sendOperationRequest(
+  beginVerifyIPFlow(resourceGroupName: string, networkWatcherName: string, parameters: Models.VerificationIPFlowParameters, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkWatcherName,
         parameters,
         options
       },
-      beginVerifyIPFlowOperationSpec) as Promise<Models.NetworkWatchersBeginVerifyIPFlowResponse>;
+      beginVerifyIPFlowOperationSpec,
+      options);
   }
 
   /**
@@ -691,15 +539,16 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetNextHop(resourceGroupName: string, networkWatcherName: string, parameters: Models.NextHopParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersBeginGetNextHopResponse> {
-    return this.client.sendOperationRequest(
+  beginGetNextHop(resourceGroupName: string, networkWatcherName: string, parameters: Models.NextHopParameters, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkWatcherName,
         parameters,
         options
       },
-      beginGetNextHopOperationSpec) as Promise<Models.NetworkWatchersBeginGetNextHopResponse>;
+      beginGetNextHopOperationSpec,
+      options);
   }
 
   /**
@@ -720,15 +569,16 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetVMSecurityRules(resourceGroupName: string, networkWatcherName: string, parameters: Models.SecurityGroupViewParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersBeginGetVMSecurityRulesResponse> {
-    return this.client.sendOperationRequest(
+  beginGetVMSecurityRules(resourceGroupName: string, networkWatcherName: string, parameters: Models.SecurityGroupViewParameters, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkWatcherName,
         parameters,
         options
       },
-      beginGetVMSecurityRulesOperationSpec) as Promise<Models.NetworkWatchersBeginGetVMSecurityRulesResponse>;
+      beginGetVMSecurityRulesOperationSpec,
+      options);
   }
 
   /**
@@ -749,15 +599,16 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetTroubleshooting(resourceGroupName: string, networkWatcherName: string, parameters: Models.TroubleshootingParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersBeginGetTroubleshootingResponse> {
-    return this.client.sendOperationRequest(
+  beginGetTroubleshooting(resourceGroupName: string, networkWatcherName: string, parameters: Models.TroubleshootingParameters, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkWatcherName,
         parameters,
         options
       },
-      beginGetTroubleshootingOperationSpec) as Promise<Models.NetworkWatchersBeginGetTroubleshootingResponse>;
+      beginGetTroubleshootingOperationSpec,
+      options);
   }
 
   /**
@@ -778,15 +629,16 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetTroubleshootingResult(resourceGroupName: string, networkWatcherName: string, parameters: Models.QueryTroubleshootingParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersBeginGetTroubleshootingResultResponse> {
-    return this.client.sendOperationRequest(
+  beginGetTroubleshootingResult(resourceGroupName: string, networkWatcherName: string, parameters: Models.QueryTroubleshootingParameters, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkWatcherName,
         parameters,
         options
       },
-      beginGetTroubleshootingResultOperationSpec) as Promise<Models.NetworkWatchersBeginGetTroubleshootingResultResponse>;
+      beginGetTroubleshootingResultOperationSpec,
+      options);
   }
 
   /**
@@ -806,15 +658,16 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginSetFlowLogConfiguration(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogInformation, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersBeginSetFlowLogConfigurationResponse> {
-    return this.client.sendOperationRequest(
+  beginSetFlowLogConfiguration(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogInformation, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkWatcherName,
         parameters,
         options
       },
-      beginSetFlowLogConfigurationOperationSpec) as Promise<Models.NetworkWatchersBeginSetFlowLogConfigurationResponse>;
+      beginSetFlowLogConfigurationOperationSpec,
+      options);
   }
 
   /**
@@ -835,15 +688,16 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetFlowLogStatus(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogStatusParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersBeginGetFlowLogStatusResponse> {
-    return this.client.sendOperationRequest(
+  beginGetFlowLogStatus(resourceGroupName: string, networkWatcherName: string, parameters: Models.FlowLogStatusParameters, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkWatcherName,
         parameters,
         options
       },
-      beginGetFlowLogStatusOperationSpec) as Promise<Models.NetworkWatchersBeginGetFlowLogStatusResponse>;
+      beginGetFlowLogStatusOperationSpec,
+      options);
   }
 
   /**
@@ -865,15 +719,16 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginCheckConnectivity(resourceGroupName: string, networkWatcherName: string, parameters: Models.ConnectivityParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersBeginCheckConnectivityResponse> {
-    return this.client.sendOperationRequest(
+  beginCheckConnectivity(resourceGroupName: string, networkWatcherName: string, parameters: Models.ConnectivityParameters, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkWatcherName,
         parameters,
         options
       },
-      beginCheckConnectivityOperationSpec) as Promise<Models.NetworkWatchersBeginCheckConnectivityResponse>;
+      beginCheckConnectivityOperationSpec,
+      options);
   }
 
   /**
@@ -895,15 +750,16 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginGetAzureReachabilityReport(resourceGroupName: string, networkWatcherName: string, parameters: Models.AzureReachabilityReportParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersBeginGetAzureReachabilityReportResponse> {
-    return this.client.sendOperationRequest(
+  beginGetAzureReachabilityReport(resourceGroupName: string, networkWatcherName: string, parameters: Models.AzureReachabilityReportParameters, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkWatcherName,
         parameters,
         options
       },
-      beginGetAzureReachabilityReportOperationSpec) as Promise<Models.NetworkWatchersBeginGetAzureReachabilityReportResponse>;
+      beginGetAzureReachabilityReportOperationSpec,
+      options);
   }
 
   /**
@@ -924,15 +780,16 @@ export class NetworkWatchers {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  beginListAvailableProviders(resourceGroupName: string, networkWatcherName: string, parameters: Models.AvailableProvidersListParameters, options?: msRest.RequestOptionsBase): Promise<Models.NetworkWatchersBeginListAvailableProvidersResponse> {
-    return this.client.sendOperationRequest(
+  beginListAvailableProviders(resourceGroupName: string, networkWatcherName: string, parameters: Models.AvailableProvidersListParameters, options?: msRest.RequestOptionsBase): Promise<msRestAzure.LROPoller> {
+    return this.client.sendLRORequest(
       {
         resourceGroupName,
         networkWatcherName,
         parameters,
         options
       },
-      beginListAvailableProvidersOperationSpec) as Promise<Models.NetworkWatchersBeginListAvailableProvidersResponse>;
+      beginListAvailableProvidersOperationSpec,
+      options);
   }
 
 }

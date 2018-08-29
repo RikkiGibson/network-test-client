@@ -37,14 +37,19 @@ export class LoadBalancerBackendAddressPools {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancerBackendAddressPoolsListResponse> {
+  list(resourceGroupName: string, loadBalancerName: string): Promise<Models.LoadBalancerBackendAddressPoolsListResponse>;
+  list(resourceGroupName: string, loadBalancerName: string, options: msRest.RequestOptionsBase): Promise<Models.LoadBalancerBackendAddressPoolsListResponse>;
+  list(resourceGroupName: string, loadBalancerName: string, callback: msRest.ServiceCallback<Models.LoadBalancerBackendAddressPoolListResult>): void;
+  list(resourceGroupName: string, loadBalancerName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LoadBalancerBackendAddressPoolListResult>): void;
+  list(resourceGroupName: string, loadBalancerName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LoadBalancerBackendAddressPoolListResult>): Promise<Models.LoadBalancerBackendAddressPoolsListResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
         loadBalancerName,
         options
       },
-      listOperationSpec) as Promise<Models.LoadBalancerBackendAddressPoolsListResponse>;
+      listOperationSpec,
+      callback) as Promise<Models.LoadBalancerBackendAddressPoolsListResponse>;
   }
 
   /**
@@ -64,7 +69,11 @@ export class LoadBalancerBackendAddressPools {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  get(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancerBackendAddressPoolsGetResponse> {
+  get(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string): Promise<Models.LoadBalancerBackendAddressPoolsGetResponse>;
+  get(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, options: msRest.RequestOptionsBase): Promise<Models.LoadBalancerBackendAddressPoolsGetResponse>;
+  get(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, callback: msRest.ServiceCallback<Models.BackendAddressPool>): void;
+  get(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.BackendAddressPool>): void;
+  get(resourceGroupName: string, loadBalancerName: string, backendAddressPoolName: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.BackendAddressPool>): Promise<Models.LoadBalancerBackendAddressPoolsGetResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -72,7 +81,8 @@ export class LoadBalancerBackendAddressPools {
         backendAddressPoolName,
         options
       },
-      getOperationSpec) as Promise<Models.LoadBalancerBackendAddressPoolsGetResponse>;
+      getOperationSpec,
+      callback) as Promise<Models.LoadBalancerBackendAddressPoolsGetResponse>;
   }
 
   /**
@@ -88,13 +98,18 @@ export class LoadBalancerBackendAddressPools {
    *
    * @reject {Error|ServiceError} The error object.
    */
-  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase): Promise<Models.LoadBalancerBackendAddressPoolsListNextResponse> {
+  listNext(nextPageLink: string): Promise<Models.LoadBalancerBackendAddressPoolsListNextResponse>;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase): Promise<Models.LoadBalancerBackendAddressPoolsListNextResponse>;
+  listNext(nextPageLink: string, callback: msRest.ServiceCallback<Models.LoadBalancerBackendAddressPoolListResult>): void;
+  listNext(nextPageLink: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.LoadBalancerBackendAddressPoolListResult>): void;
+  listNext(nextPageLink: string, options?: msRest.RequestOptionsBase, callback?: msRest.ServiceCallback<Models.LoadBalancerBackendAddressPoolListResult>): Promise<Models.LoadBalancerBackendAddressPoolsListNextResponse> {
     return this.client.sendOperationRequest(
       {
         nextPageLink,
         options
       },
-      listNextOperationSpec) as Promise<Models.LoadBalancerBackendAddressPoolsListNextResponse>;
+      listNextOperationSpec,
+      callback) as Promise<Models.LoadBalancerBackendAddressPoolsListNextResponse>;
   }
 
 }

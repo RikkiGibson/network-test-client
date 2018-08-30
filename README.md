@@ -45,7 +45,6 @@ autorest --typescript \
   --use=@microsoft.azure/autorest.typescript@preview \
   --output-folder=./lib \
   --model-enum-as-union=true \
-  --generate-body-methods=false \
   https://raw.githubusercontent.com/Azure/azure-rest-api-specs/3a5b54168f823c5d14eafd5e18e89c2e54c92469/specification/network/resource-manager/readme.md
 ```
 
